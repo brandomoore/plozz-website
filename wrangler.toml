@@ -1,4 +1,5 @@
-# Cloudflare Pages configuration.
+# Legacy Cloudflare Pages preview configuration, NOT the public-domain target.
+# Production uses wrangler.worker.toml; see the deployment steps in README.md.
 # The static site is built by Astro (`npm run build` → dist/).
 # The tracker OAuth relay runs as Pages Functions in functions/ (ported from the
 # former standalone Worker that used to live in the thatcube/Plozz repo).

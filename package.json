@@ -8,6 +8,11 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "test": "node --test tests/*.test.mjs",
+    "worker:dev": "wrangler dev --config wrangler.worker.toml --local",
+    "worker:check": "wrangler versions upload --config wrangler.worker.toml --dry-run",
+    "worker:upload": "npm run build && npm test && wrangler versions upload --config wrangler.worker.toml --keep-vars",
+    "worker:deploy": "wrangler versions deploy --config wrangler.worker.toml",
     "preview": "astro preview",
     "images": "node tools/build-images.mjs",
     "shots": "node tools/sync-shots.mjs",
@@ -18,7 +23,8 @@
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.7.3",
-    "astro": "^7.0.2"
+    "astro": "^7.0.2",
+    "wrangler": "4.133.0"
   },
   "dependencies": {
     "@iconify-json/ph": "^1.2.2",

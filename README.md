@@ -10,7 +10,8 @@ Live at **[plozz.app](https://plozz.app)**.
 
 - **[Astro](https://astro.build)** — static output, zero JavaScript shipped by default.
 - **[astro-icon](https://github.com/natemoo-re/astro-icon)** + `@astrojs/sitemap` for icons and the sitemap.
-- **Hosting:** [Cloudflare Pages](https://pages.cloudflare.com) — the static build plus a few [Pages Functions](functions/) for the tracker OAuth relay (MyAnimeList / AniList).
+- **Production hosting:** [Cloudflare Workers](https://developers.cloudflare.com/workers/static-assets/) — static assets plus the existing MyAnimeList / AniList OAuth relay.
+- **Legacy previews:** Cloudflare Pages still builds the repository, but its `pages.dev` deployment does **not** publish to `plozz.app`.
 
 ## Develop
 
@@ -28,16 +29,53 @@ npm run preview  # preview the production build locally
 
 ## Deploy
 
-Cloudflare Pages is connected to this repo and builds on every push to `main`.
+`plozz.app` and `www.plozz.app` are already bound to the **`plozz-website`
+production Worker**, configured by [`wrangler.worker.toml`](wrangler.worker.toml).
+The request handler is [`worker/index.js`](worker/index.js); it reuses the
+unchanged OAuth functions and lets static assets serve existing files first.
 
-| Setting | Value |
-| --- | --- |
-| Build command | `npm run build` |
-| Build output directory | `dist` |
+Use an already-authorized Wrangler login or deployment token. Do not create new
+credentials or paste tokens into source. Check the active Worker version and
+bindings before uploading, and retain that version ID as the rollback reference.
 
-Pages configuration and Function bindings (the `AUTH_KV` namespace, the public
-OAuth client IDs) live in [`wrangler.toml`](wrangler.toml). The
-`MAL_CLIENT_SECRET` is an encrypted Pages secret and is not committed.
+```bash
+npm ci
+npm test
+npm run build
+npm run worker:check                  # bundle/config validation, no upload
+npm run worker:upload                 # rebuild, test, upload an INACTIVE version
+npm run worker:deploy -- <version-id>@100 --yes
+```
+
+Inspect the uploaded version's bindings before activating it. `keep_vars`
+preserves the existing `ANILIST_CLIENT_ID` and `MAL_CLIENT_ID`; Worker version
+uploads retain `MAL_CLIENT_SECRET` without reading or replacing its value.
+`AUTH_KV` keeps its existing namespace, including in-flight authorizations.
+If new production bindings appear, incorporate them before uploading rather
+than deleting them with an older config.
+
+Version upload/deploy is deliberate: it doesn't synchronize DNS, custom domains
+or route settings. **Do not replace it with `wrangler deploy` or add route/domain
+declarations.** `/pair` and `/.well-known/apple-app-site-association` belong to
+the separate `plozz-pairing-links` Worker and must remain untouched.
+
+After activation, verify `https://plozz.app/`, `/silo/`, refreshed pages/assets,
+both hostnames, and the pairing page/association. Test OAuth only with missing
+inputs, unsupported methods and OPTIONS; don't complete a real authorization
+or redeem a user's code as a deployment check. Local tests use mocked KV.
+
+To roll back, activate the recorded previous version:
+
+```bash
+npm run worker:deploy -- <previous-version-id>@100 --yes
+```
+
+The existing Pages integration still builds `main` using `npm run build` and
+[`wrangler.toml`](wrangler.toml), but its custom-domain binding is deactivated.
+A green **Cloudflare Pages** GitHub check proves only that preview deployment
+succeeded. Production publication is the explicit Worker upload/activation
+above; there is no credentialed Worker GitHub Actions workflow in this repo.
+Do not reactivate the Pages domain or change DNS to resolve a stale Worker.
 
 ## Structure
 
@@ -48,7 +86,9 @@ src/components/      Reusable page sections
 src/data/           Site copy, FAQs, and the screenshot manifest
 src/styles/          Global and device-frame CSS
 public/              Static assets + the generated screenshots/ ladders
-functions/           Cloudflare Pages Functions (the OAuth relay)
+functions/           Shared OAuth handlers (also used by legacy Pages previews)
+worker/              Production Worker router and static-asset 404 fallback
+tests/               Worker routing and mocked OAuth/KV regression tests
 screenshots-src/     Pristine screenshot masters (not shipped in the build)
 tools/               Build scripts: screenshot encoders, OG image, font sheet
 ```

@@ -1,0 +1,22 @@
+# Production: plozz.app and www.plozz.app already target this Worker.
+# Use versions upload/deploy; do not synchronize domains, routes or DNS.
+name = "plozz-website"
+account_id = "471672cb7947a45f5e43023a1f02d2f5"
+main = "worker/index.js"
+compatibility_date = "2026-08-18"
+keep_vars = true
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+html_handling = "auto-trailing-slash"
+not_found_handling = "none"
+run_worker_first = false
+
+[[kv_namespaces]]
+binding = "AUTH_KV"
+id = "152ec5bca6e1429d82e5b93e0fc549c3"
+
+# Existing plain-text vars and MAL_CLIENT_SECRET remain managed in Cloudflare.
+# keep_vars retains dashboard values; version uploads retain existing secrets.
+# Do not copy credentials into this file or supply replacement values at deploy.
