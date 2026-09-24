@@ -14,6 +14,7 @@ import { HERO, DEVICE_IPAD, DEVICE_IPHONE } from "../data/imageSizes";
 import { shotSrcset } from "../data/shots";
 import { INCLUDED, DONATION_AMOUNTS } from "../data/site";
 import { GITHUB_URL, DONATE_URL, TESTFLIGHT_URL, SITE } from "../data/site";
+import { faqs, stripHtml } from "../data/faqs";
 
 const heroScreenshots = [
   {
@@ -54,16 +55,25 @@ const softwareLd = {
   applicationCategory: "MultimediaApplication",
   operatingSystem: "tvOS, iOS, iPadOS",
   description:
-    "Plozz is a free, open source media player built in Swift for Apple TV, iPhone, and iPad. Connect Plex, Jellyfin, Emby, SMB, NFS, WebDAV, SFTP, and FTP.",
+    "Plozz is a free, open source media player for Apple TV, iPhone and iPad. Connect Jellyfin, Plex, Emby, native Silo and network shares. Includes movie, TV and music libraries, with offline downloads and streaming-quality controls on iPhone and iPad.",
+  featureList: [
+    "Jellyfin, Plex, Emby and native Silo libraries and playback",
+    "SMB, NFS, WebDAV, SFTP and FTP network shares",
+    "Combined libraries, watchlists and optional watch-history sync",
+    "In-player file and edition switching on the active server",
+    "Offline downloads and movie/episode streaming-quality controls on iPhone and iPad",
+    "Dual subtitles, themes, per-profile settings and circadian mode",
+    "Music playback and Live TV where supported by the source",
+  ],
   url: SITE,
   image: `${SITE}/og-image.png`,
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   license: "https://www.gnu.org/licenses/gpl-3.0.html",
   isAccessibleForFree: true,
   author: {
-    "@type": "Organization",
-    name: "thatcube",
-    url: "https://github.com/thatcube",
+    "@type": "Person",
+    name: "Brandon Moore",
+    url: "https://github.com/brandomoore",
   },
   sameAs: [GITHUB_URL],
 };
@@ -73,13 +83,13 @@ const softwareLd = {
  * these, the only thing on the page Google can attach the brand to is the app
  * listing, which makes "Plozz" harder to resolve as a search term.
  */
-const orgLd = {
+const publisherLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "thatcube",
-  url: SITE,
-  logo: `${SITE}/logo.svg`,
-  sameAs: [GITHUB_URL],
+  "@type": "Person",
+  "@id": `${SITE}/#publisher`,
+  name: "Brandon Moore",
+  url: "https://brando.page",
+  sameAs: ["https://github.com/brandomoore"],
 };
 
 const siteLd = {
@@ -87,7 +97,17 @@ const siteLd = {
   "@type": "WebSite",
   name: "Plozz",
   url: SITE,
-  publisher: { "@type": "Organization", name: "thatcube" },
+  publisher: { "@id": `${SITE}/#publisher` },
+};
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: { "@type": "Answer", text: stripHtml(faq.a) },
+  })),
 };
 ---
 
@@ -112,6 +132,7 @@ const siteLd = {
       <div class="container">
         <div class="hero-copy">
           <h1>Free and open source. <br class="h1-break" />Plays practically everything.</h1>
+          <p>Movies, shows and music on Apple TV, iPhone and iPad.</p>
 
           <div class="hero-summary">
             <div class="hero-works">
@@ -119,6 +140,7 @@ const siteLd = {
                 <li><img src="/providers/plex.svg" alt="Plex" /></li>
                 <li><img src="/providers/jellyfin.svg" alt="Jellyfin" /></li>
                 <li><img src="/providers/emby.png" alt="Emby" /></li>
+                <li><span class="silo-lockup"><img src="/providers/silo.svg" alt="" />Silo</span></li>
                 <li>
                   <span class="share-lockup">
                     <Icon name="ph:folders" />
@@ -239,19 +261,58 @@ const siteLd = {
           <div class="cell">
             <h3>Synced to all of your devices</h3>
             <p>
-              Every setting saves to your iCloud, so your preferences and
-              servers follow you to all of your Apple devices.
+              Sync profiles, preferences and server setup through iCloud.
+              Server credentials aren’t cloud-synced. Set up another device
+              from an existing one; Silo asks you to approve the new device separately.
             </p>
           </div>
           <div class="cell">
-            <h3>iCloud profiles</h3>
-            <p>Native support for profile switching on tvOS</p>
+            <h3>Your profile, your layout</h3>
+            <p>
+              Each Plozz profile keeps its own presentation and library choices,
+              with native profile switching on Apple TV. Server users still
+              own their watch history and restrictions.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
     <Marquee />
+
+    <section class="band" aria-labelledby="watching-heading">
+      <div class="container">
+        <div class="band-head">
+          <h2 id="watching-heading">Keep watching your way.</h2>
+        </div>
+        <div class="slab">
+          <a class="cell" href="/features#can-i-use-less-data">
+            <h3>Quality for the connection</h3>
+            <p>
+              On iPhone and iPad, choose movie and episode quality for home,
+              remote networks and cellular. Use a preset or set your own limits.
+            </p>
+            <span class="cell-go">Streaming quality<span class="cell-arrow" aria-hidden="true"></span></span>
+          </a>
+          <a class="cell" href="/features#can-i-change-versions-mid-film">
+            <h3>Another file. Same player.</h3>
+            <p>
+              Switch files or editions on the active server without leaving
+              playback. Your position and settings carry over.
+            </p>
+            <span class="cell-go">Version controls<span class="cell-arrow" aria-hidden="true"></span></span>
+          </a>
+          <a class="cell" href="/features#what-else-can-i-watch-or-listen-to">
+            <h3>More than a film library</h3>
+            <p>
+              Keep a watchlist, browse music, or open Live TV from a supported
+              source. Connected trackers and Seerr fit around your library.
+            </p>
+            <span class="cell-go">All features<span class="cell-arrow" aria-hidden="true"></span></span>
+          </a>
+        </div>
+      </div>
+    </section>
 
     <section class="band" aria-labelledby="plays-heading">
       <div class="container">
@@ -263,22 +324,22 @@ const siteLd = {
           <div class="cell" style="--span: 2">
             <h3>Dolby Vision</h3>
             <p>
-              Profiles 5, 7, 8.1 and 8.4. Profile 7 included, which Apple
-              hardware can’t decode on its own.
+              Profiles 5, 7, 8.1 and 8.4. Profile 7 is converted to 8.1
+              during playback on compatible hardware.
             </p>
           </div>
           <div class="cell" style="--span: 2">
             <h3>HDR10+</h3>
             <p>
-              Your TV gets the real scene-by-scene tone curves, not a flattened
-              HDR10 copy.
+              Dynamic metadata from supported files, with output dependent on
+              your device, display and playback path.
             </p>
           </div>
           <div class="cell" style="--span: 2">
             <h3>Dolby Atmos</h3>
             <p>
-              Nothing touches the bitstream, so your receiver lights up like it
-              should.
+              E-AC-3 JOC can pass through without re-encoding. TrueHD Atmos
+              plays too, but its object metadata doesn’t survive.
             </p>
           </div>
           <div class="cell" style="--span: 3">
@@ -316,8 +377,8 @@ const siteLd = {
           <div class="cell">
             <h3>Everything in sync</h3>
             <p>
-              Your servers fold into a single library, and watch status stays in
-              sync between all of them.
+              Your servers fold into a single library. Keep each server’s
+              watch history separate, or enable optional cross-server history sync.
             </p>
           </div>
 
@@ -331,8 +392,8 @@ const siteLd = {
           <div class="cell">
             <h3>Play from any copy</h3>
             <p>
-              When more than one server has the same title, you choose which one
-              it streams from.
+              Choose a source before playing when several servers have the
+              same title. In-player version changes stay on that chosen server.
             </p>
           </div>
         </div>
@@ -351,7 +412,7 @@ const siteLd = {
           </div>
           <div class="cell">
             <CircadianDial />
-            <h3>Protect your circadian rhythm</h3>
+            <h3>A quieter screen at night</h3>
             <p>
               Automatically tint and dim the screen following sunrise and sunset
               or a custom schedule.
@@ -389,7 +450,7 @@ const siteLd = {
           <h2 id="sources-heading">Better on whatever you already run</h2>
         </div>
 
-        <div class="slab" style="--cols: 4">
+        <div class="slab" style="--cols: 3">
           <a class="cell" href="/jellyfin">
             <div class="cell-visual">
               <img
@@ -423,14 +484,23 @@ const siteLd = {
               <img class="lockup-emby" src="/providers/emby.png" alt="Emby" />
             </div>
             <div class="cell-foot">
-              <p>Full playback on iPhone, no time limit.</p>
+              <p>Native libraries and playback on every device.</p>
               <span class="cell-go"
                 >See how it works<span class="cell-arrow" aria-hidden="true"
                 ></span></span
               >
             </div>
           </a>
-          <a class="cell" href="/network-shares">
+          <a class="cell" href="/silo">
+            <div class="cell-visual">
+              <span class="silo-lockup"><img src="/providers/silo.svg" alt="" />Silo</span>
+            </div>
+            <div class="cell-foot">
+              <p>Native Silo support, without compatibility mode.</p>
+              <span class="cell-go">See how it works<span class="cell-arrow" aria-hidden="true"></span></span>
+            </div>
+          </a>
+          <a class="cell share-source" href="/network-shares">
             <div class="cell-visual">
               <span class="share-lockup">
                 <Icon name="ph:folders" />
@@ -455,9 +525,8 @@ const siteLd = {
           <div class="donate-copy">
             <h2 id="donate-heading">Consider donating.</h2>
             <p>
-              It helps me cover the cost of ongoing development of Plozz and my
-              other free and open source apps. If you’ve enjoyed using Plozz, a
-              donation means a lot.
+              If you’ve enjoyed using Plozz, a donation means a lot.
+              It’s free either way.
             </p>
           </div>
           <div class="donate-action">
@@ -492,14 +561,29 @@ const siteLd = {
       </div>
     </section>
 
+    <section class="faq-section" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 id="faq-heading">Common questions</h2>
+        <div class="faq-list">
+          {faqs.map((faq) => (
+            <details>
+              <summary>{faq.q}</summary>
+              <p set:html={faq.a} />
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <Closer />
   </main>
 
   <SiteFooter />
 
   <script type="application/ld+json" set:html={JSON.stringify(softwareLd)} />
-  <script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(publisherLd)} />
   <script type="application/ld+json" set:html={JSON.stringify(siteLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
   <SiteScripts />
   <script>
     const gallery = document.querySelector("[data-hero-gallery]");

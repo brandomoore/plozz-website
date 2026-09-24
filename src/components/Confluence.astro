@@ -1,8 +1,8 @@
 ---
 /**
- * Four sources, one library.
+ * Five sources, one library.
  *
- * Four hairlines leave the source lockups and converge on a single point where
+ * Hairlines leave the source lockups and converge on a single point where
  * the Plozz mark sits. Sources are shown as their real wordmarks so they read
  * as the products people already know; network shares have no logo, so that
  * node is an icon plus the word. The hub is named too: every source carries its
@@ -23,25 +23,16 @@ const SOURCES = [
   { name: "Plex", src: "/providers/plex.svg" },
   { name: "Jellyfin", src: "/providers/jellyfin.svg" },
   { name: "Emby", src: "/providers/emby.png" },
+  { name: "Silo", mark: "/providers/silo.svg" },
   { name: "Shares", icon: "ph:folders" },
 ];
 
 /* Vertical position of each source, as a percentage of the stage height. Shared
    by both layouts and by the CSS, so rows and wire ends always agree. */
-const ROW_PCT = [11.9, 37.3, 62.7, 88.1];
+const ROW_PCT = [8, 29, 50, 71, 92];
 
-/* When each wire launches, in seconds within the shared 4.1s cycle. The four
-   arrivals are spaced 0.75s, 1.3s, 0.95s and 1.1s apart, which sums to the
-   period and reads as a rhythm rather than a metronome.
-
-   Every gap is shorter than the 1.5s a pulse takes to cross, so beams overlap
-   freely and the count in the air varies on its own; nothing here caps it.
-
-   Listed by row but fired out of order -- top, bottom, second, third -- so
-   consecutive arrivals come from opposite ends and the set never reads as a
-   sweep down the column. Each value is its arrival time minus the 1.2s of
-   travel that precedes it, wrapped into the cycle. */
-const DELAY_S = [2.9, 0.85, 1.8, 3.65];
+/* Staggered within the shared 4.1s cycle, out of row order. */
+const DELAY_S = [2.9, 0.85, 1.8, 0.1, 3.65];
 
 /* The hub is a lockup whose width depends on its own type, so it is anchored by
    its left edge -- the side the wires actually touch. Anchoring by centre would
@@ -74,7 +65,7 @@ function wires(L: Layout) {
     const y = (p / 100) * L.h;
     /* Lines leave and arrive flat and do their bending in the middle. The
        outgoing handle grows with vertical distance, so the outer lines hold
-       their line longer and the four arrive as a fan rather than a braid.
+       their        line longer and the sources arrive as a fan rather than a braid.
        Scaling it by the run keeps that shape when the run gets short. */
     const vFrac = Math.abs(y - hubY) / hubY;
     const cp1 = startX + run * (0.45 + 0.35 * vFrac);
@@ -104,7 +95,7 @@ const LAYOUTS = [
           aria-hidden="true"
           preserveAspectRatio="xMidYMid meet"
         >
-          {/* All four static wires first, then all four pulses. Pairing each
+          {/* All static wires first, then all pulses. Pairing each
               wire with its own pulse in a group meant a later wire painted
               over an earlier pulse, and since the wires converge, every pulse
               was clipped by its neighbours just before it landed. */}
@@ -127,13 +118,14 @@ const LAYOUTS = [
       {
         SOURCES.map((s, i) => (
           <li class="source-node" style={`--row:${ROW_PCT[i]}%`}>
-            {s.icon ? (
-              <span class="source-shares">
-                <Icon name={s.icon} />
+            {s.src ? (
+              <img src={s.src} alt="" />
+            ) : (
+              <span class:list={["source-shares", { "silo-lockup": s.mark }]}>
+                {s.mark && <img src={s.mark} alt="" />}
+                {s.icon && <Icon name={s.icon} />}
                 <span>{s.name}</span>
               </span>
-            ) : (
-              <img src={s.src} alt="" />
             )}
           </li>
         ))
@@ -155,6 +147,6 @@ const LAYOUTS = [
   </div>
 
   <span class="sr-only">
-    Plozz brings Plex, Jellyfin, Emby and network shares into one library.
+    Plozz brings Plex, Jellyfin, Emby, Silo and network shares into one library.
   </span>
 </div>

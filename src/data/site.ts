@@ -1,8 +1,8 @@
-export const GITHUB_URL = 'https://github.com/thatcube/Plozz';
-export const DONATE_URL = 'https://github.com/sponsors/thatcube';
+export const GITHUB_URL = 'https://github.com/brandomoore/Plozz';
+export const DONATE_URL = 'https://github.com/sponsors/brandomoore';
 export const TESTFLIGHT_URL = 'https://testflight.apple.com/join/EKfReNMu';
 export const SITE = 'https://plozz.app';
-export const GITHUB_STARS_SEED = 7;
+export const GITHUB_STARS_SEED = 26;
 
 export const NAV_LINKS = [
   { href: '/features', label: 'Features' },
@@ -14,6 +14,7 @@ export const SERVER_LINKS = [
   { href: '/jellyfin', label: 'Jellyfin' },
   { href: '/plex', label: 'Plex' },
   { href: '/emby', label: 'Emby' },
+  { href: '/silo', label: 'Silo' },
 ];
 
 /**
@@ -24,7 +25,7 @@ export const SERVER_LINKS = [
 export const HEADLINE_BADGES = [
   { label: 'Dolby Vision', value: 'P5 · P7 · P8.1 · P8.4' },
   { label: 'HDR', value: 'HDR10 · HDR10+ · HLG' },
-  { label: 'Dolby Atmos', value: 'Stream-copied' },
+  { label: 'Dolby Atmos', value: 'E-AC-3 JOC' },
   { label: 'Video', value: 'HEVC · H.264 · AV1 · VP9' },
   { label: 'Lossless audio', value: 'TrueHD · DTS-HD MA' },
   { label: 'Discs', value: 'DVD · Blu-ray ISO' },
@@ -94,6 +95,14 @@ export const FORMAT_TABLE = [
 /** Stated plainly, because a support list nobody can trust is worth nothing. */
 export const FORMAT_CAVEATS = [
   {
+    name: 'Output depends on the whole playback chain',
+    note: 'The file, device, display and audio equipment all matter. Format badges describe media, not proof of HDMI output. A server conversion can change HDR, codecs and audio.',
+  },
+  {
+    name: 'Quality limits can ask your server to transcode',
+    note: 'On iPhone and iPad, movie and episode quality controls keep the original when it fits and request conversion when needed. Server capabilities, settings and entitlements still apply.',
+  },
+  {
     name: 'TrueHD Atmos loses its object metadata',
     note: 'The surround bed and channel layout survive. Atmos objects only pass through untouched from E-AC-3 sources.',
   },
@@ -107,25 +116,13 @@ export const FORMAT_CAVEATS = [
   },
 ];
 
-/**
- * Verified against firecore.com/infuse and emby.media's Premiere feature matrix
- * on 2026-08-07. Only claims with a primary source are listed. Plex's remote
- * streaming policy and Infuse's Dolby Vision tier could not be verified, so
- * neither appears here.
- */
-/**
- * The features other players reserve for a paid tier. Named by what they do
- * for the viewer rather than by who charges for them: calling out a
- * competitor's pricing reads as punching sideways and goes stale the moment
- * they change it.
- */
 export const INCLUDED = [
-  { name: 'Dolby Atmos', icon: 'ph:waveform', detail: 'The bitstream reaches your receiver untouched.' },
+  { name: 'Dolby Atmos', icon: 'ph:waveform', detail: 'E-AC-3 JOC audio stays intact on a compatible playback chain.' },
   { name: 'TrueHD and DTS-HD MA', icon: 'ph:speaker-hifi', detail: 'Lossless audio, decoded on the device.' },
-  { name: 'AirPlay', icon: 'ph:airplay', detail: 'Send what you are watching to another screen.' },
-  { name: 'Offline downloads', icon: 'ph:download-simple', detail: 'Take a film or a whole season with you.' },
-  { name: 'Subtitle search', icon: 'ph:subtitles', detail: 'Find and load one without leaving the scene.' },
-  { name: 'iCloud sync', icon: 'ph:cloud', detail: 'Servers and progress across your devices.' },
+  { name: 'AirPlay', icon: 'ph:airplay', detail: 'Send video from iPhone or iPad to another screen.' },
+  { name: 'Offline downloads', icon: 'ph:download-simple', detail: 'Save films and episodes on iPhone and iPad, including from Silo.' },
+  { name: 'Subtitle search', icon: 'ph:subtitles', detail: 'Find and load subtitles in the player where your server supports it.' },
+  { name: 'iCloud sync', icon: 'ph:cloud', detail: 'Profiles, preferences and server setup across your devices, without cloud-syncing server credentials.' },
 ];
 
 // GitHub Sponsors prefills its checkout from these, so one tap is one donation.

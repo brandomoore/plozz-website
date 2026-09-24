@@ -1,8 +1,8 @@
 # plozz-website
 
-The marketing website for **[Plozz](https://github.com/thatcube/Plozz)** — a
+The marketing website for **[Plozz](https://github.com/brandomoore/Plozz)** — a
 free, open-source media player for Apple TV, iPhone, and iPad that plays from
-your own Jellyfin, Plex, and Emby servers and from plain network shares.
+your own Jellyfin, Plex, Emby and Silo servers and from plain network shares.
 
 Live at **[plozz.app](https://plozz.app)**.
 
@@ -43,7 +43,7 @@ OAuth client IDs) live in [`wrangler.toml`](wrangler.toml). The
 
 ```
 src/pages/          One .astro file per route (index, features, formats,
-                    jellyfin, plex, emby, network-shares, privacy, 404)
+                    jellyfin, plex, emby, silo, network-shares, privacy, 404)
 src/components/      Reusable page sections
 src/data/           Site copy, FAQs, and the screenshot manifest
 src/styles/          Global and device-frame CSS
@@ -52,6 +52,30 @@ functions/           Cloudflare Pages Functions (the OAuth relay)
 screenshots-src/     Pristine screenshot masters (not shipped in the build)
 tools/               Build scripts: screenshot encoders, OG image, font sheet
 ```
+
+## Content
+
+[`PRODUCT.md`](PRODUCT.md) owns the voice and claim boundaries. Provider links
+and format data live in [`src/data/site.ts`](src/data/site.ts). The homepage
+renders [`src/data/faqs.ts`](src/data/faqs.ts) as both visible answers and
+FAQPage structured data; keep those together.
+
+The September 23, 2026 refresh follows app release/041. Platform and provider
+limits belong beside their features, especially mobile-only streaming quality
+and downloads, native Silo capabilities, server-owned identities and optional
+history sync. Keep the public TestFlight link rather than promising that the
+latest internal build has cleared external review.
+
+Social cards are generated from the site logo and wordmark:
+
+```bash
+npm run og
+node tools/build-og.mjs --check
+```
+
+Keep `COPY` in [`tools/build-og.mjs`](tools/build-og.mjs) aligned with
+[`src/layouts/Layout.astro`](src/layouts/Layout.astro). Regenerate both the SVG
+and PNG after changing it.
 
 ## Screenshots
 

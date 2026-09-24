@@ -10,7 +10,7 @@ import FactSection from '../components/FactSection.astro';
 import Shot from "../components/Shot.astro";
 import { FIGURE } from "../data/imageSizes";
 
-const title = "Play SMB, NFS, WebDAV, SFTP and FTP on Apple TV — Plozz";
+const title = "Network shares on Apple TV, iPhone and iPad — Plozz";
 const description = "Plozz plays video straight off a network share on Apple TV, iPhone and iPad. SMB3, NFS, WebDAV, SFTP with key auth, FTP over TLS. No media server needed.";
 
 const compatibility = [
@@ -60,10 +60,23 @@ const compatibility = [
       question={"Do I need a media server?"}
     >
       <ul class="proof">
-        <li><span>Nothing to install</span><span>No Plex, Jellyfin or Emby required</span></li>
-        <li><span>Nothing to scan</span><span>Browse the folder as it is</span></li>
+        <li><span>No media server</span><span>No Plex, Jellyfin, Emby or Silo required</span></li>
+        <li><span>Folders or a library</span><span>Browse files directly or let Plozz scan and match them</span></li>
         <li><span>Nothing to transcode</span><span>No middleman to re-encode</span></li>
         <li><span>Merged in</span><span>Sits beside your servers, if you have any</span></li>
+      </ul>
+    </Showcase>
+
+    <Showcase
+      question="Can a folder look like a library?"
+      detail="Recognized films and shows get artwork, descriptions, cast and related titles. Open their usual detail pages or choose Browse Files to inspect the originals. Unknown and mixed folders stay browsable."
+    >
+      <ul class="proof">
+        <li><span>Content types</span><span>Movies, TV, mixed or personal videos, with a separate anime option</span></li>
+        <li><span>Local metadata</span><span>NFO files and artwork sidecars</span></li>
+        <li><span>Personal videos</span><span>No movie or TV matching imposed on your own recordings</span></li>
+        <li><span>Scanning</span><span>Runs while the app is active; normal scans skip unchanged folders</span></li>
+        <li><span>Deep scans</span><span>Daily, or with Scan now, to catch changes timestamps can miss</span></li>
       </ul>
     </Showcase>
 
@@ -86,12 +99,13 @@ const compatibility = [
         <li><span>Sidecar subtitles</span><span>SRT, ASS, SSA and VTT</span></li>
         <li><span>Where it looks</span><span>The same folder, and a Subs folder beside it</span></li>
         <li><span>Up Next lead time</span><span>15, 20, 30, 45 or 60 seconds</span></li>
-        <li><span>Resume</span><span>Kept by Plozz, synced across your devices</span></li>
+        <li><span>Resume</span><span>Plozz keeps playback progress for recognized share titles</span></li>
       </ul>
     </Showcase>
 
     <FactSection
       title="Compatibility"
+      lead="Share playback has no server transcoder. The iPhone/iPad movie and episode streaming-quality controls apply to managed media servers, not these connections."
       facts={compatibility}
     />
 

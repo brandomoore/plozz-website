@@ -8,12 +8,13 @@ import PageHero from '../components/PageHero.astro';
 import Showcase from '../components/Showcase.astro';
 import DensityLab from '../components/DensityLab.astro';
 import SpoilerLab from '../components/SpoilerLab.astro';
+import FactSection from '../components/FactSection.astro';
 import Shot from "../components/Shot.astro";
 import { FIGURE } from "../data/imageSizes";
 
 const title = 'Plozz features — the questions people actually ask';
 const description =
-  'Does it direct play? Can I skip intros? Can I fix the subtitles? Can I watch offline? The answers, shown rather than listed.';
+  'Plozz features for Apple TV, iPhone and iPad: native Silo, combined libraries, mobile streaming quality and downloads, version switching, dual subtitles and music.';
 ---
 
 <Layout title={title} description={description}>
@@ -26,20 +27,60 @@ const description =
     />
 
     <Showcase
-      question="Will it wreck my server?"
-      detail="Nothing upstream re-encodes a thing, so your server sits idle while you watch."
+      question="Does everything need transcoding?"
+      detail="No. Plozz plays a broad range of original files on the device. On iPhone and iPad, a lower quality limit can ask your server to convert instead. Server capabilities, permissions and settings still matter."
     >
       <ul class="proof">
         <li><span>Dolby Vision</span><span>Profiles 5, 7, 8.1 and 8.4</span></li>
         <li><span>Dolby Atmos</span><span>Stream-copied from E-AC-3, not re-encoded</span></li>
         <li><span>TrueHD and DTS-HD MA</span><span>Play free, bridged to surround or lossless FLAC</span></li>
-        <li><span>Your server</span><span>Hands over the file, then goes back to sleep</span></li>
+        <li><span>Your playback chain</span><span>Device, display and audio equipment determine final output</span></li>
+      </ul>
+    </Showcase>
+
+    <Showcase
+      question="Can I use less data?"
+      detail="On iPhone and iPad, movie and episode quality follows the connection. Saved defaults belong to your Plozz profile; changes in the player last for that video. The original plays when it fits. Otherwise, your server needs to convert it."
+      flip
+    >
+      <ul class="proof">
+        <li><span>Local network</span><span>Maximum by default</span></li>
+        <li><span>Remote Wi-Fi / Ethernet</span><span>Its own default, initially Maximum</span></li>
+        <li><span>Cellular</span><span>720p / 2 Mbps by default</span></li>
+        <li><span>Presets or Custom</span><span>Independent resolution ceiling and total bitrate in Kbps</span></li>
+        <li><span>Conversion</span><span>Automatic, Prefer HEVC or Prefer H.264 where supported; advanced force conversion</span></li>
+        <li><span>Scope</span><span>Not Apple TV, music, Live TV, downloads or network shares</span></li>
+      </ul>
+    </Showcase>
+
+    <Showcase
+      question="Can I change versions mid-film?"
+      detail="Choose another file or edition on Apple TV, iPhone or iPad. This stays on the active server/account, not a different server. Position carries over, but different cuts can put the same scene at different times."
+    >
+      <ul class="proof">
+        <li><span>Playback</span><span>Keeps position, pause state and speed</span></li>
+        <li><span>Preferences</span><span>Keeps the selected quality and matching audio/subtitle tracks</span></li>
+        <li><span>Next time</span><span>Your profile remembers its version preference</span></li>
+        <li><span>Audio choices</span><span>Detailed labels, such as Dolby Digital 5.1; controls appear for alternate tracks or Dialog Enhance</span></li>
+      </ul>
+    </Showcase>
+
+    <Showcase
+      question="What am I actually streaming?"
+      detail="Info and Quality describe the current stream when its format is known, not the original file’s badges pasted onto a conversion. A selected limit is a target, not a measurement or a guarantee of HDR output."
+      flip
+    >
+      <ul class="proof">
+        <li><span>Current stream</span><span>Measured dimensions, codec, HDR and audio when available</span></li>
+        <li><span>Original file</span><span>Labelled separately in diagnostics</span></li>
+        <li><span>Bitrate</span><span>Stream bitrate is separate from network throughput</span></li>
+        <li><span>Diagnostics</span><span>TV overlay; a readable, scrolling sheet on iPhone and iPad</span></li>
       </ul>
     </Showcase>
 
     <Showcase
       question="Can I make the subtitles readable?"
-      detail="Seven typefaces, two of them built for people who struggle to read subtitles at all. Change any of it mid-scene, without leaving what you're watching."
+      detail="Choose a font, size, weight, colour, background, shadow and HDR brightness from the player. Adjust position in 0.5% steps and decide whether extra lines grow above, around or below it. You can display two subtitle tracks at once."
       flip
     >
       <Shot
@@ -48,6 +89,18 @@ const description =
         sizes={FIGURE}
         class="shot"
       />
+    </Showcase>
+
+    <Showcase
+      question="What if the subtitle is missing?"
+      detail="Search, download and load one without leaving the player, where your server supports it. Jellyfin and Emby can identify a file match; Silo uses its native file-scoped subtitle search. Availability depends on the server’s configured subtitle sources."
+    >
+      <ul class="proof">
+        <li><span>Text and image subtitles</span><span>SRT, ASS, SSA, WebVTT, PGS and more</span></li>
+        <li><span>Local sidecars</span><span>Read alongside files on network shares</span></li>
+        <li><span>Two languages</span><span>Two simultaneous tracks, not a language toggle</span></li>
+        <li><span>Direct access</span><span>Subtitles keep their own player button</span></li>
+      </ul>
     </Showcase>
 
     <Showcase
@@ -71,7 +124,7 @@ const description =
 
     <Showcase
       question="Will it spoil the next episode?"
-      detail="Artwork stays hidden and the title just reads Episode 4 until you’ve watched it. Ratings can stay hidden too."
+      detail="Hide unwatched episode artwork with blur or show art, and mask episode titles and descriptions. Continue Watching has its own artwork styles. Ratings can stay hidden until you finish; in-progress episodes can keep their thumbnails."
       flip
     >
       <SpoilerLab />
@@ -79,23 +132,100 @@ const description =
 
     <Showcase
       question="Can I watch on a plane?"
-      detail="Queue a film or a whole season. Stick to Wi-Fi if you’d rather not spend the data."
+      detail="Save films and episodes on iPhone or iPad, including through Silo’s native download support. Completed downloads play without a server connection. Download quality is separate from streaming quality, and server capabilities still apply."
     >
       <ul class="proof">
         <li><span>Downloads</span><span>On iPhone and iPad</span></li>
-        <li><span>Picture in Picture</span><span>Keeps the custom controls and subtitles</span></li>
+        <li><span>Picture in Picture</span><span>Keep video visible while using another app</span></li>
         <li><span>AirPlay</span><span>Route picker in the player</span></li>
-        <li><span>Background audio</span><span>Keeps going when the screen locks</span></li>
+        <li><span>Background audio</span><span>Optionally keep listening when the screen locks</span></li>
       </ul>
     </Showcase>
 
     <Showcase
-      question="What are you doing with my data?"
-      detail="Crash reporting stays off until you turn it on, and public builds ship without a reporting endpoint anyway."
+      question="Can I find things across my servers?"
+      detail="Combine libraries from Jellyfin, Plex, Emby, Silo and network shares, or keep separate rows. Choose the servers and libraries each Plozz profile sees. Optional cross-server history sync is off until you enable it."
       flip
     >
       <ul class="proof">
-        <li><span>Analytics</span><span>None, anywhere in the codebase</span></li>
+        <li><span>Jump to a letter</span><span>Name-sorted individual and combined managed libraries on every platform</span></li>
+        <li><span>Apple TV</span><span>A letter rail with native focus; deep Silo and combined jumps load on demand and can be cancelled</span></li>
+        <li><span>Collections</span><span>Browse Plex, Jellyfin and Emby collections</span></li>
+        <li><span>Continue Watching</span><span>No app-imposed cutoff; server limits and your removals still apply</span></li>
+        <li><span>Watched state</span><span>Mark an episode, a season or everything up to an episode</span></li>
+      </ul>
+    </Showcase>
+
+    <Showcase
+      question="What else can I watch or listen to?"
+      detail="Movies and shows aren’t the only things in a home library. Available content and actions depend on the connected source, rather than every provider having an identical feature set."
+    >
+      <ul class="proof">
+        <li><span>Music</span><span>Plex, Jellyfin and Emby albums and artists, queues, a mini-player and background listening</span></li>
+        <li><span>Live TV</span><span>Your IPTV playlists, authorized Plex/Jellyfin/Emby channels and scheduled library channels</span></li>
+        <li><span>Watchlist</span><span>One list across your devices, with connected tracker and server sync</span></li>
+        <li><span>Extras</span><span>Special features and bonus videos from Plex, Jellyfin, Emby and network shares</span></li>
+        <li><span>Personal videos</span><span>Browse your own files without movie or TV matching</span></li>
+      </ul>
+    </Showcase>
+
+    <Showcase
+      question="Can I bring my own TV channels?"
+      detail="Live TV runs on Apple TV, iPhone and iPad, and is marked Experimental on Apple TV. Add your own M3U playlist and optional XMLTV guide, connect authorized server channels, or schedule channels from your library. Plozz doesn’t provide public channels."
+      flip
+    >
+      <ul class="proof">
+        <li><span>One guide</span><span>Search, categories, favorites and recently watched channels</span></li>
+        <li><span>Multiview</span><span>Watch multiple channels together</span></li>
+        <li><span>Server sources</span><span>Plex, Jellyfin and Emby; no native Silo or share channel source</span></li>
+        <li><span>Standalone IPTV</span><span>No media-server account needed for your own playlist</span></li>
+      </ul>
+    </Showcase>
+
+    <Showcase
+      question="What if I don’t have it yet?"
+      detail="Search beyond your library and request titles through Seerr. Each Plozz profile can link to a user on that Seerr server. Requests keep that user’s identity and permissions."
+      flip
+    >
+      <ul class="proof">
+        <li><span>Missing seasons</span><span>Request individual seasons without requesting the whole show again</span></li>
+        <li><span>Request status</span><span>Pending, processing and failures remain visible</span></li>
+        <li><span>Details</span><span>Trailers, cast, release information and related titles where available</span></li>
+        <li><span>Trackers</span><span>Trakt, AniList, MyAnimeList, Simkl and Last.fm, for their supported media types</span></li>
+      </ul>
+    </Showcase>
+
+    <Showcase
+      question="Which ratings do I see?"
+      detail="Choose review-score sources, their order and how many appear. Plex Common Sense Media ages are a separate setting, not another review score. Topic guidance requires an eligible active Plex user with Plex Pass access."
+    >
+      <ul class="proof">
+        <li><span>Review scores</span><span>Provider-dependent; optional OMDb enrichment needs your key</span></li>
+        <li><span>Anime</span><span>AniList community scores</span></li>
+        <li><span>Recommended age</span><span>Common Sense Media on Plex movie and show details only</span></li>
+        <li><span>Spoilers</span><span>Optionally hide scores until you’ve watched</span></li>
+      </ul>
+    </Showcase>
+
+    <FactSection
+      title="Same library. Different screens."
+      facts={[
+        { name: 'Apple TV', value: 'Remote-focused navigation, Top Shelf, a library letter rail and configurable sidebar or top-bar layouts.' },
+        { name: 'iPhone and iPad', value: 'Offline downloads, movie/episode streaming quality, Picture in Picture, AirPlay and optional background video audio.' },
+        { name: 'Every platform', value: 'Native playback, version selection, dual subtitles, profiles, watchlists and combined libraries.' },
+        { name: 'Make it yours', value: 'Light, dark and black themes, layout density, navigation order, Home rows and hero settings.' },
+        { name: 'Circadian mode', value: 'Warm and dim the interface around sunrise and sunset or on your own schedule.' },
+        { name: 'Device setup', value: 'iCloud sync carries non-secret profiles, settings and server descriptors. Approved device setup can transfer eligible logins; Silo pairs separately.' },
+      ]}
+    />
+
+    <Showcase
+      question="What are you doing with my data?"
+      detail="There’s no Plozz account or usage analytics. Crash reporting is optional. Your chosen servers, metadata services and trackers handle the requests needed for the features you use."
+      flip
+    >
+      <ul class="proof">
+        <li><span>Usage analytics</span><span>None in the app</span></li>
         <li><span>Crash reports</span><span>Off until you turn them on</span></li>
         <li><span>Accounts</span><span>There’s no Plozz account to make</span></li>
         <li><span>Price</span><span>Free, and the source is on GitHub</span></li>

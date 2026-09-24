@@ -7,7 +7,7 @@ import PageHero from '../components/PageHero.astro';
 import Closer from '../components/Closer.astro';
 import { FORMAT_TABLE, FORMAT_CAVEATS } from '../data/site';
 
-const title = 'Supported formats — Plozz for Apple TV';
+const title = 'Supported formats — Plozz for Apple TV, iPhone and iPad';
 const description =
   'Every format Plozz plays: Dolby Vision including Profile 7, HDR10+, Atmos, TrueHD, DTS-HD MA, MKV, AV1 and PGS subtitles. All free, no Pro tier.';
 
@@ -15,7 +15,7 @@ const description =
 const faqs = [
   {
     q: 'Does Plozz play MKV on Apple TV?',
-    a: 'Yes. Plozz opens Matroska files on the device itself, so your server sends the original file instead of transcoding it.',
+    a: 'Yes. Plozz can open Matroska files on the device itself. Mobile streaming-quality limits can request a server conversion instead of the original file.',
   },
   {
     q: 'Does Plozz support Dolby Vision?',
@@ -23,15 +23,15 @@ const faqs = [
   },
   {
     q: 'Does Plozz support Dolby Atmos?',
-    a: 'Yes. E-AC-3 with JOC is copied straight through without re-encoding, so your receiver gets the Atmos bitstream intact. TrueHD Atmos plays too, but its object metadata is not preserved.',
+    a: 'Plozz supports E-AC-3 JOC stream copy on a compatible playback chain. TrueHD Atmos plays too, but its object metadata is not preserved. Conversion, device and audio-output settings can change the delivered format.',
   },
   {
     q: 'Does it cost anything?',
-    a: 'No. Plozz is free and open source under GPL-3.0, with no Pro tier, no subscription and nothing to unlock. Every format on this page works for everyone.',
+    a: 'Plozz is free and open source under GPL-3.0, with no paid format tier. Hardware compatibility and any server-side requirements still apply.',
   },
   {
     q: 'Does Plozz play HDR10+?',
-    a: 'Yes. The per-frame metadata is passed through to your TV rather than flattened to static HDR10.',
+    a: 'Plozz supports HDR10+ metadata in compatible playback paths. Actual output depends on the device, display and stream; an HDR10+ source badge is not proof of HDMI output.',
   },
   {
     q: 'Can it play Blu-ray and DVD images?',

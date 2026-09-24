@@ -2,18 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteScripts from '../components/SiteScripts.astro';
+import { GITHUB_URL } from '../data/site';
 
-const GITHUB_URL = 'https://github.com/thatcube/Plozz';
-const SPONSOR_URL = 'https://github.com/sponsors/thatcube';
 const CONTACT_EMAIL = 'feedback@plozz.app';
 const SENTRY_PRIVACY_URL = 'https://sentry.io/privacy/';
 const GITHUB_PRIVACY_URL = 'https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement';
-const LAST_UPDATED = 'July 2, 2026';
+const LAST_UPDATED = 'September 23, 2026';
 ---
 
 <Layout
   title="Privacy Policy — Plozz"
-  description="Plozz collects nothing by default. Server credentials stay on your device and Plozz connects straight to the servers you choose. Crash reporting is opt-in."
+  description="How Plozz handles server logins, iCloud sync, approved device setup, connected services and optional crash reports. No Plozz account or usage analytics."
 >
   <main class="legal">
     <div class="container">
@@ -26,18 +25,17 @@ const LAST_UPDATED = 'July 2, 2026';
       <p class="legal-updated">Last updated: {LAST_UPDATED}</p>
 
       <p>
-        Plozz is a client app for connecting to your own Jellyfin and Plex media
-        servers. We take a minimal-data approach.
+        Plozz is a media player for Apple TV, iPhone and iPad. It connects to
+        Jellyfin, Plex, Emby, Silo and network shares that you choose.
       </p>
 
       <h2>What we collect</h2>
       <p>
-        By default, nothing. Plozz has no analytics or tracking, and out of the
-        box it does not collect, store, or transmit any personal data to us or
-        any third party. The only information that ever leaves your device is
-        what you deliberately choose to send: an optional crash report or
-        diagnostics log (off unless you turn crash reporting on) or a bug report
-        you submit yourself. Both are described below.
+        Plozz has no usage analytics and no Plozz account. Crash reporting is
+        optional and off by default. Playing media, fetching metadata,
+        syncing settings and using connected services still require network
+        requests. Those connections are described below; “no analytics”
+        doesn’t mean the app never communicates with another service.
       </p>
 
       <h2>Crash reports &amp; diagnostics (optional, off by default)</h2>
@@ -50,7 +48,7 @@ const LAST_UPDATED = 'July 2, 2026';
       </p>
       <p>
         These reports contain only the technical details of the failure plus
-        your app version, tvOS version, and device model (for example
+        your app version, operating-system version, and device model (for example
         “Apple TV 4K”). They never include your name, your server addresses,
         your logins or tokens, or anything about what you were watching.
       </p>
@@ -80,8 +78,8 @@ const LAST_UPDATED = 'July 2, 2026';
         link and QR code that open a pre-filled issue on our public
         <a href={`${GITHUB_URL}/issues`} target="_blank" rel="noopener">GitHub</a>
         repository — only you decide whether to submit it. The pre-filled text
-        includes a small, non-secret summary of your setup (app version, tvOS
-        version, device model, and whether you use Jellyfin and/or Plex) and a
+        includes a small, non-secret summary of your setup (app version,
+        operating-system version, device model, and connected provider types) and a
         short excerpt — the last few lines — of the app’s recent activity log,
         with tokens, passwords, and server addresses removed. It never includes
         your full server addresses, logins, or tokens. Anything you post to
@@ -94,18 +92,48 @@ const LAST_UPDATED = 'July 2, 2026';
 
       <h2>Your server details</h2>
       <p>
-        The server addresses and login credentials you enter are stored locally
-        on your device (in the system Keychain) and are used only to connect to
-        the servers you choose. They are never sent to us.
+        Login credentials are stored in the system Keychain on your device.
+        They authorize connections to the services you choose and are not sent
+        to the developer. Server users and profiles retain their server-owned
+        access restrictions and watch history; local Plozz profiles don’t
+        replace those identities.
+      </p>
+
+      <h2>iCloud and setting up another device</h2>
+      <p>
+        iCloud sync carries non-secret profiles, settings and server descriptors,
+        not server login credentials. This data is handled through your Apple
+        account. Watchlist sync and optional history connections are separate
+        from whether a server login is stored in iCloud.
+      </p>
+      <p>
+        If you approve device-to-device setup, eligible providers’ login
+        credentials can transfer through that flow. Silo is an exception:
+        its rotating login is never cloned. Only the server descriptor transfers,
+        and the receiving device must pair with Silo independently. Pending Silo
+        setup remains available in Settings → iCloud Sync.
       </p>
 
       <h2>Network connections</h2>
       <p>
-        Plozz communicates directly with the Jellyfin or Plex servers you
-        configure. Any data handling on those servers is governed by their own
-        privacy policies and the policies of whoever operates them. The only
-        other network destination is our crash-reporting provider, and only if
-        you turn on crash reporting or send diagnostics (see above).
+        Plozz connects to your configured media servers and network shares
+        for libraries, playback, subtitles and downloads. Providers receive
+        the authentication and playback information needed to supply those
+        features. Data handling on those servers is governed by their
+        operators’ policies.
+      </p>
+      <p>
+        Artwork, metadata, ratings and subtitle lookups can contact the
+        services configured for those features. Connected trackers such as
+        Trakt, AniList, MyAnimeList, Simkl and Last.fm receive the supported
+        watchlist or listening/watching activity you enable. Seerr receives
+        requests using the linked server user. Their own privacy policies apply.
+      </p>
+      <p>
+        The website hosts the authorization relay used to connect AniList and
+        MyAnimeList. That flow processes the authorization data needed to finish
+        sign-in; it is separate from app usage analytics. The website itself is
+        hosted by Cloudflare and requests the public GitHub star count from GitHub.
       </p>
 
       <h2>Children</h2>

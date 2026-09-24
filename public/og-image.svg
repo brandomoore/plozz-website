@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Plozz — Jellyfin, Plex, Emby & network shares">
-  <title>Plozz — Jellyfin, Plex, Emby & network shares</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Plozz — Jellyfin, Plex, Emby, Silo &amp; network shares">
+  <title>Plozz — Jellyfin, Plex, Emby, Silo &amp; network shares</title>
   <defs>
     <radialGradient id="og-glow" cx="50%" cy="18%" r="62%">
       <stop offset="0%" stop-color="#00a4dc" stop-opacity="0.34"/>
@@ -99,6 +99,6 @@
 <path d="M52 9H53V13H52V9Z" fill="#97E3FE"/>
 <path d="M16 3H18V5H16V3Z" fill="#97E3FE"/>
 <path d="M3 22H5V25H3V22Z" fill="#ACE9FF"/></g>
-  <text x="600" y="470" text-anchor="middle" fill="#e8edf4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="48" font-weight="700" letter-spacing="-1">Jellyfin, Plex, Emby &amp; network shares</text>
+  <text x="600" y="470" text-anchor="middle" fill="#e8edf4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="-1">Jellyfin, Plex, Emby, Silo &amp; network shares</text>
   <text x="600" y="532" text-anchor="middle" fill="#41c6f5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="29" font-weight="600" letter-spacing="0.4">Apple TV · iPhone · iPad — free &amp; open source</text>
 </svg>

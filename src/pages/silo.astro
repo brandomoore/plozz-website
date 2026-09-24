@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Closer from '../components/Closer.astro';
+import SiteScripts from '../components/SiteScripts.astro';
+import PageHero from '../components/PageHero.astro';
+import Showcase from '../components/Showcase.astro';
+import FactSection from '../components/FactSection.astro';
+
+const title = 'Silo client for Apple TV, iPhone and iPad — Plozz';
+const description = 'Native Silo v2 libraries, profiles, playback, watchlists and subtitle search in Plozz. Streaming-quality controls and offline downloads on iPhone and iPad.';
+---
+
+<Layout title={title} description={description}>
+  <SiteHeader />
+  <main>
+    <PageHero eyebrow="Silo" title="Silo, without compatibility mode." />
+
+    <Showcase
+      question="Does it use the native API?"
+      detail="Yes. Plozz connects to Silo’s native v2 API on Apple TV, iPhone and iPad, not its Jellyfin compatibility listener. Use your Silo web address and approve the device in the browser."
+    >
+      <ul class="proof">
+        <li><span>Libraries</span><span>Browse Silo on its own or alongside your other servers</span></li>
+        <li><span>Playback</span><span>Native sessions, progress and resume</span></li>
+        <li><span>Watchlist</span><span>Read and update your Silo watchlist</span></li>
+        <li><span>Subtitles</span><span>Search, download and load subtitles for the playing file</span></li>
+      </ul>
+    </Showcase>
+
+    <Showcase
+      question="Whose profile am I using?"
+      detail="Choose a Silo server profile after approval. Its library restrictions, watch history and PIN protection remain in Silo. A Plozz household profile chooses which connections it uses; it isn’t a replacement Silo identity."
+      flip
+    >
+      <ul class="proof">
+        <li><span>Approval</span><span>Browser or device-code pairing, with a QR option on TV</span></li>
+        <li><span>Protected profiles</span><span>The server verifies the PIN</span></li>
+        <li><span>Another device</span><span>Setup transfers the server descriptor, not Silo’s rotating login</span></li>
+        <li><span>Finish setup</span><span>Approve the receiving device separately in Settings → iCloud Sync</span></li>
+      </ul>
+    </Showcase>
+
+    <Showcase
+      question="Can I choose the streaming quality?"
+      detail="On iPhone and iPad, movies and episodes use presets or custom resolution and total-bitrate limits. Defaults are saved per Plozz profile and connection category. Player changes are temporary, and the original plays when it fits."
+    >
+      <ul class="proof">
+        <li><span>Native height limits</span><span>480p, 720p, 1080p and 2160p / 4K</span></li>
+        <li><span>Conversion</span><span>H.264 with stereo AAC, subject to server capabilities</span></li>
+        <li><span>Not currently offered</span><span>240p, 1440p or HEVC conversion through Silo’s native API</span></li>
+        <li><span>Original HEVC files</span><span>Still playable; conversion support is a separate question</span></li>
+        <li><span>HDR</span><span>Conversion may change the format; not every HDR conversion will play</span></li>
+      </ul>
+    </Showcase>
+
+    <FactSection
+      title="Worth knowing"
+      facts={[
+        { name: 'Offline on iPhone and iPad', value: 'Native download authorization and device registration. Completed copies play offline; Original preserves embedded tracks, while reduced copies use server-selected audio.' },
+        { name: 'Version selection', value: 'Switch files from the player on every platform, keeping position and settings on the active Silo account. Different editions may have different timelines.' },
+        { name: 'Alphabet navigation', value: 'Jump through name-sorted Silo and combined libraries. Deep jumps resolve on demand and can be cancelled.' },
+        { name: 'Subtitle sources', value: 'Search needs an available, configured source on the Silo server. Results belong to the playing file and session.' },
+        { name: 'Separate controls', value: 'Streaming quality is for iPhone/iPad movies and episodes, not Apple TV, music, Live TV, downloads or network shares.' },
+        { name: 'Server compatibility', value: 'Silo is evolving. Features depend on its advertised capabilities and permissions. Plozz’s native Silo provider doesn’t currently offer music or Live TV.' },
+      ]}
+    />
+    <Closer secondaryHref="/features" secondaryLabel="Explore all features" />
+  </main>
+  <SiteFooter />
+  <SiteScripts />
+</Layout>

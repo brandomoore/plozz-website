@@ -6,7 +6,7 @@ brand
 
 ## Users
 
-People with personal media libraries who are evaluating Plozz as a native player for Apple TV, iPhone, and iPad. They may use Jellyfin, Plex, Emby, or connect directly to network storage.
+People with personal media libraries who are evaluating Plozz as a native player for Apple TV, iPhone, and iPad. They may use Jellyfin, Plex, Emby, Silo, or connect directly to network storage.
 
 ## Product Purpose
 
@@ -74,21 +74,25 @@ table. It reads as punching sideways, it puts someone else's brand on our
 page, and it goes stale the moment they change their pricing. The features are
 the argument on their own.
 
-## Competitor research, for our own reference only, verified 2026-08-07
-
-Infuse Pro ($1.99/mo, $16.99/yr, $99.99 lifetime) gates Dolby Atmos, TrueHD and
-DTS-HD MA, AirPlay, cloud storage and library sync. Emby's iPhone app stops
-after one minute without an unlock or Premiere, and gates downloads and
-in-player subtitle search. Plex Pass gates offline downloads. Jellyfin is fully
-free. Infuse's Dolby Vision tier and Plex's remote-streaming policy could not be
-verified from a primary source, so neither is claimed anywhere on the site.
-
 ## Claims we must not make
 
-- Trakt. It is being removed from the app.
-- Music playback of any kind, including Last.fm scrobbling.
-- "Ratings with no API key." Only AniList is keyless. IMDb, Rotten Tomatoes and
-  Metacritic need the user's own OMDb key.
+- "Never transcodes." Mobile movie/episode quality limits can request server
+  conversion. Originals play when they fit; capabilities and entitlements apply.
+- "The same features on every platform/provider." Offline downloads and
+  streaming-quality controls are iPhone/iPad features. Quality controls do not
+  apply to Apple TV, music, Live TV, downloads or network shares.
+- "Silo uses Jellyfin compatibility." It uses the native v2 API. Current native
+  conversion supports 480p, 720p, 1080p and 2160p with H.264, not 240p, 1440p or
+  HEVC conversion. Original HEVC playback is a separate capability.
+- "Switch servers in the player." File/version/edition changes stay on the
+  active server/account. Position carries over, not frame-exact scene matching
+  across different cuts.
+- "Every login follows through iCloud." Non-secret setup syncs; approved
+  device-to-device transfer can carry eligible logins. Silo always pairs anew.
+- "Common Sense Media on every provider." It is Plex-only; detailed topics need
+  eligible active-user/Plex Pass access. Ages are separate from review scores.
+- "Ratings with no API key." AniList scores are keyless; optional OMDb
+  enrichment needs the user's own key.
 - "Atmos passthrough" without qualification. E-AC-3 with JOC is stream-copied and
   is real Atmos. TrueHD Atmos is bridged and loses its object metadata, so say
   where Atmos comes from rather than implying every source survives.
@@ -97,13 +101,30 @@ verified from a primary source, so neither is claimed anywhere on the site.
 - Sign-in flows as a selling point. Quick Connect, Plex Link and discovery are
   real, but people set them up once and never think about them again. Lead with
   what someone touches every session.
+- "A format badge proves HDMI output." Current-stream facts, original metadata
+  and selected quality limits are distinct. HDR conversions may fail or change
+  HDR/audio, and throughput is not stream bitrate.
+- "The latest build is available to all testers." Keep the public invitation;
+  external availability depends on Apple's beta review.
 
 ## Verified against source
 
-Audited at thatcube/Plozz commit 8d12bbc. Targets are Plozz (tvOS 18),
-PlozziOS (iOS 18, iPhone and iPad) and PlozzTopShelf. Downloads, Picture in
-Picture and AirPlay are iOS only. Top Shelf and the sidebar/top-bar navigation
-choice are tvOS only.
+Refreshed against brandomoore/Plozz commit
+3aeb310846905d4e1fcb4641a5365d3d2b3d2156, release/041
+(2026.9.23, build 41): `App/Resources/ReleaseNotes.json`,
+`Sources/ProviderSilo/README.md` and `Sources/FeaturePlayback/README.md`,
+plus the maintained app README and `docs/live-tv-prototype.md` (the production
+Live TV documentation despite its historical filename).
+
+Music, Trakt, AniList, MyAnimeList, Simkl and Last.fm are current features for
+their supported media types. Preserve network-share matching and sidecars,
+watchlists, Seerr season requests, collections/extras, Live TV where supported,
+profile-scoped presentation, dual subtitles, themes/layout and circadian mode.
+Plozz profiles do not replace server users or their restrictions/history.
+Music libraries use Plex/Jellyfin/Emby, not Silo or shares. Live TV supports
+user-supplied M3U/XMLTV, authorized Plex/Jellyfin/Emby channels and scheduled
+library channels; it supplies no public channels and is marked Experimental
+on Apple TV.
 
 ## Accessibility & Inclusion
 

@@ -22,11 +22,12 @@
  * committed, which is how CI can catch a logo change that skipped this script.
  */
 
-import { execFileSync } from 'node:child_process';
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { spawn } from 'node:child_process';
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { setTimeout as delay } from 'node:timers/promises';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC = join(ROOT, 'public');
@@ -37,9 +38,15 @@ const PUBLIC = join(ROOT, 'public');
  * runs on — a card that names a subset reads as a smaller app than it is.
  */
 const COPY = {
-  headline: 'Jellyfin, Plex, Emby & network shares',
+  headline: 'Jellyfin, Plex, Emby, Silo & network shares',
   sub: 'Apple TV · iPhone · iPad — free & open source',
 };
+
+const escapeXml = (text) => text
+  .replaceAll('&', '&amp;')
+  .replaceAll('<', '&lt;')
+  .replaceAll('>', '&gt;')
+  .replaceAll('"', '&quot;');
 
 const WIDTH = 1200;
 const HEIGHT = 630;
@@ -93,8 +100,8 @@ const wordmark = extractArtwork('plozz-wordmark.svg');
 
 const FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
 
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}" role="img" aria-label="Plozz — ${COPY.headline}">
-  <title>Plozz — ${COPY.headline}</title>
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}" role="img" aria-label="Plozz — ${escapeXml(COPY.headline)}">
+  <title>Plozz — ${escapeXml(COPY.headline)}</title>
   <defs>
     <radialGradient id="og-glow" cx="50%" cy="18%" r="62%">
       <stop offset="0%" stop-color="#00a4dc" stop-opacity="0.34"/>
@@ -105,8 +112,8 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${
   <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#og-glow)"/>
 ${place({ ...tv, body: namespaceIds(tv.body, 'tv') }, { centerX: 600, top: 74, width: 170 })}
 ${place({ ...wordmark, body: namespaceIds(wordmark.body, 'wm') }, { centerX: 600, top: 292, width: 216 })}
-  <text x="600" y="470" text-anchor="middle" fill="#e8edf4" font-family="${FONT}" font-size="48" font-weight="700" letter-spacing="-1">${COPY.headline.replace(/&/g, '&amp;')}</text>
-  <text x="600" y="532" text-anchor="middle" fill="#41c6f5" font-family="${FONT}" font-size="29" font-weight="600" letter-spacing="0.4">${COPY.sub.replace(/&/g, '&amp;')}</text>
+  <text x="600" y="470" text-anchor="middle" fill="#e8edf4" font-family="${FONT}" font-size="44" font-weight="700" letter-spacing="-1">${escapeXml(COPY.headline)}</text>
+  <text x="600" y="532" text-anchor="middle" fill="#41c6f5" font-family="${FONT}" font-size="29" font-weight="600" letter-spacing="0.4">${escapeXml(COPY.sub)}</text>
 </svg>
 `;
 
@@ -129,27 +136,81 @@ const CHROME = [
  * resolve -apple-system to a default serif, which silently changes the
  * typeface rather than failing loudly.
  */
-function rasterise(svgMarkup, outPng) {
+async function rasterise(svgMarkup, outPng) {
   if (!CHROME) throw new Error('No Chrome, Chromium or Edge found to rasterise the card.');
 
   const work = mkdtempSync(join(tmpdir(), 'plozz-og-'));
+  const profile = join(work, 'profile');
+  let browser;
+  let exited;
+  let launchError;
+  let cancelled = false;
+  const cancel = () => { cancelled = true; };
+  process.once('SIGINT', cancel);
+  process.once('SIGTERM', cancel);
   try {
     const page = join(work, 'card.html');
+    const image = join(work, 'card.png');
     writeFileSync(
       page,
       `<!doctype html><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:#0a0c10}</style>${svgMarkup}`,
     );
-    execFileSync(CHROME, [
+    console.log(`Rendering with an isolated browser profile: ${profile}`);
+    browser = spawn(CHROME, [
       '--headless',
       '--disable-gpu',
       '--hide-scrollbars',
+      '--no-first-run',
+      '--no-default-browser-check',
+      `--user-data-dir=${profile}`,
       '--force-device-scale-factor=1',
       `--window-size=${WIDTH},${HEIGHT}`,
-      `--screenshot=${outPng}`,
+      `--screenshot=${image}`,
       `file://${page}`,
     ], { stdio: 'ignore' });
+    console.log(`Render browser PID ${browser.pid}`);
+    exited = new Promise((resolve) => {
+      browser.once('exit', resolve);
+      browser.once('error', (error) => {
+        launchError = error;
+        resolve();
+      });
+    });
+    const deadline = Date.now() + 60_000;
+    while (Date.now() < deadline) {
+      if (cancelled) throw new Error('Card rendering cancelled.');
+      if (launchError) throw launchError;
+      if (existsSync(image)) {
+        const png = readFileSync(image);
+        // Chrome can linger after capturing. Wait for a complete PNG, then
+        // close only our browser instead of relying on its automatic exit.
+        if (png.length > 32 && png.subarray(-8, -4).toString() === 'IEND') {
+          if (png.readUInt32BE(16) !== WIDTH || png.readUInt32BE(20) !== HEIGHT) {
+            throw new Error('Card rendering produced the wrong dimensions.');
+          }
+          writeFileSync(outPng, png);
+          return;
+        }
+      }
+      if (browser.exitCode !== null || browser.signalCode !== null) {
+        throw new Error(`Browser exited before rendering (${browser.exitCode ?? browser.signalCode}).`);
+      }
+      await delay(100);
+    }
+    throw new Error('Card rendering timed out after 60 seconds.');
   } finally {
+    if (browser?.pid && browser.exitCode === null && browser.signalCode === null) {
+      browser.kill('SIGTERM');
+      await Promise.race([exited, delay(5_000)]);
+      if (browser.exitCode === null && browser.signalCode === null) {
+        browser.kill('SIGKILL');
+        await exited;
+      }
+    }
+    if (browser?.pid) console.log(`Closed render browser PID ${browser.pid}.`);
     rmSync(work, { recursive: true, force: true });
+    process.removeListener('SIGINT', cancel);
+    process.removeListener('SIGTERM', cancel);
   }
 }
 
@@ -159,20 +220,20 @@ if (check) {
   const work = mkdtempSync(join(tmpdir(), 'plozz-og-check-'));
   try {
     const candidate = join(work, 'og-image.png');
-    rasterise(svg, candidate);
+    await rasterise(svg, candidate);
     const svgMatches = readFileSync(join(PUBLIC, 'og-image.svg'), 'utf8') === svg;
     const pngMatches = readFileSync(candidate).equals(readFileSync(join(PUBLIC, 'og-image.png')));
     if (svgMatches && pngMatches) {
       console.log('og-image is up to date.');
     } else {
       console.error('og-image is stale — run `npm run og`.');
-      process.exit(1);
+      process.exitCode = 1;
     }
   } finally {
     rmSync(work, { recursive: true, force: true });
   }
 } else {
   writeFileSync(join(PUBLIC, 'og-image.svg'), svg);
-  rasterise(svg, join(PUBLIC, 'og-image.png'));
+  await rasterise(svg, join(PUBLIC, 'og-image.png'));
   console.log(`Wrote public/og-image.svg and public/og-image.png (${WIDTH}x${HEIGHT}).`);
 }

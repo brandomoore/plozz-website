@@ -11,7 +11,7 @@ import Shot from "../components/Shot.astro";
 import { FIGURE } from "../data/imageSizes";
 
 const title = "Plex client for Apple TV, iPhone and iPad — Plozz";
-const description = "A free, open source Plex client for Apple TV, iPhone and iPad. Direct play 4K HDR without transcoding, with subtitle search and styling built into the player.";
+const description = "A free Plex client for Apple TV, iPhone and iPad. Version switching, mobile streaming quality and downloads, dual subtitles and Plex Common Sense Media guidance.";
 
 const compatibility = [
   {
@@ -50,7 +50,7 @@ const compatibility = [
   },
   {
     "name": "One library",
-    "value": "Merges with Jellyfin, Emby and network shares, or keeps its own rows."
+    "value": "Merges with Jellyfin, Emby, Silo and network shares, or keeps its own rows."
   }
 ];
 ---
@@ -61,22 +61,24 @@ const compatibility = [
   <main>
     <PageHero
       eyebrow={"Plex"}
-      title={"A Plex client that leaves your server alone."}
+      title={"Your Plex library. Your player."}
     />
 
     <Showcase
-      question={"Will it wreck my server?"}
+      question={"Does it play the original?"}
+      detail="Original-file playback keeps compatible media on the device. Mobile quality limits can request a server conversion instead; Plex settings and entitlements still apply."
     >
       <ul class="proof">
         <li><span>Dolby Vision</span><span>Profiles 5, 7, 8.1 and 8.4</span></li>
         <li><span>Dolby Atmos</span><span>Stream-copied from E-AC-3, not re-encoded</span></li>
         <li><span>TrueHD and DTS-HD MA</span><span>Play free, bridged to surround or lossless FLAC</span></li>
-        <li><span>Your server</span><span>Hands over the file, nothing more</span></li>
+        <li><span>Your server</span><span>Direct play when possible, conversion when needed</span></li>
       </ul>
     </Showcase>
 
     <Showcase
       question={"Can I make the subtitles readable?"}
+      detail="Pick a font, adjust position in 0.5% steps or display two tracks at once. Subtitle search stays in the player."
       flip
     >
       <Shot
@@ -94,9 +96,34 @@ const compatibility = [
         <li><span>Subtitle search</span><span>Find and load one from inside the player</span></li>
         <li><span>Subtitle styling</span><span>Always yours, never the server’s</span></li>
         <li><span>Skip intros</span><span>Reads the markers your server provides</span></li>
-        <li><span>Plex Home</span><span>Each person gets their own profile</span></li>
+        <li><span>Plex Home</span><span>Server users keep their own history and restrictions, separate from Plozz profiles</span></li>
       </ul>
     </Showcase>
+
+    <Showcase
+      question="Is that an age recommendation or a review score?"
+      detail="They’re separate. Plex movie and show details can show Common Sense Media’s recommended age alongside review scores. Choose age visibility and review-score visibility independently."
+      flip
+    >
+      <ul class="proof">
+        <li><span>Recommended age</span><span>Plex-provided Common Sense Media guidance</span></li>
+        <li><span>Topic details</span><span>Requires an eligible active Plex user with Plex Pass access</span></li>
+        <li><span>Review scores</span><span>Choose sources, priority and the number shown</span></li>
+        <li><span>Provider scope</span><span>Common Sense Media is Plex-only, not a feature of every server</span></li>
+      </ul>
+    </Showcase>
+
+    <FactSection
+      title="More ways to watch"
+      facts={[
+        { name: 'Quality on iPhone and iPad', value: 'Movie and episode presets or Custom resolution and total-bitrate limits, saved per Plozz profile for local, remote Wi-Fi/Ethernet and cellular connections.' },
+        { name: 'Original or converted', value: 'Keep the original when it fits. Automatic and codec preferences use supported server conversion; hardware transcoding generally needs Plex Pass. HDR and audio can change.' },
+        { name: 'Offline on mobile', value: 'Download films and episodes on iPhone and iPad, subject to the server’s permissions and capabilities.' },
+        { name: 'Change versions', value: 'Choose another file or edition on the active account in the TV or mobile player. Position and playback settings carry over, but different cuts needn’t share the same timeline.' },
+        { name: 'Libraries and extras', value: 'Collections, bonus videos and A–Z jumps in name-sorted individual or combined libraries.' },
+        { name: 'Current stream info', value: 'See measured conversion dimensions, codecs and audio when known, separately from original-file metadata and selected quality limits.' },
+      ]}
+    />
 
     <FactSection
       title="Compatibility"

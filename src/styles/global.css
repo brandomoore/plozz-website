@@ -874,6 +874,11 @@ h3 {
   }
 }
 
+.hero-copy > p {
+  margin-top: 16px;
+  color: var(--text-muted);
+}
+
 .hero-summary {
   display: grid;
   width: 100%;
@@ -919,6 +924,35 @@ h3 {
 
 .hero-logos img[alt="Emby"] {
   height: 23px;
+}
+
+.silo-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: var(--w-strong);
+  color: var(--text);
+}
+
+.silo-lockup img {
+  width: 28px;
+  height: 28px;
+  flex: none;
+}
+
+.cell-visual .silo-lockup {
+  font-size: 1.4rem;
+}
+
+.source-node .silo-lockup img {
+  width: 32px;
+  height: 32px;
+}
+
+@media (min-width: 561px) {
+  .cell.share-source {
+    grid-column: span 2;
+  }
 }
 
 /* Network shares are a category, not a product, so there is no logo to show.

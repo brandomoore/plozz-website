@@ -11,7 +11,7 @@ import Shot from "../components/Shot.astro";
 import { FIGURE } from "../data/imageSizes";
 
 const title = "Jellyfin client for Apple TV, iPhone and iPad — Plozz";
-const description = "A free, open source Jellyfin client for Apple TV, iPhone and iPad. Direct plays 4K HDR and Dolby Vision without making Jellyfin transcode. No Pro tier.";
+const description = "A free Jellyfin client for Apple TV, iPhone and iPad. Original-file playback, mobile streaming-quality controls, offline downloads, dual subtitles and combined libraries.";
 
 const compatibility = [
   {
@@ -50,7 +50,7 @@ const compatibility = [
   },
   {
     "name": "One library",
-    "value": "Merges with Plex, Emby and network shares, or keeps its own rows."
+    "value": "Merges with Plex, Emby, Silo and network shares, or keeps its own rows."
   }
 ];
 ---
@@ -61,22 +61,24 @@ const compatibility = [
   <main>
     <PageHero
       eyebrow={"Jellyfin"}
-      title={"Stop making Jellyfin transcode."}
+      title={"Your Jellyfin library, on every screen."}
     />
 
     <Showcase
-      question={"Will it wreck my server?"}
+      question={"Does it play the original?"}
+      detail="Plozz plays a broad range of original files on the device. Choose a lower streaming-quality limit on iPhone or iPad when you need the server to convert instead."
     >
       <ul class="proof">
         <li><span>Dolby Vision</span><span>Profiles 5, 7, 8.1 and 8.4</span></li>
         <li><span>Dolby Atmos</span><span>Stream-copied from E-AC-3, not re-encoded</span></li>
         <li><span>TrueHD and DTS-HD MA</span><span>Play free, bridged to surround or lossless FLAC</span></li>
-        <li><span>Your server</span><span>Hands over the file, nothing more</span></li>
+        <li><span>Your server</span><span>Original delivery when possible; conversion when required</span></li>
       </ul>
     </Showcase>
 
     <Showcase
       question={"Can I make the subtitles readable?"}
+      detail="Style two simultaneous tracks, adjust position in 0.5% steps, or search and download a missing subtitle. A File match badge appears when Jellyfin confirms a match to the video."
       flip
     >
       <Shot
@@ -89,6 +91,7 @@ const compatibility = [
 
     <Showcase
       question={"Does it skip intros?"}
+      detail="When your Jellyfin server provides intro and credit markers."
     >
       <ul class="proof">
         <li><span>Off</span><span>Never touch it</span></li>
@@ -97,6 +100,18 @@ const compatibility = [
         <li><span>Auto (instant)</span><span>Gone before you notice</span></li>
       </ul>
     </Showcase>
+
+    <FactSection
+      title="Beyond direct play"
+      facts={[
+        { name: 'Mobile quality', value: 'iPhone/iPad movies and episodes get per-network presets or Custom resolution and total bitrate. Local and remote networks default to Maximum; cellular starts at 720p / 2 Mbps.' },
+        { name: 'Conversion choices', value: 'Automatic, Prefer HEVC or Prefer H.264 where supported. Server configuration, encoder support and permissions apply; HDR conversion isn’t guaranteed.' },
+        { name: 'Offline downloads', value: 'Save films and episodes on iPhone and iPad. Download quality is separate from streaming quality.' },
+        { name: 'Versions in the player', value: 'Change files or editions on the active Jellyfin account, keeping position, pause state, speed, quality and matching tracks. Different cuts may have different timelines.' },
+        { name: 'Find your place', value: 'A–Z navigation in name-sorted libraries, collections, extras and a combined watchlist.' },
+        { name: 'Your server user', value: 'Jellyfin owns permissions and watch history. Plozz profiles separately control presentation and which libraries appear.' },
+      ]}
+    />
 
     <FactSection
       title="Compatibility"

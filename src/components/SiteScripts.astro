@@ -150,7 +150,7 @@
     if (cached && Date.now() - cached.savedAt < cacheLifetime) {
       applyGithubStars(cached.stars);
     } else {
-      fetch('https://api.github.com/repos/thatcube/Plozz', {
+      fetch('https://api.github.com/repos/brandomoore/Plozz', {
         headers: { Accept: 'application/vnd.github+json' },
       })
         .then((response) => {

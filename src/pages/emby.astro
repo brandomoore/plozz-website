@@ -11,7 +11,7 @@ import Shot from "../components/Shot.astro";
 import { FIGURE } from "../data/imageSizes";
 
 const title = "Emby client for Apple TV, iPhone and iPad — Plozz";
-const description = "A free, open source Emby client for Apple TV, iPhone and iPad. Full playback on every device, with Emby as a first-class source.";
+const description = "A free Emby client for Apple TV, iPhone and iPad. Native libraries and playback, mobile streaming quality and downloads, version switching and subtitle search.";
 
 const compatibility = [
   {
@@ -46,7 +46,7 @@ const compatibility = [
   },
   {
     "name": "One library",
-    "value": "Merges with Plex, Jellyfin and network shares, or keeps its own rows."
+    "value": "Merges with Plex, Jellyfin, Silo and network shares, or keeps its own rows."
   },
   {
     "name": "Hide anything",
@@ -65,18 +65,20 @@ const compatibility = [
     />
 
     <Showcase
-      question={"Will it wreck my server?"}
+      question={"Does it play the original?"}
+      detail="Plozz handles compatible original files on the device. On iPhone and iPad, quality limits can ask Emby to convert instead. Server configuration and permissions still apply."
     >
       <ul class="proof">
         <li><span>Dolby Vision</span><span>Profiles 5, 7, 8.1 and 8.4</span></li>
         <li><span>Dolby Atmos</span><span>Stream-copied from E-AC-3, not re-encoded</span></li>
         <li><span>TrueHD and DTS-HD MA</span><span>Play free, bridged to surround or lossless FLAC</span></li>
-        <li><span>Your server</span><span>Hands over the file, nothing more</span></li>
+        <li><span>Your server</span><span>Delivers the original or a supported conversion</span></li>
       </ul>
     </Showcase>
 
     <Showcase
       question={"Can I make the subtitles readable?"}
+      detail="Style two tracks at once, adjust position in 0.5% steps and search for missing subtitles from the player. Emby-confirmed file matches get their own badge."
       flip
     >
       <Shot
@@ -88,15 +90,27 @@ const compatibility = [
     </Showcase>
 
     <Showcase
-      question={"Is Emby treated like Jellyfin?"}
+      question={"What stays with Emby?"}
     >
       <ul class="proof">
-        <li><span>Shared protocol</span><span>MediaBrowser, for both</span></li>
-        <li><span>HDR reporting</span><span>Classified differently, handled per server</span></li>
-        <li><span>Studio IDs</span><span>Formatted differently, handled per server</span></li>
-        <li><span>Status</span><span>A provider in its own right</span></li>
+        <li><span>History</span><span>Playback progress and watched state go back to your server</span></li>
+        <li><span>Libraries</span><span>Movies, shows and music, with collections and extras</span></li>
+        <li><span>Skip markers</span><span>Intros and credits where the server provides them</span></li>
+        <li><span>Permissions</span><span>Your Emby user’s access rules still apply</span></li>
       </ul>
     </Showcase>
+
+    <FactSection
+      title="At home or away"
+      facts={[
+        { name: 'Mobile streaming quality', value: 'Movie and episode presets or independent resolution and total-bitrate limits on iPhone/iPad. Save defaults per Plozz profile and network category; player changes are temporary.' },
+        { name: 'Conversion limits', value: 'Automatic, Prefer HEVC or Prefer H.264 where supported. Emby’s encoder settings and entitlements apply; HDR tone mapping may require Premiere, and conversion success isn’t guaranteed.' },
+        { name: 'Offline downloads', value: 'Save films and episodes on iPhone and iPad. These use their own download controls, not the current streaming-quality limit.' },
+        { name: 'Files and editions', value: 'Switch on the active Emby account from the TV or mobile player, keeping position and settings. Different cuts can have different timelines.' },
+        { name: 'Library navigation', value: 'Jump to a letter in name-sorted individual and combined libraries, with remote-focused navigation on Apple TV.' },
+        { name: 'Clear playback facts', value: 'Current converted-stream formats are separate from the original file. Unknown output never inherits the original’s HDR or Atmos badge.' },
+      ]}
+    />
 
     <FactSection
       title="Compatibility"
