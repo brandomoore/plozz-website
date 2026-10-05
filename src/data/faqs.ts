@@ -1,5 +1,5 @@
 // The homepage renders both the visible answers and FAQPage data from this list.
-import { GITHUB_URL, TESTFLIGHT_URL } from './site';
+import { DISCORD_URL, GITHUB_URL, TESTFLIGHT_URL } from './site';
 
 export interface Faq {
   q: string;
@@ -47,6 +47,10 @@ export const faqs: Faq[] = [
   {
     q: 'Is every server feature available without a subscription?',
     a: 'Plozz has no paid tier, but it can\u2019t remove a server\u2019s requirements. Transcoding, downloads and other server-backed features depend on its capabilities, configuration and permissions. Plex Common Sense Media topic guidance requires an eligible active Plex user with Plex Pass access; it isn\u2019t available across all providers.',
+  },
+  {
+    q: 'Is there a Plozz community?',
+    a: `Join the <a href="${DISCORD_URL}" target="_blank" rel="noopener">Plozz Discord</a> to chat with other users and discuss the app.`,
   },
   {
     q: 'I found a bug or want a feature.',
