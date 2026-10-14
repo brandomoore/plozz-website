@@ -17,6 +17,10 @@ export const faqs: Faq[] = [
     a: 'Yes. Plozz is a completely free, open-source player for Apple TV, iPhone and iPad, with no subscription or paid feature tier. Connect your supported media server or network share. <a href="/infuse-alternative">See Plozz as an Infuse alternative</a>, including connection options and limitations.',
   },
   {
+    q: 'How does Plozz compare with other Apple TV media apps?',
+    a: 'Plozz combines supported servers and network shares in a completely free, open-source player. Infuse, VLC, Plex, Emby and Swiftfin each suit different setups; VLC and Swiftfin are also free and open source. <a href="/apple-tv-media-players">Compare the players</a> by library, workflow and what to check before switching.',
+  },
+  {
     q: 'Do I need a media server?',
     a: 'Use a Jellyfin, Plex, Emby or Silo server you have access to, or connect directly to SMB, NFS, WebDAV, SFTP or FTP storage. You can also bring your own IPTV playlist without a media-server account. Plozz doesn\u2019t provide films, shows or public channels.',
   },

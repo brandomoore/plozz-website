@@ -72,8 +72,12 @@ Use natural, factual mentions of other Apple TV media apps when they help a
 visitor choose. The `/infuse-alternative` page owns the "free, open-source
 Infuse alternative" positioning; link to it from relevant copy instead of
 creating near-duplicate pages for every competitor or repeating names everywhere.
+`/apple-tv-media-players` provides the broader app-by-app comparisons, with
+Infuse first and a link to its focused page. Give each app a fair use case,
+a specific reason to try Plozz and a switching caveat. Link official sources
+and date the comparison; do not call an app the most popular without evidence.
 Keep Plozz as the product, distinguish clients from servers, and acknowledge
-that VLC is also free and open source. Never imply affiliation, universal
+that VLC and Swiftfin are also free and open source. Never imply affiliation, universal
 feature parity, automatic migration or guaranteed search rankings.
 
 ### Never name a competitor's price

@@ -1,0 +1,213 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteScripts from '../components/SiteScripts.astro';
+import PageHero from '../components/PageHero.astro';
+import Closer from '../components/Closer.astro';
+
+const title = 'Apple TV media player comparisons — Plozz vs Infuse & more';
+const description = 'Compare Plozz with Infuse, VLC, Plex, Emby and Swiftfin for Apple TV. See when a free, open-source player fits your servers, NAS and subtitle needs.';
+
+const comparisons = [
+  {
+    id: 'infuse',
+    name: 'Infuse',
+    fit: 'Infuse connects personal media from servers, network shares and cloud services. It also runs on Mac and Apple Vision Pro, alongside Apple TV, iPhone and iPad.',
+    plozz: 'Try Plozz if you want a completely free, open-source player for Apple TV, iPhone and iPad. It combines Jellyfin, Plex, Emby, native Silo and supported network shares, with no paid feature tier.',
+    caveat: 'If you rely on Infuse’s cloud-drive connections, Mac or Vision Pro app, do not assume Plozz covers the same setup. Check your sources and devices before switching.',
+    source: 'https://firecore.com/infuse',
+    more: '/infuse-alternative',
+    label: 'Plozz as a free Infuse alternative',
+  },
+  {
+    id: 'vlc',
+    name: 'VLC',
+    fit: 'VLC for Apple TV is already free and open source. It is worth considering when your starting point is a file or network video stream you want to play.',
+    plozz: 'Try Plozz when you want to start with a combined library: browse shows by season, return to Continue Watching and keep each profile’s layout and library choices separate. Dual subtitles and in-player styling are included.',
+    caveat: 'Price and open source are not exclusive advantages over VLC. Choose by the browsing and playback workflow you prefer; Plozz does not promise to accept every input VLC can open.',
+    source: 'https://www.videolan.org/vlc/download-appletv.html',
+    more: '/features',
+    label: 'Explore Plozz’s library and player',
+  },
+  {
+    id: 'plex',
+    name: 'Plex',
+    fit: 'The Plex app is a natural starting point for a Plex Media Server library. Plex also has its own streaming catalog and discovery services, separate from your personal files.',
+    plozz: 'Use Plozz as an alternative Plex player if you want your personal Plex library alongside Jellyfin, Emby, Silo or NAS files. Keep the server and choose a different interface for supported playback.',
+    caveat: 'Plozz does not replace Plex Media Server or provide Plex’s streaming catalog. Your Plex user, server permissions and any required entitlements still apply. This is a client choice, not a way around server requirements.',
+    source: 'https://www.plex.tv/your-media/',
+    more: '/plex',
+    label: 'Plozz’s Plex support and limits',
+  },
+  {
+    id: 'emby',
+    name: 'Emby',
+    fit: 'Emby for Apple TV is designed around the media on your Emby server, with a home screen, movie and TV browsing, and search for that collection.',
+    plozz: 'Try Plozz if Emby is one part of your library rather than the whole setup. It can bring Emby together with other supported servers and direct network shares, with shared subtitle and layout controls.',
+    caveat: 'You still need access to the Emby server. Changing the player does not remove its permission or entitlement requirements, and not every Emby workflow is a Plozz feature.',
+    source: 'https://emby.media/emby-for-appletv.html',
+    more: '/emby',
+    label: 'Plozz’s Emby support and limits',
+  },
+  {
+    id: 'swiftfin',
+    name: 'Swiftfin',
+    fit: 'Swiftfin is a free, open-source Jellyfin video client built with Swift. It is a useful starting point if Jellyfin is the server you want to watch from.',
+    plozz: 'Try Plozz if you want a Jellyfin client that also brings Plex, Emby, Silo and network shares into the same browsing experience. You can keep Jellyfin and add other sources without making them separate apps.',
+    caveat: 'Both projects are open source. Mixed-source browsing is a reason to try Plozz, not a claim that Swiftfin lacks good Jellyfin playback. Compare the particular formats and controls you use.',
+    source: 'https://github.com/jellyfin/Swiftfin',
+    more: '/jellyfin',
+    label: 'Plozz’s Jellyfin support and limits',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Which Apple TV media player should I choose?',
+    a: 'Start with where your media lives and how you want to browse it. Plozz is a completely free, open-source option for combined supported servers and network shares. Infuse, VLC, Plex, Emby and Swiftfin serve different workflows; none is the best fit for every library.',
+  },
+  {
+    q: 'Is Plozz the only free, open-source alternative?',
+    a: 'No. VLC and Swiftfin are also free and open source. Plozz offers another choice, with combined libraries across supported providers, per-profile presentation and detailed subtitle controls. Its features are not split into free and paid tiers.',
+  },
+  {
+    q: 'Does switching players move my library or watch history?',
+    a: 'Trying Plozz does not require moving files from a supported server or NAS. Connect to the source again in Plozz. Server-owned history stays with the connected server user; do not assume another app’s local settings or history are imported.',
+  },
+  {
+    q: 'Are all of Plozz’s features available on Apple TV?',
+    a: 'No. Plozz runs on Apple TV, iPhone and iPad, but offline downloads and movie/episode streaming-quality controls are iPhone/iPad features. Format support depends on the device and playback chain. Plozz is distributed through TestFlight; beta availability can change.',
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: { '@type': 'Answer', text: faq.a },
+  })),
+};
+---
+
+<Layout title={title} description={description}>
+  <SiteHeader />
+  <main>
+    <PageHero
+      eyebrow="Compare Apple TV players"
+      title="Same media. Different ways to watch."
+      lead="Comparing Infuse, VLC, Plex, Emby or Swiftfin? Here’s where Plozz fits: a completely free, open-source player for your own library, without a paid feature tier."
+    />
+
+    <nav class="comparison-nav container" aria-label="Choose an app comparison">
+      {comparisons.map((app) => <a href={`#${app.id}`}>Plozz vs {app.name}</a>)}
+    </nav>
+
+    {comparisons.map((app) => (
+      <section class="fmt" id={app.id} aria-labelledby={`${app.id}-heading`}>
+        <div class="container">
+          <div class="fmt-body">
+            <h2 id={`${app.id}-heading`}>Plozz vs {app.name}</h2>
+            <div class="comparison-copy">
+              <dl>
+                <dt>When {app.name} fits</dt>
+                <dd>{app.fit}</dd>
+                <dt>Why try Plozz</dt>
+                <dd>{app.plozz}</dd>
+                <dt>Before switching</dt>
+                <dd>{app.caveat}</dd>
+              </dl>
+              <p><a href={app.more}>{app.label}</a></p>
+              <p class="comparison-source"><a href={app.source} target="_blank" rel="noopener">{app.name}’s official documentation</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <section class="faq-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 id="faq-heading">Choosing a player</h2>
+        <div class="faq-list">
+          {faqs.map((faq) => (
+            <details>
+              <summary>{faq.q}</summary>
+              <p>{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div class="container comparison-note">
+      <p>
+        This is Plozz’s perspective, not an independent ranking. App descriptions
+        were checked against the official sources linked above on <time datetime="2026-10-14">October 14, 2026</time>.
+        We don’t compare prices or promise feature-for-feature parity.
+      </p>
+      <p>Plozz is not affiliated with Firecore, Infuse, VideoLAN, Plex, Emby or the Jellyfin and Swiftfin projects.</p>
+    </div>
+    <Closer secondaryHref="/infuse-alternative" secondaryLabel="Looking for a free Infuse alternative?" />
+  </main>
+  <SiteFooter />
+  <SiteScripts />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</Layout>
+
+<style>
+  .fmt {
+    scroll-margin-top: 100px;
+  }
+
+  .comparison-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+  }
+
+  .comparison-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .comparison-copy,
+  .comparison-note {
+    display: grid;
+    gap: 16px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  dt {
+    color: var(--text);
+    font-weight: var(--w-strong);
+    margin-bottom: 8px;
+  }
+
+  dt:not(:first-child) {
+    margin-top: 24px;
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  .comparison-source,
+  .comparison-note {
+    font-size: 0.9rem;
+  }
+
+  .comparison-nav a,
+  .comparison-copy a {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  a:focus-visible {
+    outline: 3px solid var(--brand);
+    outline-offset: 3px;
+  }
+</style>

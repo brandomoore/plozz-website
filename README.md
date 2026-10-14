@@ -82,7 +82,7 @@ Do not reactivate the Pages domain or change DNS to resolve a stale Worker.
 ```
 src/pages/          One .astro file per route (index, features, formats,
                     jellyfin, plex, emby, silo, network-shares,
-                    infuse-alternative, privacy, 404)
+                    infuse-alternative, apple-tv-media-players, privacy, 404)
 src/components/      Reusable page sections
 src/data/           Site copy, FAQs, and the screenshot manifest
 src/styles/          Global and device-frame CSS
@@ -105,7 +105,13 @@ FAQPage structured data; keep those together.
 landing page for free/open-source Apple TV player alternatives. Its visible
 questions and FAQ structured data share one list. Keep competitor references
 factual, avoid price comparisons and feature-parity promises, and preserve the
-internal links from Home, Features and the footer.
+internal links from Home and the broader comparison page.
+
+[`src/pages/apple-tv-media-players.astro`](src/pages/apple-tv-media-players.astro)
+compares Infuse, VLC, Plex, Emby and Swiftfin by workflow rather than price or
+unsupported feature checklists. Each entry links its official source and gives
+a use case, a reason to try Plozz, and a caveat. Infuse remains the lead
+comparison. Features and the shared footer link to this broader page.
 
 Run `npm run test:site` to build and check search/social metadata, canonical
 URLs, sitemap discovery, visible FAQ/JSON-LD consistency and comparison wording.

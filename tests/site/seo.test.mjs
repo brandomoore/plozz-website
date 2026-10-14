@@ -5,6 +5,7 @@ import { test } from 'node:test';
 // This suite runs through test:site, after Astro has rendered the HTML.
 const built = (path) => readFileSync(new URL(`../../dist/${path}`, import.meta.url), 'utf8');
 const landing = built('infuse-alternative/index.html');
+const comparisons = built('apple-tv-media-players/index.html');
 const home = built('index.html');
 const plain = (html) => html
   .replace(/<[^>]+>/g, '')
@@ -38,8 +39,8 @@ test('alternative landing page is indexable with focused, consistent search and 
   assert.equal(plain(headings[0][1]), 'A free, open-source Infuse alternative.');
 });
 
-test('visible FAQ answers and structured data stay identical on home and alternative pages', () => {
-  for (const html of [home, landing]) {
+test('visible FAQ answers and structured data stay identical on home and comparison pages', () => {
+  for (const html of [home, landing, comparisons]) {
     const faq = structured(html).find((item) => item['@type'] === 'FAQPage');
     assert(faq);
     const details = [...html.matchAll(/<details\b[^>]*>([\s\S]*?)<\/details>/g)];
@@ -51,11 +52,61 @@ test('visible FAQ answers and structured data stay identical on home and alterna
   }
 });
 
-test('alternative page is discoverable through content links, footer and sitemap', () => {
-  assert.match(home.match(/<main>([\s\S]*?)<\/main>/)[1], /href="\/infuse-alternative"/);
-  assert.match(built('features/index.html').match(/<main>([\s\S]*?)<\/main>/)[1], /href="\/infuse-alternative"/);
-  assert.match(built('silo/index.html').match(/<footer\b[\s\S]*?<\/footer>/)[0], /href="\/infuse-alternative"/);
-  assert.match(built('sitemap-0.xml'), /<loc>https:\/\/plozz\.app\/infuse-alternative\/<\/loc>/);
+test('both comparison pages are connected through content links, footer and sitemap', () => {
+  assert.match(home.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1], /href="\/infuse-alternative"/);
+  assert.match(home.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1], /href="\/apple-tv-media-players"/);
+  assert.match(built('features/index.html').match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1], /href="\/apple-tv-media-players"/);
+  assert.match(built('silo/index.html').match(/<footer\b[\s\S]*?<\/footer>/)[0], /href="\/apple-tv-media-players"/);
+  assert.match(landing.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1], /href="\/apple-tv-media-players"/);
+  assert.match(comparisons.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1], /href="\/infuse-alternative"/);
+  for (const path of ['infuse-alternative', 'apple-tv-media-players']) {
+    assert(built('sitemap-0.xml').includes(`<loc>https://plozz.app/${path}/</loc>`));
+  }
+});
+
+test('broader comparisons have their own canonical and consistent search/social metadata', () => {
+  const title = plain(comparisons.match(/<title>([\s\S]*?)<\/title>/)[1]);
+  assert.equal(title, 'Apple TV media player comparisons — Plozz vs Infuse & more');
+  assert.equal(metadata(comparisons, 'og:title'), title);
+  assert.equal(metadata(comparisons, 'twitter:title'), title);
+  assert.equal(metadata(comparisons, 'description'), metadata(comparisons, 'og:description'));
+  assert.equal(metadata(comparisons, 'description'), metadata(comparisons, 'twitter:description'));
+  assert.match(metadata(comparisons, 'description'), /Infuse, VLC, Plex, Emby and Swiftfin/);
+  assert.match(comparisons, /<link rel="canonical" href="https:\/\/plozz\.app\/apple-tv-media-players\/"/);
+  assert.equal(metadata(comparisons, 'og:url'), 'https://plozz.app/apple-tv-media-players/');
+  assert.match(metadata(comparisons, 'robots'), /^index, follow/);
+  assert.equal([...comparisons.matchAll(/<h1\b/g)].length, 1);
+});
+
+test('each app gets a sourced, substantive comparison with Infuse first', () => {
+  const apps = [
+    ['infuse', 'Infuse', 'https://firecore.com/infuse'],
+    ['vlc', 'VLC', 'https://www.videolan.org/vlc/download-appletv.html'],
+    ['plex', 'Plex', 'https://www.plex.tv/your-media/'],
+    ['emby', 'Emby', 'https://emby.media/emby-for-appletv.html'],
+    ['swiftfin', 'Swiftfin', 'https://github.com/jellyfin/Swiftfin'],
+  ];
+  let lastIndex = -1;
+  for (const [id, name, source] of apps) {
+    const index = comparisons.indexOf(`id="${id}"`);
+    assert(index > lastIndex, `${name} comparison order`);
+    lastIndex = index;
+    const section = comparisons.slice(index, comparisons.indexOf('</section>', index));
+    assert(section.includes(`href="${source}"`));
+    const content = plain(section);
+    for (const label of [`Plozz vs ${name}`, `When ${name} fits`, 'Why try Plozz', 'Before switching']) {
+      assert(content.includes(label), `${name}: ${label}`);
+    }
+    const descriptions = [...section.matchAll(/<dd\b[^>]*>([\s\S]*?)<\/dd>/g)];
+    assert.equal(descriptions.length, 3);
+    assert(descriptions.every(([, content]) => plain(content).length > 100));
+    assert(comparisons.includes(`href="#${id}"`));
+  }
+  const content = plain(comparisons);
+  assert(content.includes('VLC and Swiftfin are also free and open source.'));
+  assert(content.includes('not an independent ranking'));
+  assert(content.includes('not affiliated'));
+  assert.doesNotMatch(content, /most popular|Plozz is the only free|Infuse Pro|\$\d/i);
 });
 
 test('positioning stays factual and retains free/open-source and platform qualifications', () => {
