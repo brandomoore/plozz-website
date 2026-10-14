@@ -879,6 +879,16 @@ h3 {
   color: var(--text-muted);
 }
 
+.hero-copy > p a {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.hero-copy > p a:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 3px;
+}
+
 .hero-summary {
   display: grid;
   width: 100%;

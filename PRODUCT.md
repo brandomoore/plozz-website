@@ -66,13 +66,23 @@ Gradient-heavy SaaS pages, dense marketing-section stacks, excessive accent colo
   the app is free either way. Brandon's own GitHub Sponsors wording is the
   reference for tone: warm, humble, and easy to walk past.
 
-## Never name a competitor's price
+## Alternative-app searches
+
+Use natural, factual mentions of other Apple TV media apps when they help a
+visitor choose. The `/infuse-alternative` page owns the "free, open-source
+Infuse alternative" positioning; link to it from relevant copy instead of
+creating near-duplicate pages for every competitor or repeating names everywhere.
+Keep Plozz as the product, distinguish clients from servers, and acknowledge
+that VLC is also free and open source. Never imply affiliation, universal
+feature parity, automatic migration or guaranteed search rankings.
+
+### Never name a competitor's price
 
 Say what Plozz does and that it is free. Do not name another app's paid tier,
 do not frame a feature as "they charge for this", and do not run a comparison
-table. It reads as punching sideways, it puts someone else's brand on our
-page, and it goes stale the moment they change their pricing. The features are
-the argument on their own.
+table. Price and paywall comparisons go stale; explain Plozz's own features
+and limitations instead. Mentioning an alternative is not a claim that the
+other app lacks those features.
 
 ## Claims we must not make
 

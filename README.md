@@ -81,7 +81,8 @@ Do not reactivate the Pages domain or change DNS to resolve a stale Worker.
 
 ```
 src/pages/          One .astro file per route (index, features, formats,
-                    jellyfin, plex, emby, silo, network-shares, privacy, 404)
+                    jellyfin, plex, emby, silo, network-shares,
+                    infuse-alternative, privacy, 404)
 src/components/      Reusable page sections
 src/data/           Site copy, FAQs, and the screenshot manifest
 src/styles/          Global and device-frame CSS
@@ -99,6 +100,15 @@ tools/               Build scripts: screenshot encoders, OG image, font sheet
 and format data live in [`src/data/site.ts`](src/data/site.ts). The homepage
 renders [`src/data/faqs.ts`](src/data/faqs.ts) as both visible answers and
 FAQPage structured data; keep those together.
+
+[`src/pages/infuse-alternative.astro`](src/pages/infuse-alternative.astro) is the
+landing page for free/open-source Apple TV player alternatives. Its visible
+questions and FAQ structured data share one list. Keep competitor references
+factual, avoid price comparisons and feature-parity promises, and preserve the
+internal links from Home, Features and the footer.
+
+Run `npm run test:site` to build and check search/social metadata, canonical
+URLs, sitemap discovery, visible FAQ/JSON-LD consistency and comparison wording.
 
 The September 23, 2026 refresh follows app release/041. Platform and provider
 limits belong beside their features, especially mobile-only streaming quality

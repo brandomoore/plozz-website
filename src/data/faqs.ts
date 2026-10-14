@@ -13,6 +13,10 @@ export const faqs: Faq[] = [
     a: 'Yes. Plozz is free software, licensed under the GPL-3.0 and open source — no subscriptions, no ads, no upsells. If it\u2019s useful to you, sponsorship is welcome but never required.',
   },
   {
+    q: 'Is Plozz a free alternative to Infuse on Apple TV?',
+    a: 'Yes. Plozz is a completely free, open-source player for Apple TV, iPhone and iPad, with no subscription or paid feature tier. Connect your supported media server or network share. <a href="/infuse-alternative">See Plozz as an Infuse alternative</a>, including connection options and limitations.',
+  },
+  {
     q: 'Do I need a media server?',
     a: 'Use a Jellyfin, Plex, Emby or Silo server you have access to, or connect directly to SMB, NFS, WebDAV, SFTP or FTP storage. You can also bring your own IPTV playlist without a media-server account. Plozz doesn\u2019t provide films, shows or public channels.',
   },

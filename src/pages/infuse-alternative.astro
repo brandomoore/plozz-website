@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteScripts from '../components/SiteScripts.astro';
+import PageHero from '../components/PageHero.astro';
+import Showcase from '../components/Showcase.astro';
+import Closer from '../components/Closer.astro';
+import Shot from '../components/Shot.astro';
+import { FIGURE } from '../data/imageSizes';
+
+const title = 'Free, open-source Infuse alternative for Apple TV — Plozz';
+const description = 'Looking for a free Infuse alternative? Plozz is an open-source Apple TV, iPhone and iPad player for Jellyfin, Plex, Emby, Silo and NAS files. No paid tier.';
+
+const faqs = [
+  {
+    q: 'Is Plozz a completely free Infuse alternative?',
+    a: 'Yes. Plozz is a free, open-source media player for Apple TV, iPhone and iPad, with no subscription, ads or paid feature tier. It plays media you have access to; it does not include films or streaming subscriptions. Any requirements of your server or connected services still apply.',
+  },
+  {
+    q: 'Can I keep the server or NAS I use with Infuse?',
+    a: 'If it uses a supported connection, yes. Connect Plozz to your Jellyfin, Plex, Emby or Silo server, or to SMB, NFS, WebDAV, SFTP or FTP storage. You do not need to move those media files just to try a different player. Set up the connection in Plozz; this is not an import of your Infuse settings.',
+  },
+  {
+    q: 'Can Plozz replace my Plex or Emby server?',
+    a: 'No. Plozz is an alternative player, not a replacement media server. You can use Plozz instead of the Plex or Emby client app for supported playback while keeping your server, users and library. Server permissions and entitlements remain in effect.',
+  },
+  {
+    q: 'Is Plozz the only free, open-source Apple TV player?',
+    a: 'No. VLC for Apple TV is also free and open source. Plozz is another option if you want combined media-server libraries, show and season browsing, profile-specific layouts and detailed subtitle controls.',
+  },
+  {
+    q: 'Does Plozz support the same devices and features as Infuse?',
+    a: 'Do not assume one-to-one parity. Plozz is available for Apple TV, iPhone and iPad through TestFlight. Offline downloads and streaming-quality controls are iPhone/iPad features, not Apple TV features. Check the supported sources and format limitations against your own library before switching.',
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: { '@type': 'Answer', text: faq.a },
+  })),
+};
+---
+
+<Layout title={title} description={description}>
+  <SiteHeader />
+  <main>
+    <PageHero
+      eyebrow="Apple TV media players"
+      title="A free, open-source Infuse alternative."
+      lead="Keep your media. Try a different player. Plozz brings your own films and shows to Apple TV, iPhone and iPad, with no subscription or paid feature tier."
+    />
+
+    <Showcase
+      question="Your library, not another subscription."
+      detail="Connect your servers and browse them together, with artwork, seasons and Continue Watching. Every Plozz feature is included. Donations are optional, and the GPL-3.0 source is public."
+    >
+      <Shot
+        name="plozz-tv-show"
+        alt="Plozz on Apple TV showing a series detail page with artwork and episodes"
+        sizes={FIGURE}
+        class="shot"
+      />
+    </Showcase>
+
+    <Showcase
+      question="Coming from Infuse? Start with your source."
+      detail="Plozz is a player for media you already have access to. It does not replace a server, supply movies, or remove a server’s access requirements. Choose a connection below to see what works."
+      flip
+    >
+      <ul class="proof">
+        <li><span>Media servers</span><span><a href="/jellyfin">Jellyfin</a>, <a href="/plex">Plex</a>, <a href="/emby">Emby</a> and native <a href="/silo">Silo</a></span></li>
+        <li><span>NAS and shared folders</span><span><a href="/network-shares">SMB, NFS, WebDAV, SFTP and FTP</a>, without media-server software</span></li>
+        <li><span>Apple TV playback</span><span><a href="/formats">MKV, HEVC, Dolby Vision and more</a>, with hardware and output limitations explained</span></li>
+        <li><span>Your preferences</span><span><a href="/features">Dual subtitles, profile layouts and spoiler protection</a></span></li>
+      </ul>
+    </Showcase>
+
+    <section class="fmt" aria-labelledby="other-players">
+      <div class="container">
+        <div class="fmt-body">
+          <h2 id="other-players">Infuse, VLC, Plex or Emby?</h2>
+          <div class="alternatives-copy">
+            <p>
+              If you’re choosing an Apple TV media app, start with the files and
+              servers you use. <a href="https://firecore.com/infuse" target="_blank" rel="noopener">Infuse</a> is another player for personal media. <a href="https://www.videolan.org/vlc/download-appletv.html" target="_blank" rel="noopener">VLC for Apple TV</a> is also free and open source. Plex and Emby have their own client
+              apps as well as server software.
+            </p>
+            <p>
+              Plozz is worth trying if you want a free, open-source client
+              that brings supported servers and network shares into one library.
+              There’s no need to change your server to try it, and no claim that
+              every app supports the same workflows.
+            </p>
+            <p>
+              Plozz is an independent project, not affiliated with Firecore,
+              Infuse, VideoLAN, Plex or Emby.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 id="faq-heading">Before you switch</h2>
+        <div class="faq-list">
+          {faqs.map((faq) => (
+            <details>
+              <summary>{faq.q}</summary>
+              <p>{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <Closer secondaryHref="/features" secondaryLabel="Explore Plozz features" />
+  </main>
+  <SiteFooter />
+  <SiteScripts />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</Layout>
+
+<style>
+  .alternatives-copy {
+    display: grid;
+    gap: 20px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .alternatives-copy a,
+  .proof a {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .alternatives-copy a:focus-visible,
+  .proof a:focus-visible {
+    outline: 3px solid var(--brand);
+    outline-offset: 3px;
+  }
+</style>

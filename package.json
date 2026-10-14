@@ -9,6 +9,7 @@
     "start": "astro dev",
     "build": "astro build",
     "test": "node --test tests/*.test.mjs",
+    "test:site": "npm run build && node --test tests/site/*.test.mjs",
     "worker:dev": "wrangler dev --config wrangler.worker.toml --local",
     "worker:check": "wrangler versions upload --config wrangler.worker.toml --dry-run",
     "worker:upload": "npm run build && npm test && wrangler versions upload --config wrangler.worker.toml --keep-vars",
