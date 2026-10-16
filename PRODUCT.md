@@ -26,6 +26,9 @@ Gradient-heavy SaaS pages, dense marketing-section stacks, excessive accent colo
 ## Design Principles
 
 - Give each viewport one dominant idea.
+- Keep the home hero to its headline, provider marks and primary actions. Put
+  platform descriptions, comparison pitches and audio details in feature/FAQ
+  content or their dedicated pages, not supporting paragraphs under the headline.
 - Use rich black, white, and neutral gray as the foundation.
 - Reserve color for authentic brand artwork, the Plozz logo light, and primary actions.
 - Keep pixel art in the Plozz artwork; use modern Apple-like interface chrome everywhere else.

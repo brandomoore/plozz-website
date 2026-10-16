@@ -70,11 +70,22 @@ test('Apple TV height audio is prominent without repeating the obsolete blanket 
   }
   assert.match(home.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1], /href="\/formats#height-channels"/);
   assert(plain(home).includes('Height channels. On Apple TV.'));
-  assert(home.slice(0, home.indexOf('class="hero-summary"')).includes('TrueHD Atmos and DTS:X height audio on supported Apple TV setups.'));
   assert.match(metadata(home, 'description'), /TrueHD Atmos and DTS:X height channels/);
   assert.match(metadata(formats, 'description'), /TrueHD Atmos and DTS:X/);
   const software = structured(home).find((item) => item['@type'] === 'SoftwareApplication');
   assert(software.featureList.some((item) => item.includes('TrueHD Atmos and DTS:X height-channel rendering')));
+});
+
+test('home hero goes straight from headline to providers and actions', () => {
+  const hero = home.match(/<section\b[^>]*class="hero"[^>]*>([\s\S]*?)<\/section>/)[1];
+  assert.match(hero, /<\/h1>\s*<div class="hero-summary"/);
+  assert.doesNotMatch(hero, /href="\/infuse-alternative"|href="\/formats#height-channels"|Movies, shows and music/);
+  assert.match(hero, /class="hero-logos"/);
+  assert.match(hero, /Join the TestFlight beta/);
+  assert(plain(built('features/index.html')).includes('Movies, shows and music on Apple TV, iPhone and iPad.'));
+  const faq = structured(home).find((item) => item['@type'] === 'FAQPage');
+  assert(faq.mainEntity.some((item) => item.name.includes('alternative to Infuse')));
+  assert(faq.mainEntity.some((item) => item.name.includes('TrueHD Atmos and DTS:X')));
 });
 
 test('height-audio details distinguish supported sources, lossy rendering and output', () => {
