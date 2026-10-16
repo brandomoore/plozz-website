@@ -88,6 +88,22 @@ test('home hero goes straight from headline to providers and actions', () => {
   assert(faq.mainEntity.some((item) => item.name.includes('TrueHD Atmos and DTS:X')));
 });
 
+test('hero offers TestFlight first with GitHub and permanent Discord as secondary actions', () => {
+  const hero = home.match(/<section\b[^>]*class="hero"[^>]*>([\s\S]*?)<\/section>/)[1];
+  const links = [...hero.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)];
+  assert.deepEqual(links.map(([, , content]) => plain(content)), ['Join the TestFlight beta', 'GitHub', 'Discord']);
+  assert.equal(links.filter(([, attributes]) => attributes.includes('btn-primary')).length, 1);
+  assert.match(links[0][1], /btn-primary/);
+  assert.match(links[0][1], /href="https:\/\/testflight\.apple\.com\/join\/EKfReNMu"/);
+  assert.match(links[1][1], /btn-light/);
+  assert.match(links[1][1], /href="https:\/\/github\.com\/brandomoore\/Plozz"/);
+  assert.match(links[2][1], /btn-light/);
+  assert.match(links[2][1], /href="https:\/\/discord\.gg\/YkXnmB8rcF"/);
+  assert.match(links[2][1], /target="_blank"/);
+  assert.match(links[2][1], /rel="noopener"/);
+  assert.match(links[2][2], /<svg\b/);
+});
+
 test('height-audio details distinguish supported sources, lossy rendering and output', () => {
   assert.match(formats, /id="height-channels"/);
   const content = plain(formats);

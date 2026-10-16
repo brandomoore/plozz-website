@@ -13,7 +13,7 @@ import Shot from "../components/Shot.astro";
 import { HERO, DEVICE_IPAD, DEVICE_IPHONE } from "../data/imageSizes";
 import { shotSrcset } from "../data/shots";
 import { INCLUDED, DONATION_AMOUNTS } from "../data/site";
-import { GITHUB_URL, DONATE_URL, TESTFLIGHT_URL, SITE } from "../data/site";
+import { GITHUB_URL, DONATE_URL, DISCORD_URL, TESTFLIGHT_URL, SITE } from "../data/site";
 import { faqs, stripHtml } from "../data/faqs";
 
 const heroScreenshots = [
@@ -172,6 +172,15 @@ const faqLd = {
                 >
                   <Icon name="simple-icons:github" />
                   GitHub
+                </a>
+                <a
+                  class="btn btn-light btn-lg"
+                  href={DISCORD_URL}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <Icon name="simple-icons:discord" aria-hidden="true" />
+                  Discord
                 </a>
               </div>
             </div>

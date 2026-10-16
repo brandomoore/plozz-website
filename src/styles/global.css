@@ -990,11 +990,16 @@ h3 {
 }
 
 .hero-cta {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
-  gap: 14px;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.hero-cta > .btn-primary {
+  grid-column: 1 / -1;
 }
 
 .hero-devices {
@@ -1175,14 +1180,14 @@ h3 {
     padding: 0;
   }
 
-  .hero-cta {
+  .hero-cta .btn {
     width: 100%;
-    align-items: stretch;
-    flex-direction: column;
   }
 
-  .hero-cta .btn {
-    width: min(100%, 320px);
+  .hero-cta .btn-light {
+    padding-inline: 10px;
+    gap: 8px;
+    font-size: 0.93rem;
   }
 
   .hero-devices {
