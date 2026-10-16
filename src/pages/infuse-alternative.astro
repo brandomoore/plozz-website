@@ -10,7 +10,7 @@ import Shot from '../components/Shot.astro';
 import { FIGURE } from '../data/imageSizes';
 
 const title = 'Free, open-source Infuse alternative for Apple TV — Plozz';
-const description = 'Looking for a free Infuse alternative? Plozz is an open-source Apple TV, iPhone and iPad player for Jellyfin, Plex, Emby, Silo and NAS files. No paid tier.';
+const description = 'Looking for a free Infuse alternative? Plozz is an open-source Apple TV player with TrueHD Atmos and DTS:X height-channel support via AetherEngine.';
 
 const faqs = [
   {
@@ -65,6 +65,19 @@ const faqLd = {
         sizes={FIGURE}
         class="shot"
       />
+    </Showcase>
+
+    <Showcase
+      question="Height channels on Apple TV, included."
+      detail="Plozz uses AetherEngine to render overhead audio from supported Dolby TrueHD Atmos and DTS:X tracks. It’s part of the free app, not a paid audio upgrade. This describes Plozz’s support, not a claim about another player’s limits."
+      flip
+    >
+      <ul class="proof">
+        <li><span>Your audio</span><span>Height-channel rendering from supported TrueHD Atmos and DTS:X sources</span></li>
+        <li><span>Your setup</span><span>tvOS 26 or later with compatible Atmos equipment</span></li>
+        <li><span>The output</span><span>Lossy Apple Positional Audio delivered as Dolby MAT, not the original bitstream</span></li>
+        <li><span>The details</span><span><a href="/formats#height-channels">Supported paths, requirements and fallback behavior</a></span></li>
+      </ul>
     </Showcase>
 
     <Showcase

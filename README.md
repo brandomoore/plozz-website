@@ -116,6 +116,12 @@ comparison. Features and the shared footer link to this broader page.
 Run `npm run test:site` to build and check search/social metadata, canonical
 URLs, sitemap discovery, visible FAQ/JSON-LD consistency and comparison wording.
 
+Height-channel audio is promoted on Home, Features and comparison pages, with
+the mechanism and requirements at `/formats#height-channels`. Keep the distinction
+between TrueHD Atmos / DTS:X source rendering, lossy Apple Positional Audio and
+Dolby MAT output; don't describe it as untouched TrueHD/DTS:X passthrough.
+`PRODUCT.md` records the engine reference used for these claims.
+
 The September 23, 2026 refresh follows app release/041. Platform and provider
 limits belong beside their features, especially mobile-only streaming quality
 and downloads, native Silo capabilities, server-owned identities and optional

@@ -107,9 +107,18 @@ other app lacks those features.
   eligible active-user/Plex Pass access. Ages are separate from review scores.
 - "Ratings with no API key." AniList scores are keyless; optional OMDb
   enrichment needs the user's own key.
-- "Atmos passthrough" without qualification. E-AC-3 with JOC is stream-copied and
-  is real Atmos. TrueHD Atmos is bridged and loses its object metadata, so say
-  where Atmos comes from rather than implying every source survives.
+- "TrueHD / DTS:X bitstream passthrough" or "lossless height rendering."
+  Plozz supports TrueHD Atmos and DTS:X heights through AetherEngine's
+  object-audio renderer. It renders into a speaker layout and encodes lossy
+  Apple Positional Audio (APAC); tvOS delivers Dolby MAT to compatible Atmos
+  equipment. This is distinct from E-AC-3 JOC stream copy and from lossless
+  channel-based playback. Do not repeat the old blanket claim that TrueHD
+  Atmos always loses its heights.
+- "Height audio on every setup." The path requires tvOS 26 or later, supported
+  48 kHz sources, object-audio rendering and compatible output equipment.
+  It is for supported on-demand video paths; unsupported cases can fall back
+  without heights. Don't infer a specific Plozz speaker-layout setting, native
+  DTS:X receiver output, or competitor limitations from engine capabilities.
 - "Professionally localized." The 36 languages ship, but they are machine
   translated and machine reviewed, and every string is tagged needs_review.
 - Sign-in flows as a selling point. Quick Connect, Plex Link and discovery are
@@ -139,6 +148,13 @@ Music libraries use Plex/Jellyfin/Emby, not Silo or shares. Live TV supports
 user-supplied M3U/XMLTV, authorized Plex/Jellyfin/Emby channels and scheduled
 library channels; it supplies no public channels and is marked Experimental
 on Apple TV.
+
+Height-audio copy updated October 15, 2026 following the maintainer's confirmation
+that Plozz supports the engine's height path. Mechanism and qualifications were
+checked against AetherEngine
+[`b78c309d478c950166835d99221f971c9f7d54b1`](https://github.com/superuser404notfound/AetherEngine/blob/b78c309d478c950166835d99221f971c9f7d54b1/docs/formats.md#truehd-atmos-with-heights),
+including the adjacent DTS:X section. Lead with the user benefit; keep lossy
+rendering, platform and fallback details on `/formats#height-channels`.
 
 ## Accessibility & Inclusion
 

@@ -21,6 +21,10 @@ export const faqs: Faq[] = [
     a: 'Plozz combines supported servers and network shares in a completely free, open-source player. Infuse, VLC, Plex, Emby and Swiftfin each suit different setups; VLC and Swiftfin are also free and open source. <a href="/apple-tv-media-players">Compare the players</a> by library, workflow and what to check before switching.',
   },
   {
+    q: 'Can I hear TrueHD Atmos and DTS:X height channels on Apple TV?',
+    a: 'Yes. Plozz uses AetherEngine to render height audio from supported Dolby TrueHD Atmos and DTS:X tracks on tvOS 26 or later with compatible Atmos equipment. It uses Apple Positional Audio and Dolby MAT, not untouched bitstream passthrough. <a href="/formats#height-channels">See requirements and the audio-quality tradeoff.</a>',
+  },
+  {
     q: 'Do I need a media server?',
     a: 'Use a Jellyfin, Plex, Emby or Silo server you have access to, or connect directly to SMB, NFS, WebDAV, SFTP or FTP storage. You can also bring your own IPTV playlist without a media-server account. Plozz doesn\u2019t provide films, shows or public channels.',
   },
