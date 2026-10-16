@@ -990,16 +990,15 @@ h3 {
 }
 
 .hero-cta {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 12px;
   width: 100%;
-  max-width: 360px;
 }
 
-.hero-cta > .btn-primary {
-  grid-column: 1 / -1;
+.hero-cta-label-compact {
+  display: none;
 }
 
 .hero-devices {
@@ -1180,14 +1179,28 @@ h3 {
     padding: 0;
   }
 
-  .hero-cta .btn {
-    width: 100%;
+  .hero-cta {
+    gap: 8px;
   }
 
-  .hero-cta .btn-light {
-    padding-inline: 10px;
-    gap: 8px;
-    font-size: 0.93rem;
+  .hero-cta .btn {
+    flex: 1;
+    min-width: 0;
+    padding-inline: 8px;
+    font-size: 0.85rem;
+  }
+
+  .hero-cta .btn-primary {
+    flex: 1.25;
+  }
+
+  .hero-cta svg,
+  .hero-cta-label-wide {
+    display: none;
+  }
+
+  .hero-cta-label-compact {
+    display: inline;
   }
 
   .hero-devices {

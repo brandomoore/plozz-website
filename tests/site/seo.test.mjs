@@ -91,7 +91,7 @@ test('home hero goes straight from headline to providers and actions', () => {
 test('hero offers TestFlight first with GitHub and permanent Discord as secondary actions', () => {
   const hero = home.match(/<section\b[^>]*class="hero"[^>]*>([\s\S]*?)<\/section>/)[1];
   const links = [...hero.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)];
-  assert.deepEqual(links.map(([, , content]) => plain(content)), ['Join the TestFlight beta', 'GitHub', 'Discord']);
+  assert.deepEqual(links.map(([, attributes, content]) => attributes.match(/aria-label="([^"]+)"/)?.[1] ?? plain(content)), ['Join the TestFlight beta', 'GitHub', 'Discord']);
   assert.equal(links.filter(([, attributes]) => attributes.includes('btn-primary')).length, 1);
   assert.match(links[0][1], /btn-primary/);
   assert.match(links[0][1], /href="https:\/\/testflight\.apple\.com\/join\/EKfReNMu"/);
