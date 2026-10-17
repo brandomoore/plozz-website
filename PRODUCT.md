@@ -6,7 +6,7 @@ brand
 
 ## Users
 
-People with personal media libraries who are evaluating Plozz as a native player for Apple TV, iPhone, and iPad. They may use Jellyfin, Plex, Emby, Silo, or connect directly to network storage.
+People evaluating Plozz as a native media and IPTV player for Apple TV, iPhone, and iPad. They may use Jellyfin, Plex, Emby, Silo, direct network storage, or their own IPTV accounts and playlists.
 
 ## Product Purpose
 
@@ -148,9 +148,19 @@ watchlists, Seerr season requests, collections/extras, Live TV where supported,
 profile-scoped presentation, dual subtitles, themes/layout and circadian mode.
 Plozz profiles do not replace server users or their restrictions/history.
 Music libraries use Plex/Jellyfin/Emby, not Silo or shares. Live TV supports
-user-supplied M3U/XMLTV, authorized Plex/Jellyfin/Emby channels and scheduled
-library channels; it supplies no public channels and is marked Experimental
-on Apple TV.
+user-supplied M3U playlists, Xtream accounts, XMLTV guides, authorized
+Plex/Jellyfin/Emby channels and scheduled library channels. It supplies no public
+channels or channel subscription. Source setup carries an Experimental note on
+both TV and mobile; navigation is simply Live TV.
+
+IPTV / Live TV is a first-class supported source: include it in navigation,
+the hero's source list and social artwork, not in extra hero paragraphs.
+`/live-tv` owns the details. Current capabilities were checked against
+[`docs/live-tv-prototype.md` at e95ccd6](https://github.com/brandomoore/Plozz/blob/e95ccd6c907cfbac64b3c3ee8aca902a266c7428/docs/live-tv-prototype.md)
+on October 17, 2026: up to four-channel Multiview, guide/search, favorites,
+recents, Home channel shortcuts and generated library channels. Catch-up and
+recording management are not supported. Imported M3U files and saved Multiview
+compositions stay device-local. Provider limits and permissions still apply.
 
 Height-audio copy updated October 15, 2026 following the maintainer's confirmation
 that Plozz supports the engine's height path. Mechanism and qualifications were

@@ -944,12 +944,6 @@ h3 {
   height: 32px;
 }
 
-@media (min-width: 561px) {
-  .cell.share-source {
-    grid-column: span 2;
-  }
-}
-
 /* Network shares are a category, not a product, so there is no logo to show.
    Icon plus the name, set to the same weight and size as the three brand marks
    it sits beside. Shared by the hero panel and the sources cell so the two read

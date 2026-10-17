@@ -114,6 +114,7 @@
   <text x="1120" y="112" text-anchor="end" fill="#a1a1aa" font-size="22" font-weight="500">plozz.app</text>
   <text x="80" y="258" fill="#f4f4f5" font-size="64" font-weight="600" letter-spacing="-2">Free and open source.</text>
   <text x="80" y="336" fill="#f4f4f5" font-size="64" font-weight="600" letter-spacing="-2">Plays practically everything.</text>
+  <text x="80" y="393" fill="#e4e4e7" font-size="28" font-weight="500" letter-spacing="-0.5">Your movies, shows &amp; IPTV / Live TV.</text>
   <path d="M80 436H1120" stroke="#27272a"/>
   <text x="80" y="499" fill="#e4e4e7" font-size="28" font-weight="500" letter-spacing="-0.5">Apple TV · iPhone · iPad</text>
   <text x="80" y="546" fill="#a1a1aa" font-size="24" font-weight="400">Jellyfin · Plex · Emby · Silo · Network shares</text>

@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteScripts from '../components/SiteScripts.astro';
+import PageHero from '../components/PageHero.astro';
+import Showcase from '../components/Showcase.astro';
+import Closer from '../components/Closer.astro';
+
+const title = 'Free IPTV & Live TV player for Apple TV — Plozz';
+const description = 'Bring your IPTV to Apple TV, iPhone and iPad. M3U playlists, Xtream accounts, XMLTV guides, favorites and four-channel Multiview in a free, open-source player.';
+const faqs = [
+  {
+    q: 'Do I need Plex, Jellyfin or Emby to use IPTV?',
+    a: 'No. An M3U playlist or Xtream account can be used on its own, without a media-server account. You need an authorized source of channels; Plozz does not provide a channel catalog or subscription.',
+  },
+  {
+    q: 'Which IPTV sources and guides can I add?',
+    a: 'Use a playlist URL or an Xtream server, username and password. You can also import an M3U file through Files on iPhone and iPad. Add an XMLTV guide or use guide data from a supported source. Imported playlist files remain on the importing device; use a URL for a source that can refresh on multiple devices.',
+  },
+  {
+    q: 'Can I watch more than one channel at once?',
+    a: 'Yes. Multiview supports up to four channels, layout changes and audio selection. You can save favorite compositions on the device. Your source must allow the simultaneous streams; provider connection limits and device performance still apply.',
+  },
+  {
+    q: 'Can my own movie and TV library become channels?',
+    a: 'Yes. Plozz channels can build a lineup from accessible Plex, Jellyfin and Emby movie and TV libraries. Automatic lineups use your real library metadata; custom channels are also available. This is your own media arranged as a schedule, not a supplied TV service.',
+  },
+  {
+    q: 'Does Live TV include catch-up or recording management?',
+    a: 'No. Catch-up and recording management are not part of the current Live TV implementation. Stream and guide compatibility depend on your source. The source-setup introduction includes an Experimental note on Apple TV, iPhone and iPad.',
+  },
+];
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(faq => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: { '@type': 'Answer', text: faq.a },
+  })),
+};
+---
+
+<Layout title={title} description={description}>
+  <SiteHeader />
+  <main>
+    <PageHero
+      eyebrow="IPTV / Live TV"
+      title="Your channels. One guide."
+      lead="Bring your IPTV to Apple TV, iPhone and iPad. Plozz is a free, open-source player for your own playlists and authorized Live TV sources—not another channel subscription."
+    />
+
+    <Showcase
+      question="Start with the channels you already have."
+      detail="IPTV works without a media server. Connect a playlist or account you’re authorized to use, then add the guide for your lineup. Plozz doesn’t supply public channels."
+    >
+      <ul class="proof">
+        <li><span>M3U playlists</span><span>Connect a playlist URL; import a playlist file on iPhone or iPad</span></li>
+        <li><span>Xtream accounts</span><span>Use your provider’s server address and account credentials</span></li>
+        <li><span>XMLTV guides</span><span>Program listings from your chosen guide or supported provider</span></li>
+        <li><span>Media-server channels</span><span>Authorized Plex, Jellyfin and Emby sources, subject to server capabilities</span></li>
+      </ul>
+    </Showcase>
+
+    <Showcase
+      question="More than a channel list."
+      detail="Your configured sources meet in one guide. Find a channel or program, keep favorites close, and return to what you watched recently. Missing guide data doesn’t have to make a channel unplayable."
+      flip
+    >
+      <ul class="proof">
+        <li><span>Guide and search</span><span>Browse programs, search and filter by category</span></li>
+        <li><span>Favorites and recents</span><span>Shortcuts that belong to your Plozz profile</span></li>
+        <li><span>Home shortcuts</span><span>Recently watched channels and a favorites-first Live TV row, controlled by your Home settings</span></li>
+        <li><span>Every screen</span><span>Remote-focused navigation on Apple TV; native browsing on iPhone and iPad</span></li>
+      </ul>
+    </Showcase>
+
+    <Showcase
+      question="Watch up to four channels together."
+      detail="Multiview keeps several pictures on screen and lets you choose which one you hear. Change the layout or return to a single channel without setting up the whole composition again."
+    >
+      <ul class="proof">
+        <li><span>Up to four channels</span><span>Subject to your provider’s simultaneous-stream limits and device performance</span></li>
+        <li><span>Layout and audio</span><span>Choose the arrangement and audible picture</span></li>
+        <li><span>Saved Multiviews</span><span>Keep favorite compositions on the device, per profile</span></li>
+      </ul>
+    </Showcase>
+
+    <Showcase
+      question="Turn your library into a lineup."
+      detail="Build scheduled channels from accessible Plex, Jellyfin and Emby libraries. Enable an automatic lineup or create custom channels. The content is still yours."
+      flip
+    >
+      <ul class="proof">
+        <li><span>Automatic channels</span><span>Movie and TV lineups based on your actual library</span></li>
+        <li><span>Themed channels</span><span>Where your metadata and collection support them</span></li>
+        <li><span>Custom channels</span><span>Define the library mix you want to watch</span></li>
+      </ul>
+    </Showcase>
+
+    <section class="faq-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 id="faq-heading">Before you connect</h2>
+        <div class="faq-list">
+          {faqs.map(faq => (
+            <details>
+              <summary>{faq.q}</summary>
+              <p>{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+    <Closer secondaryHref="/features" secondaryLabel="Explore all Plozz features" />
+  </main>
+  <SiteFooter />
+  <SiteScripts />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</Layout>

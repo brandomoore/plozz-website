@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "private": true,
-  "description": "Marketing site for Plozz \u2014 a free, open-source Jellyfin, Plex, Emby, Silo and network share player for Apple TV, iPhone and iPad.",
+  "description": "Marketing site for Plozz \u2014 a free, open-source media and IPTV / Live TV player for Apple TV, iPhone and iPad.",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

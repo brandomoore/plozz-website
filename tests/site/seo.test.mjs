@@ -8,6 +8,7 @@ const built = (path) => readFileSync(new URL(`../../dist/${path}`, import.meta.u
 const landing = built('infuse-alternative/index.html');
 const comparisons = built('apple-tv-media-players/index.html');
 const formats = built('formats/index.html');
+const liveTv = built('live-tv/index.html');
 const home = built('index.html');
 const plain = (html) => html
   .replace(/<[^>]+>/g, '')
@@ -55,7 +56,7 @@ test('social card uses the current mark and bundled Manrope, not the old glow or
   assert(svg.includes(`data:font/woff2;base64,${font}`));
   assert.match(svg, /font-family: Manrope/);
   assert.doesNotMatch(svg, /radialGradient|og-glow|plozz-wordmark/);
-  for (const text of ['Free and open source.', 'Plays practically everything.', 'Apple TV', 'iPhone', 'iPad', 'Jellyfin', 'Plex', 'Emby', 'Silo', 'Network shares']) {
+  for (const text of ['Free and open source.', 'Plays practically everything.', 'IPTV / Live TV', 'Apple TV', 'iPhone', 'iPad', 'Jellyfin', 'Plex', 'Emby', 'Silo', 'Network shares']) {
     assert(svg.includes(text), `Missing social-card copy: ${text}`);
   }
 });
@@ -91,7 +92,7 @@ test('alternative landing page is indexable with focused, consistent search and 
 });
 
 test('visible FAQ answers and structured data stay identical on home and comparison pages', () => {
-  for (const html of [home, landing, comparisons, formats]) {
+  for (const html of [home, landing, comparisons, formats, liveTv]) {
     const faq = structured(html).find((item) => item['@type'] === 'FAQPage');
     assert(faq);
     const details = [...html.matchAll(/<details\b[^>]*>([\s\S]*?)<\/details>/g)];
@@ -100,6 +101,26 @@ test('visible FAQ answers and structured data stay identical on home and compari
       assert.equal(plain(content.match(/<summary\b[^>]*>([\s\S]*?)<\/summary>/)[1]), faq.mainEntity[index].name);
       assert.equal(plain(content.match(/<p\b[^>]*>([\s\S]*?)<\/p>/)[1]), faq.mainEntity[index].acceptedAnswer.text);
     }
+  }
+});
+
+test('IPTV is prominent in navigation, home sources, social metadata and its own page', () => {
+  for (const html of [home, landing, comparisons, formats, liveTv]) {
+    assert.match(html.match(/<nav\b[^>]*aria-label="Main navigation"[\s\S]*?<\/nav>/)[0], /href="\/live-tv"/);
+    assert.match(metadata(html, 'og:image:alt'), /IPTV \/ Live TV/);
+  }
+  const hero = home.match(/<section\b[^>]*class="hero"[^>]*>([\s\S]*?)<\/section>/)[1];
+  assert(plain(hero).includes('IPTV / Live TV'));
+  assert.match(home.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1], /href="\/live-tv"/);
+  assert.match(metadata(home, 'description'), /IPTV \/ Live TV/);
+  assert.match(liveTv, /<link rel="canonical" href="https:\/\/plozz\.app\/live-tv\/"/);
+  assert.equal(metadata(liveTv, 'og:title'), 'Free IPTV & Live TV player for Apple TV — Plozz');
+  assert.equal(metadata(liveTv, 'og:description'), metadata(liveTv, 'description'));
+  assert.equal(metadata(liveTv, 'twitter:title'), metadata(liveTv, 'og:title'));
+  assert.match(built('sitemap-0.xml'), /<loc>https:\/\/plozz\.app\/live-tv\/<\/loc>/);
+  const content = plain(liveTv);
+  for (const term of ['M3U', 'Xtream', 'XMLTV', 'Multiview', 'four channels', 'Plex', 'Jellyfin', 'Emby', 'Experimental', 'iPhone and iPad', 'does not provide a channel catalog', 'not part of the current Live TV implementation', 'Imported playlist files remain on the importing device']) {
+    assert(content.includes(term), `Missing IPTV capability or boundary: ${term}`);
   }
 });
 

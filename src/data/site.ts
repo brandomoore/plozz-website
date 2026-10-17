@@ -7,6 +7,7 @@ export const GITHUB_STARS_SEED = 26;
 
 export const NAV_LINKS = [
   { href: '/features', label: 'Features' },
+  { href: '/live-tv', label: 'IPTV / Live TV' },
   { href: '/formats', label: 'Formats' },
   { href: '/network-shares', label: 'Network shares' },
 ];

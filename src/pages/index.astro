@@ -56,7 +56,7 @@ const softwareLd = {
   applicationCategory: "MultimediaApplication",
   operatingSystem: "tvOS, iOS, iPadOS",
   description:
-    "Plozz is a free, open source media player for Apple TV, iPhone and iPad. Connect Jellyfin, Plex, Emby, native Silo and network shares. Includes movie, TV and music libraries, with offline downloads and streaming-quality controls on iPhone and iPad.",
+    "Plozz is a free, open source media and IPTV player for Apple TV, iPhone and iPad. Bring your own M3U playlist or Xtream account, authorized Live TV channels, Jellyfin, Plex, Emby, native Silo or network shares.",
   featureList: [
     "TrueHD Atmos and DTS:X height-channel rendering via AetherEngine on supported Apple TV setups",
     "Jellyfin, Plex, Emby and native Silo libraries and playback",
@@ -65,7 +65,9 @@ const softwareLd = {
     "In-player file and edition switching on the active server",
     "Offline downloads and movie/episode streaming-quality controls on iPhone and iPad",
     "Dual subtitles, themes, per-profile settings and circadian mode",
-    "Music playback and Live TV where supported by the source",
+    "IPTV via M3U playlists or Xtream accounts, XMLTV guides, authorized server channels and scheduled library channels",
+    "Live TV guide, search, favorites, recently watched channels and up to four-channel Multiview",
+    "Music playback where supported by the source",
   ],
   url: SITE,
   image: `${SITE}${SOCIAL_IMAGE_PATH}`,
@@ -115,7 +117,7 @@ const faqLd = {
 
 <Layout
   title="Plozz — free, open-source media player for Apple TV"
-  description="Free, open-source Infuse alternative for Apple TV, iPhone and iPad. TrueHD Atmos and DTS:X height channels on supported Apple TV setups. Bring your own media."
+  description="Free, open-source Infuse alternative with IPTV / Live TV. TrueHD Atmos and DTS:X height channels on supported Apple TV setups. Bring your own media."
 >
   {/* The first hero slide is the LCP element. Preloading the AVIF candidate
       starts it before the parser reaches the markup near the bottom of the
@@ -149,6 +151,12 @@ const faqLd = {
                   <span class="share-lockup">
                     <Icon name="ph:folders" />
                     Network shares
+                  </span>
+                </li>
+                <li>
+                  <span class="share-lockup">
+                    <Icon name="ph:television-simple" />
+                    IPTV / Live TV
                   </span>
                 </li>
               </ul>
@@ -317,13 +325,13 @@ const faqLd = {
             </p>
             <span class="cell-go">Version controls<span class="cell-arrow" aria-hidden="true"></span></span>
           </a>
-          <a class="cell" href="/features#what-else-can-i-watch-or-listen-to">
-            <h3>More than a film library</h3>
+          <a class="cell" href="/live-tv">
+            <h3>Your channels. One guide.</h3>
             <p>
-              Keep a watchlist, browse music, or open Live TV from a supported
-              source. Connected trackers and Seerr fit around your library.
+              Bring your own IPTV playlist or Xtream account. Browse the guide,
+              save favorites and watch up to four channels together in Multiview.
             </p>
-            <span class="cell-go">All features<span class="cell-arrow" aria-hidden="true"></span></span>
+            <span class="cell-go">Explore IPTV / Live TV<span class="cell-arrow" aria-hidden="true"></span></span>
           </a>
         </div>
       </div>
@@ -524,7 +532,7 @@ const faqLd = {
               <span class="cell-go">See how it works<span class="cell-arrow" aria-hidden="true"></span></span>
             </div>
           </a>
-          <a class="cell share-source" href="/network-shares">
+          <a class="cell" href="/network-shares">
             <div class="cell-visual">
               <span class="share-lockup">
                 <Icon name="ph:folders" />
@@ -537,6 +545,18 @@ const faqLd = {
                 >See how it works<span class="cell-arrow" aria-hidden="true"
                 ></span></span
               >
+            </div>
+          </a>
+          <a class="cell" href="/live-tv">
+            <div class="cell-visual">
+              <span class="share-lockup">
+                <Icon name="ph:television-simple" />
+                IPTV / Live TV
+              </span>
+            </div>
+            <div class="cell-foot">
+              <p>Your playlists, authorized server channels and scheduled library channels. No bundled channel subscription.</p>
+              <span class="cell-go">See how it works<span class="cell-arrow" aria-hidden="true"></span></span>
             </div>
           </a>
         </div>

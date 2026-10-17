@@ -2,7 +2,7 @@
 
 The marketing website for **[Plozz](https://github.com/brandomoore/Plozz)** — a
 free, open-source media player for Apple TV, iPhone, and iPad that plays from
-your own Jellyfin, Plex, Emby and Silo servers and from plain network shares.
+your own Jellyfin, Plex, Emby and Silo servers, network shares and IPTV / Live TV sources.
 
 Live at **[plozz.app](https://plozz.app)**.
 
@@ -82,7 +82,7 @@ Do not reactivate the Pages domain or change DNS to resolve a stale Worker.
 ```
 src/pages/          One .astro file per route (index, features, formats,
                     jellyfin, plex, emby, silo, network-shares,
-                    infuse-alternative, apple-tv-media-players, privacy, 404)
+                    infuse-alternative, apple-tv-media-players, live-tv, privacy, 404)
 src/components/      Reusable page sections
 src/data/           Site copy, FAQs, and the screenshot manifest
 src/styles/          Global and device-frame CSS
@@ -112,6 +112,11 @@ compares Infuse, VLC, Plex, Emby and Swiftfin by workflow rather than price or
 unsupported feature checklists. Each entry links its official source and gives
 a use case, a reason to try Plozz, and a caveat. Infuse remains the lead
 comparison. Features and the shared footer link to this broader page.
+
+[`src/pages/live-tv.astro`](src/pages/live-tv.astro) covers IPTV / Live TV,
+including M3U/Xtream sources, XMLTV, Multiview and scheduled library channels.
+Keep it discoverable in the primary navigation and homepage, and include
+IPTV / Live TV in social artwork. Plozz supplies the player, not the channels.
 
 Run `npm run test:site` to build and check search/social metadata, canonical
 URLs, sitemap discovery, visible FAQ/JSON-LD consistency and comparison wording.

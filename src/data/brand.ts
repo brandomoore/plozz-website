@@ -11,4 +11,4 @@ function versionedAsset(name: string): string {
 export const LOGO_PATH = versionedAsset('logo.svg');
 export const SOCIAL_IMAGE_PATH = versionedAsset('og-image.png');
 export const SOCIAL_IMAGE_ALT =
-  'Plozz. Free and open source. Plays practically everything. Apple TV, iPhone and iPad. Jellyfin, Plex, Emby, Silo and network shares.';
+  'Plozz. Free and open source. Plays practically everything. Your movies, shows and IPTV / Live TV. Apple TV, iPhone and iPad. Jellyfin, Plex, Emby, Silo and network shares.';

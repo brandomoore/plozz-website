@@ -28,6 +28,7 @@ const PUBLIC = join(ROOT, 'public');
  */
 const COPY = {
   headline: ['Free and open source.', 'Plays practically everything.'],
+  media: 'Your movies, shows & IPTV / Live TV.',
   platforms: 'Apple TV · iPhone · iPad',
   sources: 'Jellyfin · Plex · Emby · Silo · Network shares',
 };
@@ -82,6 +83,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${
   <text x="1120" y="112" text-anchor="end" fill="#a1a1aa" font-size="22" font-weight="500">plozz.app</text>
   <text x="80" y="258" fill="#f4f4f5" font-size="64" font-weight="600" letter-spacing="-2">${escapeXml(COPY.headline[0])}</text>
   <text x="80" y="336" fill="#f4f4f5" font-size="64" font-weight="600" letter-spacing="-2">${escapeXml(COPY.headline[1])}</text>
+  <text x="80" y="393" fill="#e4e4e7" font-size="28" font-weight="500" letter-spacing="-0.5">${escapeXml(COPY.media)}</text>
   <path d="M80 436H1120" stroke="#27272a"/>
   <text x="80" y="499" fill="#e4e4e7" font-size="28" font-weight="500" letter-spacing="-0.5">${escapeXml(COPY.platforms)}</text>
   <text x="80" y="546" fill="#a1a1aa" font-size="24" font-weight="400">${escapeXml(COPY.sources)}</text>
