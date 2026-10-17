@@ -18,6 +18,7 @@
  * half the width and shortens the wire run instead.
  */
 import { Icon } from "astro-icon/components";
+import { LOGO_PATH } from "../data/brand";
 
 const SOURCES = [
   { name: "Plex", src: "/providers/plex.svg" },
@@ -141,7 +142,7 @@ const LAYOUTS = [
           <span class="hub-absorb" style={`--d:${d}s`} aria-hidden="true" />
         ))
       }
-      <img class="hub-mark" src="/logo.svg" alt="" width="32" height="32" />
+      <img class="hub-mark" src={LOGO_PATH} alt="" width="32" height="32" />
       <span class="hub-name">Plozz</span>
     </div>
   </div>

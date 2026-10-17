@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { test } from 'node:test';
 
 // This suite runs through test:site, after Astro has rendered the HTML.
@@ -23,6 +24,55 @@ const metadata = (html, key) => {
 };
 const structured = (html) => [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
   .map(([, json]) => JSON.parse(json));
+
+test('every page uses the current image revision for Open Graph and Twitter', () => {
+  const png = readFileSync(new URL('../../public/og-image.png', import.meta.url));
+  const revision = createHash('sha256').update(png).digest('hex').slice(0, 16);
+  const url = `https://plozz.app/og-image.png?v=${revision}`;
+  for (const file of readdirSync(new URL('../../dist/', import.meta.url), { recursive: true }).filter((file) => file.endsWith('.html'))) {
+    const html = built(file);
+    assert.equal(metadata(html, 'og:image'), url, file);
+    assert.equal(metadata(html, 'twitter:image'), url, file);
+    assert.equal(metadata(html, 'og:image:type'), 'image/png');
+    assert.equal(metadata(html, 'og:image:width'), '1200');
+    assert.equal(metadata(html, 'og:image:height'), '630');
+    assert.equal(metadata(html, 'og:image:alt'), metadata(html, 'twitter:image:alt'));
+    assert.match(metadata(html, 'og:image:alt'), /Free and open source\. Plays practically everything/);
+  }
+  assert.equal(structured(home).find((item) => item['@type'] === 'SoftwareApplication').image, url);
+});
+
+test('social card uses the current mark and bundled Manrope, not the old glow or pixel wordmark', () => {
+  const png = readFileSync(new URL('../../public/og-image.png', import.meta.url));
+  assert.equal(png.readUInt32BE(16), 1200);
+  assert.equal(png.readUInt32BE(20), 630);
+  assert(png.length < 1_000_000);
+  const svg = readFileSync(new URL('../../public/og-image.svg', import.meta.url), 'utf8');
+  const logo = readFileSync(new URL('../../public/logo.svg', import.meta.url), 'utf8')
+    .replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '').trim();
+  const font = readFileSync(new URL('../../public/fonts/manrope-v20-latin.woff2', import.meta.url)).toString('base64');
+  assert(svg.includes(logo), 'Embed the current canonical mark without changing its artwork');
+  assert(svg.includes(`data:font/woff2;base64,${font}`));
+  assert.match(svg, /font-family: Manrope/);
+  assert.doesNotMatch(svg, /radialGradient|og-glow|plozz-wordmark/);
+  for (const text of ['Free and open source.', 'Plays practically everything.', 'Apple TV', 'iPhone', 'iPad', 'Jellyfin', 'Plex', 'Emby', 'Silo', 'Network shares']) {
+    assert(svg.includes(text), `Missing social-card copy: ${text}`);
+  }
+});
+
+test('website marks and favicons share the current canonical logo revision', () => {
+  const logo = readFileSync(new URL('../../public/logo.svg', import.meta.url));
+  const revision = createHash('sha256').update(logo).digest('hex').slice(0, 16);
+  const path = `/logo.svg?v=${revision}`;
+  for (const file of readdirSync(new URL('../../dist/', import.meta.url), { recursive: true }).filter((file) => file.endsWith('.html'))) {
+    const html = built(file);
+    const icon = [...html.matchAll(/<link\b[^>]*>/g)].map(([tag]) => tag).find((tag) => tag.includes('rel="icon"'));
+    assert(icon?.includes(`href="${path}"`), file);
+    const marks = [...html.matchAll(/<img\b[^>]*src="(\/logo\.svg[^"]*)"[^>]*>/g)];
+    assert(marks.length >= 2, `${file}: expected page branding and footer mark`);
+    assert(marks.every(([, src]) => src === path), `${file}: stale logo URL`);
+  }
+});
 
 test('alternative landing page is indexable with focused, consistent search and social metadata', () => {
   const title = plain(landing.match(/<title>([\s\S]*?)<\/title>/)[1]);

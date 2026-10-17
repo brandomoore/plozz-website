@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import FontPreview from '../components/FontPreview.astro';
+import { LOGO_PATH, SOCIAL_IMAGE_PATH, SOCIAL_IMAGE_ALT } from '../data/brand';
 
 /** A build-time try-on rig for typefaces, off unless explicitly asked for.
     `npm run fonts` sets this; a normal build never renders the component, so
@@ -22,10 +23,7 @@ const {
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
-/** Describes the card at public/og-image.png, so the two say the same thing.
-    Both are built from tools/build-og.mjs — change the words in one place. */
-const socialImageAlt =
-  'Plozz — free, open source player for Jellyfin, Plex, Emby, Silo and network shares on Apple TV, iPhone and iPad';
+const socialImage = new URL(SOCIAL_IMAGE_PATH, Astro.site).href;
 ---
 
 <!doctype html>
@@ -33,7 +31,7 @@ const socialImageAlt =
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="icon" type="image/svg+xml" href={LOGO_PATH} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
@@ -60,11 +58,11 @@ const socialImageAlt =
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL('/og-image.png', Astro.site).href} />
+    <meta property="og:image" content={socialImage} />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={socialImageAlt} />
+    <meta property="og:image:alt" content={SOCIAL_IMAGE_ALT} />
     <meta property="og:site_name" content="Plozz" />
     <meta property="og:locale" content="en_US" />
 
@@ -72,8 +70,8 @@ const socialImageAlt =
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL('/og-image.png', Astro.site).href} />
-    <meta name="twitter:image:alt" content={socialImageAlt} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={SOCIAL_IMAGE_ALT} />
 
     <!-- Pages that own their LCP image preload it here, where the parser meets
          it before the markup that uses it. -->

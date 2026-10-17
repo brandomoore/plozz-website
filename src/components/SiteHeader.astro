@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { GITHUB_URL, TESTFLIGHT_URL, NAV_LINKS, GITHUB_STARS_SEED } from '../data/site';
+import { LOGO_PATH } from '../data/brand';
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
@@ -8,7 +9,7 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 <header class="site-header">
   <div class="container">
     <a class="site-brand" href="/" aria-label="Plozz home">
-      <img src="/logo.svg" alt="" width="32" height="32" />
+      <img src={LOGO_PATH} alt="" width="32" height="32" />
       <span>Plozz</span>
     </a>
 

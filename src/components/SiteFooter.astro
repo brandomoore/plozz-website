@@ -1,13 +1,14 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { GITHUB_URL, DONATE_URL, DISCORD_URL, SERVER_LINKS, NAV_LINKS, GITHUB_STARS_SEED } from '../data/site';
+import { LOGO_PATH } from '../data/brand';
 ---
 
 <footer class="site-footer">
   <div class="container">
     <div class="footer-top">
       <a class="footer-brand" href="/" aria-label="Plozz home">
-        <img src="/logo.svg" alt="" width="22" height="22" />
+        <img src={LOGO_PATH} alt="" width="22" height="22" />
         <span>Plozz</span>
       </a>
 

@@ -15,6 +15,7 @@ import { shotSrcset } from "../data/shots";
 import { INCLUDED, DONATION_AMOUNTS } from "../data/site";
 import { GITHUB_URL, DONATE_URL, DISCORD_URL, TESTFLIGHT_URL, SITE } from "../data/site";
 import { faqs, stripHtml } from "../data/faqs";
+import { SOCIAL_IMAGE_PATH } from "../data/brand";
 
 const heroScreenshots = [
   {
@@ -67,7 +68,7 @@ const softwareLd = {
     "Music playback and Live TV where supported by the source",
   ],
   url: SITE,
-  image: `${SITE}/og-image.png`,
+  image: `${SITE}${SOCIAL_IMAGE_PATH}`,
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   license: "https://www.gnu.org/licenses/gpl-3.0.html",
   isAccessibleForFree: true,

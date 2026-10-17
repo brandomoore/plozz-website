@@ -128,16 +128,30 @@ and downloads, native Silo capabilities, server-owned identities and optional
 history sync. Keep the public TestFlight link rather than promising that the
 latest internal build has cleared external review.
 
-Social cards are generated from the site logo and wordmark:
+Social cards use the current site logo and the bundled Manrope font, with the
+same neutral styling as the website. The pixel wordmark and blue glow are no
+longer used:
 
 ```bash
 npm run og
 node tools/build-og.mjs --check
 ```
 
-Keep `COPY` in [`tools/build-og.mjs`](tools/build-og.mjs) aligned with
-[`src/layouts/Layout.astro`](src/layouts/Layout.astro). Regenerate both the SVG
-and PNG after changing it.
+Keep `COPY` in [`tools/build-og.mjs`](tools/build-og.mjs) aligned with the
+homepage and the image alternative in [`src/data/brand.ts`](src/data/brand.ts).
+Regenerate both SVG and PNG after changing it. Manrope is embedded in the SVG
+so exports don't depend on installed fonts or an external font service.
+
+`brand.ts` derives content hashes from the committed PNG and shared logo at build time.
+Open Graph, Twitter and the app's structured data use that same versioned image
+URL; header, footer, favicon and other site marks use the versioned logo URL.
+This gives changed artwork a new cache key; existing Discord messages
+may still retain their old unfurl until Discord refreshes it.
+
+The logo is imported unchanged from
+[`brandomoore/brando/logos/plozz.svg`](https://github.com/brandomoore/brando/blob/7b26334e4cb6ed73a8e9633227ca402cda9e5776/logos/plozz.svg).
+Update `public/logo.svg` from the canonical artwork rather than redrawing it;
+the site and social card share that file.
 
 ## Screenshots
 

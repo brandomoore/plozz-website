@@ -3,18 +3,8 @@
  * Builds public/og-image.svg and public/og-image.png — the card every link
  * unfurl shows in Slack, iMessage, X, LinkedIn and Discord.
  *
- * This exists because the card drifted. It was hand-rendered once and then
- * only ever patched by hand, so it went on claiming "Native Jellyfin & Plex
- * client for Apple TV / tvOS" long after the app grew Emby, network shares,
- * and iPhone and iPad builds. The SVG beside it drifted differently again and
- * ended up sharing neither the artwork nor the words with the PNG shipped next
- * to it.
- *
- * So both files are outputs now. The TV mark and the wordmark are read from
- * the same public/logo.svg and public/plozz-wordmark.svg the site itself uses,
- * which means changing the logo can no longer leave a stale one in the share
- * card. The words live in COPY below, next to the note about what the site
- * actually claims, so updating them is one edit rather than an image job.
+ * Uses the site's current logo and bundled Manrope font. Both outputs are
+ * self-contained: no remote artwork/font request, old pixel wordmark or glow.
  *
  * Usage:  node tools/build-og.mjs [--check]
  *
@@ -33,13 +23,13 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC = join(ROOT, 'public');
 
 /**
- * Keep in step with the default title and description in
- * src/layouts/Layout.astro. Every source the site sells, and every device it
- * runs on — a card that names a subset reads as a smaller app than it is.
+ * Match the homepage's headline and supported devices/sources. The image's
+ * text alternative lives in src/data/brand.ts.
  */
 const COPY = {
-  headline: 'Jellyfin, Plex, Emby, Silo & network shares',
-  sub: 'Apple TV · iPhone · iPad — free & open source',
+  headline: ['Free and open source.', 'Plays practically everything.'],
+  platforms: 'Apple TV · iPhone · iPad',
+  sources: 'Jellyfin · Plex · Emby · Silo · Network shares',
 };
 
 const escapeXml = (text) => text
@@ -68,52 +58,33 @@ function extractArtwork(file) {
     .replace(/<title>[\s\S]*?<\/title>/g, '')
     .trim();
 
-  const [, , vbWidth, vbHeight] = viewBox.split(/[\s,]+/).map(Number);
-  return { body, viewBox, vbWidth, vbHeight };
-}
-
-/**
- * Both marks carry an id (the TV mark clips itself against one). Two copies of
- * the same id in one document would have the second silently lose, so each
- * gets a prefix as it is inlined.
- */
-function namespaceIds(body, prefix) {
-  const ids = [...body.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
-  let out = body;
-  for (const id of ids) {
-    out = out
-      .replaceAll(`id="${id}"`, `id="${prefix}-${id}"`)
-      .replaceAll(`url(#${id})`, `url(#${prefix}-${id})`)
-      .replaceAll(`href="#${id}"`, `href="#${prefix}-${id}"`);
-  }
-  return out;
-}
-
-/** Places a mark at a target width, centred on x, with its top edge at y. */
-function place(art, { centerX, top, width }) {
-  const scale = width / art.vbWidth;
-  return `<g transform="translate(${centerX - width / 2} ${top}) scale(${scale})">${art.body}</g>`;
+  return { body, viewBox };
 }
 
 const tv = extractArtwork('logo.svg');
-const wordmark = extractArtwork('plozz-wordmark.svg');
+const font = readFileSync(join(PUBLIC, 'fonts/manrope-v20-latin.woff2')).toString('base64');
 
-const FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
-
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}" role="img" aria-label="Plozz — ${escapeXml(COPY.headline)}">
-  <title>Plozz — ${escapeXml(COPY.headline)}</title>
-  <defs>
-    <radialGradient id="og-glow" cx="50%" cy="18%" r="62%">
-      <stop offset="0%" stop-color="#00a4dc" stop-opacity="0.34"/>
-      <stop offset="65%" stop-color="#00a4dc" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <rect width="${WIDTH}" height="${HEIGHT}" fill="#0a0c10"/>
-  <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#og-glow)"/>
-${place({ ...tv, body: namespaceIds(tv.body, 'tv') }, { centerX: 600, top: 74, width: 170 })}
-${place({ ...wordmark, body: namespaceIds(wordmark.body, 'wm') }, { centerX: 600, top: 292, width: 216 })}
-  <text x="600" y="470" text-anchor="middle" fill="#e8edf4" font-family="${FONT}" font-size="44" font-weight="700" letter-spacing="-1">${escapeXml(COPY.headline)}</text>
-  <text x="600" y="532" text-anchor="middle" fill="#41c6f5" font-family="${FONT}" font-size="29" font-weight="600" letter-spacing="0.4">${escapeXml(COPY.sub)}</text>
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}" role="img" aria-label="Plozz — ${escapeXml(COPY.headline.join(' '))}">
+  <title>Plozz — ${escapeXml(COPY.headline.join(' '))}</title>
+  <style>
+    @font-face {
+      font-family: Manrope;
+      font-style: normal;
+      font-weight: 400 700;
+      src: url(data:font/woff2;base64,${font}) format('woff2');
+    }
+    text { font-family: Manrope, sans-serif; }
+  </style>
+  <rect width="${WIDTH}" height="${HEIGHT}" fill="#09090b"/>
+  <rect x="24" y="24" width="1152" height="582" rx="32" fill="#0b0b0c" stroke="#27272a"/>
+  <svg x="76" y="70" width="64" height="64" viewBox="${tv.viewBox}" fill="none" shape-rendering="crispEdges">${tv.body}</svg>
+  <text x="154" y="118" fill="#f4f4f5" font-size="34" font-weight="700" letter-spacing="-1">Plozz</text>
+  <text x="1120" y="112" text-anchor="end" fill="#a1a1aa" font-size="22" font-weight="500">plozz.app</text>
+  <text x="80" y="258" fill="#f4f4f5" font-size="64" font-weight="600" letter-spacing="-2">${escapeXml(COPY.headline[0])}</text>
+  <text x="80" y="336" fill="#f4f4f5" font-size="64" font-weight="600" letter-spacing="-2">${escapeXml(COPY.headline[1])}</text>
+  <path d="M80 436H1120" stroke="#27272a"/>
+  <text x="80" y="499" fill="#e4e4e7" font-size="28" font-weight="500" letter-spacing="-0.5">${escapeXml(COPY.platforms)}</text>
+  <text x="80" y="546" fill="#a1a1aa" font-size="24" font-weight="400">${escapeXml(COPY.sources)}</text>
 </svg>
 `;
 
@@ -132,9 +103,8 @@ const CHROME = [
 
 /**
  * Rendered through a browser rather than a standalone rasteriser because the
- * card sets its type in the system UI font. librsvg and ImageMagick both
- * resolve -apple-system to a default serif, which silently changes the
- * typeface rather than failing loudly.
+ * card uses the site's embedded variable WOFF2 font. Browser rendering keeps
+ * the typography consistent with the live website.
  */
 async function rasterise(svgMarkup, outPng) {
   if (!CHROME) throw new Error('No Chrome, Chromium or Edge found to rasterise the card.');
@@ -153,7 +123,7 @@ async function rasterise(svgMarkup, outPng) {
     const image = join(work, 'card.png');
     writeFileSync(
       page,
-      `<!doctype html><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:#0a0c10}</style>${svgMarkup}`,
+      `<!doctype html><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:#09090b}</style>${svgMarkup}`,
     );
     console.log(`Rendering with an isolated browser profile: ${profile}`);
     browser = spawn(CHROME, [
@@ -164,6 +134,7 @@ async function rasterise(svgMarkup, outPng) {
       '--no-default-browser-check',
       `--user-data-dir=${profile}`,
       '--force-device-scale-factor=1',
+      '--virtual-time-budget=2000',
       `--window-size=${WIDTH},${HEIGHT}`,
       `--screenshot=${image}`,
       `file://${page}`,

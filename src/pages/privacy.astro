@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteScripts from '../components/SiteScripts.astro';
 import { GITHUB_URL } from '../data/site';
+import { LOGO_PATH } from '../data/brand';
 
 const CONTACT_EMAIL = 'feedback@plozz.app';
 const SENTRY_PRIVACY_URL = 'https://sentry.io/privacy/';
@@ -17,7 +18,7 @@ const LAST_UPDATED = 'September 23, 2026';
   <main class="legal">
     <div class="container">
       <a class="legal-home" href="/">
-        <img src="/logo.svg" alt="" width="28" height="28" />
+        <img src={LOGO_PATH} alt="" width="28" height="28" />
         <span>Plozz</span>
       </a>
 
