@@ -101,6 +101,11 @@ and format data live in [`src/data/site.ts`](src/data/site.ts). The homepage
 renders [`src/data/faqs.ts`](src/data/faqs.ts) as both visible answers and
 FAQPage structured data; keep those together.
 
+Public Discord links use `https://plozz.app/discord`, never a raw invite.
+The destination is owned by the separate `plozz-pairing-links` Worker in
+the Plozz app repository (`web/pairing-links`), so changing an invite doesn't
+require another website or app link change.
+
 [`src/pages/infuse-alternative.astro`](src/pages/infuse-alternative.astro) is the
 landing page for free/open-source Apple TV player alternatives. Its visible
 questions and FAQ structured data share one list. Keep competitor references

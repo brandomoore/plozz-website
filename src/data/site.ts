@@ -1,6 +1,6 @@
 export const GITHUB_URL = 'https://github.com/brandomoore/Plozz';
 export const DONATE_URL = 'https://github.com/sponsors/brandomoore';
-export const DISCORD_URL = 'https://discord.gg/YkXnmB8rcF';
+export const DISCORD_URL = 'https://plozz.app/discord';
 export const TESTFLIGHT_URL = 'https://testflight.apple.com/join/EKfReNMu';
 export const SITE = 'https://plozz.app';
 export const GITHUB_STARS_SEED = 26;

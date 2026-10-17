@@ -159,7 +159,7 @@ test('home hero goes straight from headline to providers and actions', () => {
   assert(faq.mainEntity.some((item) => item.name.includes('TrueHD Atmos and DTS:X')));
 });
 
-test('hero offers TestFlight first with GitHub and permanent Discord as secondary actions', () => {
+test('hero offers TestFlight first with GitHub and the stable Discord shortcut as secondary actions', () => {
   const hero = home.match(/<section\b[^>]*class="hero"[^>]*>([\s\S]*?)<\/section>/)[1];
   const links = [...hero.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)];
   assert.deepEqual(links.map(([, attributes, content]) => attributes.match(/aria-label="([^"]+)"/)?.[1] ?? plain(content)), ['Join the TestFlight beta', 'GitHub', 'Discord']);
@@ -169,10 +169,18 @@ test('hero offers TestFlight first with GitHub and permanent Discord as secondar
   assert.match(links[1][1], /btn-light/);
   assert.match(links[1][1], /href="https:\/\/github\.com\/brandomoore\/Plozz"/);
   assert.match(links[2][1], /btn-light/);
-  assert.match(links[2][1], /href="https:\/\/discord\.gg\/YkXnmB8rcF"/);
+  assert.match(links[2][1], /href="https:\/\/plozz\.app\/discord"/);
   assert.match(links[2][1], /target="_blank"/);
   assert.match(links[2][1], /rel="noopener"/);
   assert.match(links[2][2], /<svg\b/);
+});
+
+test('all public Discord links use the stable app-owned shortcut', () => {
+  for (const file of readdirSync(new URL('../../dist/', import.meta.url), { recursive: true }).filter(file => file.endsWith('.html'))) {
+    const html = built(file);
+    assert.match(html, /href="https:\/\/plozz\.app\/discord"/, file);
+    assert.doesNotMatch(html, /https:\/\/(?:discord\.gg\/|discord\.com\/invite\/)/, `${file}: direct invite must stay in the redirect service only`);
+  }
 });
 
 test('height-audio details distinguish supported sources, lossy rendering and output', () => {
