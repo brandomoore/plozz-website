@@ -113,6 +113,13 @@ The destination is owned by the separate `plozz-pairing-links` Worker in
 the Plozz app repository (`web/pairing-links`), so changing an invite doesn't
 require another website or app link change.
 
+`https://plozz.app/testflight` (with or without a trailing slash) redirects to
+the current public beta invite. This shortcut is owned here, in
+`public/_redirects`, and uses a temporary 302 so the invite can change later.
+Keep its destination aligned with `TESTFLIGHT_URL` in `src/data/site.ts`.
+Cloudflare applies the rules before the website Worker; no pairing routes,
+OAuth handlers or domain settings need to change.
+
 [`src/pages/infuse-alternative.astro`](src/pages/infuse-alternative.astro) is the
 landing page for free/open-source Apple TV player alternatives. Its visible
 questions and FAQ structured data share one list. Keep competitor references

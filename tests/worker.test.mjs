@@ -182,3 +182,17 @@ test("production configuration preserves assets-first behavior and delegates rou
   assert.doesNotMatch(config, /^\s*(routes?|workers_dev|preview_urls|pages_build_output_dir)\s*=/m);
   assert.doesNotMatch(config, /^\s*\[vars\]/m);
 });
+
+test("TestFlight shortcuts temporarily redirect to the website's current beta invite", () => {
+  const redirects = readFileSync(new URL("../public/_redirects", import.meta.url), "utf8");
+  const site = readFileSync(new URL("../src/data/site.ts", import.meta.url), "utf8");
+  const destination = site.match(/export const TESTFLIGHT_URL = ['"]([^'"]+)['"];/)?.[1];
+  assert(destination);
+  assert.deepEqual(
+    redirects.trim().split("\n").map(line => line.trim().split(/\s+/)),
+    [
+      ["/testflight", destination, "302"],
+      ["/testflight/", destination, "302"],
+    ],
+  );
+});
