@@ -644,8 +644,8 @@ h3 {
   }
 }
 
-/* The row collides around 600px, so hand over well before that. */
-@media (max-width: 860px) {
+/* Keep the full navigation, including Docs, clear of the brand and CTA. */
+@media (max-width: 960px) {
   .nav-links {
     display: none;
   }

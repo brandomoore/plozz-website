@@ -124,6 +124,19 @@ test('IPTV is prominent in navigation, home sources, social metadata and its own
   }
 });
 
+test('source-checked docs are linked in desktop, mobile and footer navigation', () => {
+  for (const file of readdirSync(new URL('../../dist/', import.meta.url), { recursive: true }).filter(file => file.endsWith('.html'))) {
+    const html = built(file);
+    for (const [tag, count] of [['header', 2], ['footer', 1]]) {
+      if (tag === 'header' && file === 'privacy/index.html') continue;
+      const region = html.match(new RegExp(`<${tag}\\b[\\s\\S]*?<\\/${tag}>`))[0];
+      const links = [...region.matchAll(/<a\b[^>]*href="https:\/\/docs\.plozz\.app"[^>]*>([\s\S]*?)<\/a>/g)];
+      assert.equal(links.length, count, `${file}: ${tag}`);
+      assert(links.every(([, label]) => plain(label) === 'Docs'), file);
+    }
+  }
+});
+
 test('Apple TV height audio is prominent without repeating the obsolete blanket limitation', () => {
   for (const [route, html] of [
     ['home', home],

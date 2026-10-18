@@ -1,6 +1,7 @@
 export const GITHUB_URL = 'https://github.com/brandomoore/Plozz';
 export const DONATE_URL = 'https://github.com/sponsors/brandomoore';
 export const DISCORD_URL = 'https://plozz.app/discord';
+export const DOCS_URL = 'https://docs.plozz.app';
 export const TESTFLIGHT_URL = 'https://testflight.apple.com/join/EKfReNMu';
 export const SITE = 'https://plozz.app';
 export const GITHUB_STARS_SEED = 26;
@@ -10,6 +11,7 @@ export const NAV_LINKS = [
   { href: '/live-tv', label: 'IPTV / Live TV' },
   { href: '/formats', label: 'Formats' },
   { href: '/network-shares', label: 'Network shares' },
+  { href: DOCS_URL, label: 'Docs' },
 ];
 
 export const SERVER_LINKS = [

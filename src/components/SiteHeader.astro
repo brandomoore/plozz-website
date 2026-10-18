@@ -89,7 +89,7 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     });
 
     // Leaving the small layout must not strand an open panel.
-    const wide = window.matchMedia('(min-width: 861px)');
+    const wide = window.matchMedia('(min-width: 961px)');
     wide.addEventListener('change', (event) => {
       if (event.matches) setOpen(false);
     });
