@@ -10,6 +10,8 @@ User guides live at **[docs.plozz.app](https://docs.plozz.app)** in the separate
 [plozz-docs repository](https://github.com/brandomoore/plozz-docs). Its daily
 cloud updater reads app source without adding work or gates to app development.
 That repository owns the guide content, freshness checks and updater setup.
+Provider, network-share and Live TV pages link directly to the relevant setup
+guides; keep those task links distinct from marketing and comparison content.
 
 ## Stack
 

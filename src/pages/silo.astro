@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import Closer from '../components/Closer.astro';
+import { DOCS_URL } from '../data/site';
 import SiteScripts from '../components/SiteScripts.astro';
 import PageHero from '../components/PageHero.astro';
 import Showcase from '../components/Showcase.astro';
@@ -66,7 +67,7 @@ const description = 'Native Silo v2 libraries, profiles, playback, watchlists an
         { name: 'Server compatibility', value: 'Silo is evolving. Features depend on its advertised capabilities and permissions. Plozz’s native Silo provider doesn’t currently offer music or Live TV.' },
       ]}
     />
-    <Closer secondaryHref="/features" secondaryLabel="Explore all features" />
+    <Closer secondaryHref={`${DOCS_URL}/servers/`} secondaryLabel="Silo setup guide" />
   </main>
   <SiteFooter />
   <SiteScripts />

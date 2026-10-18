@@ -9,6 +9,7 @@ import Showcase from '../components/Showcase.astro';
 import FactSection from '../components/FactSection.astro';
 import Shot from "../components/Shot.astro";
 import { FIGURE } from "../data/imageSizes";
+import { DOCS_URL } from '../data/site';
 
 const title = "Emby client for Apple TV, iPhone and iPad — Plozz";
 const description = "A free Emby client for Apple TV, iPhone and iPad. Native libraries and playback, mobile streaming quality and downloads, version switching and subtitle search.";
@@ -118,7 +119,7 @@ const compatibility = [
       facts={compatibility}
     />
 
-    <Closer secondaryHref="/features" secondaryLabel="The questions people ask" />
+    <Closer secondaryHref={`${DOCS_URL}/servers/`} secondaryLabel="Emby setup guide" />
   </main>
 
   <SiteFooter />

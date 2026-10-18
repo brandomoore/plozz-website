@@ -9,6 +9,7 @@ import Showcase from '../components/Showcase.astro';
 import FactSection from '../components/FactSection.astro';
 import Shot from "../components/Shot.astro";
 import { FIGURE } from "../data/imageSizes";
+import { DOCS_URL } from '../data/site';
 
 const title = "Jellyfin client for Apple TV, iPhone and iPad — Plozz";
 const description = "A free Jellyfin client for Apple TV, iPhone and iPad. Original-file playback, mobile streaming-quality controls, offline downloads, dual subtitles and combined libraries.";
@@ -119,7 +120,7 @@ const compatibility = [
       facts={compatibility}
     />
 
-    <Closer secondaryHref="/features" secondaryLabel="The questions people ask" />
+    <Closer secondaryHref={`${DOCS_URL}/servers/`} secondaryLabel="Jellyfin setup guide" />
   </main>
 
   <SiteFooter />

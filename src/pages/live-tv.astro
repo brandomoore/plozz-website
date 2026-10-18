@@ -6,6 +6,7 @@ import SiteScripts from '../components/SiteScripts.astro';
 import PageHero from '../components/PageHero.astro';
 import Showcase from '../components/Showcase.astro';
 import Closer from '../components/Closer.astro';
+import { DOCS_URL } from '../data/site';
 
 const title = 'Free IPTV & Live TV player for Apple TV — Plozz';
 const description = 'Bring your IPTV to Apple TV, iPhone and iPad. M3U playlists, Xtream accounts, XMLTV guides, favorites and four-channel Multiview in a free, open-source player.';
@@ -112,7 +113,7 @@ const faqLd = {
         </div>
       </div>
     </section>
-    <Closer secondaryHref="/features" secondaryLabel="Explore all Plozz features" />
+    <Closer secondaryHref={`${DOCS_URL}/live-tv/`} secondaryLabel="IPTV and Live TV guide" />
   </main>
   <SiteFooter />
   <SiteScripts />

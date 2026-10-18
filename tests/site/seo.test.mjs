@@ -137,6 +137,23 @@ test('source-checked docs are linked in desktop, mobile and footer navigation', 
   }
 });
 
+test('provider and source pages link readers to useful setup documentation', () => {
+  for (const [route, destination, label] of [
+    ['plex', 'servers', 'Plex setup guide'],
+    ['jellyfin', 'servers', 'Jellyfin setup guide'],
+    ['emby', 'servers', 'Emby setup guide'],
+    ['silo', 'servers', 'Silo setup guide'],
+    ['network-shares', 'network-shares', 'Network share guide'],
+    ['live-tv', 'live-tv', 'IPTV and Live TV guide'],
+  ]) {
+    const html = built(`${route}/index.html`);
+    const closer = html.match(/<section\b[^>]*class="closer"[\s\S]*?<\/section>/)[0];
+    assert(closer.includes(`href="https://docs.plozz.app/${destination}/"`), route);
+    assert(plain(closer).includes(label), route);
+    assert(closer.includes('ph:book-open'), `${route}: use the docs icon, not GitHub branding`);
+  }
+});
+
 test('Apple TV height audio is prominent without repeating the obsolete blanket limitation', () => {
   for (const [route, html] of [
     ['home', home],

@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import { GITHUB_URL, TESTFLIGHT_URL } from "../data/site";
+import { GITHUB_URL, TESTFLIGHT_URL, DOCS_URL } from "../data/site";
 
 export interface Props {
   /** The second button. Defaults to the GitHub source link. */
@@ -11,6 +11,8 @@ export interface Props {
 const { secondaryHref = GITHUB_URL, secondaryLabel = "Read the source" } =
   Astro.props;
 const external = secondaryHref.startsWith("http");
+const github = secondaryHref.startsWith("https://github.com/");
+const docs = secondaryHref === DOCS_URL || secondaryHref.startsWith(`${DOCS_URL}/`);
 ---
 
 <section class="closer" aria-labelledby="closer-heading">
@@ -32,7 +34,8 @@ const external = secondaryHref.startsWith("http");
         target={external ? "_blank" : undefined}
         rel={external ? "noopener" : undefined}
       >
-        {external && <Icon name="simple-icons:github" />}
+        {github && <Icon name="simple-icons:github" />}
+        {docs && <Icon name="ph:book-open" />}
         {secondaryLabel}
       </a>
     </div>
