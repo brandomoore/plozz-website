@@ -14,7 +14,7 @@ import { FIGURE } from "../data/imageSizes";
 
 const title = 'Plozz features — the questions people actually ask';
 const description =
-  'TrueHD Atmos and DTS:X height channels on Apple TV via AetherEngine, plus combined libraries, dual subtitles and mobile downloads. Free and open source.';
+  'Explore Plozz’s combined libraries, IPTV / Live TV, dual subtitles and mobile downloads. Free and open source for Apple TV, iPhone and iPad.';
 ---
 
 <Layout title={title} description={description}>
@@ -28,27 +28,13 @@ const description =
     />
 
     <Showcase
-      question="Can Apple TV play the height channels?"
-      detail="Yes. Plozz uses AetherEngine to render height audio from supported Dolby TrueHD Atmos and DTS:X tracks, so overhead effects don’t have to be reduced to the surround bed. There’s no paid audio tier."
-    >
-      <ul class="proof">
-        <li><span>TrueHD Atmos</span><span>Atmos objects rendered into a speaker layout with height channels</span></li>
-        <li><span>DTS:X</span><span>Height audio from supported DTS-HD MA presentations</span></li>
-        <li><span>Apple TV output</span><span>Apple Positional Audio (APAC), delivered by tvOS as Dolby MAT</span></li>
-        <li><span>Your setup</span><span>tvOS 26 or later and a compatible Atmos receiver or soundbar setup</span></li>
-        <li><span>The tradeoff</span><span>Lossy rendered audio, not untouched TrueHD or DTS:X bitstream passthrough</span></li>
-        <li><span>Supported sources</span><span>48 kHz tracks on the object-audio path; unsupported cases can fall back without heights</span></li>
-      </ul>
-    </Showcase>
-
-    <Showcase
       question="Does everything need transcoding?"
       detail="No. Plozz plays a broad range of original files on the device. On iPhone and iPad, a lower quality limit can ask your server to convert instead. Server capabilities, permissions and settings still matter."
     >
       <ul class="proof">
         <li><span>Dolby Vision</span><span>Profiles 5, 7, 8.1 and 8.4</span></li>
         <li><span>Dolby Digital Plus Atmos</span><span>E-AC-3 JOC stream copy on compatible paths</span></li>
-        <li><span>TrueHD and DTS-HD MA</span><span>Channel-based surround or lossless FLAC, separate from height rendering</span></li>
+        <li><span>TrueHD and DTS-HD MA</span><span>Channel-based surround or lossless FLAC</span></li>
         <li><span>Your playback chain</span><span>Device, display and audio equipment determine final output</span></li>
       </ul>
     </Showcase>

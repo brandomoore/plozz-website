@@ -110,18 +110,11 @@ other app lacks those features.
   eligible active-user/Plex Pass access. Ages are separate from review scores.
 - "Ratings with no API key." AniList scores are keyless; optional OMDb
   enrichment needs the user's own key.
-- "TrueHD / DTS:X bitstream passthrough" or "lossless height rendering."
-  Plozz supports TrueHD Atmos and DTS:X heights through AetherEngine's
-  object-audio renderer. It renders into a speaker layout and encodes lossy
-  Apple Positional Audio (APAC); tvOS delivers Dolby MAT to compatible Atmos
-  equipment. This is distinct from E-AC-3 JOC stream copy and from lossless
-  channel-based playback. Do not repeat the old blanket claim that TrueHD
-  Atmos always loses its heights.
-- "Height audio on every setup." The path requires tvOS 26 or later, supported
-  48 kHz sources, object-audio rendering and compatible output equipment.
-  It is for supported on-demand video paths; unsupported cases can fall back
-  without heights. Don't infer a specific Plozz speaker-layout setting, native
-  DTS:X receiver output, or competitor limitations from engine capabilities.
+- Height-channel rendering, TrueHD Atmos, DTS:X, Apple Positional Audio or
+  Dolby MAT are outside the website's editorial scope. Do not mention these
+  features, their settings or their availability in public copy or metadata,
+  even if app or engine source still describes them. Do not add a notice about
+  this scope decision. Ordinary channel-based audio and E-AC-3 JOC are separate.
 - "Professionally localized." The 36 languages ship, but they are machine
   translated and machine reviewed, and every string is tagged needs_review.
 - Sign-in flows as a selling point. Quick Connect, Plex Link and discovery are
@@ -161,13 +154,6 @@ on October 17, 2026: up to four-channel Multiview, guide/search, favorites,
 recents, Home channel shortcuts and generated library channels. Catch-up and
 recording management are not supported. Imported M3U files and saved Multiview
 compositions stay device-local. Provider limits and permissions still apply.
-
-Height-audio copy updated October 15, 2026 following the maintainer's confirmation
-that Plozz supports the engine's height path. Mechanism and qualifications were
-checked against AetherEngine
-[`b78c309d478c950166835d99221f971c9f7d54b1`](https://github.com/superuser404notfound/AetherEngine/blob/b78c309d478c950166835d99221f971c9f7d54b1/docs/formats.md#truehd-atmos-with-heights),
-including the adjacent DTS:X section. Lead with the user benefit; keep lossy
-rendering, platform and fallback details on `/formats#height-channels`.
 
 ## Accessibility & Inclusion
 

@@ -29,7 +29,6 @@ export const SERVER_LINKS = [
 export const HEADLINE_BADGES = [
   { label: 'Dolby Vision', value: 'P5 · P7 · P8.1 · P8.4' },
   { label: 'HDR', value: 'HDR10 · HDR10+ · HLG' },
-  { label: 'Height audio', value: 'TrueHD Atmos · DTS:X' },
   { label: 'Video', value: 'HEVC · H.264 · AV1 · VP9' },
   { label: 'Lossless audio', value: 'TrueHD · DTS-HD MA' },
   { label: 'Discs', value: 'DVD · Blu-ray ISO' },
@@ -63,11 +62,9 @@ export const FORMAT_TABLE = [
   {
     group: 'Audio',
     rows: [
-      { name: 'Dolby TrueHD Atmos', note: 'Height-channel rendering through AetherEngine on supported Apple TV setups, using Apple Positional Audio and Dolby MAT' },
-      { name: 'DTS:X', note: 'Supported DTS-HD MA presentations retain height audio through the same rendering path, not native DTS:X bitstream output' },
       { name: 'Dolby Digital Plus Atmos', note: 'E-AC-3 with JOC, copied without re-encoding on compatible playback paths' },
-      { name: 'Dolby TrueHD and MLP', note: 'Channel-based playback to surround or lossless FLAC; separate from the lossy height-audio path' },
-      { name: 'DTS, DTS-HD MA', note: 'Channel-based playback to surround or lossless FLAC; DTS:X rendering requires a supported extension' },
+      { name: 'Dolby TrueHD and MLP', note: 'Channel-based playback to surround or lossless FLAC' },
+      { name: 'DTS, DTS-HD MA', note: 'Channel-based playback to surround or lossless FLAC' },
       { name: 'E-AC-3 and AC-3', note: 'Copied without re-encoding' },
       { name: 'FLAC and ALAC', note: 'Copied without re-encoding' },
       { name: 'AAC, HE-AAC, HE-AACv2', note: '' },
@@ -109,14 +106,6 @@ export const FORMAT_CAVEATS = [
     note: 'On iPhone and iPad, movie and episode quality controls keep the original when it fits and request conversion when needed. Server capabilities, settings and entitlements still apply.',
   },
   {
-    name: 'Height rendering is not bitstream passthrough',
-    note: 'AetherEngine renders supported TrueHD Atmos and DTS:X audio into a speaker layout, then encodes Apple Positional Audio (APAC). APAC is lossy; tvOS delivers it as Dolby MAT, not the original TrueHD or DTS:X bitstream.',
-  },
-  {
-    name: 'Height audio needs a supported playback path',
-    note: 'Requires tvOS 26 or later, a supported 48 kHz source, the object-audio rendering path and a compatible Atmos receiver or soundbar setup. Unsupported sources or playback paths can fall back to channel-based audio without heights. A server conversion can remove the source information needed for rendering.',
-  },
-  {
     name: 'AV1 is software decoded on Apple TV',
     note: 'No Apple TV chip has AV1 in hardware yet. It plays, but it works the processor harder than HEVC does.',
   },
@@ -127,8 +116,7 @@ export const FORMAT_CAVEATS = [
 ];
 
 export const INCLUDED = [
-  { name: 'TrueHD Atmos and DTS:X', icon: 'ph:waveform', detail: 'Height channels on supported Apple TV setups, rendered through AetherEngine. No paid audio tier.' },
-  { name: 'Lossless surround', icon: 'ph:speaker-hifi', detail: 'TrueHD and DTS-HD MA channel playback, separate from the height-audio rendering path.' },
+  { name: 'Lossless surround', icon: 'ph:speaker-hifi', detail: 'TrueHD and DTS-HD MA channel playback.' },
   { name: 'AirPlay', icon: 'ph:airplay', detail: 'Send video from iPhone or iPad to another screen.' },
   { name: 'Offline downloads', icon: 'ph:download-simple', detail: 'Save films and episodes on iPhone and iPad, including from Silo.' },
   { name: 'Subtitle search', icon: 'ph:subtitles', detail: 'Find and load subtitles in the player where your server supports it.' },

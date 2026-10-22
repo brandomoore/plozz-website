@@ -58,7 +58,6 @@ const softwareLd = {
   description:
     "Plozz is a free, open source media and IPTV player for Apple TV, iPhone and iPad. Bring your own M3U playlist or Xtream account, authorized Live TV channels, Jellyfin, Plex, Emby, native Silo or network shares.",
   featureList: [
-    "TrueHD Atmos and DTS:X height-channel rendering via AetherEngine on supported Apple TV setups",
     "Jellyfin, Plex, Emby and native Silo libraries and playback",
     "SMB, NFS, WebDAV, SFTP and FTP network shares",
     "Combined libraries, watchlists and optional watch-history sync",
@@ -117,7 +116,7 @@ const faqLd = {
 
 <Layout
   title="Plozz — free, open-source media player for Apple TV"
-  description="Free, open-source Infuse alternative with IPTV / Live TV. TrueHD Atmos and DTS:X height channels on supported Apple TV setups. Bring your own media."
+  description="Free, open-source Infuse alternative for Apple TV, iPhone and iPad, with IPTV / Live TV, combined libraries and dual subtitles. Bring your own media."
 >
   {/* The first hero slide is the LCP element. Preloading the AVIF candidate
       starts it before the parser reaches the markup near the bottom of the
@@ -344,15 +343,6 @@ const faqLd = {
         </div>
 
         <div class="slab playback-formats" style="--cols: 6">
-          <a class="cell height-audio" href="/formats#height-channels">
-            <h3>Height channels. On Apple TV.</h3>
-            <p>
-              Hear the overhead effects in Dolby TrueHD Atmos and DTS:X tracks,
-              rendered through AetherEngine. Included free, on tvOS 26 or later
-              with a compatible Atmos setup.
-            </p>
-            <span class="cell-go">How height audio works<span class="cell-arrow" aria-hidden="true"></span></span>
-          </a>
           <div class="cell format-third">
             <h3>Dolby Vision</h3>
             <p>
@@ -371,7 +361,6 @@ const faqLd = {
             <h3>Dolby Digital Plus Atmos</h3>
             <p>
               E-AC-3 JOC stays intact on compatible playback paths.
-              TrueHD Atmos and DTS:X use the height-rendering path above.
             </p>
           </div>
           <div class="cell format-half">
@@ -812,10 +801,6 @@ const faqLd = {
 </Layout>
 
 <style>
-  .playback-formats > .height-audio {
-    grid-column: 1 / -1;
-  }
-
   @media (min-width: 901px) {
     .playback-formats > .format-third {
       grid-column: span 2;

@@ -154,39 +154,23 @@ test('provider and source pages link readers to useful setup documentation', () 
   }
 });
 
-test('Apple TV height audio is prominent without repeating the obsolete blanket limitation', () => {
-  for (const [route, html] of [
-    ['home', home],
-    ['features', built('features/index.html')],
-    ['formats', formats],
-    ['Infuse alternative', landing],
-    ['comparisons', comparisons],
-    ...['jellyfin', 'plex', 'emby', 'network-shares'].map((route) => [route, built(`${route}/index.html`)]),
-  ]) {
-    const content = plain(html);
-    for (const term of ['TrueHD Atmos', 'DTS:X', 'Apple TV', 'AetherEngine']) {
-      assert(content.includes(term), `${route}: missing ${term}`);
-    }
-    assert.doesNotMatch(content, /TrueHD Atmos loses its object metadata|its object metadata (?:is not preserved|doesn’t survive)|Atmos objects only pass through untouched from E-AC-3/);
+test('published pages and social artwork stay within the audio editorial scope', () => {
+  const excluded = /height[\s-]*(?:channels?|audio|rendering|positioning)|\bheights\b|overhead (?:audio|effects)|TrueHD[\s-]*Atmos|DTS[\s:-]*X\b|Apple Positional Audio|\bAPAC\b|Dolby MAT|object[\s-]*audio/iu;
+  for (const file of readdirSync(new URL('../../dist/', import.meta.url), { recursive: true })
+    .filter(file => /\.(?:html|json|xml|svg|txt)$/.test(file))) {
+    assert.doesNotMatch(built(file), excluded, file);
   }
-  assert.match(home.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1], /href="\/formats#height-channels"/);
-  assert(plain(home).includes('Height channels. On Apple TV.'));
-  assert.match(metadata(home, 'description'), /TrueHD Atmos and DTS:X height channels/);
-  assert.match(metadata(formats, 'description'), /TrueHD Atmos and DTS:X/);
-  const software = structured(home).find((item) => item['@type'] === 'SoftwareApplication');
-  assert(software.featureList.some((item) => item.includes('TrueHD Atmos and DTS:X height-channel rendering')));
 });
 
 test('home hero goes straight from headline to providers and actions', () => {
   const hero = home.match(/<section\b[^>]*class="hero"[^>]*>([\s\S]*?)<\/section>/)[1];
   assert.match(hero, /<\/h1>\s*<div class="hero-summary"/);
-  assert.doesNotMatch(hero, /href="\/infuse-alternative"|href="\/formats#height-channels"|Movies, shows and music/);
+  assert.doesNotMatch(hero, /href="\/infuse-alternative"|Movies, shows and music/);
   assert.match(hero, /class="hero-logos"/);
   assert.match(hero, /Join the TestFlight beta/);
   assert(plain(built('features/index.html')).includes('Movies, shows and music on Apple TV, iPhone and iPad.'));
   const faq = structured(home).find((item) => item['@type'] === 'FAQPage');
   assert(faq.mainEntity.some((item) => item.name.includes('alternative to Infuse')));
-  assert(faq.mainEntity.some((item) => item.name.includes('TrueHD Atmos and DTS:X')));
 });
 
 test('hero offers TestFlight first with GitHub and the stable Discord shortcut as secondary actions', () => {
@@ -213,22 +197,15 @@ test('all public Discord links use the stable app-owned shortcut', () => {
   }
 });
 
-test('height-audio details distinguish supported sources, lossy rendering and output', () => {
-  assert.match(formats, /id="height-channels"/);
+test('audio formats retain channel-based playback and output qualifications', () => {
   const content = plain(formats);
   for (const term of [
-    'tvOS 26 or later', '48 kHz', 'Apple Positional Audio', 'APAC is lossy',
-    'Dolby MAT', 'compatible Atmos receiver', 'not untouched TrueHD or DTS:X passthrough',
-    'without heights', 'channel-based', 'supported on-demand video',
+    'Dolby Digital Plus Atmos', 'E-AC-3 with JOC', 'Dolby TrueHD and MLP',
+    'DTS, DTS-HD MA', 'Channel-based playback', 'lossless FLAC',
+    'Output depends on the whole playback chain',
   ]) {
-    assert(content.includes(term), `Missing height-audio qualification: ${term}`);
+    assert(content.includes(term), `Missing audio qualification: ${term}`);
   }
-  for (const anchor of ['truehd-atmos-with-heights', 'dtsx-with-heights']) {
-    assert(formats.includes(`https://github.com/superuser404notfound/AetherEngine/blob/main/docs/formats.md#${anchor}`));
-  }
-  const faq = structured(formats).find((item) => item['@type'] === 'FAQPage');
-  assert(faq.mainEntity.some((entry) => entry.name === 'Does Plozz play DTS:X height channels on Apple TV?'));
-  assert(faq.mainEntity.some((entry) => entry.name === 'Is TrueHD Atmos or DTS:X height playback lossless?' && entry.acceptedAnswer.text.startsWith('No.')));
 });
 
 test('both comparison pages are connected through content links, footer and sitemap', () => {

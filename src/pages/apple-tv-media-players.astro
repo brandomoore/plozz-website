@@ -14,7 +14,7 @@ const comparisons = [
     id: 'infuse',
     name: 'Infuse',
     fit: 'Infuse connects personal media from servers, network shares and cloud services. It also runs on Mac and Apple Vision Pro, alongside Apple TV, iPhone and iPad.',
-    plozz: 'Try Plozz if you want a completely free, open-source player for Apple TV, iPhone and iPad. It combines supported media servers and network shares, and plays your own IPTV in Live TV with a guide and Multiview. AetherEngine adds TrueHD Atmos and DTS:X height-channel rendering on supported Apple TV setups, with no paid audio tier.',
+    plozz: 'Try Plozz if you want a completely free, open-source player for Apple TV, iPhone and iPad. It combines supported media servers and network shares, and plays your own IPTV in Live TV with a guide and Multiview.',
     caveat: 'If you rely on Infuse’s cloud-drive connections, Mac or Vision Pro app, do not assume Plozz covers the same setup. Check your sources and devices before switching.',
     source: 'https://firecore.com/infuse',
     more: '/infuse-alternative',
@@ -104,10 +104,6 @@ const faqLd = {
     <nav class="comparison-nav container" aria-label="Choose an app comparison">
       {comparisons.map((app) => <a href={`#${app.id}`}>Plozz vs {app.name}</a>)}
     </nav>
-
-    <div class="container comparison-note height-note">
-      <p><a href="/formats#height-channels">TrueHD Atmos and DTS:X height channels on Apple TV</a> are included in Plozz through AetherEngine. The supported path requires tvOS 26 or later and compatible Atmos equipment, and uses lossy Apple Positional Audio rather than original-bitstream passthrough. This isn’t a claim that other apps lack height audio.</p>
-    </div>
 
     {comparisons.map((app) => (
       <section class="fmt" id={app.id} aria-labelledby={`${app.id}-heading`}>
@@ -202,10 +198,6 @@ const faqLd = {
   .comparison-source,
   .comparison-note {
     font-size: 0.9rem;
-  }
-
-  .height-note {
-    margin-block: 24px;
   }
 
   .comparison-nav a,

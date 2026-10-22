@@ -9,7 +9,7 @@ import { FORMAT_TABLE, FORMAT_CAVEATS } from '../data/site';
 
 const title = 'Supported formats — Plozz for Apple TV, iPhone and iPad';
 const description =
-  'Apple TV height channels from Dolby TrueHD Atmos and DTS:X via AetherEngine. Supported formats, tvOS requirements and how rendered audio reaches your receiver.';
+  'Plozz’s supported video, audio, subtitle and disc formats for Apple TV, iPhone and iPad, with device and playback-path requirements.';
 
 /** Answers the "does it play X" queries people actually type. */
 const faqs = [
@@ -23,15 +23,7 @@ const faqs = [
   },
   {
     q: 'Does Plozz support Dolby Atmos?',
-    a: 'Yes. Plozz supports Dolby Digital Plus Atmos (E-AC-3 JOC) on compatible playback paths, plus height-channel rendering from supported Dolby TrueHD Atmos tracks on Apple TV through AetherEngine. The TrueHD path uses Apple Positional Audio and Dolby MAT rather than sending the original TrueHD bitstream.',
-  },
-  {
-    q: 'Does Plozz play DTS:X height channels on Apple TV?',
-    a: 'Yes, through AetherEngine’s object-audio rendering path for supported 48 kHz DTS-HD MA tracks with a DTS:X extension. It renders the heights into Apple Positional Audio, delivered by tvOS as Dolby MAT. This requires tvOS 26 or later and compatible Atmos equipment; it is not native DTS:X bitstream output.',
-  },
-  {
-    q: 'Is TrueHD Atmos or DTS:X height playback lossless?',
-    a: 'No. The height path renders the source audio and encodes it as Apple Positional Audio (APAC), which is lossy. That is separate from lossless channel-based playback. Unsupported sources or playback paths can fall back to the channel-based bridge without heights.',
+    a: 'Plozz supports Dolby Digital Plus Atmos (E-AC-3 JOC) on compatible playback paths. Actual output depends on your device, audio equipment and stream.',
   },
   {
     q: 'Does it cost anything?',
@@ -65,40 +57,8 @@ const faqLd = {
     <PageHero
       eyebrow="Formats"
       title="If it's in your library, it plays."
-      lead="Including height-channel audio from Dolby TrueHD Atmos and DTS:X on supported Apple TV setups, powered by AetherEngine."
+      lead="Video, audio, subtitles and disc images, with device and playback-path requirements."
     />
-
-    <section class="fmt" id="height-channels" aria-labelledby="height-heading">
-      <div class="container">
-        <div class="fmt-body is-panel">
-          <h2 id="height-heading">Hear the height channels.</h2>
-          <div class="height-copy">
-            <p>
-              Plozz supports height-channel playback from Dolby TrueHD Atmos and
-              DTS:X on Apple TV. AetherEngine decodes the source’s spatial
-              information, renders it into a speaker layout with heights and
-              encodes Apple Positional Audio (APAC). tvOS delivers that audio
-              to compatible Atmos equipment as Dolby MAT.
-            </p>
-            <p>
-              It’s rendered audio, not untouched TrueHD or DTS:X passthrough.
-              APAC is lossy. You need tvOS 26 or later, a supported 48 kHz track
-              on the object-audio rendering path and a compatible Atmos receiver
-              or soundbar setup. The height path is for supported on-demand video,
-              not a promise for every live or software-decoded session.
-            </p>
-            <p>
-              Unsupported tracks or paths can fall back to channel-based audio
-              without heights. Server conversion can change the source, and
-              receiver labels alone don’t describe the original format.
-            </p>
-            <p>
-              Read AetherEngine’s documentation for <a href="https://github.com/superuser404notfound/AetherEngine/blob/main/docs/formats.md#truehd-atmos-with-heights" target="_blank" rel="noopener">TrueHD Atmos with heights</a> and <a href="https://github.com/superuser404notfound/AetherEngine/blob/main/docs/formats.md#dtsx-with-heights" target="_blank" rel="noopener">DTS:X with heights</a>.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
 
     {FORMAT_TABLE.map((section) => (
       <section class="fmt" aria-labelledby={section.group.toLowerCase().replace(/[^a-z0-9]+/g, '-')}>
@@ -156,26 +116,3 @@ const faqLd = {
 
   <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
 </Layout>
-
-<style>
-  #height-channels {
-    scroll-margin-top: 100px;
-  }
-
-  .height-copy {
-    display: grid;
-    gap: 16px;
-    line-height: 1.6;
-    color: var(--text-muted);
-  }
-
-  .height-copy a {
-    text-decoration: underline;
-    text-underline-offset: 0.18em;
-  }
-
-  .height-copy a:focus-visible {
-    outline: 3px solid var(--brand);
-    outline-offset: 3px;
-  }
-</style>
