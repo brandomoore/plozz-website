@@ -36,6 +36,7 @@ import { createHash } from 'node:crypto';
 import { promisify } from 'node:util';
 import path from 'node:path';
 import os from 'node:os';
+import { validateMasters } from './screenshot-provenance.mjs';
 
 const run = promisify(execFile);
 
@@ -93,57 +94,20 @@ const LADDERS = {
  * size it actually needs.
  */
 const USAGE = {
-  // Home page hero gallery.
-  'plozz-tv-featured': ['hero'],
-  'plozz-tv-oppenheimer': ['hero'],
-  'plozz-tv-lastofus': ['hero'],
-  'plozz-tv-office': ['hero'],
-  'plozz-tv-mario': ['hero'],
-  'plozz-tv-cast': ['hero'],
-  'plozz-tv-lotr': ['hero'],
-
-  // Marquee rows only.
-  'plozz-tv-show': ['marquee'],
-  'plozz-tv-home': ['marquee'],
-  'plozz-tv-library': ['marquee'],
-  'plozz-tv-episodes': ['marquee'],
-  'plozz-tv-settings': ['marquee'],
-  'plozz-tv-ratings': ['marquee'],
-  'plozz-tv-profiles': ['marquee'],
-  'plozz-tv-profile-edit': ['marquee'],
-  'plozz-ipad-info': ['marquee'],
-  'plozz-ipad-player': ['marquee'],
-  'plozz-ipad-cast': ['marquee'],
-  // Portrait tiles paint about a quarter as wide as the landscape ones.
-  'plozz-iphone-library': ['marqueePortrait'],
-
-  // The subtitle panel is the workhorse: the marquee plus a full-width figure
-  // on five interior pages.
-  'plozz-tv-subtitles': ['marquee', 'figure'],
-  // Circadian mode's screen, plus the marquee.
-  'plozz-tv-player': ['marquee', 'figure'],
-  // The spoiler card's blurred thumbnail, plus the marquee.
-  'plozz-tv': ['marquee', 'thumb'],
-
-  // Device-framed section shots.
-  'plozz-ipad': ['marquee', 'frame'],
-  'plozz-iphone': ['marqueePortrait'],
-  'plozz-iphone-detail': ['frame'],
+  'plozz-demo-tv-home': ['hero', 'marquee'],
+  'plozz-demo-tv-detail': ['hero', 'marquee', 'thumb'],
+  'plozz-demo-tv-player': ['hero', 'figure', 'marquee'],
+  'plozz-demo-tv-library': ['hero', 'marquee'],
+  'plozz-demo-tv-subtitles': ['marquee', 'figure'],
+  'plozz-demo-ipad-home': ['marquee', 'frame'],
+  'plozz-demo-iphone-home': ['marqueePortrait'],
+  'plozz-demo-iphone-detail': ['marqueePortrait', 'frame'],
 };
 
 const args = process.argv.slice(2);
 const force = args.includes('--force');
 const onlyIndex = args.indexOf('--only');
 const only = onlyIndex === -1 ? null : args[onlyIndex + 1];
-
-/** Masters with no published counterpart. Kept for safekeeping, not shipped. */
-const UNPUBLISHED = new Set([
-  'plozz-iphone-player-cast',
-  'plozz-iphone-player-info',
-  // Nothing on the site references the pairing screen. Per the README, an
-  // unreferenced WebP still gets deployed, so it stays a master only.
-  'plozz-tv-pin',
-]);
 
 async function probe(file) {
   const { stdout } = await run('sips', ['-g', 'pixelWidth', '-g', 'pixelHeight', file]);
@@ -271,12 +235,14 @@ const MANIFEST_PATH = path.join(ROOT, 'src', 'data', 'screenshots.json');
 async function readManifest() {
   try {
     return JSON.parse(await readFile(MANIFEST_PATH, 'utf8'));
-  } catch {
-    return {};
+  } catch (error) {
+    if (error.code === 'ENOENT') return {};
+    throw error;
   }
 }
 
 async function main() {
+  validateMasters();
   await mkdir(OUT_DIR, { recursive: true });
   const tmpDir = path.join(os.tmpdir(), `plozz-img-${process.pid}`);
   await mkdir(tmpDir, { recursive: true });
@@ -291,10 +257,7 @@ async function main() {
 
   for (const entry of entries.sort()) {
     const name = entry.replace(/\.(png|jpe?g)$/i, '');
-    if (UNPUBLISHED.has(name)) {
-      delete manifest[name];
-      continue;
-    }
+    if (!Object.hasOwn(USAGE, name)) throw new Error(`Define the reviewed display contexts for ${name} before encoding.`);
     if (only && name !== only) continue;
 
     const master = path.join(SRC_DIR, entry);
@@ -313,7 +276,11 @@ async function main() {
         name,
         tmpDir,
       });
-      rungs.push({ w: width, avif, webp });
+      rungs.push({
+        w: width, avif, webp,
+        avifSha256: createHash('sha256').update(await readFile(path.join(OUT_DIR, avif))).digest('hex'),
+        webpSha256: createHash('sha256').update(await readFile(path.join(OUT_DIR, webp))).digest('hex'),
+      });
       if (wasSkipped) skipped += 1;
       else written += 1;
     }

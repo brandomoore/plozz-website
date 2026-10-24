@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "generator": "tools/build-demo-library.py",
+  "generatorSha256": "5da7810fcd98ec9f93831b62583eedbd638b3a271f4632c685d9336ef4ef4416",
+  "mediaOrigin": "original-procedural",
+  "onlineMetadata": false,
+  "appRevision": "e4c5919399e0ad0bc95c00cc31eb41ce32a6022e",
+  "mediaInventorySha256": "38a8c64fea917e8bd85997af3ca79f4a0044dfdb0f25d597d0ce83a46de4215a",
+  "captureBootstrapSha256": "dcba68310ce4ae273d8afe7d3b5df664a0a0721d8fabca0127a1135dbed43428",
+  "capturedAt": "2026-10-24T22:38:35.449419+00:00",
+  "mediaPermission": "Original procedural media and text created for this project, provided under the repository MIT license. Poster typeface: Manrope, SIL OFL 1.1.",
+  "catalogFixture": "tools/serve-demo-catalog.py",
+  "screenshots": [
+    {
+      "name": "plozz-demo-tv-home",
+      "width": 3840,
+      "height": 2160,
+      "platform": "tvOS",
+      "method": "simctl-framebuffer",
+      "request": "home",
+      "sha256": "f2d51ae4028529fa8a1b6a903fc4fe257f494cfc04ffabfc0e3353f49043b95e",
+      "reviewed": true
+    },
+    {
+      "name": "plozz-demo-tv-detail",
+      "width": 3840,
+      "height": 2160,
+      "platform": "tvOS",
+      "method": "simctl-framebuffer",
+      "request": "detail?title=Orbital%20Drift",
+      "sha256": "127803498fca8c0bcc9a6d662791aa12da22f17d26f7f6c1bffacae83af8c3d1",
+      "reviewed": true
+    },
+    {
+      "name": "plozz-demo-tv-library",
+      "width": 3840,
+      "height": 2160,
+      "platform": "tvOS",
+      "method": "simctl-framebuffer",
+      "request": "library",
+      "sha256": "ae21330e764015ec39f899a17194409f268920713c23f267a8ba893cf749e19a",
+      "reviewed": true
+    },
+    {
+      "name": "plozz-demo-tv-player",
+      "width": 3840,
+      "height": 2160,
+      "platform": "tvOS",
+      "method": "simctl-framebuffer",
+      "request": "play?title=Orbital%20Drift&at=45&pause=1&subs=0",
+      "sha256": "04d957e08cd0bb37d67de62e41549b19c00a5265d282d31848b1f729577ec301",
+      "reviewed": true
+    },
+    {
+      "name": "plozz-demo-tv-subtitles",
+      "width": 3840,
+      "height": 2160,
+      "platform": "tvOS",
+      "method": "simctl-framebuffer",
+      "request": "play?title=Tidal%20Light&at=40&panel=subtitleStyle&pause=1",
+      "sha256": "b0b1faa0c6924019ed2dc9162a32e53bd51089ae742a8a9e5e6b9b8f6dc442a3",
+      "reviewed": true
+    },
+    {
+      "name": "plozz-demo-iphone-home",
+      "width": 1320,
+      "height": 2868,
+      "platform": "iOS",
+      "method": "simctl-framebuffer",
+      "request": "home",
+      "sha256": "da893a381cc4f33b1182671803b43b23f541ef1fecee1675cf9ac24f0e561ea2",
+      "reviewed": true
+    },
+    {
+      "name": "plozz-demo-iphone-detail",
+      "width": 1320,
+      "height": 2868,
+      "platform": "iOS",
+      "method": "simctl-framebuffer",
+      "request": "detail?title=Tidal%20Light",
+      "sha256": "0d831481ae74a1232d219ae6ac10a0dcf06faddcf4551a9360de9d3ce93ea7eb",
+      "reviewed": true
+    },
+    {
+      "name": "plozz-demo-ipad-home",
+      "width": 2064,
+      "height": 2752,
+      "platform": "iPadOS",
+      "method": "simctl-framebuffer",
+      "request": "home",
+      "sha256": "ccd8f26ff94b3f30e88ccdacee558584baf5d26f5631c7df3c5d15e8d3864f10",
+      "reviewed": true
+    }
+  ]
+}

@@ -155,10 +155,19 @@ test('provider and source pages link readers to useful setup documentation', () 
 });
 
 test('published pages and social artwork stay within the audio editorial scope', () => {
-  const excluded = /height[\s-]*(?:channels?|audio|rendering|positioning)|\bheights\b|overhead (?:audio|effects)|TrueHD[\s-]*Atmos|DTS[\s:-]*X\b|Apple Positional Audio|\bAPAC\b|Dolby MAT|object[\s-]*audio/iu;
+  const excluded = /Dolby[\s-]*Vision|height[\s-]*(?:channels?|audio|rendering|positioning)|\bheights\b|overhead (?:audio|effects)|TrueHD[\s-]*Atmos|DTS[\s:-]*X\b|Apple Positional Audio|\bAPAC\b|Dolby MAT|object[\s-]*audio/iu;
   for (const file of readdirSync(new URL('../../dist/', import.meta.url), { recursive: true })
     .filter(file => /\.(?:html|json|xml|svg|txt)$/.test(file))) {
     assert.doesNotMatch(built(file), excluded, file);
+  }
+});
+
+test('screenshots reference only the reviewed original demo library', () => {
+  for (const file of readdirSync(new URL('../../dist/', import.meta.url), { recursive: true }).filter(file => file.endsWith('.html'))) {
+    const html = built(file);
+    const images = [...html.matchAll(/\/screenshots\/([^"\s,<>]+)/g)].map(match => match[1]);
+    for (const image of images) assert.match(image, /^plozz-demo-[a-z0-9-]+-[0-9]+\.[a-f0-9]{8}\.(avif|webp)$/);
+    assert.doesNotMatch(html, /Oppenheimer|The Last of Us|Super Mario|Lord of the Rings|The Fellowship|Cillian Murphy|Breaking Bad|The One Where They Find Out/i);
   }
 });
 

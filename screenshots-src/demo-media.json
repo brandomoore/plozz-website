@@ -1,0 +1,313 @@
+{
+  "source": "tools/build-demo-library.py",
+  "kind": "Original procedural vector artwork, animated media, metadata and subtitles",
+  "posterTypeface": "Manrope, SIL Open Font License 1.1; see public/fonts/OFL.txt",
+  "thirdPartyMedia": false,
+  "onlineMetadata": false,
+  "files": [
+    {
+      "path": "Movies/Amber Horizon/Amber Horizon (2026).en.srt",
+      "sha256": "24d4e3e8a8eddbf69b07239f6244e4468038946341217fc85d67b215afff42f2"
+    },
+    {
+      "path": "Movies/Amber Horizon/Amber Horizon (2026).mp4",
+      "sha256": "49f922b24b28077e720f8f874b53ff84014538a3ff614454b629a00da21096c1"
+    },
+    {
+      "path": "Movies/Amber Horizon/artwork.svg",
+      "sha256": "a781b2395b8f2e32c1c358a227d0536666a6465822981232570b9d14fb7a22bc"
+    },
+    {
+      "path": "Movies/Amber Horizon/fanart.jpg",
+      "sha256": "3a5efe48066017cd57ba282123dce39709f85430f088de1a745591a689ddf136"
+    },
+    {
+      "path": "Movies/Amber Horizon/movie.nfo",
+      "sha256": "c99bea2cd75684651443a216c27987b6eec319a9ea348411f3853c3aeb7bd27b"
+    },
+    {
+      "path": "Movies/Amber Horizon/poster.jpg",
+      "sha256": "84c25cec6a3f5c92801968af02cca48996115af5f18194e6b0d7028551e1e2ff"
+    },
+    {
+      "path": "Movies/Orbital Drift/Orbital Drift (2026).en.srt",
+      "sha256": "24d4e3e8a8eddbf69b07239f6244e4468038946341217fc85d67b215afff42f2"
+    },
+    {
+      "path": "Movies/Orbital Drift/Orbital Drift (2026).mp4",
+      "sha256": "4e6ab83f2123881b2127772fcff68ce1377841183b8e5c48f3e53ac8b3fa5646"
+    },
+    {
+      "path": "Movies/Orbital Drift/artwork.svg",
+      "sha256": "c159ebb1b1b085b0cd5d45c4a9e86b66c69c486ba6510bf176b40869a4091b01"
+    },
+    {
+      "path": "Movies/Orbital Drift/fanart.jpg",
+      "sha256": "b3293ce05aa316c27e6c5cecc3bf1659a939eac7f0a14fbb5a0aa80e3aae3a23"
+    },
+    {
+      "path": "Movies/Orbital Drift/movie.nfo",
+      "sha256": "934e048ef0d38835d048b19a80a891498dfcf6ced1e12c17ebd5210e89d4599d"
+    },
+    {
+      "path": "Movies/Orbital Drift/poster.jpg",
+      "sha256": "e0e31ff70cf0179e601f06f312d6d6a806d42286a735d1345c3dce3c4ff4773c"
+    },
+    {
+      "path": "Movies/Quiet Geometry/Quiet Geometry (2026).en.srt",
+      "sha256": "24d4e3e8a8eddbf69b07239f6244e4468038946341217fc85d67b215afff42f2"
+    },
+    {
+      "path": "Movies/Quiet Geometry/Quiet Geometry (2026).mp4",
+      "sha256": "e3ce0527956c596e891ecc421f04b853a0f87bba198fe3772eb130acbf7c1617"
+    },
+    {
+      "path": "Movies/Quiet Geometry/artwork.svg",
+      "sha256": "02ad36b26e428db3d38f9878ba827e12b006b80916f23a42f75d17a3d95dcf6a"
+    },
+    {
+      "path": "Movies/Quiet Geometry/fanart.jpg",
+      "sha256": "269e09e6c7fbfb9c050951ca0bfa2d521e7f2e929868f3936c3b03b34c8b8ffd"
+    },
+    {
+      "path": "Movies/Quiet Geometry/movie.nfo",
+      "sha256": "ee7db101601f12044a2a552567e5ea9cd6c0e1ca43acb09b7c3736ba4ac7113c"
+    },
+    {
+      "path": "Movies/Quiet Geometry/poster.jpg",
+      "sha256": "fc15e0f6649aded50b21d5f11951d4f2e3e94dcabd4ae286440daac935466cc7"
+    },
+    {
+      "path": "Movies/Signal Garden/Signal Garden (2026).en.srt",
+      "sha256": "24d4e3e8a8eddbf69b07239f6244e4468038946341217fc85d67b215afff42f2"
+    },
+    {
+      "path": "Movies/Signal Garden/Signal Garden (2026).mp4",
+      "sha256": "504ce603e16617889d9044e936ee0b31056d26648090766069f0b67ca4454a49"
+    },
+    {
+      "path": "Movies/Signal Garden/artwork.svg",
+      "sha256": "cf6920844fc99d908adc970ee881ac74b27f9a4332a2f67c4aa0919d1b356764"
+    },
+    {
+      "path": "Movies/Signal Garden/fanart.jpg",
+      "sha256": "b2b843e0b7667766b6f94412769cdce646cf7c3c889ceee5ff22999f99620ab3"
+    },
+    {
+      "path": "Movies/Signal Garden/movie.nfo",
+      "sha256": "af08c6e53983104da197e7304cbb02361e0b92dd1135b5dcbaf6a5d7a64f6ccb"
+    },
+    {
+      "path": "Movies/Signal Garden/poster.jpg",
+      "sha256": "3358690c16df49ef5abb147e833ea33a7d87ab7a0779d9f9350665e11e4092c0"
+    },
+    {
+      "path": "Movies/The Blue Interval/The Blue Interval (2026).en.srt",
+      "sha256": "24d4e3e8a8eddbf69b07239f6244e4468038946341217fc85d67b215afff42f2"
+    },
+    {
+      "path": "Movies/The Blue Interval/The Blue Interval (2026).mp4",
+      "sha256": "dbbe7f17e23ca62ad37e99aab6e1fbd6b1a2d1a10c30e8770fcb55558688278e"
+    },
+    {
+      "path": "Movies/The Blue Interval/artwork.svg",
+      "sha256": "88e824929a9033791c19452b114cc6edb0247feaeb8e013787838880080b0f6d"
+    },
+    {
+      "path": "Movies/The Blue Interval/fanart.jpg",
+      "sha256": "ead99935adf4afd2f358c1d81d2239cff2ccdd6ffafd0186dbddbb3e54e51b16"
+    },
+    {
+      "path": "Movies/The Blue Interval/movie.nfo",
+      "sha256": "28becc450f2c205c443f1dfe5d5fb38278ad4230b504e51cb9d2c782d3408c63"
+    },
+    {
+      "path": "Movies/The Blue Interval/poster.jpg",
+      "sha256": "182f4cd8597e10a08e8186378a56cd22963ff83d9c412bf44d170b251dcd8737"
+    },
+    {
+      "path": "Movies/Tidal Light/Tidal Light (2026).en.srt",
+      "sha256": "24d4e3e8a8eddbf69b07239f6244e4468038946341217fc85d67b215afff42f2"
+    },
+    {
+      "path": "Movies/Tidal Light/Tidal Light (2026).mp4",
+      "sha256": "2846219c239e9cd6a49075e17ff682735caaf10722e598df5cbcab76103f0ba3"
+    },
+    {
+      "path": "Movies/Tidal Light/artwork.svg",
+      "sha256": "08bcfc86efc44eed8302de4ccbcbd8d275cf0d65d4a3fe6bc7c0f589033367b1"
+    },
+    {
+      "path": "Movies/Tidal Light/fanart.jpg",
+      "sha256": "5bd9b4146303ebf23403741d919c83008b89d1a422ded1ad6081364c77fa3d8c"
+    },
+    {
+      "path": "Movies/Tidal Light/movie.nfo",
+      "sha256": "3b11242fc94b075bbfe7959ac0acb943b743e9288094e984f1726d5bf62664d4"
+    },
+    {
+      "path": "Movies/Tidal Light/poster.jpg",
+      "sha256": "f9b34573f5236a43ff135c62b1caa64834f8bce096996fa8738428347d7834a3"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/Season 01/Plozz Field Notes - S01E01 - Study 1-thumb.jpg",
+      "sha256": "714f4565301e8ea9ab63b45b1727c9954999881c8e54d0fdbfe65acfb2ceb6e9"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/Season 01/Plozz Field Notes - S01E01 - Study 1.en.srt",
+      "sha256": "24d4e3e8a8eddbf69b07239f6244e4468038946341217fc85d67b215afff42f2"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/Season 01/Plozz Field Notes - S01E01 - Study 1.mp4",
+      "sha256": "52eeb04e9c617fba279af02f518dae72d793590c8f464d9bdd5d7284a3f140f2"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/Season 01/Plozz Field Notes - S01E01 - Study 1.nfo",
+      "sha256": "0086df872f4c76408c3c5673970c1da7b4491dfe795eeae9289daf7f89deaf98"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/Season 01/Plozz Field Notes - S01E02 - Study 2-thumb.jpg",
+      "sha256": "714f4565301e8ea9ab63b45b1727c9954999881c8e54d0fdbfe65acfb2ceb6e9"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/Season 01/Plozz Field Notes - S01E02 - Study 2.en.srt",
+      "sha256": "24d4e3e8a8eddbf69b07239f6244e4468038946341217fc85d67b215afff42f2"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/Season 01/Plozz Field Notes - S01E02 - Study 2.mp4",
+      "sha256": "52eeb04e9c617fba279af02f518dae72d793590c8f464d9bdd5d7284a3f140f2"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/Season 01/Plozz Field Notes - S01E02 - Study 2.nfo",
+      "sha256": "382437b0fed9ee6e3314a6fab386044fcae573f54e61dda3d5203211e99fa019"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/Season 01/Plozz Field Notes - S01E03 - Study 3-thumb.jpg",
+      "sha256": "714f4565301e8ea9ab63b45b1727c9954999881c8e54d0fdbfe65acfb2ceb6e9"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/Season 01/Plozz Field Notes - S01E03 - Study 3.en.srt",
+      "sha256": "24d4e3e8a8eddbf69b07239f6244e4468038946341217fc85d67b215afff42f2"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/Season 01/Plozz Field Notes - S01E03 - Study 3.mp4",
+      "sha256": "52eeb04e9c617fba279af02f518dae72d793590c8f464d9bdd5d7284a3f140f2"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/Season 01/Plozz Field Notes - S01E03 - Study 3.nfo",
+      "sha256": "325b5e3b3c803a04a704540cbf9895fd28df105583bcd4fd8791b909b6348ce7"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/Season 01/Plozz Field Notes - S01E04 - Study 4-thumb.jpg",
+      "sha256": "714f4565301e8ea9ab63b45b1727c9954999881c8e54d0fdbfe65acfb2ceb6e9"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/Season 01/Plozz Field Notes - S01E04 - Study 4.en.srt",
+      "sha256": "24d4e3e8a8eddbf69b07239f6244e4468038946341217fc85d67b215afff42f2"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/Season 01/Plozz Field Notes - S01E04 - Study 4.mp4",
+      "sha256": "52eeb04e9c617fba279af02f518dae72d793590c8f464d9bdd5d7284a3f140f2"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/Season 01/Plozz Field Notes - S01E04 - Study 4.nfo",
+      "sha256": "f918b73ff18082f35a3bb300b7ee01d4ba5e5ec9dcf9c5b1c0d0c143cd008354"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/artwork.svg",
+      "sha256": "5d6f7fc815aa4d89efc8576b630faa5e82cb972f13a429ed7a5fd71bad93c0a4"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/fanart.jpg",
+      "sha256": "714f4565301e8ea9ab63b45b1727c9954999881c8e54d0fdbfe65acfb2ceb6e9"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/poster.jpg",
+      "sha256": "b16492fe65aaa061bdb027d6ae1002c1159a0a875f86a33a2fb25e0b4b503385"
+    },
+    {
+      "path": "Shows/Plozz Field Notes/tvshow.nfo",
+      "sha256": "bd26d208673079785b8ab639ac63b51fe34be8129602872c275d575abf986404"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/Season 01/Plozz Sky Studies - S01E01 - Study 1-thumb.jpg",
+      "sha256": "ae782d889a4e7cc7a7f76427b34392e40afed047dfa4025cf49e5ec889cac5e3"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/Season 01/Plozz Sky Studies - S01E01 - Study 1.en.srt",
+      "sha256": "24d4e3e8a8eddbf69b07239f6244e4468038946341217fc85d67b215afff42f2"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/Season 01/Plozz Sky Studies - S01E01 - Study 1.mp4",
+      "sha256": "2c377d1cad5fcb3ce234f30127816046224bc78a039d492803c9c6346b2c27a7"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/Season 01/Plozz Sky Studies - S01E01 - Study 1.nfo",
+      "sha256": "89f67743cc2303b2003b9d29bdf85c2080bf2ad8125070712895d5824736c8e7"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/Season 01/Plozz Sky Studies - S01E02 - Study 2-thumb.jpg",
+      "sha256": "ae782d889a4e7cc7a7f76427b34392e40afed047dfa4025cf49e5ec889cac5e3"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/Season 01/Plozz Sky Studies - S01E02 - Study 2.en.srt",
+      "sha256": "24d4e3e8a8eddbf69b07239f6244e4468038946341217fc85d67b215afff42f2"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/Season 01/Plozz Sky Studies - S01E02 - Study 2.mp4",
+      "sha256": "2c377d1cad5fcb3ce234f30127816046224bc78a039d492803c9c6346b2c27a7"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/Season 01/Plozz Sky Studies - S01E02 - Study 2.nfo",
+      "sha256": "cb2dd0fe630a8abcb1e1f9220e05943faea41961fd057e85629eb54c01dbb4a9"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/Season 01/Plozz Sky Studies - S01E03 - Study 3-thumb.jpg",
+      "sha256": "ae782d889a4e7cc7a7f76427b34392e40afed047dfa4025cf49e5ec889cac5e3"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/Season 01/Plozz Sky Studies - S01E03 - Study 3.en.srt",
+      "sha256": "24d4e3e8a8eddbf69b07239f6244e4468038946341217fc85d67b215afff42f2"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/Season 01/Plozz Sky Studies - S01E03 - Study 3.mp4",
+      "sha256": "2c377d1cad5fcb3ce234f30127816046224bc78a039d492803c9c6346b2c27a7"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/Season 01/Plozz Sky Studies - S01E03 - Study 3.nfo",
+      "sha256": "5271e01cd99b546d2117a57b91e655d96a670cde5e9bdc2764ac33b2d83714c2"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/Season 01/Plozz Sky Studies - S01E04 - Study 4-thumb.jpg",
+      "sha256": "ae782d889a4e7cc7a7f76427b34392e40afed047dfa4025cf49e5ec889cac5e3"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/Season 01/Plozz Sky Studies - S01E04 - Study 4.en.srt",
+      "sha256": "24d4e3e8a8eddbf69b07239f6244e4468038946341217fc85d67b215afff42f2"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/Season 01/Plozz Sky Studies - S01E04 - Study 4.mp4",
+      "sha256": "2c377d1cad5fcb3ce234f30127816046224bc78a039d492803c9c6346b2c27a7"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/Season 01/Plozz Sky Studies - S01E04 - Study 4.nfo",
+      "sha256": "bc06fd7a1f9c83640d93cf9db382cd7547a8578bd727caf037a70c1b314962b6"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/artwork.svg",
+      "sha256": "12d4b606adc5ccf85088fd25d944c7c0b0505cf979bf3639ff67dfe235a1ab0a"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/fanart.jpg",
+      "sha256": "ae782d889a4e7cc7a7f76427b34392e40afed047dfa4025cf49e5ec889cac5e3"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/poster.jpg",
+      "sha256": "f46e898538a2fd45bf38b856da97f5c1f4c66a7277d145f2ac93efcfe6463285"
+    },
+    {
+      "path": "Shows/Plozz Sky Studies/tvshow.nfo",
+      "sha256": "460f2917d640dcdcd872344a8b010459c94ee8238da797191a2f6b2f6480d863"
+    }
+  ]
+}

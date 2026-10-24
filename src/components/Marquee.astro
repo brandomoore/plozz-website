@@ -20,29 +20,23 @@ import Shot from './Shot.astro';
 import { MARQUEE, MARQUEE_PORTRAIT } from '../data/imageSizes';
 
 /** The tall iPhone tiles paint about a quarter as wide as the landscape ones. */
-const PORTRAIT = new Set(['plozz-iphone', 'plozz-iphone-library']);
-const sizesFor = (name: string) => (PORTRAIT.has(name) ? MARQUEE_PORTRAIT : MARQUEE);
+const PORTRAIT = new Set(['plozz-demo-iphone-home', 'plozz-demo-iphone-detail']);
+const sizesFor = (name: string) => name === 'plozz-demo-ipad-home'
+  ? '(max-width: 908px) 150px, (max-width: 1363px) 16.5vw, 225px'
+  : (PORTRAIT.has(name) ? MARQUEE_PORTRAIT : MARQUEE);
 
 const rowOne = [
-  { name: 'plozz-tv-show', alt: 'A series detail screen on Apple TV' },
-  { name: 'plozz-ipad-info', alt: 'Episode details during playback on iPad' },
-  { name: 'plozz-tv-home', alt: 'Plozz home screen on Apple TV' },
-  { name: 'plozz-tv-library', alt: 'Movie library on Apple TV' },
-  { name: 'plozz-iphone-library', alt: 'A movie library on iPhone' },
-  { name: 'plozz-tv-episodes', alt: 'Season and episode picker on Apple TV' },
-  { name: 'plozz-ipad-player', alt: 'Playback controls on iPad' },
-  { name: 'plozz-tv-settings', alt: 'Settings on Apple TV' },
+  { name: 'plozz-demo-tv-home', alt: 'Original demo films in Plozz on Apple TV' },
+  { name: 'plozz-demo-ipad-home', alt: 'Original demo library on iPad' },
+  { name: 'plozz-demo-tv-library', alt: 'Original demo films in the Apple TV library' },
+  { name: 'plozz-demo-iphone-home', alt: 'Original demo library on iPhone' },
 ];
 
 const rowTwo = [
-  { name: 'plozz-tv-ratings', alt: 'Cast and ratings on Apple TV' },
-  { name: 'plozz-ipad', alt: 'Plozz on iPad' },
-  { name: 'plozz-tv-subtitles', alt: 'Subtitle styling during playback' },
-  { name: 'plozz-tv-profiles', alt: 'Profile picker on Apple TV' },
-  { name: 'plozz-iphone', alt: 'Plozz on iPhone' },
-  { name: 'plozz-tv', alt: 'A film detail screen on Apple TV' },
-  { name: 'plozz-ipad-cast', alt: 'Cast list during playback on iPad' },
-  { name: 'plozz-tv-profile-edit', alt: 'Editing a profile on Apple TV' },
+  { name: 'plozz-demo-tv-subtitles', alt: 'Subtitle styling over original demo footage' },
+  { name: 'plozz-demo-iphone-detail', alt: 'An original demo film on iPhone' },
+  { name: 'plozz-demo-tv-detail', alt: 'An original demo film on Apple TV' },
+  { name: 'plozz-demo-tv-player', alt: 'Playback controls over original demo footage on Apple TV' },
 ];
 ---
 

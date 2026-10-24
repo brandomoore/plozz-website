@@ -268,6 +268,16 @@
 }
 
 /* Landscape adaptation for the supplied 4:3 iPad capture. */
+.device-ipad-pro.device-demo-portrait,
+.device-ipad-pro.device-demo-portrait .device-frame {
+  height: 729px;
+}
+
+.device-ipad-pro.device-demo-portrait .device-screen {
+  height: 675px;
+  object-fit: contain;
+}
+
 .device-ipad-pro.device-landscape {
   height: 560px;
   width: 778px;

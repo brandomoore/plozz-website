@@ -27,7 +27,6 @@ export const SERVER_LINKS = [
  * Nothing here is claimed beyond what those docs support.
  */
 export const HEADLINE_BADGES = [
-  { label: 'Dolby Vision', value: 'P5 · P7 · P8.1 · P8.4' },
   { label: 'HDR', value: 'HDR10 · HDR10+ · HLG' },
   { label: 'Video', value: 'HEVC · H.264 · AV1 · VP9' },
   { label: 'Lossless audio', value: 'TrueHD · DTS-HD MA' },
@@ -50,10 +49,6 @@ export const FORMAT_TABLE = [
   {
     group: 'High dynamic range',
     rows: [
-      { name: 'Dolby Vision Profile 5', note: '' },
-      { name: 'Dolby Vision Profile 7', note: 'Converted to Profile 8.1 during playback, which Apple hardware cannot do alone' },
-      { name: 'Dolby Vision Profile 8.1 and 8.4', note: '' },
-      { name: 'Dolby Vision on AV1', note: 'Profiles 10.1 and 10.4' },
       { name: 'HDR10', note: '' },
       { name: 'HDR10+', note: 'Per-frame ST 2094-40 metadata passed through' },
       { name: 'HLG', note: '' },
@@ -108,10 +103,6 @@ export const FORMAT_CAVEATS = [
   {
     name: 'AV1 is software decoded on Apple TV',
     note: 'No Apple TV chip has AV1 in hardware yet. It plays, but it works the processor harder than HEVC does.',
-  },
-  {
-    name: 'Dolby Vision Profile 7 becomes Profile 8.1',
-    note: 'The enhancement layer is dropped, which no Apple device could decode anyway. You get Dolby Vision instead of the HDR10 fallback.',
   },
 ];
 

@@ -19,34 +19,24 @@ import { SOCIAL_IMAGE_PATH } from "../data/brand";
 
 const heroScreenshots = [
   {
-    name: "plozz-tv-featured",
-    alt: "Plozz home screen on Apple TV with a featured title and a Continue Watching row",
+    name: "plozz-demo-tv-home",
+    alt: "Plozz on Apple TV browsing an original demo library",
     label: "Home",
   },
   {
-    name: "plozz-tv-oppenheimer",
-    alt: "Plozz movie details screen on Apple TV showing ratings, 4K and HDR10 badges, and a resume button",
+    name: "plozz-demo-tv-detail",
+    alt: "Orbital Drift, an original demo film, in Plozz's movie detail screen",
     label: "Movie details",
   },
   {
-    name: "plozz-tv-lastofus",
-    alt: "Plozz show details screen on Apple TV with a season picker and a rail of episode thumbnails",
-    label: "Seasons & episodes",
+    name: "plozz-demo-tv-library",
+    alt: "Plozz's movie library showing original demo artwork",
+    label: "Library",
   },
   {
-    name: "plozz-tv-office",
-    alt: "Plozz show details screen on Apple TV with a resume episode button and an episode rail below",
-    label: "Show details",
-  },
-  {
-    name: "plozz-tv-mario",
-    alt: "Plozz movie details screen on Apple TV showing critic and audience scores alongside 4K, Dolby Vision and HDR10 badges",
-    label: "Ratings & formats",
-  },
-  {
-    name: "plozz-tv-lotr",
-    alt: "Plozz movie details screen on Apple TV with a partially watched progress bar on the play button and Dolby Vision and Dolby Atmos badges",
-    label: "Continue watching",
+    name: "plozz-demo-tv-player",
+    alt: "Plozz's playback controls over original geometric demo footage",
+    label: "Playback",
   },];
 
 const softwareLd = {
@@ -242,11 +232,11 @@ const faqLd = {
             <div class="icloud-devices">
               <div class="icloud-device-slot icloud-ipad-slot">
                 <div
-                  class="device device-ipad-pro device-spacegray device-landscape"
+                  class="device device-ipad-pro device-spacegray device-demo-portrait"
                 >
                   <div class="device-frame">
                     <Shot
-                      name="plozz-ipad"
+                      name="plozz-demo-ipad-home"
                       alt="Plozz on iPad"
                       sizes={DEVICE_IPAD}
                       fetchpriority="low"
@@ -262,7 +252,7 @@ const faqLd = {
                 <div class="device device-iphone-14-pro device-black">
                   <div class="device-frame">
                     <Shot
-                      name="plozz-iphone-detail"
+                      name="plozz-demo-iphone-detail"
                       alt="A film detail screen in Plozz on iPhone"
                       sizes={DEVICE_IPHONE}
                       fetchpriority="low"
@@ -344,10 +334,10 @@ const faqLd = {
 
         <div class="slab playback-formats" style="--cols: 6">
           <div class="cell format-third">
-            <h3>Dolby Vision</h3>
+            <h3>HDR10</h3>
             <p>
-              Profiles 5, 7, 8.1 and 8.4. Profile 7 is converted to 8.1
-              during playback on compatible hardware.
+              High-dynamic-range video on compatible devices and displays,
+              with output dependent on the file and playback path.
             </p>
           </div>
           <div class="cell format-third">

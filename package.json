@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "node tools/screenshot-provenance.mjs && astro build",
     "test": "node --test tests/*.test.mjs",
     "test:site": "npm run build && node --test tests/site/*.test.mjs",
     "worker:dev": "wrangler dev --config wrangler.worker.toml --local",
@@ -16,6 +16,8 @@
     "worker:deploy": "wrangler versions deploy --config wrangler.worker.toml",
     "preview": "astro preview",
     "images": "node tools/build-images.mjs",
+    "check:images": "node tools/screenshot-provenance.mjs",
+    "test:media": "python3 -B -m unittest discover -s tests/media",
     "shots": "node tools/sync-shots.mjs",
     "fonts": "PLOZZ_FONT_PREVIEW=1 astro dev",
     "font-sheet": "node tools/font-sheet.mjs",

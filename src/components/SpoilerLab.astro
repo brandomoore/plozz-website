@@ -9,7 +9,7 @@ import { THUMB } from '../data/imageSizes';
     <div class="spoillab-card" data-spoillab-card data-hidden="true">
       <div class="spoillab-thumb">
         <Shot
-          name="plozz-tv"
+          name="plozz-demo-tv-detail"
           alt="An episode thumbnail, blurred while the episode is unwatched"
           sizes={THUMB}
           fetchpriority="low"
@@ -46,7 +46,7 @@ import { THUMB } from '../data/imageSizes';
       const choice = lab.querySelector('[data-spoillab-toggle]:checked');
       const hidden = !choice || choice.value === 'true';
       card.dataset.hidden = String(hidden);
-      title.textContent = hidden ? 'Episode 4' : 'The One Where They Find Out';
+      title.textContent = hidden ? 'Episode 4' : 'The Long View';
       sub.textContent = hidden ? 'Hidden until you’ve watched it' : 'Shown once you’ve watched it';
     };
 

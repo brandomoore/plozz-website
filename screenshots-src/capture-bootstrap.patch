@@ -1,0 +1,102 @@
+diff --git a/Sources/AppShell/HomeTab.swift b/Sources/AppShell/HomeTab.swift
+index 13966fa2c..6502cfe57 100644
+--- a/Sources/AppShell/HomeTab.swift
++++ b/Sources/AppShell/HomeTab.swift
+@@ -786,8 +786,10 @@ struct HomeTab: View {
+         private func perform() async {
+             guard isActive else { return }
+             guard let request = director.request else { return }
++            let outcome = await reach(request)
++            guard !Task.isCancelled, director.request == request else { return }
++            director.finish(outcome)
+             director.request = nil
+-            director.finish(await reach(request))
+         }
+ 
+         /// Reaches the requested screen and answers with what the capture script
+diff --git a/Sources/AppShell/ScreenshotSeed.swift b/Sources/AppShell/ScreenshotSeed.swift
+index 65a176bb9..c694f3968 100644
+--- a/Sources/AppShell/ScreenshotSeed.swift
++++ b/Sources/AppShell/ScreenshotSeed.swift
+@@ -50,6 +50,32 @@ enum ScreenshotSeed {
+ 
+         let environment = ProcessInfo.processInfo.environment
+         #if targetEnvironment(simulator)
++        if let address = environment["PLOZZ_SHOTS_CATALOG"],
++           let url = URL(string: address), url.host == "127.0.0.1",
++           url.scheme == "http" {
++            FeatureIntroductionStore().markCompleted(.homeLayout)
++            appState.metadataProviderSettingsModel.settings = MetadataProviderSettings(
++                orderMode: .custom, preferOnlineArtwork: false,
++                enabledOrder: ["server", "localNFO", "localArtwork", "filename", "embedded"],
++                disabledOrder: ["tmdb", "tvdb", "anilist", "tvmaze", "wikidata", "wikipedia", "kitsu", "mal", "omdb", "trakt", "wetrakr", "deezer", "musicbrainz"]
++            )
++            guard appState.accountsProviders.accounts.isEmpty else { return }
++            let server = MediaServer(id: "plozz-original-demo", name: "Plozz Demo", baseURL: url, provider: .jellyfin, version: "10.10.7")
++            guard appState.didAuthenticate(UserSession(server: server, userID: "demo", userName: "Alex",
++                deviceID: "original-media-capture", accessToken: "local-demo-only")) else { return }
++            appState.confirmLibrarySelection()
++            _ = appState.profilesModel.seedDefaultProfileIdentity(name: "Alex", avatarImageURL: nil)
++            appState.confirmFirstRunProfile()
++            appState.completeFirstRunSeerrSetup()
++            appState.finishThemeSelection()
++            FeatureIntroductionStore().markCompleted(.navigationStyles)
++            appState.finishNavigationSelection()
++            appState.finishHomeLayoutSelection()
++            appState.profileSettings.subtitleBehaviorModel.settings.subtitleMode = .all
++            return
++        }
++        #endif
++        #if targetEnvironment(simulator)
+         if environment["PLOZZ_SHOTS_SETTINGS"] == "1" {
+             FeatureIntroductionStore().markCompleted(.homeLayout)
+             if !appState.profilesModel.firstRunProfileSetupComplete {
+diff --git a/Sources/AppShelliOS/PlozziOSHomeView.swift b/Sources/AppShelliOS/PlozziOSHomeView.swift
+index a93909932..55ad5292b 100644
+--- a/Sources/AppShelliOS/PlozziOSHomeView.swift
++++ b/Sources/AppShelliOS/PlozziOSHomeView.swift
+@@ -3046,8 +3046,10 @@ struct PlozziOSScreenshotRouter: View {
+ 
+     private func perform() async {
+         guard let request = director.request else { return }
++        let outcome = await reach(request)
++        guard !Task.isCancelled, director.request == request else { return }
++        director.finish(outcome)
+         director.request = nil
+-        director.finish(await reach(request))
+     }
+ 
+     /// Reaches the requested screen and answers with what the capture script
+diff --git a/Sources/AppShelliOS/PlozziOSScreenshotSeed.swift b/Sources/AppShelliOS/PlozziOSScreenshotSeed.swift
+index 59aaf8d05..040af333e 100644
+--- a/Sources/AppShelliOS/PlozziOSScreenshotSeed.swift
++++ b/Sources/AppShelliOS/PlozziOSScreenshotSeed.swift
+@@ -289,12 +289,22 @@ enum PlozziOSScreenshotSeed {
+         let port = environment["PLOZZ_SHOTS_NFS_PORT"].flatMap(Int.init)
+         let name = environment["PLOZZ_SHOTS_NFS_NAME"] ?? ""
+ 
+-        guard appModel.addNFSShare(
+-            host: host,
+-            port: port,
+-            exportPath: export,
+-            displayName: name
+-        ) else { return }
++        let added: Bool
++        if let address = environment["PLOZZ_SHOTS_CATALOG"],
++           let url = URL(string: address), url.host == "127.0.0.1",
++           url.scheme == "http" {
++            appModel.metadataProviderSettingsModel.settings = MetadataProviderSettings(
++                orderMode: .custom, preferOnlineArtwork: false,
++                enabledOrder: ["server", "localNFO", "localArtwork", "filename", "embedded"],
++                disabledOrder: ["tmdb", "tvdb", "anilist", "tvmaze", "wikidata", "wikipedia", "kitsu", "mal", "omdb", "trakt", "wetrakr", "deezer", "musicbrainz"]
++            )
++            let server = MediaServer(id: "plozz-original-demo", name: "Plozz Demo", baseURL: url, provider: .jellyfin, version: "10.10.7")
++            added = appModel.persist([UserSession(server: server, userID: "demo", userName: "Alex",
++                deviceID: "original-media-capture", accessToken: "local-demo-only")])
++        } else {
++            added = appModel.addNFSShare(host: host, port: port, exportPath: export, displayName: name)
++        }
++        guard added else { return }
+ 
+         // The library-selection step is scheduled through a `Task.yield`, so it is
+         // not on screen the instant the share lands. Wait for it (or for setup to

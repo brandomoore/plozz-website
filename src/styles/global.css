@@ -1370,7 +1370,7 @@ h3 {
 .icloud-devices {
   position: relative;
   width: min(46vw, 540px);
-  min-height: 360px;
+  min-height: 470px;
 }
 
 .icloud-device-slot {
@@ -1380,8 +1380,8 @@ h3 {
 .icloud-ipad-slot {
   top: 50%;
   left: 0;
-  width: 498px;
-  height: 358px;
+  width: 359px;
+  height: 467px;
   transform: translateY(-50%);
 }
 
@@ -1439,7 +1439,7 @@ h3 {
 
   .icloud-devices {
     width: min(100%, 540px);
-    min-height: 360px;
+    min-height: 470px;
     margin-inline: auto;
   }
 }
@@ -1447,12 +1447,12 @@ h3 {
 @media (max-width: 720px) {
   .icloud-devices {
     width: min(100%, 390px);
-    min-height: 270px;
+    min-height: 320px;
   }
 
   .icloud-ipad-slot {
-    width: 327px;
-    height: 235px;
+    width: 236px;
+    height: 307px;
   }
 
   .icloud-ipad-slot .device {
@@ -1472,12 +1472,12 @@ h3 {
 
 @media (max-width: 420px) {
   .icloud-devices {
-    min-height: 220px;
+    min-height: 260px;
   }
 
   .icloud-ipad-slot {
-    width: 265px;
-    height: 190px;
+    width: 191px;
+    height: 248px;
   }
 
   .icloud-ipad-slot .device {

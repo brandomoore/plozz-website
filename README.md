@@ -179,22 +179,25 @@ the site and social card share that file.
 
 Pristine masters live in [`screenshots-src/`](screenshots-src/) and are **not**
 shipped as-is — Astro serves the re-encoded ladders under `public/screenshots/`.
+Only reviewed real-app captures of the original demo library may be published.
+`npm run build` verifies their source and derivative hashes before building pages.
 Two scripts drive that:
 
 ```bash
 npm run images                       # re-encode the masters (only what changed)
 npm run images -- --force            # re-encode everything
 npm run images -- --only plozz-tv-home
-npm run shots                        # pull fresh captures from ../Plozz, then re-encode
+npm run shots -- --from /path/to/reviewed-captures
 ```
 
 - **`npm run images`** ([`tools/build-images.mjs`](tools/build-images.mjs)) is
   the encoder: it turns each master into a responsive AVIF + WebP width ladder.
   Its encoder settings were tuned by measuring DSSIM against the masters rather
   than by eye.
-- **`npm run shots`** ([`tools/sync-shots.mjs`](tools/sync-shots.mjs)) pulls
-  freshly captured PNGs out of the Plozz app repo (`../Plozz`, via that repo's
-  `tools/capture-shots.sh`), copies the changed masters in, and re-encodes.
+- **`npm run shots`** ([`tools/sync-shots.mjs`](tools/sync-shots.mjs)) verifies an
+  explicitly supplied capture directory and its reviewed provenance before
+  copying changed masters and re-encoding. It never defaults to a personal
+  media server or an unrelated app checkout.
 
 See [`screenshots-src/README.md`](screenshots-src/README.md) for the master
 conventions.

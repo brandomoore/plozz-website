@@ -60,8 +60,8 @@ Gradient-heavy SaaS pages, dense marketing-section stacks, excessive accent colo
 - Use contractions. Copy without them reads like a machine wrote it.
 - Vary sentence length. Never three of the same length in a row, and let a short
   one land after a long one.
-- Don't explain your own homework. "Profile 7" is enough for anyone who owns
-  those files; "the profile a UHD Blu-ray remux uses" is a lecture.
+- Use concise format labels rather than explaining every technical term in
+  marketing copy.
 - The donate section speaks as Brandon, in first person, because a person is
   doing the asking. Everywhere else addresses the reader as you.
 - Never justify the donation ask. Listing what the money pays for reads as an
@@ -110,7 +110,7 @@ other app lacks those features.
   eligible active-user/Plex Pass access. Ages are separate from review scores.
 - "Ratings with no API key." AniList scores are keyless; optional OMDb
   enrichment needs the user's own key.
-- Height-channel rendering, TrueHD Atmos, DTS:X, Apple Positional Audio or
+- Dolby Vision, height-channel rendering, TrueHD Atmos, DTS:X, Apple Positional Audio or
   Dolby MAT are outside the website's editorial scope. Do not mention these
   features, their settings or their availability in public copy or metadata,
   even if app or engine source still describes them. Do not add a notice about
@@ -158,3 +158,16 @@ compositions stay device-local. Provider limits and permissions still apply.
 ## Accessibility & Inclusion
 
 Maintain WCAG AA contrast for body text and controls, semantic structure and image alternatives, visible keyboard focus, and reduced-motion behavior.
+
+## Screenshot media
+
+Publish real Plozz captures only. Every visible film frame, poster, backdrop,
+avatar, description and subtitle must have recorded reuse permission. A free
+app, a purchased film or metadata-provider access is not permission to reproduce
+someone else's promotional art. Prefer the original procedural demo library in
+`tools/build-demo-library.py`; keep online artwork/metadata disabled for captures.
+Do not retouch a screenshot to disguise its media, labels or app behavior.
+Keep source and capture hashes with the approved screenshot inventory. New or
+changed screenshots must fail publication until their provenance is recorded.
+Rights records reduce uncertainty; they do not guarantee legal clearance or
+App Store approval.
