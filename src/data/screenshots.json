@@ -5,121 +5,66 @@
     "rungs": [
       {
         "w": 280,
-        "avif": "plozz-demo-ipad-home-280.2e1cd670.avif",
-        "webp": "plozz-demo-ipad-home-280.9c1a6eda.webp",
-        "avifSha256": "224c2f9497db6354f014fe45c1bcd6c78f37a9af30a7aa550319708c18f34fdd",
-        "webpSha256": "3f7412ca3e4e02f21cb879391374fb4825855db515f3071002f6f9c558e2afd3"
+        "avif": "plozz-demo-ipad-home-280.b83feb2d.avif",
+        "webp": "plozz-demo-ipad-home-280.f4b33b21.webp",
+        "avifSha256": "a654749460c8ad237429dda93243eaa58246b0704f51e63e24e9ff91d2080103",
+        "webpSha256": "44e8700eb74676180eac9231b2668a52458daf5b94092b347b5d0c1b969e4039"
       },
       {
         "w": 360,
-        "avif": "plozz-demo-ipad-home-360.c837edc0.avif",
-        "webp": "plozz-demo-ipad-home-360.ce56622f.webp",
-        "avifSha256": "3e389697d0afcf6fc809e1d3fdcbfc31a169caa6e76a0ec59e04a1b6370641c5",
-        "webpSha256": "728a6103b04de07305ac95bb254959a89001e1c49b0d6c01d074efae410f90a8"
+        "avif": "plozz-demo-ipad-home-360.69f80a13.avif",
+        "webp": "plozz-demo-ipad-home-360.a30a63c0.webp",
+        "avifSha256": "bc7bdde864b71c60d83f6193d4762b72d6feee1307e521e7a5d0c682082f3115",
+        "webpSha256": "3e0f8318bfa96cc269e392fc3332ba3dc9ec0e9f01e43cb4e43933c16f642398"
       },
       {
         "w": 440,
-        "avif": "plozz-demo-ipad-home-440.755b0e06.avif",
-        "webp": "plozz-demo-ipad-home-440.aea29fd9.webp",
-        "avifSha256": "5c96dcf978482c5c0ec8d7f486922abd3ecddaf1212d29dbe4eb529132fd7ea0",
-        "webpSha256": "bf2d6ab4120b48dc3b527de4652cb3fce348e757ac94fb40c8af32aeb8efb81c"
+        "avif": "plozz-demo-ipad-home-440.68e9ee71.avif",
+        "webp": "plozz-demo-ipad-home-440.b7d2e854.webp",
+        "avifSha256": "7382642f5b792d6ecd295bd15ca019301532b73fc31a948e8c8ec0bf53fb3cee",
+        "webpSha256": "60538b1b50238fd679e7945ec1c237dc7931f952b4450c6743cafc87190d054e"
       },
       {
         "w": 560,
-        "avif": "plozz-demo-ipad-home-560.6baf309b.avif",
-        "webp": "plozz-demo-ipad-home-560.92686a6c.webp",
-        "avifSha256": "2acc52aa57a07f93077ccc69aad36206dd3d99afdd47abad751eaa91ecf1e62b",
-        "webpSha256": "475aedc1703d90fd333ddd43fc06cb38cd8932d98ff6a2f23cd8c1e527b53118"
+        "avif": "plozz-demo-ipad-home-560.2f2d8fcc.avif",
+        "webp": "plozz-demo-ipad-home-560.f4b1e5e2.webp",
+        "avifSha256": "ccd02a1e8765836d4567edf06b0c82688c411978233a508a9f74e4a1599652cd",
+        "webpSha256": "fcd7c79c3a915c4db50b5fac688687a8f921760e290288d95736d49896f6f2f8"
       },
       {
         "w": 700,
-        "avif": "plozz-demo-ipad-home-700.7abbf4d6.avif",
-        "webp": "plozz-demo-ipad-home-700.22a050a6.webp",
-        "avifSha256": "75112463598fd803e468eb1df39d0993bcc63487eaebe86a084ca0d78519e1cd",
-        "webpSha256": "761afc460ed182e3bc18b4914d931afac5bdf24c94e6e12af3436126d295232e"
+        "avif": "plozz-demo-ipad-home-700.36fcbfbf.avif",
+        "webp": "plozz-demo-ipad-home-700.9b479bc4.webp",
+        "avifSha256": "6c6088260ead14c8ce94667c0d5510ce8e453f673ea86c5d03e874b2458ad479",
+        "webpSha256": "ba290d25aa0cf8fd5faa51aad211a175ee70082700232edf10708bb962dcf3e5"
       },
       {
         "w": 800,
-        "avif": "plozz-demo-ipad-home-800.408c94b5.avif",
-        "webp": "plozz-demo-ipad-home-800.f8ab87bc.webp",
-        "avifSha256": "ff1e410c0c5f4010177ca99c206f42e3b77473aeae2de68491f025845f883c90",
-        "webpSha256": "0737151fdac75569986da8a0cd1035b87d8745c502705d0a4c19cfb67cca4d88"
+        "avif": "plozz-demo-ipad-home-800.cb187ed6.avif",
+        "webp": "plozz-demo-ipad-home-800.06066469.webp",
+        "avifSha256": "ea1afafbf8db6d9771fdc76662eb37b0de9ffcf29a666d70d8d98966981ca387",
+        "webpSha256": "d59278496a44f0de351e78d9d5dc8fa97967f784dc29fdbf827419ab2de4e8ce"
       },
       {
         "w": 940,
-        "avif": "plozz-demo-ipad-home-940.dfa9c582.avif",
-        "webp": "plozz-demo-ipad-home-940.33184154.webp",
-        "avifSha256": "9b300d51c618713fbbee8d588cf668022f7be12675a725bdadda172d35033756",
-        "webpSha256": "331cb145a806cae3c608332190dc11465312fc0db4bed596c6e947de96b7c952"
+        "avif": "plozz-demo-ipad-home-940.8470769e.avif",
+        "webp": "plozz-demo-ipad-home-940.4d464a57.webp",
+        "avifSha256": "44f8872241dc355f6c8d5d0379808da13a5d5fc1311f2e063253111da6640620",
+        "webpSha256": "dd7d012499ea906d87afda460468df26e743c97554f0a0d1ef0522b6484a7515"
       },
       {
         "w": 1080,
-        "avif": "plozz-demo-ipad-home-1080.591f6434.avif",
-        "webp": "plozz-demo-ipad-home-1080.178d6db7.webp",
-        "avifSha256": "bfbe8bc5a08af5920871e5e220681b5c5e477ad487aa85d4fbd24cf0d808a1e9",
-        "webpSha256": "03684dd55fcd8da6ddfc5202db6ced996d45a0415dbebf102c24f50a9765fe80"
+        "avif": "plozz-demo-ipad-home-1080.ae8bd50d.avif",
+        "webp": "plozz-demo-ipad-home-1080.031610a6.webp",
+        "avifSha256": "12480c2d05d5e46877de82079506c8a0c967f45b7aebb5dff61f614be98e038d",
+        "webpSha256": "ff90a630e433cc61d56c9436c319d30759b0781d5fd4b8a3557fbde0fbcd5bba"
       },
       {
         "w": 1400,
-        "avif": "plozz-demo-ipad-home-1400.5f17286b.avif",
-        "webp": "plozz-demo-ipad-home-1400.36e3d073.webp",
-        "avifSha256": "a6fa4d35b8edcba9471d9f3a67b0a6776d0fdeec1161b3e50903ee55111affde",
-        "webpSha256": "15752168de66f31986ce888563d2270a1ab835d52ba9592de2b06c389c1cad64"
-      }
-    ]
-  },
-  "plozz-demo-iphone-detail": {
-    "width": 1320,
-    "height": 2868,
-    "rungs": [
-      {
-        "w": 140,
-        "avif": "plozz-demo-iphone-detail-140.fd54770c.avif",
-        "webp": "plozz-demo-iphone-detail-140.9ac83b6f.webp",
-        "avifSha256": "3e338b3e29765150c0e299cd1414f1470de4341ebdf02d1d5f624538813c75eb",
-        "webpSha256": "c16ef597f5fcbd648febc7e78b915391d1cd0d57219f2a19463cc74a93e186b4"
-      },
-      {
-        "w": 220,
-        "avif": "plozz-demo-iphone-detail-220.3d579391.avif",
-        "webp": "plozz-demo-iphone-detail-220.83f6b67c.webp",
-        "avifSha256": "16cd1af0b57e8b86736e5ef846e3021dec96f287fc9ff38a604c1aade1486e01",
-        "webpSha256": "8840d7e1349640d274dd705719ddb99d35d82258b099dc3861bb7fbaaac0dd84"
-      },
-      {
-        "w": 300,
-        "avif": "plozz-demo-iphone-detail-300.2abb6d1d.avif",
-        "webp": "plozz-demo-iphone-detail-300.2263a09d.webp",
-        "avifSha256": "dc7f8cc3f23c0f97cd2b7b41ce2bd748ef93e1752c2df42709b3f5782c0b0794",
-        "webpSha256": "df6f5113ef673ebd83c868b2e3448fabbe8d70f2344b567ae0ecb25fa3eca118"
-      },
-      {
-        "w": 440,
-        "avif": "plozz-demo-iphone-detail-440.be88516d.avif",
-        "webp": "plozz-demo-iphone-detail-440.8ffb6f20.webp",
-        "avifSha256": "e18bdf82867b278e5a8bbdb191e9456f8ed1e3ebca49cb615dbbb1bf311b3184",
-        "webpSha256": "8aefbd910e4ca77ef67965df137c55679e34a05b1af67a93b1edec8b3e30e804"
-      },
-      {
-        "w": 700,
-        "avif": "plozz-demo-iphone-detail-700.517718f1.avif",
-        "webp": "plozz-demo-iphone-detail-700.34da36f2.webp",
-        "avifSha256": "8cab2e3eb42a0c6bae1c85f036508d5e884dc4cddbfa63fcba69d1f3b0c54992",
-        "webpSha256": "d71126c8cdcc5f7620c00c80d409c7c1405b937117e5d7159efe0fe47d098b92"
-      },
-      {
-        "w": 940,
-        "avif": "plozz-demo-iphone-detail-940.583552af.avif",
-        "webp": "plozz-demo-iphone-detail-940.96efd125.webp",
-        "avifSha256": "15d06645c2ec2005448396a81a9bc0ef75ecd508d399dba692c31a909ccf5c93",
-        "webpSha256": "10a24fae9962931ce9f31dbf801b3d11a32c6742f5ff4ffed53559f8c609b4b3"
-      },
-      {
-        "w": 1320,
-        "avif": "plozz-demo-iphone-detail-1320.96d9e5c5.avif",
-        "webp": "plozz-demo-iphone-detail-1320.bfeaee91.webp",
-        "avifSha256": "d0f0977087ccdaa9d83abc47f8cd43ee4060becd7400b66a0541ede6f4cc54b7",
-        "webpSha256": "d1e6726bd94cad6164f63ca03a577e9e03f00b4c19b49c7dcfb95f7ebd4c2bb0"
+        "avif": "plozz-demo-ipad-home-1400.dec86b37.avif",
+        "webp": "plozz-demo-ipad-home-1400.c6e0f2ce.webp",
+        "avifSha256": "197cbc197f1cbd24ac39896b0268ebb08587b8af89950c031604ff78403bebd7",
+        "webpSha256": "f17b944839e43f964818a36e652d91a9578e862844e88d5eae889149197dc4cf"
       }
     ]
   },
@@ -129,251 +74,306 @@
     "rungs": [
       {
         "w": 140,
-        "avif": "plozz-demo-iphone-home-140.c80facdd.avif",
-        "webp": "plozz-demo-iphone-home-140.b12a8e20.webp",
-        "avifSha256": "133ecfdc4027a63bff94cddfa628b304b284a0aab6b499c51bdc85b6e7829914",
-        "webpSha256": "837f3f18f2de373c3be779552e1b519cdf07889503e984403bde9821dc1baf7c"
+        "avif": "plozz-demo-iphone-home-140.d6a0c8a0.avif",
+        "webp": "plozz-demo-iphone-home-140.af07f793.webp",
+        "avifSha256": "414d692989e9bda87a9906a488aa85fcbc33758029f7125dab787d75cb756c10",
+        "webpSha256": "2c41a42952b4379257ee9642ec6691810e02ef7ddfe2cd64b470dd8b872ac0b2"
       },
       {
         "w": 220,
-        "avif": "plozz-demo-iphone-home-220.3c8027ce.avif",
-        "webp": "plozz-demo-iphone-home-220.ecf3d716.webp",
-        "avifSha256": "5077375925f3892d216e11823586a0e32f86d781ec3dedc2ac6a686678f23fb5",
-        "webpSha256": "97da43cd8657531e0c99c4d5371ff920519846c8db60b3198e28166436a075eb"
+        "avif": "plozz-demo-iphone-home-220.be5e6f2d.avif",
+        "webp": "plozz-demo-iphone-home-220.2bb5cf4e.webp",
+        "avifSha256": "cf4e8ade8a631d283f550f8386e5d8a753759fd9ebf5da74f45345be15a92614",
+        "webpSha256": "fa5027553741cc58f605c77982a3e06d46ef965e55ecaa001d22b357d1c55a05"
       },
       {
         "w": 300,
-        "avif": "plozz-demo-iphone-home-300.1d18ebc1.avif",
-        "webp": "plozz-demo-iphone-home-300.38097d51.webp",
-        "avifSha256": "9d7172b720628c504a07c1058d4ba57a0febb9b19bb7123fafdb06178178c3aa",
-        "webpSha256": "5d6f31e9f378b7dfff9692d1e17152f4a57054c9077601db22f43d2ac672fbda"
+        "avif": "plozz-demo-iphone-home-300.eb94eafe.avif",
+        "webp": "plozz-demo-iphone-home-300.5fedc701.webp",
+        "avifSha256": "ca11c0d5c7cb54046b78231ebd851b60fd02254de086fb82525a429906665ef3",
+        "webpSha256": "f8f61a63b80bd20bc464932bcc1e4053a0539b41e5024a2960270afd36718184"
       },
       {
         "w": 420,
-        "avif": "plozz-demo-iphone-home-420.6dbd74e0.avif",
-        "webp": "plozz-demo-iphone-home-420.85e37740.webp",
-        "avifSha256": "14dee2417dc03080a2ae2c663ff5eabf63f0c7707d207d9d4b6bd8514f05e484",
-        "webpSha256": "a667cb9a141cc745f163e502bc84a20d81386300a748e09638b812a37784276d"
+        "avif": "plozz-demo-iphone-home-420.05e38274.avif",
+        "webp": "plozz-demo-iphone-home-420.7ca0aea0.webp",
+        "avifSha256": "e99a237c60d7a68f527c08c54241b6bb8e8077c162441001f06f077538e81146",
+        "webpSha256": "6061684a76323ed19b5a27a713fe19d5d65c6bc2ef6788b7aff613941355e7b4"
       }
     ]
   },
-  "plozz-demo-tv-detail": {
-    "width": 2296,
-    "height": 1292,
+  "plozz-demo-iphone-library": {
+    "width": 1206,
+    "height": 2622,
     "rungs": [
       {
-        "w": 280,
-        "avif": "plozz-demo-tv-detail-280.7c802b68.avif",
-        "webp": "plozz-demo-tv-detail-280.560d7cba.webp",
-        "avifSha256": "82b8b721d9862faaa57625899e0e090988706333c612c9fc7afc2b1cfa9c432d",
-        "webpSha256": "095ee176363a5754a4ec68825004686482be21b2fe3e9dfea1dc27770e0cd5b8"
+        "w": 140,
+        "avif": "plozz-demo-iphone-library-140.a15751ec.avif",
+        "webp": "plozz-demo-iphone-library-140.6c3ce817.webp",
+        "avifSha256": "7b3b8aabb439179dd8bdeb04b51bab84d63635aa4899ed614d8009994ea3f36e",
+        "webpSha256": "f29eb5a4a1b23bcb6f953f60486d6b2cbc9d04479d96b2ebe38f3b1f77e3895a"
       },
       {
-        "w": 360,
-        "avif": "plozz-demo-tv-detail-360.efc62b9c.avif",
-        "webp": "plozz-demo-tv-detail-360.3028298c.webp",
-        "avifSha256": "96ed13525f93465b892bd1018452083d00e8da9a0f24ff68082ec40fab1476a7",
-        "webpSha256": "afad10554ca473af755b5c85adbfe19475ef383eb572ab37a860c5394dcc456c"
+        "w": 220,
+        "avif": "plozz-demo-iphone-library-220.b01bdef7.avif",
+        "webp": "plozz-demo-iphone-library-220.ba0b170a.webp",
+        "avifSha256": "df521606613632d957e237157c72ea8aab8811b71b726630a3fcab600753fd69",
+        "webpSha256": "1328a982c8f71e98099808e1323f0c6e7e396b42d2d7d5dd0e9a9769643a4dee"
+      },
+      {
+        "w": 300,
+        "avif": "plozz-demo-iphone-library-300.0a763d40.avif",
+        "webp": "plozz-demo-iphone-library-300.863c7635.webp",
+        "avifSha256": "6530e704e63f9f07fc1b3b76cd569b0d0a949dcf26a3d772cb1459b526903b9d",
+        "webpSha256": "c343a635950d7aae5a7da64d808d0157c902ad7e82b1116f057a39f836453a28"
       },
       {
         "w": 440,
-        "avif": "plozz-demo-tv-detail-440.c90a8045.avif",
-        "webp": "plozz-demo-tv-detail-440.b3b6a175.webp",
-        "avifSha256": "db97b9dc5d3f6181d929f38d3d66d03c8ad33ead72e70aff064163607da836b1",
-        "webpSha256": "114750a84a82c06b648ce8582af0545922551fc936719f0ef9c5c3dce08a43f5"
+        "avif": "plozz-demo-iphone-library-440.02258a1a.avif",
+        "webp": "plozz-demo-iphone-library-440.a8e4479f.webp",
+        "avifSha256": "451eeddbe6c82b5d030d3f09a32efa98d58e2d44141ce6c201e7c9cd66005928",
+        "webpSha256": "485fe0c7302313a8823a0f87faabe740513c9ccc2a4eb3d391543fb1b40c90da"
       },
       {
-        "w": 620,
-        "avif": "plozz-demo-tv-detail-620.7734dbff.avif",
-        "webp": "plozz-demo-tv-detail-620.39234dbd.webp",
-        "avifSha256": "e6ebc75c8314ac278089c238f16ed18ba1b64c2009497d42041b6759bb57f141",
-        "webpSha256": "19e2b0c2f0c727f309691899a0019396086407ae1881742acfd43b8c3bb11872"
+        "w": 700,
+        "avif": "plozz-demo-iphone-library-700.e8972200.avif",
+        "webp": "plozz-demo-iphone-library-700.f83422e4.webp",
+        "avifSha256": "c06e00a5ddf7bf5312b33d084ca1c696ceca879118f3442858a77fc8d7ba1498",
+        "webpSha256": "7dae59efe9312d069ec309d91152f606d35fd9af84c09f3ae9ad049ed71841d8"
       },
       {
-        "w": 840,
-        "avif": "plozz-demo-tv-detail-840.1f32421e.avif",
-        "webp": "plozz-demo-tv-detail-840.118f6b83.webp",
-        "avifSha256": "49e177c5d884482d0a0042d73a949b5f058c1995980ae6774d33bc11c25d6bc3",
-        "webpSha256": "638df8073ceb9a5829e44a795ef595b934be3889011134969177e0bcf99c22ac"
+        "w": 940,
+        "avif": "plozz-demo-iphone-library-940.5e582ac2.avif",
+        "webp": "plozz-demo-iphone-library-940.c0b30df4.webp",
+        "avifSha256": "bc224b08ded3525cd449e0b8b5db69a64ebd5f5286443ad5476b54bbd4e142bc",
+        "webpSha256": "5e77bf53f347906ac328a7fc6a8cbae56371f8b9ceb7d60425f7e09623f89db4"
       },
       {
-        "w": 1240,
-        "avif": "plozz-demo-tv-detail-1240.0880f040.avif",
-        "webp": "plozz-demo-tv-detail-1240.052fa9b9.webp",
-        "avifSha256": "86182309fe94a25afaa2f765e79d5b0d24be660fa9e9e5152b98671e7f475114",
-        "webpSha256": "f9cf3f913d41f4e44950677cdf83947991b32b55c12ce6fe56b61c120ef62c35"
-      },
-      {
-        "w": 1660,
-        "avif": "plozz-demo-tv-detail-1660.19d79b6f.avif",
-        "webp": "plozz-demo-tv-detail-1660.ab4e934d.webp",
-        "avifSha256": "11cfddf6f54788df18cfa49da22305534b00be3dae2d3cb855db086b1ee8ea6f",
-        "webpSha256": "3a74b8fbbe61c1dd9e81982e3233dbdfb915a75bdbd5f2b2f7a29e0e6444c307"
-      },
-      {
-        "w": 2296,
-        "avif": "plozz-demo-tv-detail-2296.716543b8.avif",
-        "webp": "plozz-demo-tv-detail-2296.b007bfbb.webp",
-        "avifSha256": "42ccf6dd0ae41e5bd1ea701a593c0fd795f0654b205e0fe6d628587a9318b7a8",
-        "webpSha256": "f482ad8e59f01d13b007e5aa57652d20584a9c15fb69ddba82024d50c5932c2d"
+        "w": 1206,
+        "avif": "plozz-demo-iphone-library-1206.ea8481f4.avif",
+        "webp": "plozz-demo-iphone-library-1206.3f9bed82.webp",
+        "avifSha256": "c01b993a3ff750270015521647ffc7160d4976dd9e79bc13be48d9e24520cc1b",
+        "webpSha256": "bbb9c72b71ccbdaaa8e19f247d2f2ef75d45c84943bb2f264ff604b57dc4ac24"
       }
     ]
   },
   "plozz-demo-tv-home": {
-    "width": 2296,
-    "height": 1292,
+    "width": 1920,
+    "height": 1080,
     "rungs": [
       {
         "w": 360,
-        "avif": "plozz-demo-tv-home-360.7d7d3f65.avif",
-        "webp": "plozz-demo-tv-home-360.09d40aef.webp",
-        "avifSha256": "18a31ab0f39437482fecc94b87e916e6e4c5c3a6311f21c34fcc0bb25060e240",
-        "webpSha256": "d202f4819819e36a6fdb3eabcafd4b5bd03a0c163e4339ae223ec42ad8cfd5a3"
+        "avif": "plozz-demo-tv-home-360.07c57712.avif",
+        "webp": "plozz-demo-tv-home-360.eadc264c.webp",
+        "avifSha256": "592495da0795a020f8870250e95ff354e0aca6402904dc55c067909134d75fec",
+        "webpSha256": "3bd012f5fedf3c23053591016f7af7a82311e71ae14c00f52111f6f295eb357c"
       },
       {
         "w": 560,
-        "avif": "plozz-demo-tv-home-560.a37e810b.avif",
-        "webp": "plozz-demo-tv-home-560.0d3344a8.webp",
-        "avifSha256": "882034a248d7f246c99e81a6c7af6445b4ee72c73465d4ddfa1b57b5cff1c4ca",
-        "webpSha256": "e7fa2af56b934f167424d878d83d6ce0f94ab9ab267603d74798f5b9a87e5d67"
+        "avif": "plozz-demo-tv-home-560.3bb33161.avif",
+        "webp": "plozz-demo-tv-home-560.95960ddd.webp",
+        "avifSha256": "b03f7b19d22c8c114a710237c884364d5ebb4d8487815551b36f479b65c85ac5",
+        "webpSha256": "3b394bf771ef25cd0263425fcc1c37e0723df19da12b2f8443cea5bccdb4087e"
       },
       {
         "w": 800,
-        "avif": "plozz-demo-tv-home-800.73d9896f.avif",
-        "webp": "plozz-demo-tv-home-800.10e2f7e1.webp",
-        "avifSha256": "1046e7479276556eb4f8210f93ecf010f3325f0c8e9897127bf78d9787876621",
-        "webpSha256": "42b5db1233e17246945b8a4fdf34b1818e97a41a288101b2e102e4b34648b355"
+        "avif": "plozz-demo-tv-home-800.74cd24bb.avif",
+        "webp": "plozz-demo-tv-home-800.f5b9f907.webp",
+        "avifSha256": "652948b126b2f6e4f31a728a3c8b1061de4069d33ff4209d27dd08685ea1bc7a",
+        "webpSha256": "af62ede328dd0e2556260e71e4db27f23255541bc1357e244de97de28b916ad0"
       },
       {
         "w": 1152,
-        "avif": "plozz-demo-tv-home-1152.0917fea3.avif",
-        "webp": "plozz-demo-tv-home-1152.374b9265.webp",
-        "avifSha256": "3d1feb39ee69ab256e8a6e0e44437b086b2e37a7f9691740750659f5c0a665cd",
-        "webpSha256": "2860a26ab8a3a9bebfd4ca2af91d5b769f669f38d0e315684009bf0772a8fed8"
+        "avif": "plozz-demo-tv-home-1152.f564dfed.avif",
+        "webp": "plozz-demo-tv-home-1152.d7891c22.webp",
+        "avifSha256": "bc202878ffe269a4953f13dd492bf4ff45a2479df1d44c949e8b7388b07eee72",
+        "webpSha256": "c58669628fa464385123f063526533faa79e90a492b53d68b181f9204573b9bd"
       },
       {
         "w": 1660,
-        "avif": "plozz-demo-tv-home-1660.83af42ff.avif",
-        "webp": "plozz-demo-tv-home-1660.087ab9d4.webp",
-        "avifSha256": "37d79c59cd0d2a03bac819eb77809b6027c252060f302d9d8858f297206db08f",
-        "webpSha256": "f057c0aba025958319f08421e42ce25e65435c92ef114f35f131c7e5978bf4a1"
+        "avif": "plozz-demo-tv-home-1660.84ccd31a.avif",
+        "webp": "plozz-demo-tv-home-1660.3e5f33f3.webp",
+        "avifSha256": "dfff597ab00e731c560d467012c3ed6fbe44e40975e84a6f8d4c35d26402a346",
+        "webpSha256": "cfbecd370b3ae55c370bcfe2e7567337fc83f1e6c4fab4d38e154218dc1ac982"
       },
       {
-        "w": 2296,
-        "avif": "plozz-demo-tv-home-2296.ec8fdd12.avif",
-        "webp": "plozz-demo-tv-home-2296.b24e25f8.webp",
-        "avifSha256": "6b55ad105a3f25f1d3a1dcb33a067142d5f68ba4253d1235968e5fd09f387bf8",
-        "webpSha256": "32fed821aaba42dffcbc12d2c7b74a6a639a0e8cce398d5a3622ee3186155d47"
+        "w": 1920,
+        "avif": "plozz-demo-tv-home-1920.608e1586.avif",
+        "webp": "plozz-demo-tv-home-1920.0de6bac6.webp",
+        "avifSha256": "00dfeb6921c2b72f794ce950c2bc8d99ca021546148565ab14459b3efa0d77f9",
+        "webpSha256": "b6a71a1e260a8ac4ab19a207627ceceefb6a13a6a379e9490d88a33af84069ce"
       }
     ]
   },
   "plozz-demo-tv-library": {
-    "width": 2296,
-    "height": 1292,
+    "width": 1920,
+    "height": 1080,
     "rungs": [
       {
         "w": 360,
-        "avif": "plozz-demo-tv-library-360.9c2ca3e7.avif",
-        "webp": "plozz-demo-tv-library-360.f64f0d6d.webp",
-        "avifSha256": "a1f20aa161b2d673bf993aa3755a568a2da3c166f0cbc881349bc5b1efb01133",
-        "webpSha256": "f08184df3a81af918c86f0d9e6d6a38ca0bbb8060c868d4ac9a495679a16ca48"
+        "avif": "plozz-demo-tv-library-360.d70f95c3.avif",
+        "webp": "plozz-demo-tv-library-360.a27ef2e2.webp",
+        "avifSha256": "06de28b23d7346bf3865f1e5f21b265dc9c6bfd217647a5b3ad39f0565843095",
+        "webpSha256": "f7827055092844222998140171b14112ee764cc5fe2e6a126e7bd93c780f168b"
       },
       {
         "w": 560,
-        "avif": "plozz-demo-tv-library-560.dc6c57ec.avif",
-        "webp": "plozz-demo-tv-library-560.c76bdebc.webp",
-        "avifSha256": "fe6f25f279e2244aae45ac421781184494418ff626f9ab9f4e84bb99fbae20b1",
-        "webpSha256": "6e62525728e85d4cc5f16779b4bd5a85bfc0145992641f0530dc07204ce2f49e"
+        "avif": "plozz-demo-tv-library-560.ab5752c5.avif",
+        "webp": "plozz-demo-tv-library-560.7676f2ed.webp",
+        "avifSha256": "47d8571c3379f6ac2a47e5c2f2b79df5f2359cf8e51f5bcc167a437ccc13a321",
+        "webpSha256": "8bab1829e7ece33be9a8016afdbdc75f8c7c2291165abd08c80d3536abaf92b0"
       },
       {
         "w": 800,
-        "avif": "plozz-demo-tv-library-800.2a3c1d14.avif",
-        "webp": "plozz-demo-tv-library-800.10ae6039.webp",
-        "avifSha256": "8d080d58d127795febc1f08792bf5f0d608ef2e86c8ab50d23e3e0a9bf37897b",
-        "webpSha256": "48c67e92581bbd7146d9bf8aaeb6d06efab03d307e215df871d3fd267f9780dc"
+        "avif": "plozz-demo-tv-library-800.80d2bc52.avif",
+        "webp": "plozz-demo-tv-library-800.77fe759c.webp",
+        "avifSha256": "b7f5d746a3a0c017a6ad1a7610d9cfeaef014160ec12928ed35e113dfd617aed",
+        "webpSha256": "47c48ec8397c30866a7b5b1a9d5507d7a710dc503d0ac4210be816922f0ccf1b"
       },
       {
         "w": 1152,
-        "avif": "plozz-demo-tv-library-1152.bb4e8805.avif",
-        "webp": "plozz-demo-tv-library-1152.af39c325.webp",
-        "avifSha256": "f32c1d0ba65c1e0501c52430041aa059b949b255183f001d2e1a7689d7eba23c",
-        "webpSha256": "b186e62082fff2d910eb49d97bf357d40a5ebd692b88b1ca0044832824396add"
+        "avif": "plozz-demo-tv-library-1152.d50b267c.avif",
+        "webp": "plozz-demo-tv-library-1152.995ed4dd.webp",
+        "avifSha256": "312dc9c7bde9e0f694ebd9913206088c613442fe208ee33d0edfe209500d74c5",
+        "webpSha256": "0d1a85d8ec275dc6f63670e65928b3cff7fdae595852dcad26994ef000de0a99"
       },
       {
         "w": 1660,
-        "avif": "plozz-demo-tv-library-1660.b9da7421.avif",
-        "webp": "plozz-demo-tv-library-1660.07a81c04.webp",
-        "avifSha256": "ec9a79697b07f35b748c14ed0e3a81bfbe8a4a3045d8df0d50a62a62afc7cdd1",
-        "webpSha256": "db028ed7215ab5ef75ebd1d56dbae673873ca221372978cd9f243f763f727bc3"
+        "avif": "plozz-demo-tv-library-1660.ef85816f.avif",
+        "webp": "plozz-demo-tv-library-1660.4d1223ab.webp",
+        "avifSha256": "fd77b901728ade48f685bd6cf1ccb942904eb2f672ed4afd793fa4cb7acf780f",
+        "webpSha256": "2caaf67a59f9246a4935f18f20a9982cc2172577c9044a6485fa10307f0e1a5b"
       },
       {
-        "w": 2296,
-        "avif": "plozz-demo-tv-library-2296.e7911104.avif",
-        "webp": "plozz-demo-tv-library-2296.7d7100a6.webp",
-        "avifSha256": "ae7154addd3cf403fc29e388b32c5afa269a4a174a73bd2f1c45202a1a5c2b05",
-        "webpSha256": "1a57d93139685a17e46de1eac0f6a8e46f50ed9516de37aca776dc7ac0cb9d4a"
+        "w": 1920,
+        "avif": "plozz-demo-tv-library-1920.7708599d.avif",
+        "webp": "plozz-demo-tv-library-1920.bbf641ee.webp",
+        "avifSha256": "4573872e8def50abbef43f550814102c2c0eb9f1086573b086b3f58658107acc",
+        "webpSha256": "2ad0e5f9c7b8c563713726fc64fc6a5057b9adf8cdbf4becb0ef9deedcb4b8c8"
       }
     ]
   },
   "plozz-demo-tv-player": {
-    "width": 2296,
-    "height": 1292,
+    "width": 1920,
+    "height": 1080,
     "rungs": [
       {
         "w": 360,
-        "avif": "plozz-demo-tv-player-360.274b8730.avif",
-        "webp": "plozz-demo-tv-player-360.5434361f.webp",
-        "avifSha256": "d9f36422b54ad1dcbc5d313c218c9dbe938893d5e609eab1f596cadaddd016fb",
-        "webpSha256": "44e5ce1dfe14ecac17a6eb985aadeb03afdf5a8ca6c37453080c2a38f9eeaaf0"
+        "avif": "plozz-demo-tv-player-360.f4a73611.avif",
+        "webp": "plozz-demo-tv-player-360.97c72bff.webp",
+        "avifSha256": "d8dc38162c0659007244fb5df6b825a7136a962e1b44732298a01267dff96237",
+        "webpSha256": "274e401ec3af171ecc6fbeaf5068b172072eef647e80829cec0a3bce22d2baaa"
       },
       {
         "w": 480,
-        "avif": "plozz-demo-tv-player-480.31d41955.avif",
-        "webp": "plozz-demo-tv-player-480.b48bf820.webp",
-        "avifSha256": "bf7851b5046dc98b45b0a4be39d0986144ce4c5ac0ad8234e6f6f943d654188d",
-        "webpSha256": "ec39738db03df0d4fe921e3532e6c98ff93cd4b781c48e4c8e4d3436f3c3cdd8"
+        "avif": "plozz-demo-tv-player-480.b6b4c01b.avif",
+        "webp": "plozz-demo-tv-player-480.348ff919.webp",
+        "avifSha256": "a22929e7519f00213ee4714cd7ad500ffbfce53b065155bddd6f73f5119c8c8c",
+        "webpSha256": "906ab81e32b5ab41138a879c39fc7e60daa4ebaa970198a305001a35d5646324"
       },
       {
         "w": 560,
-        "avif": "plozz-demo-tv-player-560.30f5e056.avif",
-        "webp": "plozz-demo-tv-player-560.6dbf1c76.webp",
-        "avifSha256": "894bc761503ad51e4582505a42652aa605d7866874215226dc0cbf976c61a44e",
-        "webpSha256": "213762333f2700b30029eccd9fc0a82e44c905fccb9066bd5f51293a29051896"
+        "avif": "plozz-demo-tv-player-560.8b6c8fc0.avif",
+        "webp": "plozz-demo-tv-player-560.df258ecc.webp",
+        "avifSha256": "2b467a4503bbf7a33fecf66b9286870214937d2d85fb021d34508bb641b0a8f5",
+        "webpSha256": "f4e39853066277274519cf2e64066bbe87420b3948548dce049f9b27256cefe3"
       },
       {
         "w": 800,
-        "avif": "plozz-demo-tv-player-800.1d563c5f.avif",
-        "webp": "plozz-demo-tv-player-800.9733deac.webp",
-        "avifSha256": "6cf48828f1688acb93b47686dd22b1a9a7004c0c168329ca455d18266a0d3170",
-        "webpSha256": "707efc5a9fae8fafb3201648a4be4bac8ec7d0d5e1d1f367a71ff6a465a47144"
+        "avif": "plozz-demo-tv-player-800.8258a704.avif",
+        "webp": "plozz-demo-tv-player-800.67315524.webp",
+        "avifSha256": "ff37d08c0e448097df846bbe25f085d0fc9f161c1e0ab010258ece2d1fea9137",
+        "webpSha256": "3bf7bac39befbd8d89d9ad293abe3e32f79d8fdb777342b82692b092b96bb1a5"
       },
       {
         "w": 1152,
-        "avif": "plozz-demo-tv-player-1152.bf209a92.avif",
-        "webp": "plozz-demo-tv-player-1152.3f25f06f.webp",
-        "avifSha256": "d35eda61c6e88ed8f03add430152d4c812ad889566cec17ed7e114f313e8ef38",
-        "webpSha256": "0fa18e649e358d549bc50601e0e3bbe9ec20e9f6cec44a0584874861bb9f80ac"
+        "avif": "plozz-demo-tv-player-1152.587daf17.avif",
+        "webp": "plozz-demo-tv-player-1152.2011af80.webp",
+        "avifSha256": "a9146ae28a83909d25515b23c3f83d241fa1580c5384cee4ea7d3fe454393b18",
+        "webpSha256": "60f794cb04a87e8b3b606b813decd4be5f6df67afbeaba394aaf9f3203e1ce59"
       },
       {
         "w": 1300,
-        "avif": "plozz-demo-tv-player-1300.1d5adc41.avif",
-        "webp": "plozz-demo-tv-player-1300.738d809b.webp",
-        "avifSha256": "fb6740800cae3c35c7f9477151350b4f93b39a93e3c95fb93aeb08776e08c763",
-        "webpSha256": "28d54d643c3ce5e713d3f03b7bad9f0253dc9617c00975d24cc365532654f74d"
+        "avif": "plozz-demo-tv-player-1300.6f71f6bc.avif",
+        "webp": "plozz-demo-tv-player-1300.9f033c84.webp",
+        "avifSha256": "0b651a9709298b531516420487ef4f14da90a9b9b6ff189d02deb6d7a8ad14b3",
+        "webpSha256": "7e820c0fb62be6ede1b8b5f8e8c3acd6731ae4a7b9fa1a1199a03c291fdabfdd"
       },
       {
         "w": 1660,
-        "avif": "plozz-demo-tv-player-1660.aa1fc68c.avif",
-        "webp": "plozz-demo-tv-player-1660.121a1f31.webp",
-        "avifSha256": "b7eccffe3443f2c4848a8097e51a8cc2c4ea39397bde64f0b9390ef64f38f111",
-        "webpSha256": "3a6f0d8dc64fc9c261bbe39fa6d1d5cb85739032d6a4bf87d77354598e0413d4"
+        "avif": "plozz-demo-tv-player-1660.72e0d033.avif",
+        "webp": "plozz-demo-tv-player-1660.32e9d8d3.webp",
+        "avifSha256": "528d830582d4493154e34aaa016d737571f279a243a86a769a1862e73013d489",
+        "webpSha256": "494d629ed06e3c6a8c7b154ae93f2607c53f9da94f99b48456970eac06ee4270"
       },
       {
-        "w": 2296,
-        "avif": "plozz-demo-tv-player-2296.f0531277.avif",
-        "webp": "plozz-demo-tv-player-2296.7329e393.webp",
-        "avifSha256": "0703e4192ba90426edb676e15e66150c8451637fa0048a220ad3db5ae570bca5",
-        "webpSha256": "2c2f4573999f22161e26c5a15924a815ce6bb49675104a111c9e401f6e6e00e1"
+        "w": 1920,
+        "avif": "plozz-demo-tv-player-1920.c0a44f63.avif",
+        "webp": "plozz-demo-tv-player-1920.9b387278.webp",
+        "avifSha256": "f7292639aefb9d2f5ea7d106260459eac375f59f3ffab88609a6d0998bfd3f63",
+        "webpSha256": "9c63be97024d6960dd9f18511d75267bf0365fe3f1e351d3e1edcf2701a454d5"
+      }
+    ]
+  },
+  "plozz-demo-tv-resume": {
+    "width": 1920,
+    "height": 1080,
+    "rungs": [
+      {
+        "w": 280,
+        "avif": "plozz-demo-tv-resume-280.454831cf.avif",
+        "webp": "plozz-demo-tv-resume-280.537fb54c.webp",
+        "avifSha256": "9a6b0134df214f4d1f07f4372b6cd11468cb4d002e3db6886ef057fe14d520bd",
+        "webpSha256": "463a25902ce24a72f652c3834b47b8fc6415c1cce47f3b11c9ea124a1ededc42"
+      },
+      {
+        "w": 360,
+        "avif": "plozz-demo-tv-resume-360.d6c7e5c5.avif",
+        "webp": "plozz-demo-tv-resume-360.90a7ee28.webp",
+        "avifSha256": "65e20097c021a7f6ba37c1422708e9a8fb621a98797a8873e221a13d35854629",
+        "webpSha256": "f9cc6292700ac6b9a89adf30faa37dde207b03b766fbca05ffd1389be2fc90c1"
+      },
+      {
+        "w": 440,
+        "avif": "plozz-demo-tv-resume-440.19b67974.avif",
+        "webp": "plozz-demo-tv-resume-440.5a90f367.webp",
+        "avifSha256": "f53addb263b85867ae5e15882894db2c98d7452a002e9c7c4c45b64a4db8aba0",
+        "webpSha256": "5c4d6f4a66bad0f9f40b542c23035033ba6ffa923d823af6acbf1222cc72882d"
+      },
+      {
+        "w": 620,
+        "avif": "plozz-demo-tv-resume-620.0293ea9e.avif",
+        "webp": "plozz-demo-tv-resume-620.317dce70.webp",
+        "avifSha256": "f235f560250b2191a8d0d5351863651a31c98a4a54dfbd3510186c566fdc2d72",
+        "webpSha256": "67893055aa56cff5babfb9ea21436d9b607d96176dde6f63069930169bb42ee4"
+      },
+      {
+        "w": 840,
+        "avif": "plozz-demo-tv-resume-840.d2c965db.avif",
+        "webp": "plozz-demo-tv-resume-840.cd7ba41c.webp",
+        "avifSha256": "664761850a1aae7f9b831d35ec53bf18805d03581cfc8668c36582f69236a45d",
+        "webpSha256": "1c061f730f9428d5fddb12cfb762ecd8d6adf713a3ba60b4c527d841fdfd982a"
+      },
+      {
+        "w": 1240,
+        "avif": "plozz-demo-tv-resume-1240.d735adc9.avif",
+        "webp": "plozz-demo-tv-resume-1240.1ce4f397.webp",
+        "avifSha256": "47c8e789a145995591367925b5859af9721ddefe33b6a2351ba1d53be8ac9546",
+        "webpSha256": "adc7c17311284f1a261ccc3cb687695a1d3c3f10ab6630c3dc4037d2ee0b6e0a"
+      },
+      {
+        "w": 1660,
+        "avif": "plozz-demo-tv-resume-1660.7ce24584.avif",
+        "webp": "plozz-demo-tv-resume-1660.1c493306.webp",
+        "avifSha256": "5957a4a64a328afca4ab084becfbcadbd88532c3cf119d506036d17b385c2294",
+        "webpSha256": "d36e8035d9243936fbb8f4ed3113a46a4995030c761553d857f2e0a8d0b092e3"
+      },
+      {
+        "w": 1920,
+        "avif": "plozz-demo-tv-resume-1920.3ff89a5e.avif",
+        "webp": "plozz-demo-tv-resume-1920.d7e5e2a6.webp",
+        "avifSha256": "f27d5df841d34cf7b3e516ef86a2020b7d7a0ef74d4457eb526adbbd1c816895",
+        "webpSha256": "d2af87a236f638f36b242ef9a407170b5ac5163c42d70c2aa793f7e8deb63d16"
       }
     ]
   },
@@ -383,59 +383,59 @@
     "rungs": [
       {
         "w": 360,
-        "avif": "plozz-demo-tv-subtitles-360.ff1bb38b.avif",
-        "webp": "plozz-demo-tv-subtitles-360.29e97820.webp",
-        "avifSha256": "26d255bced789b50d236b8367cd1efb6367f5c57226f05a90ed6be9fee3dfdec",
-        "webpSha256": "ae2b70114386f026fbd0f694f6030fc7b2a6b46cc11246dbb1d99d2b59cbf1fc"
+        "avif": "plozz-demo-tv-subtitles-360.91420dfa.avif",
+        "webp": "plozz-demo-tv-subtitles-360.33e577b3.webp",
+        "avifSha256": "525e7660be5c087835796ceba1b93616539dbd27615151cf2504314c508dc75e",
+        "webpSha256": "761f1016fd33cc2933802f89ec3e638d57ff7b7d019205b3e8cd110ef5203146"
       },
       {
         "w": 480,
-        "avif": "plozz-demo-tv-subtitles-480.38ee508d.avif",
-        "webp": "plozz-demo-tv-subtitles-480.d1ecb1b1.webp",
-        "avifSha256": "7452a4942873d69f2b2107b92fdacf5b702d7d4084df9f246c8c5a8abf2c31a9",
-        "webpSha256": "9d5459f4710df99989ca45839b2edf7c3b4ae1f7a84e9739646614dbb514e793"
+        "avif": "plozz-demo-tv-subtitles-480.8b1f8cd2.avif",
+        "webp": "plozz-demo-tv-subtitles-480.610baf47.webp",
+        "avifSha256": "036518e46fe8447bd322b80caf2569590fc324a9a433648300312b0399078ea1",
+        "webpSha256": "32e521e8b85694a35d81e9d228da276555b156b9420570b8697a436baec7fc25"
       },
       {
         "w": 560,
-        "avif": "plozz-demo-tv-subtitles-560.f87a8d57.avif",
-        "webp": "plozz-demo-tv-subtitles-560.461c536e.webp",
-        "avifSha256": "e17a952688c28f952e26c7340799ced7f4ba4f825a40f04d1615f1348c3091bb",
-        "webpSha256": "4fc70b56aefef7bb404bcc41800fda67fe9cf3183dd006f82fce10f85e656e58"
+        "avif": "plozz-demo-tv-subtitles-560.12087808.avif",
+        "webp": "plozz-demo-tv-subtitles-560.87528445.webp",
+        "avifSha256": "480cf020c72f4e1c657789cad77b7c2ce3ecc15fb5182413734c9d9de4cf2cd2",
+        "webpSha256": "d392868ff4f009d225a2ad9d72c8122f4237e60636029d5cfadccc07f436854c"
       },
       {
         "w": 700,
-        "avif": "plozz-demo-tv-subtitles-700.6b61d79d.avif",
-        "webp": "plozz-demo-tv-subtitles-700.17c26803.webp",
-        "avifSha256": "b51dd7b12c499dfc2e4b8fca6c371c5d6bc2d5947432202b0482e479eb8cbf48",
-        "webpSha256": "6fccf8681e079a1c571d9bf9977e711e2fe5737692e70966da8b39bbb0e44598"
+        "avif": "plozz-demo-tv-subtitles-700.fae86efb.avif",
+        "webp": "plozz-demo-tv-subtitles-700.65084110.webp",
+        "avifSha256": "5d67b157079fbd47720f58c7e04ca00fd105794a859bb773c2cbd147f360806a",
+        "webpSha256": "8efb93baab372d6503cbef7739ee26f3b8b7c4583b4b488ef7d1b78955edbfe8"
       },
       {
         "w": 800,
-        "avif": "plozz-demo-tv-subtitles-800.9aa0cd07.avif",
-        "webp": "plozz-demo-tv-subtitles-800.3a6a6cbd.webp",
-        "avifSha256": "ac04cce20589bf39111b9f17cb3aacba339afd0354db72e636fece0afc72fecc",
-        "webpSha256": "a9751ce1ceef25edf33b3bdb0fd05d72f6bff854abb6cbba51c9baf9992d159d"
+        "avif": "plozz-demo-tv-subtitles-800.696c913f.avif",
+        "webp": "plozz-demo-tv-subtitles-800.f64b3cce.webp",
+        "avifSha256": "d2fd40b89a138833f0af6eb46c9de4091c4e4b77a19a6b3977959593e4d13138",
+        "webpSha256": "641558b9c0d08c29dc2bb4f30c31e97befe942f45a7ef7ae957d80043834bf58"
       },
       {
         "w": 1080,
-        "avif": "plozz-demo-tv-subtitles-1080.7791c080.avif",
-        "webp": "plozz-demo-tv-subtitles-1080.839ef666.webp",
-        "avifSha256": "49eb4e4323c7b3a0c575c68b9ccd3cc5939f85fca5352b981b71bdbf716c81f0",
-        "webpSha256": "13a88da56b95a1d6f6b00f9e3c134930bf64f7fe136e5227f50311feda869c89"
+        "avif": "plozz-demo-tv-subtitles-1080.b233003f.avif",
+        "webp": "plozz-demo-tv-subtitles-1080.ff2ecfd3.webp",
+        "avifSha256": "fd718d1aefb8b4963b61c0f35f720cfef6f59c7f45487e63f61c2b4f10d39e30",
+        "webpSha256": "b0bf8ea7619d59cc1d3edb62eea62d30df19e47befd11c7dd82cb5f01299078f"
       },
       {
         "w": 1300,
-        "avif": "plozz-demo-tv-subtitles-1300.656a888a.avif",
-        "webp": "plozz-demo-tv-subtitles-1300.053578c8.webp",
-        "avifSha256": "e21bdfff37e1efdafa78e7ee8b7082ea887cb2b38528feddefe1f59ba555225f",
-        "webpSha256": "eeb473fdd239ebec5da2e0a0ca10ac6db1584002e6e9e85f44419402983f3574"
+        "avif": "plozz-demo-tv-subtitles-1300.2c7ca04c.avif",
+        "webp": "plozz-demo-tv-subtitles-1300.3d4d6a74.webp",
+        "avifSha256": "c599308e76d5ebcb5e69457dffd57154d4924d7f7dad255b4563731a0985fe7d",
+        "webpSha256": "e54e8848b7cb8a181a0be7765d5ba7a2280eb861f0f52a20c6fd2fb17d84e04c"
       },
       {
         "w": 1600,
-        "avif": "plozz-demo-tv-subtitles-1600.2c88a6fa.avif",
-        "webp": "plozz-demo-tv-subtitles-1600.3cf87d2d.webp",
-        "avifSha256": "601ca0a663593b650c9a249c69e16352294c5b46f1ea866e33212ad0a8c5ef0c",
-        "webpSha256": "d021d8adc818acee72cfa8024ca1d316d15798bfab2a64d37da99d21fe548558"
+        "avif": "plozz-demo-tv-subtitles-1600.d86b3289.avif",
+        "webp": "plozz-demo-tv-subtitles-1600.3994a2dc.webp",
+        "avifSha256": "8098ab2085005310f7122b4c58dfda9ca3aec98c8a5e00c221bb24f8a59334ab",
+        "webpSha256": "fd4054745f2479e3554a53efc96be08a775649a8a326bd18a04b234ee4604e6c"
       }
     ]
   }

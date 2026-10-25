@@ -31,6 +31,7 @@ import { MEDIA_CREDITS, MEDIA_LICENSE_URLS } from '../data/media-credits';
             <p>{item.creator}</p>
             <p class="material">{item.material}</p>
             <p class="credit-links">
+              {item.project && <><a href={item.project} target="_blank" rel="noopener">Original project and media</a>{' · '}</>}
               <a href={item.source} target="_blank" rel="noopener">Source and rights record</a>
               {' · '}
               <a href={MEDIA_LICENSE_URLS[item.license]} target="_blank" rel="noopener">{item.license}</a>

@@ -95,13 +95,13 @@ const LADDERS = {
  */
 const USAGE = {
   'plozz-demo-tv-home': ['hero', 'marquee'],
-  'plozz-demo-tv-detail': ['hero', 'marquee', 'thumb'],
+  'plozz-demo-tv-resume': ['hero', 'marquee', 'thumb'],
   'plozz-demo-tv-player': ['hero', 'figure', 'marquee'],
   'plozz-demo-tv-library': ['hero', 'marquee'],
   'plozz-demo-tv-subtitles': ['marquee', 'figure'],
   'plozz-demo-ipad-home': ['marquee', 'frame'],
   'plozz-demo-iphone-home': ['marqueePortrait'],
-  'plozz-demo-iphone-detail': ['marqueePortrait', 'frame'],
+  'plozz-demo-iphone-library': ['marqueePortrait', 'frame'],
 };
 
 const args = process.argv.slice(2);

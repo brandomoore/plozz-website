@@ -195,7 +195,7 @@ test('published pages and social artwork stay within the audio editorial scope',
   }
 });
 
-test('screenshots reference only the reviewed original demo library', () => {
+test('screenshots reference only the reviewed capture inventory', () => {
   for (const file of readdirSync(new URL('../../dist/', import.meta.url), { recursive: true }).filter(file => file.endsWith('.html'))) {
     const html = built(file);
     const images = [...html.matchAll(/\/screenshots\/([^"\s,<>]+)/g)].map(match => match[1]);

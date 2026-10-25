@@ -4,7 +4,7 @@ import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
-import { validatePublishedScreenshots } from '../tools/screenshot-provenance.mjs';
+import { validateMasters, validatePublishedScreenshots } from '../tools/screenshot-provenance.mjs';
 
 const hash = value => createHash('sha256').update(value).digest('hex');
 test('publication rejects unreviewed captures, changed derivatives and leftover images', t => {
@@ -48,4 +48,51 @@ test('publication rejects unreviewed captures, changed derivatives and leftover 
   save('screenshots-src/provenance.json', JSON.stringify(record));
   save('screenshots-src/plozz-demo-tv-home.png', Buffer.concat([png, Buffer.from('changed')]));
   assert.throws(() => validatePublishedScreenshots(root), /Unreviewed screenshot bytes/);
+});
+
+test('licensed capture imports require reviewed, hashed credits for every referenced title', t => {
+  const root = mkdtempSync(join(tmpdir(), 'plozz-licensed-provenance-'));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  const source = join(root, 'reviewed-import');
+  mkdirSync(source);
+  const save = (path, value) => writeFileSync(join(source, path), value);
+  const png = Buffer.alloc(24);
+  Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]).copy(png);
+  png.writeUInt32BE(1920, 16); png.writeUInt32BE(1080, 20);
+  save('plozz-demo-tv-home.png', png);
+  save('capture-bootstrap.patch', 'fixture bootstrap');
+  const media = {
+    id: 'test-film', title: 'Test film', reviewed: true, credit: 'Test creator',
+    rights: 'CC BY 4.0', rightsStatement: 'Test license evidence', changes: 'Cropped',
+    sources: ['https://example.com/source'],
+    poster: { sha256: 'a'.repeat(64), source_sha256: 'b'.repeat(64) },
+    backdrop: { sha256: 'c'.repeat(64), source_sha256: 'd'.repeat(64) },
+  };
+  const record = {
+    schemaVersion: 2, mediaOrigin: 'reviewed-licensed', onlineMetadata: false,
+    appRevision: 'a'.repeat(40), captureBootstrapSha256: hash('fixture bootstrap'),
+    capturedAt: '2026-10-25T00:00:00Z',
+    screenshots: [{ name: 'plozz-demo-tv-home', platform: 'tvOS', method: 'simctl-framebuffer',
+      reviewed: true, request: 'home', width: 1920, height: 1080,
+      sha256: hash(png), mediaIds: ['test-film'] }],
+  };
+  const saveEvidence = () => {
+    const bytes = JSON.stringify({ schemaVersion: 1, records: [media] });
+    save('media-credits.json', bytes);
+    record.mediaInventorySha256 = hash(bytes);
+    save('provenance.json', JSON.stringify(record));
+  };
+  saveEvidence();
+  assert.doesNotThrow(() => validateMasters(root, source));
+  media.reviewed = false; saveEvidence();
+  assert.throws(() => validateMasters(root, source), /requires rights review/);
+  media.reviewed = true; media.rights = 'CC BY-NC-ND 4.0'; saveEvidence();
+  assert.throws(() => validateMasters(root, source), /Unapproved rights category/);
+  media.rights = 'CC BY 4.0'; record.screenshots[0].mediaIds = ['unreviewed-title']; saveEvidence();
+  assert.throws(() => validateMasters(root, source), /Uncredited screenshot media/);
+  record.screenshots[0].mediaIds = ['test-film']; saveEvidence();
+  save('media-credits.json', '{}');
+  assert.throws(() => validateMasters(root, source), /Media inventory changed/);
+  saveEvidence(); save('capture-bootstrap.patch', 'changed');
+  assert.throws(() => validateMasters(root, source), /Capture bootstrap changed/);
 });

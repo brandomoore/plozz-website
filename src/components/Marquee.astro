@@ -20,23 +20,23 @@ import Shot from './Shot.astro';
 import { MARQUEE, MARQUEE_PORTRAIT } from '../data/imageSizes';
 
 /** The tall iPhone tiles paint about a quarter as wide as the landscape ones. */
-const PORTRAIT = new Set(['plozz-demo-iphone-home', 'plozz-demo-iphone-detail']);
+const PORTRAIT = new Set(['plozz-demo-iphone-home', 'plozz-demo-iphone-library']);
 const sizesFor = (name: string) => name === 'plozz-demo-ipad-home'
   ? '(max-width: 908px) 150px, (max-width: 1363px) 16.5vw, 225px'
   : (PORTRAIT.has(name) ? MARQUEE_PORTRAIT : MARQUEE);
 
 const rowOne = [
-  { name: 'plozz-demo-tv-home', alt: 'Original demo films in Plozz on Apple TV' },
-  { name: 'plozz-demo-ipad-home', alt: 'Original demo library on iPad' },
-  { name: 'plozz-demo-tv-library', alt: 'Original demo films in the Apple TV library' },
-  { name: 'plozz-demo-iphone-home', alt: 'Original demo library on iPhone' },
+  { name: 'plozz-demo-tv-home', alt: 'Licensed film artwork in Plozz on Apple TV' },
+  { name: 'plozz-demo-ipad-home', alt: 'Sol Levante and Continue Watching on iPad' },
+  { name: 'plozz-demo-tv-library', alt: 'A populated film library on Apple TV' },
+  { name: 'plozz-demo-iphone-home', alt: 'Sol Levante and Continue Watching on iPhone' },
 ];
 
 const rowTwo = [
-  { name: 'plozz-demo-tv-subtitles', alt: 'Subtitle styling over original demo footage' },
-  { name: 'plozz-demo-iphone-detail', alt: 'An original demo film on iPhone' },
-  { name: 'plozz-demo-tv-detail', alt: 'An original demo film on Apple TV' },
-  { name: 'plozz-demo-tv-player', alt: 'Playback controls over original demo footage on Apple TV' },
+  { name: 'plozz-demo-tv-subtitles', alt: 'Subtitle styling during Wing It!' },
+  { name: 'plozz-demo-iphone-library', alt: 'Licensed film artwork in the iPhone library' },
+  { name: 'plozz-demo-tv-resume', alt: 'Several films in Continue Watching on Apple TV' },
+  { name: 'plozz-demo-tv-player', alt: 'Playback controls during Wing It! on Apple TV' },
 ];
 ---
 

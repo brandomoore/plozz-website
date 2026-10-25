@@ -2,6 +2,7 @@ export interface MediaCredit {
   title: string;
   creator: string;
   source: string;
+  project?: string;
   license: 'CC BY 4.0' | 'CC BY 3.0' | 'CC0 1.0' | 'Public-domain artwork' | 'Public-domain archive';
   material: string;
 }
@@ -9,6 +10,7 @@ export interface MediaCredit {
 export const MEDIA_CREDITS: readonly MediaCredit[] = [
   {
     title: 'Sol Levante (2020)',
+    project: 'https://s3.amazonaws.com/download.opencontent.netflix.com/index.html?prefix=SolLevante/',
     creator: 'Netflix / Production I.G.',
     source: 'https://s3.amazonaws.com/download.opencontent.netflix.com/SolLevante/creative-commons-attribution-4-intl-public-license.txt',
     license: 'CC BY 4.0',
@@ -16,6 +18,7 @@ export const MEDIA_CREDITS: readonly MediaCredit[] = [
   },
   {
     title: 'Meridian (2016)',
+    project: 'https://s3.amazonaws.com/download.opencontent.netflix.com/index.html?prefix=Meridian/',
     creator: '© Netflix Inc.',
     source: 'https://s3.amazonaws.com/download.opencontent.netflix.com/Meridian/creative-commons-attribution-4-intl-public-license.txt',
     license: 'CC BY 4.0',
@@ -23,6 +26,7 @@ export const MEDIA_CREDITS: readonly MediaCredit[] = [
   },
   {
     title: 'Nocturne (2018)',
+    project: 'https://s3.amazonaws.com/download.opencontent.netflix.com/index.html?prefix=Nocturne/',
     creator: '© Netflix Inc.',
     source: 'https://s3.amazonaws.com/download.opencontent.netflix.com/Nocturne/creative-commons-attribution-4-intl-public-license.txt',
     license: 'CC BY 4.0',
@@ -30,6 +34,7 @@ export const MEDIA_CREDITS: readonly MediaCredit[] = [
   },
   {
     title: 'Sparks (2017)',
+    project: 'https://s3.amazonaws.com/download.opencontent.netflix.com/index.html?prefix=sparks/',
     creator: '© Netflix Inc.',
     source: 'https://s3.amazonaws.com/download.opencontent.netflix.com/sparks/creative-commons-attribution-4-intl-public-license.txt',
     license: 'CC BY 4.0',

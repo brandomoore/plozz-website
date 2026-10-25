@@ -2,26 +2,17 @@ diff --git a/Sources/AppShell/HomeTab.swift b/Sources/AppShell/HomeTab.swift
 index 13966fa2c..6502cfe57 100644
 --- a/Sources/AppShell/HomeTab.swift
 +++ b/Sources/AppShell/HomeTab.swift
-@@ -786,8 +786,10 @@ struct HomeTab: View {
-         private func perform() async {
-             guard isActive else { return }
-             guard let request = director.request else { return }
+@@ -788,0 +789,3 @@ struct HomeTab: View {
 +            let outcome = await reach(request)
 +            guard !Task.isCancelled, director.request == request else { return }
 +            director.finish(outcome)
-             director.request = nil
+@@ -790 +792,0 @@ struct HomeTab: View {
 -            director.finish(await reach(request))
-         }
- 
-         /// Reaches the requested screen and answers with what the capture script
 diff --git a/Sources/AppShell/ScreenshotSeed.swift b/Sources/AppShell/ScreenshotSeed.swift
-index 65a176bb9..c694f3968 100644
+index 65a176bb9..a6a7a7ba7 100644
 --- a/Sources/AppShell/ScreenshotSeed.swift
 +++ b/Sources/AppShell/ScreenshotSeed.swift
-@@ -50,6 +50,32 @@ enum ScreenshotSeed {
- 
-         let environment = ProcessInfo.processInfo.environment
-         #if targetEnvironment(simulator)
+@@ -52,0 +53,24 @@ enum ScreenshotSeed {
 +        if let address = environment["PLOZZ_SHOTS_CATALOG"],
 +           let url = URL(string: address), url.host == "127.0.0.1",
 +           url.scheme == "http" {
@@ -46,35 +37,84 @@ index 65a176bb9..c694f3968 100644
 +            appState.profileSettings.subtitleBehaviorModel.settings.subtitleMode = .all
 +            return
 +        }
-+        #endif
-+        #if targetEnvironment(simulator)
-         if environment["PLOZZ_SHOTS_SETTINGS"] == "1" {
-             FeatureIntroductionStore().markCompleted(.homeLayout)
-             if !appState.profilesModel.firstRunProfileSetupComplete {
 diff --git a/Sources/AppShelliOS/PlozziOSHomeView.swift b/Sources/AppShelliOS/PlozziOSHomeView.swift
-index a93909932..55ad5292b 100644
+index a93909932..05849793d 100644
 --- a/Sources/AppShelliOS/PlozziOSHomeView.swift
 +++ b/Sources/AppShelliOS/PlozziOSHomeView.swift
-@@ -3046,8 +3046,10 @@ struct PlozziOSScreenshotRouter: View {
- 
-     private func perform() async {
-         guard let request = director.request else { return }
+@@ -3048,0 +3049,3 @@ struct PlozziOSScreenshotRouter: View {
 +        let outcome = await reach(request)
 +        guard !Task.isCancelled, director.request == request else { return }
 +        director.finish(outcome)
-         director.request = nil
+@@ -3050 +3052,0 @@ struct PlozziOSScreenshotRouter: View {
 -        director.finish(await reach(request))
-     }
- 
-     /// Reaches the requested screen and answers with what the capture script
+@@ -3088 +3090 @@ struct PlozziOSScreenshotRouter: View {
+-        case let .play(title, seconds, pause):
++        case let .play(title, seconds, pause, panel):
+@@ -3095,0 +3098 @@ struct PlozziOSScreenshotRouter: View {
++            PlozziOSScreenshotSeed.pendingPlayerPanel = panel
+@@ -3097,0 +3101,19 @@ struct PlozziOSScreenshotRouter: View {
++        case let .download(title):
++            guard let item = await find(title),
++                  let provider = appModel.provider(for: item) else { return notFound }
++            do {
++                let queued = try await appModel.downloads.enqueue(item: item, provider: provider, quality: .original)
++                for _ in 0..<360 {
++                    try Task.checkCancellation()
++                    if let current = appModel.downloads.records.first(where: { $0.identityKey == queued.identityKey }) {
++                        if current.status == .completed { return "ok" }
++                        if current.status == .failed { return "downloadFailed" }
++                    }
++                    try await Task.sleep(for: .milliseconds(250))
++                }
++                return "downloadTimeout"
++            } catch {
++                PlozzLog.boot("Screenshot download request failed")
++                return "downloadFailed"
++            }
++
+diff --git a/Sources/AppShelliOS/PlozziOSPlayerControlsOverlay.swift b/Sources/AppShelliOS/PlozziOSPlayerControlsOverlay.swift
+index 6e82867cc..a5f189e4b 100644
+--- a/Sources/AppShelliOS/PlozziOSPlayerControlsOverlay.swift
++++ b/Sources/AppShelliOS/PlozziOSPlayerControlsOverlay.swift
+@@ -3,0 +4 @@ import CoreModels
++import CoreNetworking
+@@ -227,0 +229 @@ struct PlozziOSPlayerControlsOverlay: View {
++        .task { await presentCapturePanelIfRequested() }
+@@ -297,0 +300,17 @@ struct PlozziOSPlayerControlsOverlay: View {
++    @MainActor
++    private func presentCapturePanelIfRequested() async {
++        #if DEBUG && targetEnvironment(simulator)
++        guard PlozziOSScreenshotSeed.holdsPlayerControls,
++              let name = PlozziOSScreenshotSeed.pendingPlayerPanel,
++              let panel = PlozziOSPlayerSheet(rawValue: name) else { return }
++        PlozziOSScreenshotSeed.pendingPlayerPanel = nil
++        do {
++            try await Task.sleep(for: .seconds(3))
++            presentedSheet = panel
++            cancelAutoHide()
++        } catch {
++            PlozzLog.boot("Screenshot player panel request cancelled")
++        }
++        #endif
++    }
++
 diff --git a/Sources/AppShelliOS/PlozziOSScreenshotSeed.swift b/Sources/AppShelliOS/PlozziOSScreenshotSeed.swift
-index 59aaf8d05..040af333e 100644
+index 59aaf8d05..8ecf79b3d 100644
 --- a/Sources/AppShelliOS/PlozziOSScreenshotSeed.swift
 +++ b/Sources/AppShelliOS/PlozziOSScreenshotSeed.swift
-@@ -289,12 +289,22 @@ enum PlozziOSScreenshotSeed {
-         let port = environment["PLOZZ_SHOTS_NFS_PORT"].flatMap(Int.init)
-         let name = environment["PLOZZ_SHOTS_NFS_NAME"] ?? ""
- 
+@@ -186 +186,2 @@ final class PlozziOSScreenshotDirector {
+-        case play(title: String, seconds: Double, pause: Bool)
++        case play(title: String, seconds: Double, pause: Bool, panel: String?)
++        case download(title: String)
+@@ -228 +229,2 @@ final class PlozziOSScreenshotDirector {
+-                pause: query("pause") == "1"
++                pause: query("pause") == "1",
++                panel: query("panel")
+@@ -229,0 +232,3 @@ final class PlozziOSScreenshotDirector {
++        case "download":
++            guard let title = query("title") else { return false }
++            request = .download(title: title)
+@@ -292,6 +297,20 @@ enum PlozziOSScreenshotSeed {
 -        guard appModel.addNFSShare(
 -            host: host,
 -            port: port,
@@ -82,6 +122,7 @@ index 59aaf8d05..040af333e 100644
 -            displayName: name
 -        ) else { return }
 +        let added: Bool
++        #if targetEnvironment(simulator)
 +        if let address = environment["PLOZZ_SHOTS_CATALOG"],
 +           let url = URL(string: address), url.host == "127.0.0.1",
 +           url.scheme == "http" {
@@ -96,7 +137,11 @@ index 59aaf8d05..040af333e 100644
 +        } else {
 +            added = appModel.addNFSShare(host: host, port: port, exportPath: export, displayName: name)
 +        }
++        #else
++        added = appModel.addNFSShare(host: host, port: port, exportPath: export, displayName: name)
++        #endif
 +        guard added else { return }
- 
-         // The library-selection step is scheduled through a `Task.yield`, so it is
-         // not on screen the instant the share lands. Wait for it (or for setup to
+@@ -353,0 +373,3 @@ enum PlozziOSScreenshotSeed {
++    @MainActor
++    static var pendingPlayerPanel: String?
++
