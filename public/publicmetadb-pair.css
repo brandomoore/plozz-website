@@ -1,0 +1,20 @@
+:root { color-scheme: dark; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #08080a; color: #f5f5f7; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 48px 24px; min-height: 100svh; display: grid; place-items: center; }
+main { width: 100%; max-width: 440px; }
+h1 { font-size: clamp(26px, 6vw, 34px); line-height: 1.15; letter-spacing: -.04em; margin: 24px 0 12px; }
+p { color: #b7b7be; line-height: 1.55; }
+form { margin-top: 32px; }
+label { display: block; margin-bottom: 10px; font-size: 15px; font-weight: 600; }
+input, button { width: 100%; min-height: 52px; border-radius: 12px; font: inherit; }
+input { border: 1px solid #44444a; padding: 14px 16px; background: #151518; color: #f5f5f7; }
+button { border: 0; margin-top: 20px; padding: 14px; background: #f5f5f7; color: #08080a; font-weight: 650; cursor: pointer; }
+button:disabled { opacity: .5; cursor: wait; }
+.secondary { background: transparent; color: #f5f5f7; border: 1px solid #44444a; font-weight: 500; }
+a { color: #f5f5f7; text-underline-offset: 4px; }
+a:focus-visible, input:focus-visible, button:focus-visible { outline: 3px solid #8acbff; outline-offset: 4px; }
+.code, #code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 30px; letter-spacing: .12em; }
+.code { font-size: clamp(30px, 9vw, 46px); color: #f5f5f7; margin-bottom: 24px; }
+.note { font-size: 13px; }
+#message { min-height: 24px; margin-top: 24px; }
+[hidden] { display: none !important; }

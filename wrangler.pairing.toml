@@ -1,0 +1,14 @@
+name = "plozz-publicmetadb-pairing"
+account_id = "471672cb7947a45f5e43023a1f02d2f5"
+main = "worker/publicmetadb-state.js"
+compatibility_date = "2026-08-18"
+workers_dev = false
+preview_urls = false
+
+[[durable_objects.bindings]]
+name = "PUBLICMETADB_PAIRING"
+class_name = "PublicMetaDBPairing"
+
+[[migrations]]
+tag = "publicmetadb-pairing-v1"
+new_sqlite_classes = ["PublicMetaDBPairing"]

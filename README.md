@@ -86,6 +86,52 @@ Do not reactivate the Pages domain or change DNS to resolve a stale Worker.
 
 ## Structure
 
+### PublicMetaDB browser pairing
+
+`/publicmetadb` lets a user paste their own API key from any modern browser.
+`public/publicmetadb-pair.js` encrypts it for the requesting app before sending
+it to `/api/publicmetadb/pairing`. The relay never receives the plaintext key.
+The website serves the encryption code and is still a trusted party.
+No history, playback consent or PublicMetaDB account creation is performed here.
+
+The non-public `plozz-publicmetadb-pairing` Worker owns the
+`PUBLICMETADB_PAIRING` Durable Object and its `publicmetadb-pairing-v1` SQLite
+migration. Both initial provisioning and website activation require explicit
+production deployment approval. The separate state owner is deliberate:
+`wrangler versions upload` cannot apply a new Durable Object migration, and the
+website's version-only publishing must not be replaced with a route-synchronizing
+deploy. The state Worker has no domains, routes, workers.dev or preview URLs.
+
+After approval, provision only the new state Worker with
+`wrangler deploy --config wrangler.pairing.toml`, then use the website's existing
+inactive version upload, binding inspection, and explicit activation procedure.
+Retain the previous website version as rollback; it does not need the new state
+binding. Do not delete the state namespace to roll back the website.
+Keep `AUTH_KV`, existing secrets, and the separate pairing-links Worker unchanged.
+A missing binding returns 503; do not claim pairing is live before the website
+version is activated. Legacy Pages previews do not host this new API.
+
+Sessions expire after ten minutes. Eight-character codes locate only public
+keys and encrypted envelopes; a separate random 256-bit app secret authorizes
+redemption/cancellation. One Durable Object per code serializes consumption,
+submission and revocation. Alarms delete temporary state, and every operation
+also checks expiry. Per-client-IP hashed rate objects bound requests and creation;
+raw IPs, API keys and app secrets are not stored or logged by this handler.
+Body limits, no-store responses, same-origin browser requests, CSP, and no
+third-party scripts keep the key-entry surface narrow.
+
+Protocol v1 uses P-256 ECDH, HKDF-SHA256 and AES-256-GCM. Public keys use X9.63,
+all binary values use canonical unpadded base64url, HKDF salt is the code,
+info is `plozz-publicmetadb-pairing-v1`, and GCM AAD is that info plus `:` and
+the code. The envelope combines a 12-byte nonce, 63-byte ciphertext and 16-byte
+tag. QR fragments pin the app public key; manually entered codes rely on HTTPS.
+The browser clears the field on submission and navigation, uses no persistent
+storage, and does not automatically retry a possibly accepted handoff.
+
+`npm test` includes synthetic browser crypto, routing, atomic-replay,
+cancellation, expiry, malformed-input and rate-limit checks. These are not
+real-account acceptance or evidence of production activation.
+
 ```
 src/pages/          One .astro file per route (index, features, formats,
                     jellyfin, plex, emby, silo, network-shares,

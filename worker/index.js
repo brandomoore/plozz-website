@@ -4,6 +4,8 @@ import * as anilistCallback from "../functions/auth/anilist/callback.js";
 import * as malCallback from "../functions/auth/mal/callback.js";
 import * as store from "../functions/api/store.js";
 import * as redeem from "../functions/api/redeem.js";
+import * as publicmetadb from "../functions/publicmetadb.js";
+import { handlePairing } from "../functions/_lib/publicmetadb-pairing.js";
 
 const ROUTES = {
   "/anilist": anilist,
@@ -12,6 +14,7 @@ const ROUTES = {
   "/auth/mal/callback": malCallback,
   "/api/store": store,
   "/api/redeem": redeem,
+  "/publicmetadb": publicmetadb,
 };
 
 const HANDLERS = {
@@ -24,6 +27,9 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const path = url.pathname.replace(/\/+$/, "") || "/";
+    if (path === "/api/publicmetadb/pairing" || path.startsWith("/api/publicmetadb/pairing/")) {
+      return handlePairing(request, env);
+    }
     const route = ROUTES[path];
     if (route) {
       const handler = route[HANDLERS[request.method]];
