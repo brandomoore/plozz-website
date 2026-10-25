@@ -177,6 +177,12 @@ the site and social card share that file.
 
 ## Screenshots
 
+Public credits for the real-film demonstration imagery used in the App Store
+assets live at [`/media-credits`](https://plozz.app/media-credits/), backed by
+`src/data/media-credits.ts`. Preserve creator credit, source and license links,
+and the extraction/cropping notices when updating that selection. These are
+artwork-source credits, not claims of service integration or endorsement.
+
 Pristine masters live in [`screenshots-src/`](screenshots-src/) and are **not**
 shipped as-is — Astro serves the re-encoded ladders under `public/screenshots/`.
 Only reviewed real-app captures of the original demo library may be published.

@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteScripts from '../components/SiteScripts.astro';
+import { MEDIA_CREDITS, MEDIA_LICENSE_URLS } from '../data/media-credits';
+---
+
+<Layout
+  title="Screenshot media credits — Plozz"
+  description="Creator credits, source records and licenses for the demonstration media shown in Plozz screenshots."
+>
+  <SiteHeader />
+  <main class="credits-page">
+    <div class="container">
+      <h1>Screenshot media credits</h1>
+      <p class="intro">
+        Plozz screenshots use demonstration media from the sources below.
+        Images have been extracted where indicated, cropped and resized.
+        Some source imagery has been converted for standard displays.
+      </p>
+      <p class="intro">
+        These credits identify media sources, not service integrations or
+        endorsements. Plozz does not include these films or provide a channel catalog.
+      </p>
+
+      <ul class="credits-list">
+        {MEDIA_CREDITS.map((item) => (
+          <li>
+            <h2>{item.title}</h2>
+            <p>{item.creator}</p>
+            <p class="material">{item.material}</p>
+            <p class="credit-links">
+              <a href={item.source} target="_blank" rel="noopener">Source and rights record</a>
+              {' · '}
+              <a href={MEDIA_LICENSE_URLS[item.license]} target="_blank" rel="noopener">{item.license}</a>
+            </p>
+          </li>
+        ))}
+      </ul>
+
+      <p class="notes">
+        Public-domain descriptions follow the linked source records. Archive
+        editions may contain surviving material rather than complete original
+        releases. Any demonstration scene-description subtitles are original
+        descriptions prepared for the screenshots, not studio dialogue or translations.
+      </p>
+    </div>
+  </main>
+  <SiteFooter />
+  <SiteScripts />
+</Layout>
+
+<style>
+  .credits-page { padding: 72px 0 88px; }
+  .credits-page .container { max-width: 880px; }
+  h1 { font-size: clamp(2rem, 5vw, 3.1rem); margin-bottom: 24px; }
+  .intro { color: var(--text-muted); margin-bottom: 16px; max-width: 760px; }
+  .credits-list { list-style: none; margin: 42px 0 32px; padding: 0; }
+  .credits-list li { padding: 24px 0; border-top: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; margin-bottom: 8px; }
+  .credits-list p { color: var(--text-muted); margin: 5px 0; }
+  .credits-list .material, .notes { color: var(--text-dim); font-size: .95rem; }
+  .credit-links a { color: var(--brand); text-underline-offset: 3px; }
+  .credit-links a:hover { text-decoration: underline; }
+  .notes { max-width: 760px; }
+</style>

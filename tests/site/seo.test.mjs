@@ -40,6 +40,25 @@ test('privacy paragraphs retain spaces around inline links and emphasis', () => 
   }
 });
 
+test('screenshot media credits are public, linked and explicit about adaptations', () => {
+  const html = built('media-credits/index.html');
+  const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];
+  const content = plain(main);
+  for (const text of [
+    'Sol Levante (2020)', 'Meridian (2016)', 'Nocturne (2018)', 'Sparks (2017)',
+    'Netflix / Production I.G.', 'Nina Paley', 'Cândido de Faria',
+    'cropped and resized', 'not service integrations or endorsements',
+    'CC BY 4.0', 'CC BY 3.0', 'CC0 1.0',
+  ]) {
+    assert(content.includes(text), `Missing media attribution: ${text}`);
+  }
+  assert.equal([...main.matchAll(/<h2\b/g)].length, 20);
+  assert.doesNotMatch(content, /Caminandes|guaranteed clearance|copyright-free worldwide/i);
+  for (const file of readdirSync(new URL('../../dist/', import.meta.url), { recursive: true }).filter(file => file.endsWith('.html'))) {
+    assert.match(built(file).match(/<footer\b[\s\S]*?<\/footer>/)[0], /href="\/media-credits"/, file);
+  }
+});
+
 test('every page uses the current image revision for Open Graph and Twitter', () => {
   const png = readFileSync(new URL('../../public/og-image.png', import.meta.url));
   const revision = createHash('sha256').update(png).digest('hex').slice(0, 16);

@@ -164,8 +164,12 @@ Maintain WCAG AA contrast for body text and controls, semantic structure and ima
 Publish real Plozz captures only. Every visible film frame, poster, backdrop,
 avatar, description and subtitle must have recorded reuse permission. A free
 app, a purchased film or metadata-provider access is not permission to reproduce
-someone else's promotional art. Prefer the original procedural demo library in
-`tools/build-demo-library.py`; keep online artwork/metadata disabled for captures.
+someone else's promotional art. Use a varied selection of real films and authentic
+artwork with documented public-domain status or a license permitting the intended
+promotional use and cropping. Prefer beautiful, readable imagery over filling a
+quota. Match each backdrop to its film and use full-bleed covers, not black-padded
+scans. Procedural fixtures may remain useful for testing but are not the marketing
+baseline. Keep online artwork/metadata disabled for captures.
 Do not retouch a screenshot to disguise its media, labels or app behavior.
 Keep source and capture hashes with the approved screenshot inventory. New or
 changed screenshots must fail publication until their provenance is recorded.
