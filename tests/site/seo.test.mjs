@@ -26,6 +26,20 @@ const metadata = (html, key) => {
 const structured = (html) => [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
   .map(([, json]) => JSON.parse(json));
 
+test('privacy paragraphs retain spaces around inline links and emphasis', () => {
+  const content = plain(built('privacy/index.html').match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1]);
+  for (const phrase of [
+    'feature that is turned off by default.',
+    'also tap “Send to Developer” on the Recent Activity screen',
+    'error-monitoring provider, Sentry (Functional Software, Inc.)',
+    'our public GitHub repository',
+    'handled under GitHub’s privacy policy. You can also email us at',
+    'email us at feedback@plozz.app; we only receive',
+  ]) {
+    assert(content.includes(phrase), `Missing whitespace in rendered privacy text: ${phrase}`);
+  }
+});
+
 test('every page uses the current image revision for Open Graph and Twitter', () => {
   const png = readFileSync(new URL('../../public/og-image.png', import.meta.url));
   const revision = createHash('sha256').update(png).digest('hex').slice(0, 16);
