@@ -42,7 +42,7 @@ test('privacy paragraphs retain spaces around inline links and emphasis', () => 
   }
 });
 
-test('sync and privacy copy describes current exports without hiding older beta behavior', () => {
+test('privacy copy describes current diagnostics and sync boundaries', () => {
   const privacy = built('privacy/index.html');
   const content = plain(privacy.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1]);
   for (const phrase of [
@@ -50,7 +50,7 @@ test('sync and privacy copy describes current exports without hiding older beta 
     'Apple TV doesn’t use that path',
     'fresh labels instead of saved account or media identifiers',
     'Your message stays attached to the report and is sent as written',
-    'Older beta builds may have different sharing defaults and send raw logs',
+    'This policy describes the current version of Plozz',
     'configured to expire after ten minutes',
     'temporarily count requests by IP address',
     'PublicMetaDB browser pairing encrypts your key before sending it',
@@ -61,8 +61,11 @@ test('sync and privacy copy describes current exports without hiding older beta 
     'It doesn’t delete reports already sent',
   ]) assert(content.includes(phrase), `Missing privacy boundary: ${phrase}`);
   assert.match(privacy, /href="https:\/\/docs\.plozz\.app\/parental-controls\/"/);
-  assert.match(privacy, /id="build-differences"/);
-  assert.match(built('features/index.html'), /href="\/privacy\/#build-differences"/);
+  assert.match(privacy, /id="diagnostics"/);
+  assert.match(built('features/index.html'), /href="\/privacy\/#diagnostics"/);
+  for (const html of [privacy, built('features/index.html')]) {
+    assert.doesNotMatch(html, /older beta|older TestFlight|build-differences/i);
+  }
   for (const html of [home, built('features/index.html'), privacy]) {
     const text = plain(html);
     assert(text.includes('iCloud Keychain'));
