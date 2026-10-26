@@ -13,7 +13,7 @@ const LAST_UPDATED = 'October 26, 2026';
 
 <Layout
   title="Privacy Policy — Plozz"
-  description="How Plozz handles server logins, iCloud sync, approved device setup, connected services and optional crash reports. No Plozz account or usage analytics."
+  description="What Plozz shares, why, and how you control it. Plain-language information about optional diagnostics, connected services and iCloud."
 >
   <main class="legal">
     <div class="container">
@@ -26,182 +26,143 @@ const LAST_UPDATED = 'October 26, 2026';
       <p class="legal-updated">Last updated: {LAST_UPDATED}</p>
 
       <p>
-        Plozz is a media player for Apple TV, iPhone and iPad. It connects to
-        Jellyfin, Plex, Emby, Silo and network shares that you choose.
+        Plozz plays media from sources you choose. There’s no Plozz account
+        or usage analytics. You decide whether to share diagnostics.
       </p>
 
-      <h2>What we collect</h2>
+      <h2>Open source</h2>
       <p>
-        Plozz has no usage analytics and no Plozz account. Crash reporting is
-        optional and requires your sharing choice. Playing media, fetching metadata,
-        syncing settings and using connected services still require network
-        requests. Those connections are described below; “no analytics”
-        doesn’t mean the app never communicates with another service.
+        Our <a href={GITHUB_URL} target="_blank" rel="noopener">app code</a> and{' '}
+        <a href="https://github.com/brandomoore/plozz-website" target="_blank" rel="noopener">website code</a>{' '}
+        are public. You can inspect how Plozz handles data and connects to
+        services. This doesn’t make your media or private reports public.
       </p>
 
-      <h2>Crash reports &amp; diagnostics (optional)</h2>
+      <h2>Optional diagnostics</h2>
       <p>
         Current builds ask you to choose{' '}
         <strong>Share Diagnostics</strong> or <strong>Don’t Share</strong>.
-        Either choice lets you continue setup. Reporting stays off until you
-        choose to share, and you can change the choice in Help &amp; Diagnostics.
-        Consent belongs to this device; it is not synced or transferred.
+        Either choice lets you use the app. Sharing stays off until you agree.
+        You can change this device’s choice in Help &amp; Diagnostics.
       </p>
       <p>
-        When enabled, automatic reports can include crash stacks, technical
-        errors, app and device information, fixed screen categories, and
-        performance measurements. Plozz filters account identity, request
-        information and arbitrary log text from these events before submission.
-        This does not make a promise of complete anonymity: the receiving
-        service also processes the network connection used to send the report.
+        Reports can include errors, app and device details, performance
+        measurements and which part of the app was open. Plozz filters account
+        details, network request information and raw activity messages from
+        automatic reports before sending them.
       </p>
       <p>
-        While crash reporting is turned on, you can also tap{' '}
-        <strong>“Send to Developer”</strong> in Help &amp; Diagnostics or Recent
-        Activity to submit technical evidence and an optional message. Structured
-        reports contain activity categories and severity, relative timings,
-        and filtered playback, connection, library and source records—not the
-        original recent-activity messages. Record identifiers are replaced with
-        fresh labels for that report. Your optional message is sent as written;
-        don’t include passwords or other information you don’t want to share.
-        Nothing is sent by this action unless you press the button.
+        With sharing enabled, <strong>“Send to Developer”</strong> sends filtered
+        technical details and an optional message only when you press it.
+        These reports use fresh labels instead of saved account or media
+        identifiers. Your message stays attached to the report and is sent
+        as written. Don’t include passwords or other information you don’t
+        want to share.
+      </p>
+      <p>
+        <a href={SENTRY_PRIVACY_URL} target="_blank" rel="noopener">Sentry</a>{' '}
+        processes and stores reports for us on servers in the United States.
+        We use diagnostics and support reports only to investigate problems,
+        fix bugs and improve Plozz—not for advertising, marketing, profiling
+        users or selling their data. Filtering doesn’t guarantee anonymity.
+      </p>
+      <p>
+        Turning sharing off stops future automatic reports and disables
+        “Send to Developer”. It doesn’t delete reports already sent.
       </p>
       <p id="build-differences">
-        <strong>Build differences:</strong> older beta builds can send the
-        original recent activity log instead of a structured report. Those
-        logs can contain server addresses, account or media identifiers,
-        titles and search text. Review the activity shown in your installed
-        build before choosing to send it. Legacy builds may also have different
-        diagnostics defaults; check their Help &amp; Diagnostics setting.
-      </p>
-      <p>
-        Crash reports and diagnostics are processed and stored by our
-        error-monitoring provider,{' '}
-        <a href={SENTRY_PRIVACY_URL} target="_blank" rel="noopener">Sentry</a>{' '}
-        (Functional Software, Inc.), on servers in the United States, under
-        Sentry’s privacy policy.         You can turn sharing off at any time in the app, which disables
-        automatic reporting and the “Send to Developer” button.
+        <strong>Older beta builds</strong> may have different sharing defaults
+        and send raw logs containing server addresses, account or media IDs,
+        titles and search text. Check your settings and review the activity
+        shown before sending a report.
       </p>
 
-      <h2>Bug reports &amp; feedback</h2>
+      <h2>Feedback and support</h2>
       <p>
-        When you choose to report a problem from inside Plozz, the app shows a
-        link and QR code that open a pre-filled issue on our public{' '}
-        <a href={`${GITHUB_URL}/issues`} target="_blank" rel="noopener">GitHub</a>{' '}
-        repository — only you decide whether to submit it. The pre-filled text
-        can include your app and operating-system versions, device model,
-        connected provider types and activity details. Builds with structured
-        exports use activity categories and severity instead of raw log messages;
-        older beta builds can include a log excerpt. Review the pre-filled text
-        before posting. Anything you submit—including your GitHub identity and
-        text you add—is public and handled under{' '}
+        “Report a Problem” opens a pre-filled{' '}
+        <a href={`${GITHUB_URL}/issues`} target="_blank" rel="noopener">GitHub issue</a>{' '}
+        with app, device and recent technical activity details. Review it
+        before posting. Your post and GitHub identity are public, under{' '}
         <a href={GITHUB_PRIVACY_URL} target="_blank" rel="noopener">GitHub’s privacy policy</a>.
-        You can also email us at{' '}
-        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>; we only receive
-        what you choose to send.
+        For private feedback, email{' '}
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
       </p>
 
-      <h2>Your server details</h2>
+      <h2>Your servers and connected services</h2>
       <p>
-        Media-server credentials are stored in the system Keychain and authorize
-        connections to the services you choose. They are not sent to the
-        developer as part of connecting to your media server. Eligible sign-ins
-        can transfer through the sync and device-setup paths below.
-        Server users retain their server-owned access restrictions and watch
-        history; local Plozz profiles don’t replace those identities.
+        Media-server logins are kept in Apple’s Keychain. Connecting to your
+        server doesn’t send those logins to us. Plozz profiles don’t replace
+        your server’s account permissions or watch history.
+      </p>
+      <p>
+        Your servers and the services used for artwork, metadata and subtitles
+        receive the requests needed for those features, including your IP
+        address. Some connections, including Plex and Jellyfin-compatible
+        servers, also use a saved device identifier.
+      </p>
+      <p>
+        Optional services such as Trakt, AniList, MyAnimeList, Simkl, Last.fm,
+        WeTrakr and Seerr receive the watchlist, playback or request activity
+        you enable. Their own privacy policies apply; they may retain
+        account-linked data for purposes such as recommendations or analytics.
+        This isn’t a Plozz-operated analytics service.
       </p>
 
-      <h2>iCloud and setting up another device</h2>
+      <h2>iCloud and other devices</h2>
       <p>
-        When enabled, iCloud Sync can carry profiles, preferences, server
-        descriptors, watchlist state, supported Live TV configuration and
-        tracker sign-ins through your Apple account. Configuration is stored
-        in the app’s private CloudKit database; credential-bearing tracker
-        and supported Live TV records use encrypted storage.
-        This sync does not transfer movies or offline downloads.
+        Optional iCloud Sync keeps profiles, settings, server details,
+        watchlists and supported Live TV setup in your private iCloud
+        storage. Supported tracker and Live TV credentials use encrypted
+        storage. Movies and offline downloads aren’t synced.
       </p>
       <p>
-        With sync and iCloud Keychain available, iPhone and iPad can also
-        transfer supported Jellyfin, Plex, Emby, network-share and Seerr
-        sign-ins. Apple TV does not use that iCloud Keychain credential path;
-        sign in there or use approved device setup. Not every credential is
-        transferable, and device-local generated SSH keys remain local.
-        See <a href="https://docs.plozz.app/profiles-and-sync/">Profiles and sync</a>{' '}
-        for current platform and provider limits.
-      </p>
-      <p>
-        Supported tracker sign-ins can also sync through iCloud Keychain on
-        iPhone and iPad when Apple’s iCloud Keychain is enabled, independently
-        of Plozz’s iCloud Sync setting.
-      </p>
-      <p>
-        If you approve device-to-device setup, eligible providers’ login
-        credentials can transfer through that flow. Silo is an exception:
-        its rotating login is never cloned. Only the server descriptor transfers,
-        and the receiving device must pair with Silo independently. Pending Silo
-        setup remains available in Settings → iCloud Sync.
+        On iPhone and iPad, supported server logins can also sync through
+        iCloud Keychain. Apple TV doesn’t use that path. Supported tracker
+        logins can use iCloud Keychain independently of Plozz’s iCloud Sync
+        setting. You can also approve transferring eligible logins between
+        devices; Silo must pair again. See{' '}
+        <a href="https://docs.plozz.app/profiles-and-sync/">Profiles and sync</a>{' '}
+        for controls and provider limits.
       </p>
 
-      <h2>Network connections</h2>
+      <h2>Connecting accounts</h2>
       <p>
-        Plozz connects to your configured media servers and network shares
-        for libraries, playback, subtitles and downloads. Providers receive
-        the authentication and playback information needed to supply those
-        features. Data handling on those servers is governed by their
-        operators’ policies. Connections expose network information such as
-        your IP address to the recipient. Plex and Jellyfin-compatible
-        connections also identify the client using a stored device identifier.
+        To connect AniList or MyAnimeList, our website briefly holds an
+        authorization token while passing it to your device. It’s deleted
+        after use and configured to expire after ten minutes.
       </p>
       <p>
-        Artwork, metadata, ratings and subtitle lookups can contact the
-        services configured for those features. Connected trackers such as
-        Trakt, AniList, MyAnimeList, Simkl, Last.fm and WeTrakr receive the supported
-        watchlist or listening/watching activity you enable. Seerr receives
-        requests using the linked server user. These services can retain
-        account-linked activity and use it according to their own privacy
-        policies, including their personalization or analytics practices.
-        Connecting a service is not the same as sending activity to a
-        Plozz-operated analytics service.
-      </p>
-      <h2>Website authorization and pairing</h2>
-      <p>
-        The website hosts the authorization relay used to connect AniList and
-        MyAnimeList. It temporarily processes authorization tokens and session
-        data so another device can finish sign-in. Those application records
-        are configured to expire after ten minutes, and redeemed token records
-        are deleted after use. Failed redemption attempts create IP-keyed
-        security counters configured to expire after ten minutes.
+        PublicMetaDB browser pairing encrypts your key before sending it to
+        the pairing service. The encrypted handoff is removed after
+        completion or cancellation; pairing data expires after ten minutes.
       </p>
       <p>
-        PublicMetaDB browser pairing transfers a key to the requesting device.
-        The browser encrypts the key before sending it to the relay. Temporary
-        state contains public keys, the encrypted message, a hash of the app’s
-        redemption secret and pairing status. The encrypted message is removed
-        after redemption or cancellation; pairing state expires after ten minutes.
-        Hashed-IP rate-limit records also expire after ten minutes. The website
-        supplies the encryption code and remains a trusted part of this flow.
+        These connection helpers temporarily count requests by IP address
+        to prevent code guessing and abuse. Those counts are also
+        configured to expire after ten minutes.
       </p>
+
+      <h2>This website</h2>
       <p>
-        Infrastructure logs follow the hosting provider’s data-handling policies.
-        The website is hosted by Cloudflare and requests the public GitHub star
-        count from GitHub.
+        <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare</a>{' '}
+        hosts this website, which also requests our public GitHub star count.
+        These providers handle connection data and infrastructure logs under
+        their own privacy policies.
       </p>
 
       <h2>Children</h2>
       <p>
-        Plozz is a general-purpose media player. Parents and guardians should
-        choose suitable media sources and review diagnostics-sharing choices
-        on devices used by children. See{' '}
+        Plozz is a general-purpose player. Parents and guardians should choose
+        suitable sources and review diagnostics-sharing choices. See{' '}
         <a href="https://docs.plozz.app/parental-controls/">Parental controls</a>{' '}
-        for setup and limitations.
+        for setup and limits.
       </p>
 
-      <h2>Changes</h2>
-      <p>We may update this policy; changes will be posted at this URL.</p>
-
-      <h2>Contact</h2>
+      <h2>Contact and changes</h2>
       <p>
-        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+        For privacy questions or requests, email{' '}
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+        Policy updates will appear here with a revised date.
       </p>
     </div>
   </main>

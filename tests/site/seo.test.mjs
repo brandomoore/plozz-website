@@ -29,12 +29,14 @@ const structured = (html) => [...html.matchAll(/<script\b[^>]*type="application\
 test('privacy paragraphs retain spaces around inline links and emphasis', () => {
   const content = plain(built('privacy/index.html').match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1]);
   for (const phrase of [
+    'Our app code and website code are public.',
     'choose Share Diagnostics or Don’t Share.',
-    'also tap “Send to Developer” in Help & Diagnostics or Recent Activity',
-    'error-monitoring provider, Sentry (Functional Software, Inc.)',
-    'our public GitHub repository',
-    'handled under GitHub’s privacy policy. You can also email us at',
-    'email us at feedback@plozz.app; we only receive',
+    'With sharing enabled, “Send to Developer” sends filtered technical details',
+    'Sentry processes and stores reports for us',
+    'a pre-filled GitHub issue with app, device',
+    'under GitHub’s privacy policy. For private feedback, email feedback@plozz.app.',
+    'Cloudflare hosts this website',
+    'requests, email feedback@plozz.app.',
   ]) {
     assert(content.includes(phrase), `Missing whitespace in rendered privacy text: ${phrase}`);
   }
@@ -45,16 +47,18 @@ test('sync and privacy copy describes current exports without hiding older beta 
   const content = plain(privacy.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1]);
   for (const phrase of [
     'iCloud Keychain',
-    'Apple TV does not use that iCloud Keychain credential path',
-    'fresh labels for that report',
-    'Your optional message is sent as written',
-    'older beta builds can send the original recent activity log',
+    'Apple TV doesn’t use that path',
+    'fresh labels instead of saved account or media identifiers',
+    'Your message stays attached to the report and is sent as written',
+    'Older beta builds may have different sharing defaults and send raw logs',
     'configured to expire after ten minutes',
-    'IP-keyed security counters',
-    'PublicMetaDB browser pairing transfers a key',
-    'The browser encrypts the key before sending it to the relay',
-    'stored device identifier',
+    'temporarily count requests by IP address',
+    'PublicMetaDB browser pairing encrypts your key before sending it',
+    'removed after completion or cancellation',
+    'saved device identifier',
     'independently of Plozz’s iCloud Sync setting',
+    'Silo must pair again',
+    'It doesn’t delete reports already sent',
   ]) assert(content.includes(phrase), `Missing privacy boundary: ${phrase}`);
   assert.match(privacy, /href="https:\/\/docs\.plozz\.app\/parental-controls\/"/);
   assert.match(privacy, /id="build-differences"/);
@@ -64,6 +68,20 @@ test('sync and privacy copy describes current exports without hiding older beta 
     assert(text.includes('iCloud Keychain'));
     assert.doesNotMatch(text, /credentials (?:aren[’']t|are not) cloud-synced|without cloud-syncing server credentials|does not knowingly collect data from anyone|anonymous diagnostic report/i);
   }
+});
+
+test('privacy policy stays concise and distinguishes public code from private data', () => {
+  const html = built('privacy/index.html');
+  const content = plain(html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1]);
+  assert(content.split(/\s+/).length <= 850, 'Keep the policy readable without restoring implementation detail');
+  assert.match(html, /href="https:\/\/github\.com\/brandomoore\/Plozz"/);
+  assert.match(html, /href="https:\/\/github\.com\/brandomoore\/plozz-website"/);
+  for (const phrase of [
+    'This doesn’t make your media or private reports public',
+    'only to investigate problems, fix bugs and improve Plozz',
+    'not for advertising, marketing, profiling users or selling their data',
+  ]) assert(content.includes(phrase));
+  assert.doesNotMatch(content, /sign-in and security records|redemption secret|public keys|no data collected|never leaves your device/i);
 });
 
 test('screenshot media credits are public, linked and explicit about adaptations', () => {

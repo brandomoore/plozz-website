@@ -69,6 +69,15 @@ Gradient-heavy SaaS pages, dense marketing-section stacks, excessive accent colo
   the app is free either way. Brandon's own GitHub Sponsors wording is the
   reference for tone: warm, humble, and easy to walk past.
 
+## Privacy copy
+
+Explain what leaves the device, why, who receives it and what the user controls.
+Keep implementation details in the public source and technical guides, not the
+policy. Preserve material disclosures about optional diagnostics, older builds,
+public support posts, credential sync and short-lived account-linking data.
+Distinguish inspectable source code from private user data, and Plozz's own
+diagnostic use from independently operated services the user connects.
+
 ## Alternative-app searches
 
 Use natural, factual mentions of other Apple TV media apps when they help a
