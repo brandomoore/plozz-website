@@ -29,14 +29,40 @@ const structured = (html) => [...html.matchAll(/<script\b[^>]*type="application\
 test('privacy paragraphs retain spaces around inline links and emphasis', () => {
   const content = plain(built('privacy/index.html').match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1]);
   for (const phrase of [
-    'feature that is turned off by default.',
-    'also tap “Send to Developer” on the Recent Activity screen',
+    'choose Share Diagnostics or Don’t Share.',
+    'also tap “Send to Developer” in Help & Diagnostics or Recent Activity',
     'error-monitoring provider, Sentry (Functional Software, Inc.)',
     'our public GitHub repository',
     'handled under GitHub’s privacy policy. You can also email us at',
     'email us at feedback@plozz.app; we only receive',
   ]) {
     assert(content.includes(phrase), `Missing whitespace in rendered privacy text: ${phrase}`);
+  }
+});
+
+test('sync and privacy copy describes current exports without hiding older beta behavior', () => {
+  const privacy = built('privacy/index.html');
+  const content = plain(privacy.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1]);
+  for (const phrase of [
+    'iCloud Keychain',
+    'Apple TV does not use that iCloud Keychain credential path',
+    'fresh labels for that report',
+    'Your optional message is sent as written',
+    'older beta builds can send the original recent activity log',
+    'configured to expire after ten minutes',
+    'IP-keyed security counters',
+    'PublicMetaDB browser pairing transfers a key',
+    'The browser encrypts the key before sending it to the relay',
+    'stored device identifier',
+    'independently of Plozz’s iCloud Sync setting',
+  ]) assert(content.includes(phrase), `Missing privacy boundary: ${phrase}`);
+  assert.match(privacy, /href="https:\/\/docs\.plozz\.app\/parental-controls\/"/);
+  assert.match(privacy, /id="build-differences"/);
+  assert.match(built('features/index.html'), /href="\/privacy\/#build-differences"/);
+  for (const html of [home, built('features/index.html'), privacy]) {
+    const text = plain(html);
+    assert(text.includes('iCloud Keychain'));
+    assert.doesNotMatch(text, /credentials (?:aren[’']t|are not) cloud-synced|without cloud-syncing server credentials|does not knowingly collect data from anyone|anonymous diagnostic report/i);
   }
 });
 

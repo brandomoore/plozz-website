@@ -111,7 +111,7 @@ export const INCLUDED = [
   { name: 'AirPlay', icon: 'ph:airplay', detail: 'Send video from iPhone or iPad to another screen.' },
   { name: 'Offline downloads', icon: 'ph:download-simple', detail: 'Save films and episodes on iPhone and iPad, including from Silo.' },
   { name: 'Subtitle search', icon: 'ph:subtitles', detail: 'Find and load subtitles in the player where your server supports it.' },
-  { name: 'iCloud sync', icon: 'ph:cloud', detail: 'Profiles, preferences and server setup across your devices, without cloud-syncing server credentials.' },
+  { name: 'iCloud sync', icon: 'ph:cloud', detail: 'Profiles, preferences and server setup across your devices. Supported sign-ins can also sync through iCloud Keychain on iPhone and iPad.' },
 ];
 
 // GitHub Sponsors prefills its checkout from these, so one tap is one donation.

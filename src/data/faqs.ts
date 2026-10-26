@@ -30,7 +30,7 @@ export const faqs: Faq[] = [
   },
   {
     q: 'Does Plozz collect my data or track me?',
-    a: 'There\u2019s no Plozz account or usage analytics. Server credentials stay in the device Keychain; iCloud sync carries non-secret setup and preferences. Approved device-to-device setup can transfer eligible logins, but Silo always needs separate approval on the receiving device. Connected metadata services and trackers receive the requests needed for their features. <a href="/privacy">Read the privacy policy.</a>',
+    a: 'There\u2019s no Plozz account or usage-analytics service. Diagnostics sharing is optional. Profiles and settings can sync through iCloud, and supported sign-ins can transfer through iCloud Keychain on iPhone and iPad or approved device setup. Silo always needs separate device approval. Connected services receive requests and account-linked activity according to the features you use and their privacy policies. <a href="/privacy">Read the privacy policy.</a>',
   },
   {
     q: 'How do I install it?',

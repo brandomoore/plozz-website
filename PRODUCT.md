@@ -104,8 +104,9 @@ other app lacks those features.
 - "Switch servers in the player." File/version/edition changes stay on the
   active server/account. Position carries over, not frame-exact scene matching
   across different cuts.
-- "Every login follows through iCloud." Non-secret setup syncs; approved
-  device-to-device transfer can carry eligible logins. Silo always pairs anew.
+- "Every login follows through iCloud." Profiles and setup sync; eligible
+  sign-ins can also transfer through iCloud Keychain on iPhone/iPad or approved
+  device setup. Apple TV does not use that Keychain path. Silo always pairs anew.
 - "Common Sense Media on every provider." It is Plex-only; detailed topics need
   eligible active-user/Plex Pass access. Ages are separate from review scores.
 - "Ratings with no API key." AniList scores are keyless; optional OMDb
