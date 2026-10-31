@@ -13,7 +13,7 @@ import Shot from "../components/Shot.astro";
 import { HERO, DEVICE_IPAD, DEVICE_IPHONE } from "../data/imageSizes";
 import { shotSrcset } from "../data/shots";
 import { INCLUDED, DONATION_AMOUNTS } from "../data/site";
-import { GITHUB_URL, DONATE_URL, DISCORD_URL, TESTFLIGHT_URL, SITE } from "../data/site";
+import { GITHUB_URL, DONATE_URL, DISCORD_URL, APP_STORE_URL, SITE } from "../data/site";
 import { faqs, stripHtml } from "../data/faqs";
 import { SOCIAL_IMAGE_PATH } from "../data/brand";
 
@@ -59,6 +59,8 @@ const softwareLd = {
     "Music playback where supported by the source",
   ],
   url: SITE,
+  downloadUrl: APP_STORE_URL,
+  installUrl: APP_STORE_URL,
   image: `${SITE}${SOCIAL_IMAGE_PATH}`,
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   license: "https://www.gnu.org/licenses/gpl-3.0.html",
@@ -68,7 +70,7 @@ const softwareLd = {
     name: "Brandon Moore",
     url: "https://github.com/brandomoore",
   },
-  sameAs: [GITHUB_URL],
+  sameAs: [GITHUB_URL, APP_STORE_URL],
 };
 
 /**
@@ -155,14 +157,14 @@ const faqLd = {
               <div class="hero-cta">
                 <a
                   class="btn btn-primary btn-lg btn-cta"
-                  href={TESTFLIGHT_URL}
-                  aria-label="Join the TestFlight beta"
+                  href={APP_STORE_URL}
+                  aria-label="Download on the App Store"
                   target="_blank"
                   rel="noopener"
                 >
                   <Icon name="simple-icons:apple" />
-                  <span class="hero-cta-label-wide">Join the TestFlight beta</span>
-                  <span class="hero-cta-label-compact" aria-hidden="true">TestFlight</span>
+                  <span class="hero-cta-label-wide">Download on the App Store</span>
+                  <span class="hero-cta-label-compact" aria-hidden="true">App Store</span>
                 </a>
                 <a
                   class="btn btn-light btn-lg"

@@ -6,6 +6,9 @@ your own Jellyfin, Plex, Emby and Silo servers, network shares and IPTV / Live T
 
 Live at **[plozz.app](https://plozz.app)**.
 
+Download **[Plozz Player on the App Store](https://apps.apple.com/app/plozz-player/id6782668147)**
+for Apple TV, iPhone and iPad.
+
 User guides live at **[docs.plozz.app](https://docs.plozz.app)** in the separate
 [plozz-docs repository](https://github.com/brandomoore/plozz-docs). Its daily
 cloud updater reads app source without adding work or gates to app development.
@@ -165,6 +168,9 @@ the current public beta invite. This shortcut is owned here, in
 Keep its destination aligned with `TESTFLIGHT_URL` in `src/data/site.ts`.
 Cloudflare applies the rules before the website Worker; no pairing routes,
 OAuth handlers or domain settings need to change.
+Primary install buttons and software structured data use `APP_STORE_URL` from
+the same file. Keep TestFlight explicitly secondary; do not redirect the beta
+shortcut to the store or describe the released app as beta-only.
 
 [`src/pages/infuse-alternative.astro`](src/pages/infuse-alternative.astro) is the
 landing page for free/open-source Apple TV player alternatives. Its visible
@@ -193,7 +199,8 @@ beside supported formats and keep visible FAQs consistent with their JSON-LD.
 The September 23, 2026 refresh follows app release/041. Platform and provider
 limits belong beside their features, especially mobile-only streaming quality
 and downloads, native Silo capabilities, server-owned identities and optional
-history sync. Keep the public TestFlight link rather than promising that the
+history sync. The App Store is the primary download; the public TestFlight
+invitation remains available for beta testing without promising that the
 latest internal build has cleared external review.
 
 Social cards use the current site logo and the bundled Manrope font, with the

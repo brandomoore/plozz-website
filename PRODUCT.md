@@ -10,7 +10,7 @@ People evaluating Plozz as a native media and IPTV player for Apple TV, iPhone, 
 
 ## Product Purpose
 
-Explain what Plozz supports, establish trust in the open-source project, and drive visitors to join the TestFlight beta or view the source on GitHub.
+Explain what Plozz supports, establish trust in the open-source project, and help visitors download Plozz Player from the App Store or view its source on GitHub. TestFlight is a secondary option for trying upcoming changes.
 
 ## Brand Personality
 

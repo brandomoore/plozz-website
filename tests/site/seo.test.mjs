@@ -256,19 +256,19 @@ test('home hero goes straight from headline to providers and actions', () => {
   assert.match(hero, /<\/h1>\s*<div class="hero-summary"/);
   assert.doesNotMatch(hero, /href="\/infuse-alternative"|Movies, shows and music/);
   assert.match(hero, /class="hero-logos"/);
-  assert.match(hero, /Join the TestFlight beta/);
+  assert.match(hero, /Download on the App Store/);
   assert(plain(built('features/index.html')).includes('Movies, shows and music on Apple TV, iPhone and iPad.'));
   const faq = structured(home).find((item) => item['@type'] === 'FAQPage');
   assert(faq.mainEntity.some((item) => item.name.includes('alternative to Infuse')));
 });
 
-test('hero offers TestFlight first with GitHub and the stable Discord shortcut as secondary actions', () => {
+test('hero offers the App Store first with GitHub and the stable Discord shortcut as secondary actions', () => {
   const hero = home.match(/<section\b[^>]*class="hero"[^>]*>([\s\S]*?)<\/section>/)[1];
   const links = [...hero.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)];
-  assert.deepEqual(links.map(([, attributes, content]) => attributes.match(/aria-label="([^"]+)"/)?.[1] ?? plain(content)), ['Join the TestFlight beta', 'GitHub', 'Discord']);
+  assert.deepEqual(links.map(([, attributes, content]) => attributes.match(/aria-label="([^"]+)"/)?.[1] ?? plain(content)), ['Download on the App Store', 'GitHub', 'Discord']);
   assert.equal(links.filter(([, attributes]) => attributes.includes('btn-primary')).length, 1);
   assert.match(links[0][1], /btn-primary/);
-  assert.match(links[0][1], /href="https:\/\/testflight\.apple\.com\/join\/EKfReNMu"/);
+  assert.match(links[0][1], /href="https:\/\/apps\.apple\.com\/app\/plozz-player\/id6782668147"/);
   assert.match(links[1][1], /btn-light/);
   assert.match(links[1][1], /href="https:\/\/github\.com\/brandomoore\/Plozz"/);
   assert.match(links[2][1], /btn-light/);
@@ -276,6 +276,25 @@ test('hero offers TestFlight first with GitHub and the stable Discord shortcut a
   assert.match(links[2][1], /target="_blank"/);
   assert.match(links[2][1], /rel="noopener"/);
   assert.match(links[2][2], /<svg\b/);
+});
+
+test('all primary install buttons and structured data use the released app', () => {
+  const store = 'https://apps.apple.com/app/plozz-player/id6782668147';
+  for (const file of readdirSync(new URL('../../dist/', import.meta.url), { recursive: true }).filter(file => file.endsWith('.html'))) {
+    const html = built(file);
+    for (const [, attributes] of html.matchAll(/<a\b([^>]*class="[^"]*(?:header-cta|btn-cta)[^"]*"[^>]*)>/g)) {
+      assert(attributes.includes(`href="${store}"`), `${file}: install button must use App Store`);
+    }
+    assert.doesNotMatch(html, /Join the TestFlight beta|distributed through TestFlight|through TestFlight; beta availability/);
+  }
+  const software = structured(home).find(item => item['@type'] === 'SoftwareApplication');
+  assert.equal(software.downloadUrl, store);
+  assert.equal(software.installUrl, store);
+  assert(software.sameAs.includes(store));
+  const install = structured(home).find(item => item['@type'] === 'FAQPage').mainEntity.find(item => item.name === 'How do I install it?');
+  assert(install.acceptedAnswer.text.includes('App Store'));
+  assert(install.acceptedAnswer.text.includes('upcoming changes'));
+  assert(home.includes('https://testflight.apple.com/join/EKfReNMu'), 'Keep the optional beta invitation');
 });
 
 test('all public Discord links use the stable app-owned shortcut', () => {
@@ -356,7 +375,7 @@ test('each app gets a sourced, substantive comparison with Infuse first', () => 
 
 test('positioning stays factual and retains free/open-source and platform qualifications', () => {
   const content = plain(landing);
-  for (const term of ['GPL-3.0', 'no subscription', 'Infuse', 'VLC', 'Plex', 'Emby', 'Jellyfin', 'Silo', 'SMB', 'not affiliated', 'not a replacement media server', 'not an import of your Infuse settings', 'not Apple TV features', 'through TestFlight']) {
+  for (const term of ['GPL-3.0', 'no subscription', 'Infuse', 'VLC', 'Plex', 'Emby', 'Jellyfin', 'Silo', 'SMB', 'not affiliated', 'not a replacement media server', 'not an import of your Infuse settings', 'not Apple TV features', 'on the App Store']) {
     assert(content.includes(term), `Missing qualification or relevant context: ${term}`);
   }
   assert.match(landing, /href="https:\/\/firecore\.com\/infuse"/);
