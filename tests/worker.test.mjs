@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { test } from "node:test";
 import worker from "../worker/index.js";
 
@@ -183,16 +183,9 @@ test("production configuration preserves assets-first behavior and delegates rou
   assert.doesNotMatch(config, /^\s*\[vars\]/m);
 });
 
-test("TestFlight shortcuts temporarily redirect to the website's current beta invite", () => {
-  const redirects = readFileSync(new URL("../public/_redirects", import.meta.url), "utf8");
-  const site = readFileSync(new URL("../src/data/site.ts", import.meta.url), "utf8");
-  const destination = site.match(/export const TESTFLIGHT_URL = ['"]([^'"]+)['"];/)?.[1];
-  assert(destination);
-  assert.deepEqual(
-    redirects.trim().split("\n").map(line => line.trim().split(/\s+/)),
-    [
-      ["/testflight", destination, "302"],
-      ["/testflight/", destination, "302"],
-    ],
-  );
+test("TestFlight information is not bypassed by an asset redirect", () => {
+  const path = new URL("../public/_redirects", import.meta.url);
+  const redirects = existsSync(path) ? readFileSync(path, "utf8") : "";
+  assert.doesNotMatch(redirects, /^\/testflight\/?\s/m);
+  assert(existsSync(new URL("../src/pages/testflight.astro", import.meta.url)));
 });

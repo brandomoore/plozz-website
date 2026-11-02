@@ -1,0 +1,175 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteScripts from '../components/SiteScripts.astro';
+import PageHero from '../components/PageHero.astro';
+import { APP_STORE_URL, TESTFLIGHT_URL, GITHUB_URL, DISCORD_URL } from '../data/site';
+
+const TESTFLIGHT_APP = 'https://apps.apple.com/app/testflight/id899247664';
+---
+
+<Layout
+  title="Plozz TestFlight beta — Join on Apple TV, iPhone and iPad"
+  description="Try upcoming Plozz changes in the TestFlight beta. Learn what to expect, how to join on your device, and how to return to the App Store release."
+>
+  <SiteHeader />
+
+  <main>
+    <PageHero
+      eyebrow="TestFlight beta"
+      title="Try what's next."
+      lead="Early Plozz builds for Apple TV, iPhone and iPad. Help test upcoming changes before they reach the App Store."
+    >
+      <Fragment slot="actions">
+        <a class="btn btn-primary btn-lg btn-cta" href={TESTFLIGHT_URL} target="_blank" rel="noopener">
+          <Icon name="simple-icons:apple" />
+          Join the TestFlight beta
+        </a>
+        <a class="btn btn-light btn-lg" href={APP_STORE_URL} target="_blank" rel="noopener">
+          Get the App Store release
+        </a>
+      </Fragment>
+    </PageHero>
+
+    <div class="container beta-guide">
+      <section aria-labelledby="before-you-join">
+        <h2 id="before-you-join">A beta, not the usual release.</h2>
+        <div class="beta-copy">
+          <p>These are test builds. Expect bugs, unfinished changes, and occasional playback or settings problems. If you just want to watch, choose the <a href={APP_STORE_URL}>App Store release</a>.</p>
+          <p>The beta replaces the App Store copy on that device; they don't install side by side. Each TestFlight build expires after up to 90 days, so keep it updated.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="how-to-join">
+        <h2 id="how-to-join">Join on your device.</h2>
+        <div class="beta-copy">
+          <h3>iPhone and iPad</h3>
+          <ol>
+            <li>Install <a href={TESTFLIGHT_APP}>Apple's TestFlight app</a>.</li>
+            <li>Open the <a href={TESTFLIGHT_URL}>Plozz invitation</a> on that device, accept it, then install Plozz.</li>
+          </ol>
+          <h3>Apple TV</h3>
+          <ol>
+            <li>Install TestFlight on both your Apple TV and an iPhone or iPad. Use the same App Store account on both.</li>
+            <li>Open the <a href={TESTFLIGHT_URL}>Plozz invitation</a> on the iPhone or iPad and accept it.</li>
+            <li>Open TestFlight on Apple TV and install Plozz.</li>
+          </ol>
+          <p class="beta-secondary">Need more help? See <a href="https://testflight.apple.com/#installing-testing">Apple's TestFlight instructions</a>.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="beta-availability">
+        <h2 id="beta-availability">Can't join yet?</h2>
+        <div class="beta-copy">
+          <p>The beta can fill up, and new builds may still be waiting for Apple's review. The invitation shows what's available for your device. You can use the <a href={APP_STORE_URL}>App Store release</a> in the meantime.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="beta-feedback">
+        <h2 id="beta-feedback">Found something broken?</h2>
+        <div class="beta-copy">
+          <p>Send feedback through TestFlight, or report a bug on <a href={`${GITHUB_URL}/issues`}>GitHub</a> or in the <a href={DISCORD_URL}>Plozz Discord</a>. Include your device, Plozz version and build, what happened, and how to reproduce it.</p>
+          <p>Discord bug reports sync to public GitHub issues. Keep passwords, server credentials, and private information out of public posts and screenshots.</p>
+          <p>TestFlight also shares beta usage, crash information and submitted feedback with the developer. See <a href="https://www.apple.com/legal/privacy/data/en/test-flight/">Apple's TestFlight privacy information</a>.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="leave-beta">
+        <h2 id="leave-beta">Prefer the released version?</h2>
+        <div class="beta-copy">
+          <p>Install <a href={APP_STORE_URL}>Plozz Player from the App Store</a> to return to the released version. To leave the beta program, open Plozz in TestFlight and choose <strong>Stop Testing</strong>.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <SiteFooter />
+  <SiteScripts />
+</Layout>
+
+<style>
+  .beta-guide {
+    padding-bottom: clamp(48px, 8vw, 104px);
+  }
+
+  .beta-guide section {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(24px, 5vw, 80px);
+    border-top: 1px solid var(--border);
+    padding-block: clamp(28px, 4vw, 48px);
+  }
+
+  .beta-guide h2 {
+    max-width: 18ch;
+    margin: 0;
+    font-size: clamp(1.45rem, 2.4vw, 2rem);
+    font-weight: var(--w-strong);
+    line-height: 1.2;
+    letter-spacing: var(--track-ui);
+    text-wrap: balance;
+  }
+
+  .beta-copy {
+    max-width: 62ch;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
+  .beta-copy p {
+    margin: 0 0 1em;
+  }
+
+  .beta-copy > :last-child {
+    margin-bottom: 0;
+  }
+
+  .beta-copy h3 {
+    margin: 1.75em 0 0.65em;
+    color: var(--text);
+    font-size: 1.1rem;
+    font-weight: var(--w-strong);
+  }
+
+  .beta-copy h3:first-child {
+    margin-top: 0;
+  }
+
+  .beta-copy ol {
+    margin: 0;
+    padding-left: 1.4em;
+  }
+
+  .beta-copy li + li {
+    margin-top: 0.65em;
+  }
+
+  .beta-copy a {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .beta-copy a:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  .beta-copy .beta-secondary {
+    margin-top: 1.25em;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 680px) {
+    .beta-guide section {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .beta-guide h2 {
+      max-width: none;
+    }
+  }
+</style>

@@ -19,6 +19,7 @@ const { eyebrow, title, lead, cta = true } = Astro.props;
     <p class="page-hero-lead">{lead}</p>
     {cta && (
       <div class="page-hero-cta">
+        <slot name="actions">
         <a class="btn btn-primary btn-lg btn-cta" href={APP_STORE_URL} target="_blank" rel="noopener">
           <Icon name="simple-icons:apple" />
           Download on the App Store
@@ -27,6 +28,7 @@ const { eyebrow, title, lead, cta = true } = Astro.props;
           <Icon name="simple-icons:github" />
           Read the source
         </a>
+        </slot>
       </div>
     )}
   </div>

@@ -138,7 +138,8 @@ real-account acceptance or evidence of production activation.
 ```
 src/pages/          One .astro file per route (index, features, formats,
                     jellyfin, plex, emby, silo, network-shares,
-                    infuse-alternative, apple-tv-media-players, live-tv, privacy, 404)
+                    infuse-alternative, apple-tv-media-players, live-tv,
+                    testflight, privacy, 404)
 src/components/      Reusable page sections
 src/data/           Site copy, FAQs, and the screenshot manifest
 src/styles/          Global and device-frame CSS
@@ -162,15 +163,16 @@ The destination is owned by the separate `plozz-pairing-links` Worker in
 the Plozz app repository (`web/pairing-links`), so changing an invite doesn't
 require another website or app link change.
 
-`https://plozz.app/testflight` (with or without a trailing slash) redirects to
-the current public beta invite. This shortcut is owned here, in
-`public/_redirects`, and uses a temporary 302 so the invite can change later.
-Keep its destination aligned with `TESTFLIGHT_URL` in `src/data/site.ts`.
-Cloudflare applies the rules before the website Worker; no pairing routes,
-OAuth handlers or domain settings need to change.
+`https://plozz.app/testflight` is the beta information page, not a redirect.
+It explains beta reliability, replacement of the installed app, build expiry,
+device-specific setup, feedback and returning to the released version.
+Its join links use `TESTFLIGHT_URL` in `src/data/site.ts`. The footer and
+installation FAQ link to this page; the App Store remains the primary download
+elsewhere. Do not restore the former `/testflight` redirect rules: Cloudflare
+would apply them before the page and hide the beta explanation.
 Primary install buttons and software structured data use `APP_STORE_URL` from
 the same file. Keep TestFlight explicitly secondary; do not redirect the beta
-shortcut to the store or describe the released app as beta-only.
+page to the store or describe the released app as beta-only.
 
 [`src/pages/infuse-alternative.astro`](src/pages/infuse-alternative.astro) is the
 landing page for free/open-source Apple TV player alternatives. Its visible

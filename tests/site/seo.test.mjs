@@ -278,14 +278,16 @@ test('hero offers the App Store first with GitHub and the stable Discord shortcu
   assert.match(links[2][2], /<svg\b/);
 });
 
-test('all primary install buttons and structured data use the released app', () => {
+test('App Store stays primary except for the explicit beta-page invitation', () => {
   const store = 'https://apps.apple.com/app/plozz-player/id6782668147';
   for (const file of readdirSync(new URL('../../dist/', import.meta.url), { recursive: true }).filter(file => file.endsWith('.html'))) {
     const html = built(file);
     for (const [, attributes] of html.matchAll(/<a\b([^>]*class="[^"]*(?:header-cta|btn-cta)[^"]*"[^>]*)>/g)) {
-      assert(attributes.includes(`href="${store}"`), `${file}: install button must use App Store`);
+      const betaButton = file === 'testflight/index.html' && attributes.includes('btn-cta');
+      const destination = betaButton ? 'https://testflight.apple.com/join/EKfReNMu' : store;
+      assert(attributes.includes(`href="${destination}"`), `${file}: incorrect primary destination`);
     }
-    assert.doesNotMatch(html, /Join the TestFlight beta|distributed through TestFlight|through TestFlight; beta availability/);
+    if (file !== 'testflight/index.html') assert.doesNotMatch(html, /Join the TestFlight beta|distributed through TestFlight|through TestFlight; beta availability/);
   }
   const software = structured(home).find(item => item['@type'] === 'SoftwareApplication');
   assert.equal(software.downloadUrl, store);
@@ -294,7 +296,30 @@ test('all primary install buttons and structured data use the released app', () 
   const install = structured(home).find(item => item['@type'] === 'FAQPage').mainEntity.find(item => item.name === 'How do I install it?');
   assert(install.acceptedAnswer.text.includes('App Store'));
   assert(install.acceptedAnswer.text.includes('upcoming changes'));
-  assert(home.includes('https://testflight.apple.com/join/EKfReNMu'), 'Keep the optional beta invitation');
+  assert(home.includes('href="/testflight"'), 'Link beta guidance without replacing the main App Store download');
+});
+
+test('TestFlight page explains the beta and provides verified device-specific joining steps', () => {
+  const html = built('testflight/index.html');
+  const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];
+  const content = plain(main);
+  assert.equal((main.match(/<h1\b/g) ?? []).length, 1);
+  assert.match(html, /<link rel="canonical" href="https:\/\/plozz\.app\/testflight\/"/);
+  assert(metadata(html, 'description').includes('beta'));
+  for (const phrase of [
+    'These are test builds.', 'Expect bugs', 'replaces the App Store copy',
+    "don't install side by side", '90 days', 'iPhone and iPad', 'Apple TV',
+    'same App Store account', "waiting for Apple's review", 'Stop Testing',
+    'Discord bug reports sync to public GitHub issues.', 'beta usage, crash information',
+  ]) assert(content.includes(phrase), `Missing beta guidance: ${phrase}`);
+  assert.match(main, /href="https:\/\/testflight\.apple\.com\/join\/EKfReNMu"/);
+  assert.match(main, /href="https:\/\/apps\.apple\.com\/app\/testflight\/id899247664"/);
+  assert.match(main, /href="https:\/\/apps\.apple\.com\/app\/plozz-player\/id6782668147"/);
+  assert.match(main, /href="https:\/\/github\.com\/brandomoore\/Plozz\/issues"/);
+  assert(built('sitemap-0.xml').includes('<loc>https://plozz.app/testflight/</loc>'));
+  for (const file of readdirSync(new URL('../../dist/', import.meta.url), { recursive: true }).filter(file => file.endsWith('.html'))) {
+    assert.match(built(file).match(/<footer\b[\s\S]*?<\/footer>/)[0], /href="\/testflight"/);
+  }
 });
 
 test('all public Discord links use the stable app-owned shortcut', () => {

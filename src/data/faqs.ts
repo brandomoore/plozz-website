@@ -1,5 +1,5 @@
 // The homepage renders both the visible answers and FAQPage data from this list.
-import { APP_STORE_URL, DISCORD_URL, GITHUB_URL, TESTFLIGHT_URL } from './site';
+import { APP_STORE_URL, DISCORD_URL, GITHUB_URL } from './site';
 
 export interface Faq {
   q: string;
@@ -34,7 +34,7 @@ export const faqs: Faq[] = [
   },
   {
     q: 'How do I install it?',
-    a: `Download <a href="${APP_STORE_URL}" target="_blank" rel="noopener">Plozz Player from the App Store</a> for Apple TV, iPhone and iPad. To try upcoming changes, you can also join the <a href="${TESTFLIGHT_URL}" target="_blank" rel="noopener">TestFlight beta</a>.`,
+    a: `Download <a href="${APP_STORE_URL}" target="_blank" rel="noopener">Plozz Player from the App Store</a> for Apple TV, iPhone and iPad. To try upcoming changes, learn about the optional <a href="/testflight">TestFlight beta</a>.`,
   },
   {
     q: 'What\u2019s different on each device?',
