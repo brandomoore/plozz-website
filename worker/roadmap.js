@@ -3,6 +3,13 @@ import { validateFeed, feedAge, MAX_FEED_BYTES } from "../shared/roadmap.mjs";
 export const FEED_URL = "https://raw.githubusercontent.com/brandomoore/plozz-website/roadmap-data/roadmap.json";
 const CACHE_URL = "https://plozz.app/api/roadmap/verified-snapshot-v1";
 
+class RoadmapError extends Error {
+  constructor(code) {
+    super(code);
+    this.code = code;
+  }
+}
+
 function response(body, status = 200) {
   return Response.json(body, {
     status,
@@ -14,9 +21,8 @@ function response(body, status = 200) {
 }
 
 async function readFeed(response, now) {
-  if (!response.ok || Number(response.headers.get("content-length")) > MAX_FEED_BYTES) {
-    throw new Error("Roadmap upstream unavailable or oversized.");
-  }
+  if (!response.ok) throw new RoadmapError(`upstream_http_${response.status}`);
+  if (Number(response.headers.get("content-length")) > MAX_FEED_BYTES) throw new RoadmapError("upstream_oversized");
   const reader = response.body.getReader();
   const chunks = [];
   let length = 0;
@@ -25,7 +31,7 @@ async function readFeed(response, now) {
       const { done, value } = await reader.read();
       if (done) break;
       length += value.byteLength;
-      if (length > MAX_FEED_BYTES) throw new Error("Roadmap upstream oversized.");
+      if (length > MAX_FEED_BYTES) throw new RoadmapError("upstream_oversized");
       chunks.push(value);
     }
   } finally {
@@ -37,7 +43,17 @@ async function readFeed(response, now) {
     bytes.set(chunk, offset);
     offset += chunk.byteLength;
   }
-  return validateFeed(JSON.parse(new TextDecoder().decode(bytes)), now);
+  let feed;
+  try {
+    feed = JSON.parse(new TextDecoder().decode(bytes));
+  } catch {
+    throw new RoadmapError("upstream_invalid_json");
+  }
+  try {
+    return validateFeed(feed, now);
+  } catch {
+    throw new RoadmapError("upstream_invalid_feed");
+  }
 }
 
 export async function handleRoadmap(request, ctx, {
@@ -67,14 +83,14 @@ export async function handleRoadmap(request, ctx, {
   try {
     const upstream = await fetcher(FEED_URL, {
       headers: { Accept: "application/json" },
-      redirect: "error",
+      redirect: "manual",
       signal: AbortSignal.timeout(10_000),
       cf: { cacheTtl: 0 },
     });
     const feed = await readFeed(upstream, now);
-    if (feedAge(feed, now).expired) throw new Error("Roadmap snapshot expired.");
+    if (feedAge(feed, now).expired) throw new RoadmapError("snapshot_expired");
     if (saved && Date.parse(feed.generated_at) < Date.parse(saved.feed.generated_at)) {
-      throw new Error("Roadmap snapshot moved backwards.");
+      throw new RoadmapError("snapshot_regressed");
     }
     if (cache) {
       ctx.waitUntil(cache.put(CACHE_URL, Response.json({ feed, fetched_at: now }, {
@@ -82,9 +98,12 @@ export async function handleRoadmap(request, ctx, {
       })).catch(() => console.error("Roadmap cache could not be written.")));
     }
     return response({ feed, status: feedAge(feed, now).stale ? "delayed" : "current" });
-  } catch {
+  } catch (error) {
     // Keep the original verification time. A successful cache read is not new evidence.
-    console.error("Roadmap refresh failed; retaining only a previously validated snapshot.");
+    const code = error instanceof RoadmapError ? error.code :
+      error?.name === "TimeoutError" ? "upstream_timeout" : "runtime_error";
+    console.error(`Roadmap refresh failed (${code}); retaining only a previously validated snapshot.`);
+    if (code === "runtime_error") console.error(error instanceof Error ? error.message : "Unknown runtime error.");
     if (saved) return response({ feed: saved.feed, status: "delayed" });
     return response({ error: "roadmap_unavailable" }, 503);
   }

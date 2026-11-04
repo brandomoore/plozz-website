@@ -112,7 +112,7 @@ test("Worker fetches only fixed public feed, caches without AUTH_KV or credentia
   const fetcher = async (url, options) => {
     called++;
     assert.equal(url, FEED_URL);
-    assert.equal(options.redirect, "error");
+    assert.equal(options.redirect, "manual");
     assert.equal(options.headers.Authorization, undefined);
     return Response.json(fixture());
   };
@@ -126,10 +126,31 @@ test("Worker fetches only fixed public feed, caches without AUTH_KV or credentia
   assert.equal(h.value().feed.generated_at, fixture().generated_at);
 });
 
+test("Worker rejects upstream redirects without following or caching them", async () => {
+  for (const status of [301, 302, 303, 307, 308]) {
+    const h = harness();
+    let calls = 0;
+    const result = await handleRoadmap(new Request("https://plozz.app/api/roadmap"), h.ctx, {
+      cache: h.cache, now,
+      fetcher: async (url, options) => {
+        calls++;
+        assert.equal(url, FEED_URL);
+        assert.equal(options.redirect, "manual");
+        return new Response(null, { status, headers: { Location: "https://example.com/untrusted" } });
+      },
+    });
+    assert.equal(calls, 1);
+    assert.equal(result.status, 503);
+    assert.deepEqual(await result.json(), { error: "roadmap_unavailable" });
+    assert.equal(h.writes.length, 0);
+  }
+});
+
 test("refresh failures retain validated data, never change the verification time", async () => {
   for (const fetcher of [
     async () => { throw new Error("offline"); },
     async () => new Response("limited", { status: 429 }),
+    async () => new Response(null, { status: 302, headers: { Location: "https://example.com/untrusted" } }),
     async () => Response.json({ items: [] }),
     async () => Response.json(fixture(now - 2 * STALE_AFTER_MS)),
     async () => new Response("oversized", { headers: { "content-length": String(MAX_FEED_BYTES + 1) } }),
