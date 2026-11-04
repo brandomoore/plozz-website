@@ -87,6 +87,22 @@ test('privacy policy stays concise and distinguishes public code from private da
   assert.doesNotMatch(content, /sign-in and security records|redemption secret|public keys|no data collected|never leaves your device/i);
 });
 
+test('refreshed screenshot credits include cover sources and TMDB attribution', () => {
+  const html = built('media-credits/index.html');
+  const content = plain(html);
+  for (const phrase of [
+    'Sintel (2010)', 'Elephants Dream (2006)', 'Sprite Fright (2021)',
+    'The Daily Dweebs (2017)', 'Hero (2018)', 'Big Buck Bunny (2008)',
+    'Caminandes: Llama Drama (2013)', 'Caminandes: Llamigos (2016)',
+    'CC BY 2.5', 'high-contrast white',
+    'This product uses the TMDB API but is not endorsed or certified by TMDB.',
+    'not a blanket grant for every cover variant or title graphic',
+  ]) assert(content.includes(phrase), `Missing refreshed attribution: ${phrase}`);
+  assert.match(html, /src="\/attribution\/tmdb\.svg"/);
+  assert.equal((html.match(/Library cover source<\/a>/g) ?? []).length, 11);
+  assert.match(built('attribution/tmdb.svg'), /viewBox="0 0 273\.42 35\.52"/);
+});
+
 test('screenshot media credits are public, linked and explicit about adaptations', () => {
   const html = built('media-credits/index.html');
   const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];
@@ -99,8 +115,9 @@ test('screenshot media credits are public, linked and explicit about adaptations
   ]) {
     assert(content.includes(text), `Missing media attribution: ${text}`);
   }
-  assert.equal([...main.matchAll(/<h2\b/g)].length, 20);
-  assert.doesNotMatch(content, /Caminandes|guaranteed clearance|copyright-free worldwide/i);
+  const credits = main.match(/<ul\b[^>]*class="credits-list"[^>]*>([\s\S]*?)<\/ul>/)[1];
+  assert.equal([...credits.matchAll(/<h2\b/g)].length, 32);
+  assert.doesNotMatch(content, /guaranteed clearance|copyright-free worldwide/i);
   for (const file of readdirSync(new URL('../../dist/', import.meta.url), { recursive: true }).filter(file => file.endsWith('.html'))) {
     assert.match(built(file).match(/<footer\b[\s\S]*?<\/footer>/)[0], /href="\/media-credits"/, file);
   }
