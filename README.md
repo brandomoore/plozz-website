@@ -149,6 +149,79 @@ tools/               Build scripts: screenshot encoders, OG image, font sheet
 
 ## Content
 
+### Roadmap
+
+`/roadmap/` is a five-stage board for bugs and feature requests. Each column
+shows four cards per page; search/type filters cover the entire feed, with
+newest issue numbers first (not an inferred priority). Mobile uses stage
+selectors rather than a horizontally scrolling desktop board.
+
+GitHub remains canonical. `tools/export-roadmap.py` calls the reviewed Plozz
+authority's receipt, commitment and delivery functions, not a second set of
+release heuristics. The executable dependency set is pinned to
+`54858354cb10314f843c1236d3cbab7a9f8f0f13`; verification runs against a full,
+fresh checkout of Plozz `main` and its release tags. When updating that pin,
+review upstream changes and update the exporter, workflow and shared schema
+together. `roadmap: planned` and `roadmap: in progress` require the last label
+application to be by `brandomoore`. Backlog is not a commitment.
+
+Beta/store stages require the existing authority's source-inclusion checks for
+every affected platform. Historical builds without a source catalog aren't
+delivery proof. Missing referenced tags or corrupt catalogs fail the run.
+Closed issues without verified delivery and duplicates are excluded. Only
+validated bridge metadata supplies Discord links.
+
+The scheduled `Verified roadmap feed` workflow exports a versioned JSON
+contract, validates it, and publishes **only `roadmap.json`** to an isolated
+`roadmap-data` branch. This data branch deliberately has no website source and
+must be excluded from legacy Pages preview builds. It never deploys the site
+or changes issues, labels, Discord messages or permissions. Its publication
+job has no Apple credentials; its export job cannot write repository contents.
+
+`GET /api/roadmap` reads that fixed public feed, using the Worker's edge cache.
+There are **no new Worker bindings or secrets**, and no reads/writes to
+`AUTH_KV`. Successful responses are cached for five minutes internally and
+one minute publicly. The page refreshes every five minutes while visible.
+Failed verification never publishes an empty replacement. A cached last-good
+snapshot is explicitly marked delayed after an upstream failure or one hour
+without new evidence; its original verification time is preserved. After
+seven days it is unavailable rather than presented as current. Edge-cache
+eviction can also make an upstream outage unavailable. The UI offers retry
+and GitHub links instead of pretending there are zero items.
+
+#### Activation (explicit approval required)
+
+1. Review/merge the website implementation. Provision these existing read-only
+   App Store Connect credentials as website repository Actions secrets:
+   `TESTFLIGHT_ASC_KEY_ID`, `TESTFLIGHT_ASC_ISSUER_ID`,
+   `TESTFLIGHT_ASC_PRIVATE_KEY`. Secrets in the Plozz repository are not
+   automatically shared. Never put them in the feed, build, Worker or logs.
+2. Set repository variable `ROADMAP_FEED_ENABLED=true` and dispatch
+   `roadmap-feed.yml` on `main`. Verify the successful export/publication run,
+   the data branch, item counts and the feed's provenance. Schedules are
+   approximately every 15 minutes and can be delayed by GitHub.
+3. Use the existing inactive Worker upload, inspect bindings, then explicitly
+   activate the reviewed version. Verify `/roadmap/`, `/api/roadmap`, both
+   hostnames and existing OAuth/pairing routes. A Pages preview is not this step.
+
+To pause feed publication, set `ROADMAP_FEED_ENABLED=false`. The last verified
+data ages visibly; this does not change commitments or delivery records.
+Discord's rejected text roadmap stays disabled. Adding a link to this page in
+release announcements belongs to the Plozz repository, after this page is live.
+
+`npm test` covers the feed contract, pagination, Worker freshness/failure paths
+and publisher. `python3 -m unittest discover -s tests/roadmap` covers the
+structured adapter. `npm run test:site` checks the built page.
+For a local, explicitly labeled snapshot preview:
+
+```bash
+npm run build
+node tools/preview-roadmap.mjs /path/to/verified-roadmap.json 4391
+```
+
+The preview helper binds only to localhost. Its snapshot is not the automatic
+production feed, and should not be copied into `public/`.
+
 [`PRODUCT.md`](PRODUCT.md) owns the voice and claim boundaries. Provider links
 and format data live in [`src/data/site.ts`](src/data/site.ts). The homepage
 renders [`src/data/faqs.ts`](src/data/faqs.ts) as both visible answers and

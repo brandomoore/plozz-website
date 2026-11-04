@@ -6,6 +6,7 @@ import * as store from "../functions/api/store.js";
 import * as redeem from "../functions/api/redeem.js";
 import * as publicmetadb from "../functions/publicmetadb.js";
 import { handlePairing } from "../functions/_lib/publicmetadb-pairing.js";
+import { handleRoadmap } from "./roadmap.js";
 
 const ROUTES = {
   "/anilist": anilist,
@@ -27,6 +28,7 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const path = url.pathname.replace(/\/+$/, "") || "/";
+    if (path === "/api/roadmap") return handleRoadmap(request, ctx);
     if (path === "/api/publicmetadb/pairing" || path.startsWith("/api/publicmetadb/pairing/")) {
       return handlePairing(request, env);
     }

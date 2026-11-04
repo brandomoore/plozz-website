@@ -1,0 +1,85 @@
+name: Verified roadmap feed
+
+on:
+  schedule:
+    - cron: "4,19,34,49 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verified-roadmap-feed
+  cancel-in-progress: false
+
+jobs:
+  export:
+    if: github.repository == 'brandomoore/plozz-website' && github.ref == 'refs/heads/main' && vars.ROADMAP_FEED_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v5
+        with:
+          repository: brandomoore/Plozz
+          ref: main
+          path: app-source
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Load the reviewed authority against current source history
+        run: |
+          git -C app-source archive 54858354cb10314f843c1236d3cbab7a9f8f0f13 \
+            tools/discord-roadmap.py tools/discord-bridge.py tools/testflight-resolutions.py \
+            tools/testflight-discord.py tools/release-notes.py tools/format-triage-comments.py \
+            tools/testflight-discord-requirements.txt | tar -x -C app-source
+          python3 -m pip install --disable-pip-version-check -r app-source/tools/testflight-discord-requirements.txt
+      - name: Test the feed contract
+        env:
+          PLOZZ_AUTHORITY_ROOT: app-source
+        run: |
+          node --test tests/roadmap.test.mjs
+          python3 -m unittest discover -s tests/roadmap
+      - name: Export verified public data (no Discord writes)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          ASC_KEY_ID: ${{ secrets.TESTFLIGHT_ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.TESTFLIGHT_ASC_ISSUER_ID }}
+          ASC_PRIVATE_KEY: ${{ secrets.TESTFLIGHT_ASC_PRIVATE_KEY }}
+          ROADMAP_RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: python3 tools/export-roadmap.py --source-root app-source --output roadmap.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: verified-roadmap
+          path: roadmap.json
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: export
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/download-artifact@v4
+        with:
+          name: verified-roadmap
+          path: feed
+      - name: Publish only the validated feed on its data branch
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node tools/publish-roadmap.mjs feed/roadmap.json

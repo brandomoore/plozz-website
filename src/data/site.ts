@@ -12,6 +12,7 @@ export const NAV_LINKS = [
   { href: '/formats', label: 'Formats' },
   { href: '/network-shares', label: 'Network shares' },
   { href: DOCS_URL, label: 'Docs' },
+  { href: '/roadmap', label: 'Roadmap' },
 ];
 
 export const SERVER_LINKS = [

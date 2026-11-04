@@ -1,0 +1,118 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteScripts from '../components/SiteScripts.astro';
+import { STAGES } from '../../shared/roadmap.mjs';
+import '../styles/roadmap.css';
+
+const icons = ['ph:stack', 'ph:circle', 'ph:circle-half', 'ph:flask', 'ph:check-circle'];
+---
+
+<Layout title="Roadmap — Plozz" description="Follow Plozz's bugs and feature requests, from community backlog to verified App Store releases.">
+  <a class="roadmap-skip" href="#roadmap">Skip to roadmap</a>
+  <SiteHeader />
+  <main id="roadmap" class="roadmap-shell">
+    <div class="roadmap-heading">
+      <div>
+        <h1>Roadmap<span aria-hidden="true">.</span></h1>
+        <p>What’s on the list. What’s on the way.</p>
+      </div>
+      <a class="roadmap-feedback" href="https://github.com/brandomoore/Plozz/issues/new/choose">
+        Suggest or report <Icon name="ph:arrow-up-right" aria-hidden="true" />
+      </a>
+    </div>
+
+    <form class="roadmap-toolbar" role="search" aria-label="Filter roadmap" data-roadmap-filters>
+      <label class="roadmap-search">
+        <Icon name="ph:magnifying-glass" aria-hidden="true" />
+        <span class="sr-only">Search roadmap</span>
+        <input type="search" name="q" placeholder="Search issues or ideas" autocomplete="off" maxlength="200" />
+      </label>
+      <fieldset class="roadmap-kinds" disabled>
+        <legend class="sr-only">Item type</legend>
+        {[['all', 'All'], ['feature', 'Features'], ['bug', 'Bugs']].map(([value, label]) => (
+          <label>
+            <input type="radio" name="kind" value={value} checked={value === 'all'} />
+            <span>{label}</span>
+          </label>
+        ))}
+      </fieldset>
+      <span class="roadmap-order">Newest issues first</span>
+    </form>
+
+    <div class="roadmap-state">
+      <p data-roadmap-status role="status" aria-live="polite">Loading the roadmap…</p>
+      <button class="roadmap-refresh" type="button" data-roadmap-refresh hidden>Retry</button>
+    </div>
+    <p class="roadmap-preview-notice" data-roadmap-preview hidden>
+      Preview using a verified snapshot. The automatic feed isn’t activated yet.
+    </p>
+    <div class="roadmap-mobile-stages" role="group" aria-label="Show a roadmap stage">
+      {STAGES.map(stage => (
+        <button type="button" data-stage-select={stage.id} aria-pressed={stage.id === 'backlog'} disabled>
+          {stage.label}<span data-mobile-count={stage.id}>—</span>
+        </button>
+      ))}
+    </div>
+
+    <div class="roadmap-board" data-roadmap-board aria-busy="true">
+      {STAGES.map((stage, index) => (
+        <section class="roadmap-column" data-stage={stage.id} data-mobile-active={stage.id === 'backlog' ? '' : undefined} aria-labelledby={`heading-${stage.id}`}>
+          <header class="roadmap-column-heading">
+            <div>
+              <Icon name={icons[index]} aria-hidden="true" />
+              <h2 id={`heading-${stage.id}`}>{stage.label}</h2>
+              <span class="roadmap-count" data-count aria-label="Count loading">—</span>
+            </div>
+            <p>{stage.description}</p>
+          </header>
+          <ul class="roadmap-cards" data-cards aria-label={`${stage.label} items`}>
+            <li class="roadmap-placeholder" aria-hidden="true"><span></span><span></span><span></span></li>
+            <li class="roadmap-placeholder" aria-hidden="true"><span></span><span></span></li>
+          </ul>
+          <div class="roadmap-empty" data-empty hidden>
+            <Icon name={icons[index]} aria-hidden="true" />
+            <p></p>
+          </div>
+          <nav class="roadmap-pagination" aria-label={`${stage.label} pages`} hidden>
+            <span data-range></span>
+            <div>
+              <button type="button" data-previous aria-label={`Previous ${stage.label.toLowerCase()} items`}>
+                <Icon name="ph:caret-left" aria-hidden="true" />
+              </button>
+              <button type="button" data-next aria-label={`Next ${stage.label.toLowerCase()} items`}>
+                <Icon name="ph:caret-right" aria-hidden="true" />
+              </button>
+            </div>
+          </nav>
+        </section>
+      ))}
+    </div>
+
+    <div class="roadmap-bottom">
+      <p>Backlog isn’t a promise. Planned work is chosen by Brandon.</p>
+      <details class="roadmap-about">
+        <summary>How this board works</summary>
+        <div>
+          <p>GitHub is the source of truth. This board includes bugs and feature requests, with updates scheduled about every 15 minutes. Search and filters cover every item, not just the visible cards.</p>
+          <p>Planned and In progress are maintainer decisions, without promised dates. In beta and Released require verified availability on every affected platform. A merge or closed issue isn’t proof of delivery.</p>
+          <p>Duplicates and closed issues without verified delivery aren’t shown. Bug-assessment labels don’t change roadmap commitments.</p>
+          <p data-roadmap-evidence hidden></p>
+          <a href="https://github.com/brandomoore/Plozz/issues">Browse all GitHub issues <span aria-hidden="true">↗</span></a>
+        </div>
+      </details>
+    </div>
+    <noscript>
+      <p class="roadmap-noscript">Enable JavaScript to load and filter the board, or <a href="https://github.com/brandomoore/Plozz/issues">browse the issues on GitHub</a>.</p>
+      <style>.roadmap-board, .roadmap-toolbar, .roadmap-state, .roadmap-mobile-stages { display: none; }</style>
+    </noscript>
+  </main>
+  <SiteFooter />
+  <SiteScripts />
+</Layout>
+
+<script>
+  import '../scripts/roadmap.js';
+</script>
