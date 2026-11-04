@@ -31,8 +31,9 @@ function card(item) {
   const li = node('li', 'roadmap-card');
   li.dataset.kind = item.kind;
   const meta = node('div', 'roadmap-card-meta');
-  meta.append(node('span', 'roadmap-card-kind', item.kind === 'bug' ? 'Bug' : 'Feature'),
-    node('span', 'roadmap-card-number', `#${item.number}`));
+  const kindLabel = node('span', 'roadmap-card-kind', item.kind === 'bug' ? 'Bug' : 'Feature');
+  kindLabel.prepend(form.querySelector(`[data-kind-icon="${item.kind}"]`).cloneNode(true));
+  meta.append(kindLabel, node('span', 'roadmap-card-number', `#${item.number}`));
   const heading = node('h3', '');
   const link = node('a', 'roadmap-card-title');
   link.href = item.github_url;

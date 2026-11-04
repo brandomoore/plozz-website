@@ -175,6 +175,24 @@ delivery proof. Missing referenced tags or corrupt catalogs fail the run.
 Closed issues without verified delivery and duplicates are excluded. Only
 validated bridge metadata supplies Discord links.
 
+#### Editing the board
+
+Open a card's linked issue in `brandomoore/Plozz`. Edit its title to change the
+card text; `bug` and `enhancement` select the Bug and Feature types. Cards and
+type filters use matching bug and lightbulb icons alongside their text labels.
+
+For an undelivered item, apply one commitment label using the `brandomoore`
+GitHub account: `roadmap: planned` or `roadmap: in progress`. Remove the previous
+commitment label when changing stages; applying both stops verification rather
+than guessing which decision to publish. Remove both to return to Backlog.
+In beta and Released are automatic, verified delivery states, not manual labels.
+Closing an issue does not mark it Released.
+
+Changes appear after the next successful scheduled export and cache refresh;
+allow about 15 minutes plus up to five minutes of caching, with possible GitHub
+schedule delays. The website has no direct editor. Do not edit `roadmap.json`
+by hand: the next export replaces it.
+
 The scheduled `Verified roadmap feed` workflow exports a versioned JSON
 contract, validates it, and publishes **only `roadmap.json`** to an isolated
 `roadmap-data` branch. This data branch deliberately has no website source and

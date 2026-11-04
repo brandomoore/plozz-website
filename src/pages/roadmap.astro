@@ -32,10 +32,13 @@ const icons = ['ph:stack', 'ph:circle', 'ph:circle-half', 'ph:flask', 'ph:check-
       </label>
       <fieldset class="roadmap-kinds" disabled>
         <legend class="sr-only">Item type</legend>
-        {[['all', 'All'], ['feature', 'Features'], ['bug', 'Bugs']].map(([value, label]) => (
+        {[['all', 'All', null], ['feature', 'Features', 'ph:lightbulb'], ['bug', 'Bugs', 'ph:bug']].map(([value, label, icon]) => (
           <label>
             <input type="radio" name="kind" value={value} checked={value === 'all'} />
-            <span>{label}</span>
+            <span>
+              {icon && <Icon name={icon} is:inline data-kind-icon={value} aria-hidden="true" focusable="false" />}
+              {label}
+            </span>
           </label>
         ))}
       </fieldset>
