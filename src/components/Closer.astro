@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import { GITHUB_URL, TESTFLIGHT_URL, DOCS_URL } from "../data/site";
+import { GITHUB_URL, APP_STORE_URL, DOCS_URL } from "../data/site";
 
 export interface Props {
   /** The second button. Defaults to the GitHub source link. */
@@ -21,12 +21,12 @@ const docs = secondaryHref === DOCS_URL || secondaryHref.startsWith(`${DOCS_URL}
     <div class="closer-cta">
       <a
         class="btn btn-primary btn-lg btn-cta"
-        href={TESTFLIGHT_URL}
+        href={APP_STORE_URL}
         target="_blank"
         rel="noopener"
       >
         <Icon name="simple-icons:apple" />
-        Join the TestFlight beta
+        Download on the App Store
       </a>
       <a
         class="btn btn-light btn-lg"

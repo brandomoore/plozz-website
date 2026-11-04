@@ -87,6 +87,22 @@ test('privacy policy stays concise and distinguishes public code from private da
   assert.doesNotMatch(content, /sign-in and security records|redemption secret|public keys|no data collected|never leaves your device/i);
 });
 
+test('refreshed screenshot credits include cover sources and TMDB attribution', () => {
+  const html = built('media-credits/index.html');
+  const content = plain(html);
+  for (const phrase of [
+    'Sintel (2010)', 'Elephants Dream (2006)', 'Sprite Fright (2021)',
+    'The Daily Dweebs (2017)', 'Hero (2018)', 'Big Buck Bunny (2008)',
+    'Caminandes: Llama Drama (2013)', 'Caminandes: Llamigos (2016)',
+    'CC BY 2.5', 'high-contrast white',
+    'This product uses the TMDB API but is not endorsed or certified by TMDB.',
+    'not a blanket grant for every cover variant or title graphic',
+  ]) assert(content.includes(phrase), `Missing refreshed attribution: ${phrase}`);
+  assert.match(html, /src="\/attribution\/tmdb\.svg"/);
+  assert.equal((html.match(/Library cover source<\/a>/g) ?? []).length, 11);
+  assert.match(built('attribution/tmdb.svg'), /viewBox="0 0 273\.42 35\.52"/);
+});
+
 test('screenshot media credits are public, linked and explicit about adaptations', () => {
   const html = built('media-credits/index.html');
   const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];
@@ -99,8 +115,9 @@ test('screenshot media credits are public, linked and explicit about adaptations
   ]) {
     assert(content.includes(text), `Missing media attribution: ${text}`);
   }
-  assert.equal([...main.matchAll(/<h2\b/g)].length, 20);
-  assert.doesNotMatch(content, /Caminandes|guaranteed clearance|copyright-free worldwide/i);
+  const credits = main.match(/<ul\b[^>]*class="credits-list"[^>]*>([\s\S]*?)<\/ul>/)[1];
+  assert.equal([...credits.matchAll(/<h2\b/g)].length, 32);
+  assert.doesNotMatch(content, /guaranteed clearance|copyright-free worldwide/i);
   for (const file of readdirSync(new URL('../../dist/', import.meta.url), { recursive: true }).filter(file => file.endsWith('.html'))) {
     assert.match(built(file).match(/<footer\b[\s\S]*?<\/footer>/)[0], /href="\/media-credits"/, file);
   }
@@ -256,19 +273,19 @@ test('home hero goes straight from headline to providers and actions', () => {
   assert.match(hero, /<\/h1>\s*<div class="hero-summary"/);
   assert.doesNotMatch(hero, /href="\/infuse-alternative"|Movies, shows and music/);
   assert.match(hero, /class="hero-logos"/);
-  assert.match(hero, /Join the TestFlight beta/);
+  assert.match(hero, /Download on the App Store/);
   assert(plain(built('features/index.html')).includes('Movies, shows and music on Apple TV, iPhone and iPad.'));
   const faq = structured(home).find((item) => item['@type'] === 'FAQPage');
   assert(faq.mainEntity.some((item) => item.name.includes('alternative to Infuse')));
 });
 
-test('hero offers TestFlight first with GitHub and the stable Discord shortcut as secondary actions', () => {
+test('hero offers the App Store first with GitHub and the stable Discord shortcut as secondary actions', () => {
   const hero = home.match(/<section\b[^>]*class="hero"[^>]*>([\s\S]*?)<\/section>/)[1];
   const links = [...hero.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)];
-  assert.deepEqual(links.map(([, attributes, content]) => attributes.match(/aria-label="([^"]+)"/)?.[1] ?? plain(content)), ['Join the TestFlight beta', 'GitHub', 'Discord']);
+  assert.deepEqual(links.map(([, attributes, content]) => attributes.match(/aria-label="([^"]+)"/)?.[1] ?? plain(content)), ['Download on the App Store', 'GitHub', 'Discord']);
   assert.equal(links.filter(([, attributes]) => attributes.includes('btn-primary')).length, 1);
   assert.match(links[0][1], /btn-primary/);
-  assert.match(links[0][1], /href="https:\/\/testflight\.apple\.com\/join\/EKfReNMu"/);
+  assert.match(links[0][1], /href="https:\/\/apps\.apple\.com\/app\/plozz-player\/id6782668147"/);
   assert.match(links[1][1], /btn-light/);
   assert.match(links[1][1], /href="https:\/\/github\.com\/brandomoore\/Plozz"/);
   assert.match(links[2][1], /btn-light/);
@@ -276,6 +293,50 @@ test('hero offers TestFlight first with GitHub and the stable Discord shortcut a
   assert.match(links[2][1], /target="_blank"/);
   assert.match(links[2][1], /rel="noopener"/);
   assert.match(links[2][2], /<svg\b/);
+});
+
+test('App Store stays primary except for the explicit beta-page invitation', () => {
+  const store = 'https://apps.apple.com/app/plozz-player/id6782668147';
+  for (const file of readdirSync(new URL('../../dist/', import.meta.url), { recursive: true }).filter(file => file.endsWith('.html'))) {
+    const html = built(file);
+    for (const [, attributes] of html.matchAll(/<a\b([^>]*class="[^"]*(?:header-cta|btn-cta)[^"]*"[^>]*)>/g)) {
+      const betaButton = file === 'testflight/index.html' && attributes.includes('btn-cta');
+      const destination = betaButton ? 'https://testflight.apple.com/join/EKfReNMu' : store;
+      assert(attributes.includes(`href="${destination}"`), `${file}: incorrect primary destination`);
+    }
+    if (file !== 'testflight/index.html') assert.doesNotMatch(html, /Join the TestFlight beta|distributed through TestFlight|through TestFlight; beta availability/);
+  }
+  const software = structured(home).find(item => item['@type'] === 'SoftwareApplication');
+  assert.equal(software.downloadUrl, store);
+  assert.equal(software.installUrl, store);
+  assert(software.sameAs.includes(store));
+  const install = structured(home).find(item => item['@type'] === 'FAQPage').mainEntity.find(item => item.name === 'How do I install it?');
+  assert(install.acceptedAnswer.text.includes('App Store'));
+  assert(install.acceptedAnswer.text.includes('upcoming changes'));
+  assert(home.includes('href="/testflight"'), 'Link beta guidance without replacing the main App Store download');
+});
+
+test('TestFlight page explains the beta and provides verified device-specific joining steps', () => {
+  const html = built('testflight/index.html');
+  const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];
+  const content = plain(main);
+  assert.equal((main.match(/<h1\b/g) ?? []).length, 1);
+  assert.match(html, /<link rel="canonical" href="https:\/\/plozz\.app\/testflight\/"/);
+  assert(metadata(html, 'description').includes('beta'));
+  for (const phrase of [
+    'These are test builds.', 'Expect bugs', 'replaces the App Store copy',
+    "don't install side by side", '90 days', 'iPhone and iPad', 'Apple TV',
+    'same App Store account', "waiting for Apple's review", 'Stop Testing',
+    'Discord bug reports sync to public GitHub issues.', 'beta usage, crash information',
+  ]) assert(content.includes(phrase), `Missing beta guidance: ${phrase}`);
+  assert.match(main, /href="https:\/\/testflight\.apple\.com\/join\/EKfReNMu"/);
+  assert.match(main, /href="https:\/\/apps\.apple\.com\/app\/testflight\/id899247664"/);
+  assert.match(main, /href="https:\/\/apps\.apple\.com\/app\/plozz-player\/id6782668147"/);
+  assert.match(main, /href="https:\/\/github\.com\/brandomoore\/Plozz\/issues"/);
+  assert(built('sitemap-0.xml').includes('<loc>https://plozz.app/testflight/</loc>'));
+  for (const file of readdirSync(new URL('../../dist/', import.meta.url), { recursive: true }).filter(file => file.endsWith('.html'))) {
+    assert.match(built(file).match(/<footer\b[\s\S]*?<\/footer>/)[0], /href="\/testflight"/);
+  }
 });
 
 test('all public Discord links use the stable app-owned shortcut', () => {
@@ -356,7 +417,7 @@ test('each app gets a sourced, substantive comparison with Infuse first', () => 
 
 test('positioning stays factual and retains free/open-source and platform qualifications', () => {
   const content = plain(landing);
-  for (const term of ['GPL-3.0', 'no subscription', 'Infuse', 'VLC', 'Plex', 'Emby', 'Jellyfin', 'Silo', 'SMB', 'not affiliated', 'not a replacement media server', 'not an import of your Infuse settings', 'not Apple TV features', 'through TestFlight']) {
+  for (const term of ['GPL-3.0', 'no subscription', 'Infuse', 'VLC', 'Plex', 'Emby', 'Jellyfin', 'Silo', 'SMB', 'not affiliated', 'not a replacement media server', 'not an import of your Infuse settings', 'not Apple TV features', 'on the App Store']) {
     assert(content.includes(term), `Missing qualification or relevant context: ${term}`);
   }
   assert.match(landing, /href="https:\/\/firecore\.com\/infuse"/);

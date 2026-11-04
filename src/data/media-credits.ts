@@ -3,7 +3,8 @@ export interface MediaCredit {
   creator: string;
   source: string;
   project?: string;
-  license: 'CC BY 4.0' | 'CC BY 3.0' | 'CC0 1.0' | 'Public-domain artwork' | 'Public-domain archive';
+  coverSource?: string;
+  license: 'CC BY 4.0' | 'CC BY 3.0' | 'CC BY 2.5' | 'CC0 1.0' | 'Public-domain artwork' | 'Public-domain archive';
   material: string;
 }
 
@@ -14,7 +15,8 @@ export const MEDIA_CREDITS: readonly MediaCredit[] = [
     creator: 'Netflix / Production I.G.',
     source: 'https://s3.amazonaws.com/download.opencontent.netflix.com/SolLevante/creative-commons-attribution-4-intl-public-license.txt',
     license: 'CC BY 4.0',
-    material: 'Frames from the official standard-dynamic-range video master.',
+    material: 'Film frames and original title lettering. The settled title lettering was isolated and adapted to high-contrast white.',
+    coverSource: 'https://www.themoviedb.org/movie/688900/images/posters',
   },
   {
     title: 'Meridian (2016)',
@@ -53,6 +55,7 @@ export const MEDIA_CREDITS: readonly MediaCredit[] = [
     source: 'https://studio.blender.org/projects/charge/',
     license: 'CC BY 4.0',
     material: 'Frames from the released film.',
+    coverSource: 'https://www.themoviedb.org/movie/1062079/images/posters',
   },
   {
     title: 'Coffee Run (2020)',
@@ -81,6 +84,99 @@ export const MEDIA_CREDITS: readonly MediaCredit[] = [
     source: 'https://media.xiph.org/tearsofsteel/tearsofsteel-1080-png/README.txt',
     license: 'CC BY 3.0',
     material: 'Environment imagery from the released film, without identifiable actor portraits.',
+    coverSource: 'https://www.themoviedb.org/movie/133701/images/posters',
+  },
+  {
+    title: 'Big Buck Bunny (2008)',
+    creator: 'Blender Foundation | peach.blender.org',
+    source: 'https://commons.wikimedia.org/wiki/File:Big_Buck_Bunny_4K.webm',
+    license: 'CC BY 3.0',
+    material: 'Frames from the released film.',
+  },
+  {
+    title: 'Elephants Dream (2006)',
+    creator: 'Orange Open Movie Team / Blender Foundation',
+    source: 'https://commons.wikimedia.org/wiki/File:Elephants_Dream_(2006).webm',
+    coverSource: 'https://www.themoviedb.org/movie/9761/images/posters',
+    license: 'CC BY 2.5',
+    material: 'Film imagery and the identified library cover variant.',
+  },
+  {
+    title: 'Sintel (2010)',
+    creator: 'Blender Foundation / Durian Open Movie project',
+    source: 'https://commons.wikimedia.org/wiki/File:Sintel_movie_-_Blender_Fondation.ogv',
+    coverSource: 'https://www.themoviedb.org/movie/45745/images/posters',
+    license: 'CC BY 3.0',
+    material: 'Film imagery and the identified library cover variant.',
+  },
+  {
+    title: 'Sprite Fright (2021)',
+    creator: 'Blender Studio',
+    source: 'https://commons.wikimedia.org/wiki/File:Sprite_Fright_-_Blender_Open_Movie-full_movie.webm',
+    coverSource: 'https://www.themoviedb.org/movie/891761/images/posters',
+    license: 'CC BY 4.0',
+    material: 'Film imagery and the identified library cover variant.',
+  },
+  {
+    title: 'The Daily Dweebs (2017)',
+    creator: 'Blender Foundation',
+    source: 'https://commons.wikimedia.org/wiki/File:The_Daily_Dweebs_-_Blender_Open_Movie-full_movie.webm',
+    coverSource: 'https://www.themoviedb.org/movie/498482/images/posters',
+    license: 'CC BY 4.0',
+    material: 'Film imagery and the identified library cover variant.',
+  },
+  {
+    title: 'Hero (2018)',
+    creator: 'Blender Foundation',
+    source: 'https://commons.wikimedia.org/wiki/File:HERO_-_Blender_Open_Movie-full_movie.webm',
+    license: 'CC BY 4.0',
+    material: 'Frames from the released film.',
+  },
+  {
+    title: 'Caminandes: Llama Drama (2013)',
+    creator: 'Pablo Vazquez, Beorn Leonard and Francesco Siddi. Music and sound by Jan Morgenstern.',
+    source: 'https://commons.wikimedia.org/wiki/File:Caminandes-_Llama_Drama_-_Short_Movie.ogv',
+    license: 'CC BY 3.0',
+    material: 'Film-derived visual material; no soundtrack is included in screenshots.',
+  },
+  {
+    title: 'Caminandes: Llamigos (2016)',
+    creator: 'Blender Foundation',
+    source: 'https://commons.wikimedia.org/wiki/File:Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm',
+    license: 'CC BY 3.0',
+    material: 'Frames from the released film.',
+  },
+  {
+    title: 'The Penalty (1920)',
+    creator: 'Goldwyn Pictures',
+    source: 'https://commons.wikimedia.org/wiki/File:Thepenalty.jpg',
+    coverSource: 'https://www.themoviedb.org/movie/27509/images/posters',
+    license: 'Public-domain artwork',
+    material: 'Historical poster artwork; the library cover variant was sourced through TMDB.',
+  },
+  {
+    title: 'The Saphead (1920)',
+    creator: 'Metro Pictures',
+    source: 'https://commons.wikimedia.org/wiki/File:The_Saphead_FilmPoster.jpeg',
+    coverSource: 'https://www.themoviedb.org/movie/51392/images/posters',
+    license: 'Public-domain artwork',
+    material: 'Historical poster artwork; the library cover variant was sourced through TMDB.',
+  },
+  {
+    title: 'Way Down East (1920)',
+    creator: 'H. C. Miner Litho Co.',
+    source: 'https://commons.wikimedia.org/wiki/File:Waydowneast1.jpg',
+    coverSource: 'https://www.themoviedb.org/movie/31509/images/posters',
+    license: 'Public-domain artwork',
+    material: 'Historical poster artwork; the library cover variant was sourced through TMDB.',
+  },
+  {
+    title: 'The Face in the Fog (1922)',
+    creator: 'Cosmopolitan Productions / Paramount Pictures; poster artist unidentified.',
+    source: 'https://commons.wikimedia.org/wiki/File:The_Face_in_the_Fog_(1922)_1.jpg',
+    coverSource: 'https://www.themoviedb.org/movie/430136/images/posters',
+    license: 'Public-domain artwork',
+    material: 'Historical poster artwork; the library cover variant was sourced through TMDB.',
   },
   {
     title: 'Sita Sings the Blues (2008)',
@@ -157,6 +253,7 @@ export const MEDIA_CREDITS: readonly MediaCredit[] = [
 export const MEDIA_LICENSE_URLS: Record<MediaCredit['license'], string> = {
   'CC BY 4.0': 'https://creativecommons.org/licenses/by/4.0/',
   'CC BY 3.0': 'https://creativecommons.org/licenses/by/3.0/',
+  'CC BY 2.5': 'https://creativecommons.org/licenses/by/2.5/',
   'CC0 1.0': 'https://creativecommons.org/publicdomain/zero/1.0/',
   'Public-domain artwork': 'https://creativecommons.org/publicdomain/mark/1.0/',
   'Public-domain archive': 'https://creativecommons.org/publicdomain/mark/1.0/',

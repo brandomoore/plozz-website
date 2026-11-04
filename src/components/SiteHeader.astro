@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { GITHUB_URL, TESTFLIGHT_URL, NAV_LINKS, GITHUB_STARS_SEED } from '../data/site';
+import { GITHUB_URL, APP_STORE_URL, NAV_LINKS, GITHUB_STARS_SEED } from '../data/site';
 import { LOGO_PATH } from '../data/brand';
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
@@ -30,7 +30,7 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
         </a>
       </div>
 
-      <a class="header-cta" href={TESTFLIGHT_URL} target="_blank" rel="noopener">TestFlight</a>
+      <a class="header-cta" href={APP_STORE_URL} target="_blank" rel="noopener">App Store</a>
 
       <button
         class="nav-toggle"

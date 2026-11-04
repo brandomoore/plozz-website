@@ -35,13 +35,29 @@ import { MEDIA_CREDITS, MEDIA_LICENSE_URLS } from '../data/media-credits';
               <a href={item.source} target="_blank" rel="noopener">Source and rights record</a>
               {' · '}
               <a href={MEDIA_LICENSE_URLS[item.license]} target="_blank" rel="noopener">{item.license}</a>
+              {item.coverSource && <>{' · '}<a href={item.coverSource} target="_blank" rel="noopener">Library cover source</a></>}
             </p>
           </li>
         ))}
       </ul>
 
+      <section class="tmdb-credit" aria-labelledby="tmdb-credit-heading">
+        <h2 id="tmdb-credit-heading">Library cover artwork</h2>
+        <img src="/attribution/tmdb.svg" alt="TMDB" width="140" height="18" loading="lazy" />
+        <p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+        <p>
+          Clean cover variants were selected from TMDB without local recoloring,
+          text removal or invented title lettering. TMDB does not claim ownership
+          of hosted images; its hosting is not an artwork license.
+        </p>
+      </section>
+
       <p class="notes">
-        Public-domain descriptions follow the linked source records. Archive
+        License labels and public-domain descriptions refer to the linked source
+        materials, not a blanket grant for every cover variant or title graphic.
+        Creative Commons licenses do not grant trademark, privacy or publicity rights.
+        Some project licenses expressly exclude film logos and associated trademarks.
+        Archive
         editions may contain surviving material rather than complete original
         releases. Any demonstration scene-description subtitles are original
         descriptions prepared for the screenshots, not studio dialogue or translations.
@@ -65,4 +81,7 @@ import { MEDIA_CREDITS, MEDIA_LICENSE_URLS } from '../data/media-credits';
   .credit-links a { color: var(--brand); text-underline-offset: 3px; }
   .credit-links a:hover { text-decoration: underline; }
   .notes { max-width: 760px; }
+  .tmdb-credit { margin: 32px 0; padding-top: 24px; border-top: 1px solid var(--border); }
+  .tmdb-credit img { width: 140px; height: auto; margin: 12px 0; }
+  .tmdb-credit p { color: var(--text-muted); margin: 12px 0; }
 </style>
