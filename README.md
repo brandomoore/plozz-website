@@ -195,11 +195,14 @@ and GitHub links instead of pretending there are zero items.
 
 #### Activation (explicit approval required)
 
-1. Review/merge the website implementation. Provision these existing read-only
-   App Store Connect credentials as website repository Actions secrets:
+1. Review/merge the website implementation. Provision App Store Connect
+   credentials as website repository Actions secrets:
    `TESTFLIGHT_ASC_KEY_ID`, `TESTFLIGHT_ASC_ISSUER_ID`,
    `TESTFLIGHT_ASC_PRIVATE_KEY`. Secrets in the Plozz repository are not
    automatically shared. Never put them in the feed, build, Worker or logs.
+   Prefer a dedicated read-only key. Reusing an existing release key requires
+   the owner's approval and retains its broader Apple permissions, even though
+   this workflow makes only GET requests to Apple.
 2. Set repository variable `ROADMAP_FEED_ENABLED=true` and dispatch
    `roadmap-feed.yml` on `main`. Verify the successful export/publication run,
    the data branch, item counts and the feed's provenance. Schedules are
