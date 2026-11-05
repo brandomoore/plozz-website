@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-04T20:51:05Z",
+  "generated_at": "2026-11-05T00:54:06Z",
   "source": {
     "repository": "brandomoore/Plozz",
-    "revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
+    "revision": "52c74df7f17df3b65c9beddb6fdffc0ee35f0f46",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/41910233031"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/41944539499"
   },
   "items": [
     {
@@ -332,7 +332,7 @@
       "number": 219,
       "title": "[Feature]: Offline Mode for Downloaded Content",
       "kind": "feature",
-      "stage": "backlog",
+      "stage": "planned",
       "github_url": "https://github.com/brandomoore/Plozz/issues/219",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1563057663116316692/1563057663116316692"
@@ -1223,6 +1223,34 @@
       "github_url": "https://github.com/brandomoore/Plozz/issues/368",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567575796808159292/1567575796808159292"
+      ]
+    },
+    {
+      "number": 370,
+      "title": "[Feature]: IPA",
+      "kind": "feature",
+      "stage": "backlog",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/370",
+      "discord_urls": []
+    },
+    {
+      "number": 371,
+      "title": "[Feature]: be notified when an item on the watchlist becomes available",
+      "kind": "feature",
+      "stage": "backlog",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/371",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1567625465668304907/1567625465668304907"
+      ]
+    },
+    {
+      "number": 372,
+      "title": "[Bug]: Silo server home screen takes a very long time to populate on iOS & tvOS.",
+      "kind": "bug",
+      "stage": "backlog",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/372",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1567644345853542450/1567644345853542450"
       ]
     }
   ]
