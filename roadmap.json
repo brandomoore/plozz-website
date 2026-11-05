@@ -1,11 +1,11 @@
 {
-  "schema_version": 1,
-  "generated_at": "2026-11-05T01:06:28Z",
+  "schema_version": 3,
+  "generated_at": "2026-11-05T02:29:19Z",
   "source": {
     "repository": "brandomoore/Plozz",
-    "revision": "52c74df7f17df3b65c9beddb6fdffc0ee35f0f46",
+    "revision": "67663de8e6e949c45fe6856a59f6316efba498e9",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/41946029142"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/41955362386"
   },
   "items": [
     {
@@ -13,1245 +13,1817 @@
       "title": "[Feature]: SMB shares have no reliable signal for when to show the \"Up Next\" card",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/6",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "normal",
+      "severity_override": null
     },
     {
       "number": 12,
       "title": "[Feature]: Identify NAS vendors and display optional server branding",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/12",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "normal",
+      "severity_override": null
     },
     {
       "number": 21,
       "title": "[Feature]: Full Screen Trailer on Hero",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/21",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562104628798038107/1562104628798038107"
-      ]
+      ],
+      "severity": "normal",
+      "severity_override": null
     },
     {
       "number": 54,
       "title": "[Feature]: Improve iOS onboarding with a source-selection hub",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/54",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "normal",
+      "severity_override": null
     },
     {
       "number": 55,
       "title": "[Feature]: Add an optional watch-tracking step to iOS onboarding",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/55",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "normal",
+      "severity_override": null
     },
     {
       "number": 69,
       "title": "[Feature]: Details View Consistency",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/69",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "normal",
+      "severity_override": null
     },
     {
       "number": 87,
       "title": "[Bug]: HEVC/H.265 transcoding preference is not respected",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/87",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "major",
+      "severity_override": null
     },
     {
       "number": 89,
       "title": "[Bug] [smb] Video/Audio async",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/89",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "major",
+      "severity_override": null
     },
     {
       "number": 93,
       "title": "[Bug]: Manual edit tmbd ids",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/93",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1559199695967100999/1559199695967100999"
-      ]
+      ],
+      "severity": "normal",
+      "severity_override": null
     },
     {
       "number": 105,
       "title": "[Feature]: Collections on Detail Screen",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/105",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 107,
       "title": "[Feature]: Guide section and ability to hide channels",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/107",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1560244773200072734/1560244773200072734"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 117,
       "title": "[Feature]: Ability to select region or language everywhere",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/117",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1560458949193375796/1560458949193375796"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 134,
       "title": "[Bug]: Sequential small WebDAV reads make UHD disc playback and seeking slow",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/134",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 152,
       "title": "[Bug]: Subtitles problem",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/152",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 164,
       "title": "[Bug]: Jellyfin remote version returns HTTP 404 while opening playback",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/164",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 170,
       "title": "[Bug]: Continue watching and watch completed not synced from JF server",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/170",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1561502356053426176/1561502356053426176"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 180,
       "title": "[Feature]: Customizable rows for each library",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/180",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1561891155245928529/1561891155245928529"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 182,
       "title": "[Bug]: Silo watch rollups and resume progress are not mapped to card indicators",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/182",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 185,
       "title": "[Feature]: Option to Adjust Font Size",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/185",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562058676720631888/1562058676720631888"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 187,
       "title": "[Bug]: Single-season TV show episode list jumps left / UI freezes after scrolling to details and back",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/187",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562100415770660874/1562100415770660874"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 189,
       "title": "[Bug]: Squared art on iphone",
       "kind": "bug",
       "stage": "released",
+      "automatic_stage": "released",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/189",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562104024960991273/1562104024960991273"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 190,
       "title": "[Feature]: Add the names of the libraries on the navigation bar",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/190",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562105321227292712/1562105321227292712"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 194,
       "title": "[Bug]: Showcase Row Padding",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/194",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 199,
       "title": "[Bug]: Watched (eye) button stops working after marking episode opened from Home",
       "kind": "bug",
       "stage": "released",
+      "automatic_stage": "released",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/199",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562385919477293096/1562385919477293096"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 201,
       "title": "[Feature]: Continue Watching: add “Remove from Continue Watching” to long-press menu",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/201",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562406089352290354/1562406089352290354"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 202,
       "title": "[Feature]: directors in cast",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/202",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562425591741943808/1562425591741943808"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 203,
       "title": "[Feature]: Live TV source category segregation.",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/203",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562458395812823090/1562458395812823090"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 204,
       "title": "[Feature]: Live TV Category Search",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/204",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562458999369113641/1562458999369113641"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 205,
       "title": "[Feature]: Integration of Pulsarr",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/205",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562476089937502339/1562476089937502339"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 206,
       "title": "[Bug]: Movie marked as \"continue watching\" after a missclick",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/206",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562477471406891140/1562477471406891140"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 208,
       "title": "[Feature]: Ratings system",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/208",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562503347007783024/1562503347007783024"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 209,
       "title": "[Feature]: Ai subtitles translation",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/209",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562576458696757279/1562576458696757279"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 211,
       "title": "[Bug]: iOS app on macOS is terminated with 0xdead10cc during suspension",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/211",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 213,
       "title": "[Bug]: Rapid tvOS 27 tab changes can crash the native transition animator",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/213",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 217,
       "title": "[Feature]: Home Screen: Custom Rows from Jellyfin Collections",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/217",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562954579769954384/1562954579769954384"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 219,
       "title": "[Feature]: Offline Mode for Downloaded Content",
       "kind": "feature",
       "stage": "planned",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/219",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1563057663116316692/1563057663116316692"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 223,
       "title": "[Feature]: Displaying new episodes",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/223",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1563324810124333118/1563324810124333118"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 224,
       "title": "[Feature]: Unmute the trailer on Apple TV",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/224",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1563326488588066928/1563326488588066928"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 225,
       "title": "[Bug]: Select the correct episode by clicking the \"information\" button in the carousel on the homepage.",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/225",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1563330852803452979/1563330852803452979"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 226,
       "title": "[Feature]: Display of episode numbers, episode titles, duration, release date, and synopsis",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/226",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1563332770359673023/1563332770359673023",
         "https://discord.com/channels/1527028230106906704/1567343487215738900/1567343487215738900"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 227,
       "title": "[Bug]: Error while stream Content on Jellyfin server",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/227",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1563444389735436328/1563444389735436328"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 228,
       "title": "[Bug]: Jellyfin playback fails opening in native player with CoreMedia -12889 on tvOS build 62",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/228",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 229,
       "title": "[Bug]: Jellyfin-compatible Home requests encounter rate limiting in build 62",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/229",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 232,
       "title": "[Feature]: Rename the categories",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/232",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1563479015770038313/1563479015770038313"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 233,
       "title": "[Feature]: Synchronization Watching/ Watched Status",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/233",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1563480390130204712/1563480390130204712"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 234,
       "title": "[Bug]: Issue with displaying illustrations on the Hero section (on mac)",
       "kind": "bug",
       "stage": "released",
+      "automatic_stage": "released",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/234",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1563499049296994395/1563499049296994395"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 235,
       "title": "[Feature]: Randomized play",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/235",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 236,
       "title": "[Feature]: Card badges for resolution, codecs, dynamic range",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/236",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 238,
       "title": "[Feature]: Sort and filter options for watchlist",
       "kind": "feature",
       "stage": "released",
+      "automatic_stage": "released",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/238",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1563658401123139594/1563658401123139594"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 239,
       "title": "[Feature]: Create custom watchlists and add movies to them",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/239",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 240,
       "title": "[Bug]: Shows with similar names showing incorrect Artwork and Metadata",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/240",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 241,
       "title": "[Feature]: Tvheadend",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/241",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 242,
       "title": "[Bug]: Downloaded playback/navigation triggers fatal hangs on iOS 18",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/242",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "blocking",
+      "severity_override": null
     },
     {
       "number": 243,
       "title": "[Feature]: Google Drive and Onedrive integration",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/243",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 244,
       "title": "[Feature]: hide description",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/244",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564232889653006337/1564232889653006337"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 245,
       "title": "[Feature]: Metadata: Show Additional Ratings Provided by Jellyfin",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/245",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564321224362958948/1564321224362958948"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 246,
       "title": "[Feature]: Using Apple TV profiles",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/246",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564322826503192576/1564322826503192576"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 253,
       "title": "[Feature]: Passtrough Audio",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/253",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 257,
       "title": "[Feature]: Log into seers using Jellyfin account",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/257",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 258,
       "title": "[Bug]:Dolby Vision FEL (experimental) ON, but P7 FEL files still play on the native 8.1 route",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/258",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 260,
       "title": "[Bug]: Silo cursor pagination changes the page size and rejects later pages",
       "kind": "bug",
       "stage": "released",
+      "automatic_stage": "released",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/260",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 261,
       "title": "[Feature]: Continue Watching to show current episode info",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/261",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 262,
       "title": "[Feature]: Label Library Type",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/262",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 263,
       "title": "[Bug]: Emby Maximum quality unnecessarily transcodes after build 67",
       "kind": "bug",
       "stage": "released",
+      "automatic_stage": "released",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/263",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 264,
       "title": "[Bug]: Extra subtitle probes and range reads delay ordinary WebDAV playback",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/264",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 265,
       "title": "[Bug]: TrueHD Atmos 7.1.4 channel routing issue on AetherEngine 7.52.0",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/265",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 267,
       "title": "[Feature]: Option for automatic full subtitles on foreign language film",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/267",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 269,
       "title": "[Feature]: Support inline Plex collections in the movie library Browse view",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/269",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565338632087146546/1565338632087146546"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 270,
       "title": "[Feature]: Display movie edition names on library and collection cards",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/270",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 271,
       "title": "[Bug]: Playback Diagnostics retains stale audio codec and channels after switching tracks",
       "kind": "bug",
       "stage": "released",
+      "automatic_stage": "released",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/271",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 272,
       "title": "[Feature]: Show detailed audio codec profiles in the track selector",
       "kind": "feature",
       "stage": "released",
+      "automatic_stage": "released",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/272",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 273,
       "title": "[Feature]: Allow subtitles to be positioned relative to bottom of screen or bottom of video",
       "kind": "feature",
       "stage": "released",
+      "automatic_stage": "released",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/273",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 274,
       "title": "[Bug]: Emby native Home sections appear as empty video rows",
       "kind": "bug",
       "stage": "released",
+      "automatic_stage": "released",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/274",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 275,
       "title": "[Bug]: Opaque stream identifiers appear as filenames in the version picker",
       "kind": "bug",
       "stage": "released",
+      "automatic_stage": "released",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/275",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 281,
       "title": "[Feature]: Support for STRMLNK files",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/281",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 287,
       "title": "[Bug]: Opening mobile Settings can crash when the language model is missing from the environment",
       "kind": "bug",
       "stage": "released",
+      "automatic_stage": "released",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/287",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 289,
       "title": "[Bug]: Audio menus discard explicit dubbing and regional language distinctions",
       "kind": "bug",
       "stage": "released",
+      "automatic_stage": "released",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/289",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 290,
       "title": "[Bug]: iPhone audio menu unlocks portrait orientation during landscape playback",
       "kind": "bug",
       "stage": "released",
+      "automatic_stage": "released",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/290",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 291,
       "title": "[Bug]: tvOS See all pages leave global navigation active and misroute Back",
       "kind": "bug",
       "stage": "released",
+      "automatic_stage": "released",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/291",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 297,
       "title": "[Feature]: Open library from row",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/297",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564346950156029993/1564346950156029993"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 298,
       "title": "[Bug]: Bug with forced subtitles",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/298",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564373285595254925/1564373285595254925"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 299,
       "title": "[Bug]: Display bug in \"continue watching\"",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/299",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564373939717935124/1564373939717935124"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 301,
       "title": "[Feature]: Apple TV Siri button press should bring up search bar",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/301",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564634564872249364/1564634564872249364"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 302,
       "title": "[Feature]: TV Shows: Display Series Synopsis and Ratings on Details Page",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/302",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564672451567419422/1564672451567419422"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 303,
       "title": "[Feature]: Home Screen: Seerr Coming Soon Row",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/303",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564672972491325490/1564672972491325490"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 304,
       "title": "[Feature]: Personalised Recommendations / Netflix-Style Discovery Rows",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/304",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564696199553093682/1564696199553093682"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 306,
       "title": "[Feature]: configurable speaker layout for AetherEngine rendering",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/306",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564982896731623586/1564982896731623586"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 307,
       "title": "[Bug]: Search doesn’t return tv shows",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/307",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565017419913896170/1565017419913896170"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 308,
       "title": "[Feature]: ability to connect to different subtitles pages - like opensubtitle, subscene and other",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/308",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565020347231637676/1565020347231637676"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 311,
       "title": "[Bug]: Synopsis disappearing from a film/series page",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/311",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565278037061144686/1565278037061144686"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 312,
       "title": "[Bug]: Number of elements in the banner",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/312",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565279801114234961/1565279801114234961"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 313,
       "title": "[Bug]: The trailer marks a film as \"continue watching”",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/313",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565292252606103593/1565292252606103593"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 314,
       "title": "[Bug]: Bug with the default audio track",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/314",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565292895286730842/1565292895286730842"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 315,
       "title": "[Bug]: E-AC-3 5.1 audio is transcoded to AAC instead of Direct Play",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/315",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565294280489312257/1565294280489312257"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 317,
       "title": "[Bug]: App keep crashing",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/317",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565335729716854925/1565335729716854925"
-      ]
+      ],
+      "severity": "major",
+      "severity_override": null
     },
     {
       "number": 318,
       "title": "[Feature]: Continuing or ended TV Shows",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/318",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565514762140524606/1565514762140524606"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 319,
       "title": "[Bug]: Intermittent AIOStreams formatter display and incoherent/garbled results",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/319",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565538499606614087/1565538499606614087"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 320,
       "title": "[Feature]: Standardize media poster display across the entire interface",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/320",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565541353109327932/1565541353109327932"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 321,
       "title": "[Bug]: Unable to play content from Real Debrid WebDAV",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/321",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565659238670270564/1565659238670270564"
-      ]
+      ],
+      "severity": "blocking",
+      "severity_override": null
     },
     {
       "number": 323,
       "title": "[Feature]: Exclude titles that have not been downloaded from the banner",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/323",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565796123090751568/1565796123090751568"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 325,
       "title": "[Bug]: \"...\" button that should not be displayed",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/325",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565816971277111498/1565816971277111498"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 326,
       "title": "[Feature]: Always allow playback through External player option",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/326",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1566492203445125160/1566492203445125160"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 327,
       "title": "[Bug]: Stuttering issue in video playback",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/327",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1566519695660679359/1566519695660679359"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 329,
       "title": "[Bug]: \"Couldn't load versions - The service is asking us to slow down\" modal blocks player",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/329",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1566825395637190657/1566825395637190657"
-      ]
+      ],
+      "severity": "blocking",
+      "severity_override": null
     },
     {
       "number": 334,
       "title": "[Feature]: MDBList as tracker",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/334",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567026803866865745/1567026803866865745"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 335,
       "title": "[Feature]: Genres from Emby",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/335",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567082379279859732/1567082379279859732"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 336,
       "title": "[Bug]: 24 fps movies sometimes play at wrong frame rate after seeking (soap opera effect)",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/336",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567104574962274334/1567104574962274334"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 337,
       "title": "[Bug]: Seek preview thumbnail flickers on/off when scrubbing paused video with touchpad",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/337",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567105123082043422/1567105123082043422"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 338,
       "title": "[Feature]: Seerr: add a Discovery tab with Trending/Popular/Upcoming rows and requesting",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/338",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567111911877771264/1567111911877771264"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 339,
       "title": "[Bug]: Scrolling down to return to the homepage does not work",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/339",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567119013056749600/1567119013056749600"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 340,
       "title": "[Feature]: Jellyfin - SyncPlay Support",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/340",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567136756422287520/1567136756422287520"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 341,
       "title": "[Bug]: Adding Libraries to Top Style Navigation Bar breaks navigation bar",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/341",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567140644391092254/1567140644391092254"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 342,
       "title": "[Bug]: Showcase home row style cuts off top of background artwork",
       "kind": "bug",
       "stage": "released",
+      "automatic_stage": "released",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/342",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567140938441162792/1567140938441162792"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 343,
       "title": "[Bug]: Settings: UI freezes after changing artwork provider list and navigating back",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/343",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567143479728148540/1567143479728148540"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 344,
       "title": "[Bug]: TMDB artwork: low-res background used even when higher-res artwork is available",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/344",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567144672122372136/1567144672122372136"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 345,
       "title": "[Bug]: Landscape doesn’t work when you click into collections",
       "kind": "bug",
       "stage": "released",
+      "automatic_stage": "released",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/345",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567148304507347014/1567148304507347014"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 347,
       "title": "[Bug]: HDR issue on live TV",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/347",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567206181926080653/1567206181926080653"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 348,
       "title": "[Feature]: Allow external playback on Rivulet",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/348",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567229744259276910/1567229744259276910"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 349,
       "title": "[Feature]: top subtitles relative to the top of video",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/349",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 350,
       "title": "[Feature]: Option to enable artwork for folders by using a folder.jpg or poster.jpg file",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/350",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 358,
       "title": "[Feature]: Play a movie with Siri",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/358",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567310454890696905/1567310454890696905"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 359,
       "title": "[Bug]: live tv channels in continue watching on apple tv",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/359",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567314641695014914/1567314641695014914"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 360,
       "title": "[Feature]: Landscape",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/360",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567328385603207178/1567328385603207178"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 361,
       "title": "[Feature]: Mark as unwatched",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/361",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567334346614906880/1567334346614906880"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 362,
       "title": "[Feature]: Download sound",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/362",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567336269749555270/1567336269749555270"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 363,
       "title": "[Bug]: Ask before downloading",
       "kind": "bug",
-      "stage": "backlog",
+      "stage": "in-progress",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/363",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567341900510400636/1567341900510400636"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 364,
       "title": "[Bug]: Names conventions",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/364",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567499716453859491/1567499716453859491"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 365,
       "title": "[Feature]: Speed up the app UI/UX by leveraging caches",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/365",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567519901965353060/1567519901965353060"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 366,
       "title": "[Bug]: Crop and Auto Crop causing incorrect video rendering and color changes",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/366",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567555569936502794/1567555569936502794"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 367,
       "title": "[Bug]: Actor filmography incorrectly reports missing titles",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/367",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567556494470156429/1567556494470156429"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 368,
       "title": "[Feature]: Select an external player by long pressing on play button",
       "kind": "feature",
-      "stage": "backlog",
+      "stage": "planned",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/368",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567575796808159292/1567575796808159292"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 370,
       "title": "[Feature]: IPA",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/370",
-      "discord_urls": []
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 371,
       "title": "[Feature]: be notified when an item on the watchlist becomes available",
       "kind": "feature",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/371",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567625465668304907/1567625465668304907"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
     },
     {
       "number": 372,
       "title": "[Bug]: Silo server home screen takes a very long time to populate on iOS & tvOS.",
       "kind": "bug",
       "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/372",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567644345853542450/1567644345853542450"
-      ]
+      ],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 373,
+      "title": "[Bug]: Native audio selection loses soundtrack identity when multiple tracks share a language",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/373",
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 374,
+      "title": "[Bug]: Native playback diagnostics lack the active-audio refresh added for Plozzigen in #271",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/374",
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 375,
+      "title": "[Bug]: Plex artwork paths with existing query parameters receive a malformed inner authentication URL",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/375",
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
     }
   ]
 }
