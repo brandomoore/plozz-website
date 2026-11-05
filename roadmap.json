@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-05T19:06:54Z",
+  "generated_at": "2026-11-05T19:09:08Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "15231483ed8c51eed2be976004360e26684fda3e",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42090415036"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42090788937"
   },
   "items": [
     {
@@ -1851,6 +1851,32 @@
       "github_url": "https://github.com/brandomoore/Plozz/issues/382",
       "discord_urls": [],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 384,
+      "title": "Configurable metadata and artwork caching",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/384",
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 385,
+      "title": "[Feature]: Episode-specific IMDb ratings when opening episodes from Home",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/385",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1567891737068699758/1567891737068699758"
+      ],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
