@@ -16,6 +16,9 @@ let editor;
 let saving = false;
 let draggedNumber;
 const savedMoves = new Map();
+const savedSeverities = new Map();
+const dialog = root.querySelector('[data-card-dialog]');
+let dialogIssue;
 const editorStatus = root.querySelector('[data-editor-status]');
 let preview = false;
 search.value = (params.get('q') || '').slice(0, 200);
@@ -28,6 +31,58 @@ function node(tag, className, text) {
   return element;
 }
 
+function icon(name) {
+  return root.querySelector('[data-card-icons]').content.querySelector(`[data-card-icon="${name}"]`).cloneNode(true);
+}
+
+function iconControl(tag, name, label) {
+  const control = node(tag, 'roadmap-icon-button');
+  if (tag === 'button') control.type = 'button';
+  control.setAttribute('aria-label', label);
+  control.title = label;
+  control.append(icon(name));
+  return control;
+}
+
+function openCardMenu(item, discussionsOnly = false) {
+  dialogIssue = item.number;
+  root.querySelector('#card-dialog-title').textContent = `#${item.number} · ${displayTitle(item.title)}`;
+  const content = root.querySelector('[data-dialog-body]');
+  content.replaceChildren();
+  function group(title, choices, current, action) {
+    const section = node('fieldset', 'roadmap-menu-group');
+    section.append(node('legend', '', title));
+    for (const [value, label] of choices) {
+      const button = node('button', 'roadmap-menu-choice', label);
+      button.type = 'button';
+      button.setAttribute('aria-pressed', String(current === value));
+      button.addEventListener('click', () => {
+        dialog.close();
+        action(value);
+      });
+      section.append(button);
+    }
+    content.append(section);
+  }
+  if (!discussionsOnly && editor && EDITABLE_STAGES.includes(item.stage)) {
+    group('Stage', STAGES.filter(stage => EDITABLE_STAGES.includes(stage.id)).map(stage => [stage.id, stage.label]),
+      item.stage, stage => moveItem(item, stage));
+    group('Severity', [[null, 'Automatic'], ['blocking', 'Blocking'], ['major', 'Major'], ['normal', 'No badge']],
+      item.severity_override ?? null, severity => setSeverity(item, severity));
+    content.append(node('p', 'roadmap-menu-help', 'Your override stays until you choose Automatic.'));
+  }
+  if (item.discord_urls.length) {
+    const links = node('div', 'roadmap-menu-links');
+    item.discord_urls.forEach((url, i) => {
+      const link = node('a', '', item.discord_urls.length === 1 ? 'Discord discussion' : `Discord discussion ${i + 1}`);
+      link.href = url;
+      links.append(link);
+    });
+    content.append(links);
+  }
+  dialog.showModal();
+}
+
 function card(item) {
   const li = node('li', 'roadmap-card');
   li.dataset.kind = item.kind;
@@ -35,7 +90,17 @@ function card(item) {
   const meta = node('div', 'roadmap-card-meta');
   const kindLabel = node('span', 'roadmap-card-kind', item.kind === 'bug' ? 'Bug' : 'Feature');
   kindLabel.prepend(form.querySelector(`[data-kind-icon="${item.kind}"]`).cloneNode(true));
-  meta.append(kindLabel, node('span', 'roadmap-card-number', `#${item.number}`));
+  const controls = node('div', 'roadmap-card-controls');
+  controls.append(node('span', 'roadmap-card-number', `#${item.number}`));
+  if (item.discord_urls.length) {
+    const discord = iconControl(item.discord_urls.length === 1 ? 'a' : 'button', 'discord',
+      `Discord ${item.discord_urls.length === 1 ? 'discussion' : 'discussions'} for issue ${item.number}`);
+    if (item.discord_urls.length === 1) discord.href = item.discord_urls[0];
+    else discord.addEventListener('click', () => openCardMenu(item, true));
+    discord.dataset.focus = 'discord';
+    controls.append(discord);
+  }
+  meta.append(kindLabel, controls);
   const heading = node('h3', '');
   const link = node('a', 'roadmap-card-title');
   link.href = item.github_url;
@@ -43,15 +108,12 @@ function card(item) {
   link.append(node('span', '', displayTitle(item.title)));
   heading.append(link);
   li.append(meta, heading);
-  if (item.discord_urls.length) {
-    const discussions = node('div', 'roadmap-card-discussions');
-    item.discord_urls.forEach((url, index) => {
-      const link = node('a', '', item.discord_urls.length === 1 ? 'Discord discussion ↗' : `Discussion ${index + 1} ↗`);
-      link.href = url;
-      link.setAttribute('aria-label', `Discord discussion ${index + 1} for issue ${item.number}`);
-      discussions.append(link);
-    });
-    li.append(discussions);
+  if (['blocking', 'major'].includes(item.severity)) {
+    const badge = node('span', 'roadmap-severity', item.severity === 'blocking' ? 'Blocking' : 'Major');
+    badge.dataset.severity = item.severity;
+    badge.title = `${item.severity_override ? 'Maintainer override' : 'Automatic assessment'} · ${
+      item.severity === 'blocking' ? 'Core task cannot be completed' : 'Core task is seriously impaired'}`;
+    li.append(badge);
   }
   if (editor && EDITABLE_STAGES.includes(item.stage)) {
     li.draggable = !saving;
@@ -65,19 +127,12 @@ function card(item) {
       event.dataTransfer.setData('text/plain', String(item.number));
     });
     li.addEventListener('dragend', clearDrag);
-    const label = node('label', 'roadmap-move', 'Move to');
-    const select = node('select', '');
-    select.setAttribute('aria-label', `Stage for issue ${item.number}`);
-    select.disabled = saving;
-    for (const stage of STAGES.filter(stage => EDITABLE_STAGES.includes(stage.id))) {
-      const option = node('option', '', stage.label);
-      option.value = stage.id;
-      option.selected = stage.id === item.stage;
-      select.append(option);
-    }
-    select.addEventListener('change', () => moveItem(item, select.value));
-    label.append(select);
-    li.append(label);
+    const actions = iconControl('button', 'actions', `Edit issue ${item.number}`);
+    actions.dataset.focus = 'actions';
+    actions.setAttribute('aria-haspopup', 'dialog');
+    actions.disabled = saving;
+    actions.addEventListener('click', () => openCardMenu(item));
+    controls.append(actions);
   }
   return li;
 }
@@ -85,7 +140,11 @@ function card(item) {
 function currentItems() {
   return feed.items.map(item => {
     const saved = savedMoves.get(item.number);
-    return saved && EDITABLE_STAGES.includes(item.stage) ? { ...item, stage: saved.stage } : item;
+    const severity = savedSeverities.get(item.number);
+    return EDITABLE_STAGES.includes(item.stage) ? {
+      ...item, ...(saved ? { stage: saved.stage } : {}),
+      ...(severity ? { severity: severity.severity, severity_override: severity.severity_override } : {}),
+    } : item;
   });
 }
 
@@ -129,7 +188,8 @@ function renderStatus() {
 
 function render(resetScroll = false) {
   const focusedCard = document.activeElement?.closest('.roadmap-card');
-  const focusedSelectIssue = document.activeElement instanceof HTMLSelectElement ? focusedCard?.dataset.issue : null;
+  const focusedControl = document.activeElement?.dataset.focus;
+  const focusedIssue = focusedCard?.dataset.issue;
   const focusedLink = focusedCard && document.activeElement instanceof HTMLAnchorElement
     ? document.activeElement.href : null;
   const focusedStage = focusedCard?.closest('[data-stage]')?.dataset.stage;
@@ -163,8 +223,8 @@ function render(resetScroll = false) {
       heading.focus({ preventScroll: true });
     }
   }
-  if (focusedSelectIssue) {
-    root.querySelector(`[data-issue="${focusedSelectIssue}"] select`)?.focus({ preventScroll: true });
+  if (focusedControl && focusedIssue) {
+    root.querySelector(`[data-issue="${focusedIssue}"] [data-focus="${focusedControl}"]`)?.focus({ preventScroll: true });
   }
 }
 
@@ -223,6 +283,14 @@ async function load() {
         savedMoves.delete(number);
         changed = true;
       }
+      for (const [number, saved] of savedSeverities) {
+        const item = feed.items.find(item => item.number === number);
+        if (!item || (item.severity === saved.severity && item.severity_override === saved.severity_override) ||
+            Date.parse(feed.generated_at) > Date.parse(saved.saved_at)) {
+          savedSeverities.delete(number);
+          changed = true;
+        }
+      }
     }
     if (changed && !saving) render();
     else renderStatus();
@@ -273,7 +341,7 @@ async function loadEditor() {
       editor = session;
       root.querySelector('[data-roadmap-login]').hidden = true;
       root.querySelector('[data-roadmap-logout]').hidden = false;
-      editingMessage('Drag cards or use Move to. Beta and release stages are automatic.');
+      editingMessage('Drag cards or use their menu. Beta and release stages are automatic.');
       if (feed) render();
     } else if (params.has('editor')) {
       const messages = {
@@ -318,10 +386,48 @@ async function moveItem(item, stage) {
     saving = false;
     if (feed) {
       render();
-      root.querySelector(`[data-stage="${activeStage}"] [data-issue="${item.number}"] select`)?.focus();
+      root.querySelector(`[data-stage="${activeStage}"] [data-issue="${item.number}"] [data-focus="actions"]`)?.focus();
     }
   }
 }
+
+async function setSeverity(item, severityOverride) {
+  if (!editor || saving || severityOverride === (item.severity_override ?? null)) return;
+  saving = true;
+  clearDrag();
+  render();
+  editingMessage(`Saving issue #${item.number}…`);
+  try {
+    const result = await fetch(`/api/roadmap/editor/issues/${item.number}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json', 'X-Roadmap-CSRF': editor.csrf },
+      body: JSON.stringify({ severityOverride, expectedOverride: item.severity_override ?? null }),
+      signal: AbortSignal.timeout(30_000),
+    });
+    const body = await result.json();
+    if (!result.ok) throw new Error(body.message || 'Could not save. Check the issue on GitHub before trying again.');
+    if (body.number !== item.number || body.severity_override !== severityOverride ||
+        !['blocking', 'major', 'normal', 'unassessed'].includes(body.severity) || !Number.isFinite(Date.parse(body.saved_at))) {
+      throw new Error('The save response could not be verified. Check the issue on GitHub.');
+    }
+    savedSeverities.set(item.number, body);
+    editingMessage(`Saved severity for #${item.number}. ${severityOverride === null ? 'Automatic triage applies.' : 'Your override takes precedence.'}`);
+  } catch (error) {
+    console.error('Roadmap severity change failed.', error);
+    editingMessage(error.name === 'TimeoutError' ? 'Saving timed out. Check the issue on GitHub before trying again.' : error.message, true);
+  } finally {
+    saving = false;
+    if (feed) {
+      render();
+      root.querySelector(`[data-issue="${item.number}"] [data-focus="actions"]`)?.focus();
+    }
+  }
+}
+
+root.querySelector('[data-dialog-close]').addEventListener('click', () => dialog.close());
+dialog.addEventListener('close', () => {
+  root.querySelector(`[data-issue="${dialogIssue}"] [data-focus="actions"]`)?.focus({ preventScroll: true });
+});
 
 function clearDrag() {
   draggedNumber = undefined;
@@ -355,6 +461,7 @@ root.querySelector('[data-roadmap-logout]').addEventListener('click', async () =
     if (!result.ok) throw new Error('Sign-out could not be completed. Try again.');
     editor = undefined;
     savedMoves.clear();
+    savedSeverities.clear();
     root.querySelector('[data-roadmap-login]').hidden = false;
     root.querySelector('[data-roadmap-logout]').hidden = true;
     editingMessage('Signed out.');

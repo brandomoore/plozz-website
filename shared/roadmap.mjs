@@ -4,6 +4,17 @@ export const MAX_FEED_BYTES = 2_000_000;
 export const STALE_AFTER_MS = 60 * 60 * 1000;
 export const EXPIRES_AFTER_MS = 7 * 24 * STALE_AFTER_MS;
 export const EDITABLE_STAGES = ["backlog", "planned", "in-progress"];
+export const SEVERITIES = ["blocking", "major", "normal"];
+export const SEVERITY_LABELS = Object.fromEntries(SEVERITIES.map(value => [value, `severity: ${value}`]));
+export const SEVERITY_OVERRIDES = Object.fromEntries(SEVERITIES.map(value => [value, `severity override: ${value}`]));
+
+export function severityFromLabels(labels) {
+  const names = new Set(labels.map(label => label.name));
+  const automatic = SEVERITIES.filter(value => names.has(SEVERITY_LABELS[value]));
+  const overrides = SEVERITIES.filter(value => names.has(SEVERITY_OVERRIDES[value]));
+  if (automatic.length > 1 || overrides.length > 1) throw new Error("Conflicting severity labels.");
+  return { severity: overrides[0] || automatic[0] || "unassessed", severity_override: overrides[0] || null };
+}
 
 export const STAGES = [
   { id: "backlog", label: "Backlog", description: "", empty: "No items in the backlog." },
@@ -31,7 +42,7 @@ function timestamp(value) {
 /** Both the public endpoint and the browser fail closed on a malformed snapshot. */
 export function validateFeed(feed, now = Date.now()) {
   exactKeys(feed, ["schema_version", "generated_at", "source", "items"]);
-  requireValue(feed.schema_version === 1);
+  requireValue([1, 2].includes(feed.schema_version));
   timestamp(feed.generated_at);
   requireValue(Date.parse(feed.generated_at) <= now + 5 * 60 * 1000);
   exactKeys(feed.source, ["repository", "revision", "authority_revision", "run_url"]);
@@ -42,7 +53,13 @@ export function validateFeed(feed, now = Date.now()) {
   requireValue(Array.isArray(feed.items) && feed.items.length <= 5000);
   const seen = new Set();
   for (const item of feed.items) {
-    exactKeys(item, ["number", "title", "kind", "stage", "github_url", "discord_urls"]);
+    exactKeys(item, ["number", "title", "kind", "stage", "github_url", "discord_urls",
+      ...(feed.schema_version === 2 ? ["severity", "severity_override"] : [])]);
+    if (feed.schema_version === 2) {
+      requireValue([...SEVERITIES, "unassessed"].includes(item.severity));
+      requireValue(item.severity_override === null || SEVERITIES.includes(item.severity_override));
+      requireValue(item.severity_override === null || item.severity === item.severity_override);
+    }
     requireValue(Number.isSafeInteger(item.number) && item.number > 0 && !seen.has(item.number));
     seen.add(item.number);
     requireValue(typeof item.title === "string" && item.title.trim().length > 0 && item.title.length <= 2048);
@@ -74,5 +91,9 @@ export function selectItems(items, query = "", kind = "all") {
   return items.filter(item => (kind === "all" || item.kind === kind) &&
     words.every(word => /^#\d+$/.test(word) ? Number(word.slice(1)) === item.number :
       `${item.title} #${item.number}`.toLocaleLowerCase().includes(word)))
-    .sort((a, b) => b.number - a.number);
+    .sort((a, b) => {
+      const rank = item => EDITABLE_STAGES.includes(item.stage)
+        ? ({ blocking: 0, major: 1 }[item.severity] ?? 2) : 2;
+      return rank(a) - rank(b) || b.number - a.number;
+    });
 }

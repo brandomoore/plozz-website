@@ -39,3 +39,14 @@ test("roadmap type filters provide distinct, accessible icons reusable by cards"
     assert.match(page, new RegExp(`value="${kind}"[^>]*>[\\s\\S]*?${label}\\s*<\\/span>`));
   }
 });
+
+test("compact card actions use a named dialog and inline Discord artwork, not per-card selects", () => {
+  assert.match(page, /<dialog[^>]*data-card-dialog[^>]*aria-labelledby="card-dialog-title"/);
+  assert.match(page, /data-card-icon="discord"/);
+  assert.match(page, /data-card-icon="actions"/);
+  assert.match(page, /Blocking and Major first/);
+  const script = readFileSync(new URL("../../src/scripts/roadmap.js", import.meta.url), "utf8");
+  assert.doesNotMatch(script, /node\('select'|roadmap-move|roadmap-card-discussions/);
+  assert.match(script, /aria-haspopup/);
+  assert.match(script, /dialog\.showModal/);
+});

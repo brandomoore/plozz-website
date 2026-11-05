@@ -20,6 +20,18 @@ STAGES = {
     "Backlog": "backlog", "Planned": "planned", "In progress": "in-progress",
     "In beta": "in-beta", "Released": "released",
 }
+SEVERITIES = ("blocking", "major", "normal")
+
+
+def severity(labels):
+    automatic = [value for value in SEVERITIES if f"severity: {value}" in labels]
+    overrides = [value for value in SEVERITIES if f"severity override: {value}" in labels]
+    if len(automatic) > 1 or len(overrides) > 1:
+        raise ValueError("Conflicting severity labels; resolve them on GitHub.")
+    return {
+        "severity": (overrides or automatic or ["unassessed"])[0],
+        "severity_override": overrides[0] if overrides else None,
+    }
 
 
 def git(root, *args):
@@ -64,6 +76,7 @@ def export_items(authority, index, beta, store):
             "stage": STAGES[stage],
             "github_url": f"https://github.com/{bridge.REPO}/issues/{number}",
             "discord_urls": links,
+            **severity(labels),
         })
     return items
 
@@ -87,7 +100,7 @@ def main():
     items = export_items(authority, index, beta, store)
     # Write only after every item and delivery check succeeded.
     feed = {
-        "schema_version": 1,
+        "schema_version": 2,
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "source": {
             "repository": bridge.REPO, "revision": revision,

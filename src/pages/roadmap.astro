@@ -47,7 +47,7 @@ const icons = ['ph:stack', 'ph:circle', 'ph:circle-half', 'ph:flask', 'ph:check-
           </label>
         ))}
       </fieldset>
-      <span class="roadmap-order">Newest issues first</span>
+      <span class="roadmap-order">Blocking and Major first</span>
     </form>
 
     <div class="roadmap-state">
@@ -58,6 +58,19 @@ const icons = ['ph:stack', 'ph:circle', 'ph:circle-half', 'ph:flask', 'ph:check-
       Preview using a verified snapshot.
     </p>
     <p class="roadmap-editor-status" data-editor-status role="status" aria-live="polite" hidden></p>
+    <template data-card-icons>
+      <Icon name="simple-icons:discord" is:inline data-card-icon="discord" aria-hidden="true" focusable="false" />
+      <Icon name="ph:dots-three-bold" is:inline data-card-icon="actions" aria-hidden="true" focusable="false" />
+    </template>
+    <dialog class="roadmap-card-dialog" data-card-dialog aria-labelledby="card-dialog-title">
+      <div class="roadmap-dialog-heading">
+        <h2 id="card-dialog-title"></h2>
+        <button type="button" class="roadmap-icon-button" data-dialog-close aria-label="Close card menu">
+          <Icon name="ph:x" aria-hidden="true" />
+        </button>
+      </div>
+      <div data-dialog-body></div>
+    </dialog>
     <div class="roadmap-mobile-stages" role="group" aria-label="Show a roadmap stage">
       {STAGES.map(stage => (
         <button type="button" data-stage-select={stage.id} aria-pressed={stage.id === 'backlog'} disabled>
@@ -95,8 +108,10 @@ const icons = ['ph:stack', 'ph:circle', 'ph:circle-half', 'ph:flask', 'ph:check-
       <details class="roadmap-about">
         <summary>How this board works</summary>
         <div>
-          <p>GitHub is the source of truth. Updates are scheduled about every 15 minutes. Scroll each column to see every item, newest first. Search and filters cover the whole board.</p>
+          <p>GitHub is the source of truth. Updates are scheduled about every 15 minutes. Scroll each column to see every item. Search and filters cover the whole board.</p>
+          <p>Blocking means a core task cannot be completed. Major means it is seriously impaired. Active columns show these first, then newest issues. Triage assesses reported impact, not confirmed reproduction. Unmarked items may not yet be assessed.</p>
           <p>Sign in as the maintainer to drag cards or choose a stage from their menu. Changes are saved to GitHub; the public board catches up after the next successful sync.</p>
+          <p>Your severity override stays in place until you choose Automatic. Severity never moves an item to Planned or proves delivery.</p>
           <p>Planned and In progress are maintainer decisions, without promised dates. In beta and Released require verified availability on every affected platform. A merge or closed issue isn’t proof of delivery.</p>
           <p>Duplicates and closed issues without verified delivery aren’t shown. Bug-assessment labels don’t change roadmap commitments.</p>
           <p data-roadmap-evidence hidden></p>

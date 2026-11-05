@@ -266,6 +266,46 @@ test("logout revokes the GitHub token, deletes the server session, and clears th
   const result = await h.request("/api/roadmap/editor/logout", {
     method: "POST", headers: { Cookie: h.cookie, Origin: origin, "X-Roadmap-CSRF": h.csrf },
   });
+
+  test("severity overrides preserve automatic severity and stage, and Automatic restores triage", async () => {
+    const h = harness();
+    await h.signIn();
+    h.issue.labels.push({ name: "severity: blocking" }, { name: "roadmap: planned" });
+    async function severity(severityOverride, expectedOverride) {
+      return h.move("planned", "planned", { options: { body: JSON.stringify({ severityOverride, expectedOverride }) } });
+    }
+    for (const [value, previous, effective] of [["normal", null, "normal"], ["major", "normal", "major"], [null, "major", "blocking"]]) {
+      const result = await severity(value, previous);
+      assert.equal(result.status, 200);
+      assert.deepEqual(await result.json(), {
+        number: 219, severity: effective, severity_override: value, saved_at: new Date(now).toISOString(),
+      });
+      for (const name of ["severity: blocking", "roadmap: planned", "triage: backlog", "custom"]) {
+        assert(h.issue.labels.some(l => l.name === name));
+      }
+    }
+    assert.equal((await severity("blocking", "major")).status, 409);
+    assert.equal((await severity("invalid", null)).status, 400);
+  });
+
+  test("severity changes share authorization and delivery guards; failures never become successful saves", async () => {
+    for (const variation of ["csrf", "closed", "released", "conflict", "failure"]) {
+      const h = harness();
+      await h.signIn();
+      h.issue.labels.push({ name: "severity override: blocking" });
+      if (variation === "closed") h.issue.state = "closed";
+      if (variation === "released") h.feed.items[0].stage = "released";
+      if (variation === "conflict") h.issue.labels.push({ name: "severity override: normal" });
+      if (variation === "failure") h.failDelete = "severity override: blocking";
+      const result = await h.move("planned", "backlog", {
+        headers: variation === "csrf" ? { "X-Roadmap-CSRF": "wrong" } : {},
+        options: { body: JSON.stringify({ severityOverride: "major", expectedOverride: "blocking" }) },
+      });
+      assert.equal(result.status, variation === "csrf" ? 403 : variation === "failure" ? 502 : 409);
+      assert(h.issue.labels.some(l => l.name === "severity override: blocking"));
+      assert(!h.issue.labels.some(l => l.name === "severity override: major"));
+    }
+  });
   assert.equal(result.status, 200);
   assert(h.revoked);
   assert.match(result.headers.get("set-cookie"), /Max-Age=0; HttpOnly; Secure/);

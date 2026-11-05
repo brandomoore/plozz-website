@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { AUTHORITY_REVISION, validateFeed, feedAge, selectItems, displayTitle, STALE_AFTER_MS, EXPIRES_AFTER_MS, MAX_FEED_BYTES } from "../shared/roadmap.mjs";
+import { AUTHORITY_REVISION, validateFeed, feedAge, selectItems, displayTitle, severityFromLabels, STALE_AFTER_MS, EXPIRES_AFTER_MS, MAX_FEED_BYTES } from "../shared/roadmap.mjs";
 import { handleRoadmap, FEED_URL } from "../worker/roadmap.js";
 import { publishFeed } from "../tools/publish-roadmap.mjs";
 import worker from "../worker/index.js";
@@ -65,6 +65,49 @@ test("freshness uses evidence time, including exact stale/expiry boundaries", ()
   assert.equal(feedAge(fixture(now - STALE_AFTER_MS - 1000), now).stale, true);
   assert.equal(feedAge(fixture(now - EXPIRES_AFTER_MS), now).expired, false);
   assert.equal(feedAge(fixture(now - EXPIRES_AFTER_MS - 1000), now).expired, true);
+});
+
+test("v2 severity contract preserves unassessed data and accepts v1 during rollout", () => {
+  validateFeed(fixture(), now);
+  const feed = fixture();
+  feed.schema_version = 2;
+  for (const severity of ["blocking", "major", "normal", "unassessed"]) {
+    Object.assign(feed.items[0], { severity, severity_override: null });
+    validateFeed(feed, now);
+  }
+  for (const severity of ["blocking", "major", "normal"]) {
+    Object.assign(feed.items[0], { severity, severity_override: severity });
+    validateFeed(feed, now);
+  }
+  feed.items[0].severity = "blocking";
+  assert.throws(() => validateFeed(feed, now));
+  feed.items[0].severity_override = null;
+  feed.items[0].severity = "critical";
+  assert.throws(() => validateFeed(feed, now));
+});
+
+test("maintainer severity overrides win without erasing automatic assessment", () => {
+  const labels = names => names.map(name => ({ name }));
+  assert.deepEqual(severityFromLabels([]), { severity: "unassessed", severity_override: null });
+  assert.deepEqual(severityFromLabels(labels(["severity: blocking", "severity override: normal"])),
+    { severity: "normal", severity_override: "normal" });
+  assert.deepEqual(severityFromLabels(labels(["severity: major"])),
+    { severity: "major", severity_override: null });
+  for (const names of [["severity: major", "severity: blocking"], ["severity override: normal", "severity override: blocking"]]) {
+    assert.throws(() => severityFromLabels(labels(names)), /Conflicting severity/);
+  }
+});
+
+test("active items are severity-first, ties newest-first; delivery columns retain chronology", () => {
+  const items = [
+    { number: 9, title: "Not assessed", kind: "bug", stage: "backlog" },
+    { number: 2, title: "Cannot load", kind: "bug", stage: "backlog", severity: "blocking" },
+    { number: 8, title: "Slow", kind: "bug", stage: "backlog", severity: "major" },
+    { number: 1, title: "Crashes", kind: "bug", stage: "backlog", severity: "blocking" },
+    { number: 7, title: "Cosmetic", kind: "bug", stage: "backlog", severity: "normal" },
+  ];
+  assert.deepEqual(selectItems(items).map(i => i.number), [2, 1, 8, 9, 7]);
+  assert.deepEqual(selectItems(items.map(i => ({ ...i, stage: "released" }))).map(i => i.number), [9, 8, 7, 2, 1]);
 });
 
 test("search covers all items, filters compose, and the full sorted list remains available", () => {

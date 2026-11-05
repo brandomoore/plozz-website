@@ -1,4 +1,4 @@
-import { EDITABLE_STAGES } from "../shared/roadmap.mjs";
+import { EDITABLE_STAGES, SEVERITIES, SEVERITY_OVERRIDES, severityFromLabels } from "../shared/roadmap.mjs";
 import { handleRoadmap } from "./roadmap.js";
 
 const ORIGIN = "https://plozz.app";
@@ -134,6 +134,14 @@ function stageOf(issue) {
   const stages = Object.keys(LABELS).filter(stage => labels.includes(LABELS[stage]));
   if (stages.length > 1) throw new EditorError(409, "conflicting_labels", "This issue has conflicting stage labels. Resolve them on GitHub.");
   return stages[0] || "backlog";
+}
+
+function severityOf(issue) {
+  try {
+    return severityFromLabels(issue.labels);
+  } catch {
+    throw new EditorError(409, "conflicting_severity", "This issue has conflicting severity labels. Resolve them on GitHub.");
+  }
 }
 
 export async function handleRoadmapEditor(request, env, ctx, { fetcher = fetch, now = Date.now() } = {}) {
@@ -275,7 +283,12 @@ export async function handleRoadmapEditor(request, env, ctx, { fetcher = fetch, 
     }
 
     const body = await readBody(request);
-    if (!body || Object.keys(body).sort().join(",") !== "expectedStage,stage" ||
+    const severityEdit = body && Object.keys(body).sort().join(",") === "expectedOverride,severityOverride";
+    if (severityEdit) {
+      if (![null, ...SEVERITIES].includes(body.severityOverride) || ![null, ...SEVERITIES].includes(body.expectedOverride)) {
+        throw new EditorError(400, "invalid_severity", "Choose Automatic, Blocking, Major, or No badge.");
+      }
+    } else if (!body || Object.keys(body).sort().join(",") !== "expectedStage,stage" ||
         !EDITABLE_STAGES.includes(body.stage) || !EDITABLE_STAGES.includes(body.expectedStage)) {
       throw new EditorError(400, "invalid_stage", "Only Backlog, Planned, and In progress can be chosen manually.");
     }
@@ -294,30 +307,33 @@ export async function handleRoadmapEditor(request, env, ctx, { fetcher = fetch, 
         !issue.labels.some(label => ["bug", "enhancement"].includes(label.name))) {
       throw new EditorError(409, "ineligible_issue", "This issue is no longer an open roadmap item.");
     }
-    const current = stageOf(issue);
-    if (current !== body.expectedStage) {
-      throw new EditorError(409, "stage_changed", "The stage changed on GitHub. Wait for the board to sync before moving it.");
+    const current = severityEdit ? severityOf(issue).severity_override : stageOf(issue);
+    const expected = severityEdit ? body.expectedOverride : body.expectedStage;
+    const target = severityEdit ? body.severityOverride : body.stage;
+    const labels = severityEdit ? SEVERITY_OVERRIDES : LABELS;
+    if (current !== expected) {
+      throw new EditorError(409, "item_changed", "This setting changed on GitHub. Wait for the board to sync before editing it.");
     }
-    if (current !== body.stage) {
-      // Touch only our two labels; never replace concurrent triage or integration labels.
-      if (LABELS[body.stage]) await github(`${issuePath}/labels`, session.token, {
-        method: "POST", body: JSON.stringify({ labels: [LABELS[body.stage]] }),
+    if (current !== target) {
+      // Change only this setting's labels; preserve concurrent triage and integration labels.
+      if (labels[target]) await github(`${issuePath}/labels`, session.token, {
+        method: "POST", body: JSON.stringify({ labels: [labels[target]] }),
       });
-      if (LABELS[current]) {
+      if (labels[current]) {
         try {
-          await github(`${issuePath}/labels/${encodeURIComponent(LABELS[current])}`, session.token, { method: "DELETE" });
+          await github(`${issuePath}/labels/${encodeURIComponent(labels[current])}`, session.token, { method: "DELETE" });
         } catch (error) {
-          if (LABELS[body.stage]) {
+          if (labels[target]) {
             try {
               const recoverySignal = AbortSignal.timeout(5_000);
               const latest = await github(issuePath, session.token, { signal: recoverySignal });
-              if (latest.labels.some(label => label.name === LABELS[current])) {
-                await github(`${issuePath}/labels/${encodeURIComponent(LABELS[body.stage])}`, session.token, {
+              if (latest.labels.some(label => label.name === labels[current])) {
+                await github(`${issuePath}/labels/${encodeURIComponent(labels[target])}`, session.token, {
                   method: "DELETE", signal: recoverySignal,
                 });
               }
             } catch {
-              console.error("Roadmap editor stage rollback failed; manual label verification required.");
+              console.error("Roadmap editor label rollback failed; manual verification required.");
             }
           }
           throw error;
@@ -325,9 +341,11 @@ export async function handleRoadmapEditor(request, env, ctx, { fetcher = fetch, 
       }
     }
     const verified = await github(issuePath, session.token);
-    if (stageOf(verified) !== body.stage) {
-      throw new EditorError(409, "save_conflict", "The saved stage changed. Check the labels on GitHub before trying again.");
+    const verifiedValue = severityEdit ? severityOf(verified).severity_override : stageOf(verified);
+    if (verifiedValue !== target) {
+      throw new EditorError(409, "save_conflict", "The saved setting changed. Check the labels on GitHub before trying again.");
     }
+    if (severityEdit) return json({ number, ...severityOf(verified), saved_at: new Date(now).toISOString() });
     return json({ number, stage: body.stage, saved_at: new Date(now).toISOString() });
   } catch (error) {
     const known = error instanceof EditorError;

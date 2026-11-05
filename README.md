@@ -157,7 +157,9 @@ tools/               Build scripts: screenshot encoders, OG image, font sheet
 
 `/roadmap/` is a five-stage board for bugs and feature requests. Each column
 scrolls independently within a browser-height layout. Compact, rounded cards
-show the full filtered list, newest first (not an inferred priority). Mobile
+show the full filtered list. Active columns sort Blocking first, then Major,
+then other items, newest first within each group. Delivery columns stay
+newest-first. Mobile
 uses stage selectors instead of a horizontally scrolling desktop board.
 
 GitHub remains canonical. `tools/export-roadmap.py` calls the reviewed Plozz
@@ -178,11 +180,32 @@ validated bridge metadata supplies Discord links.
 #### Editing the board
 
 Use **Edit** to sign in as `brandomoore`, then drag a card between the first
-three columns or use its **Move to** menu (also available on touch/keyboard).
+three columns or open its **…** card menu (also available on touch/keyboard).
+Discord discussions use a compact icon in the card header; multiple discussions
+open a named dialog with all links rather than losing secondary threads.
 Moves save to GitHub before changing the local board. The public feed catches
 up after its next successful sync. Failed or conflicting writes remain visible;
 check the linked issue before retrying an uncertain or partially completed save.
 Unrelated issue labels are never replaced. Delivery stages cannot be edited.
+
+The Plozz issue-triage workflow maintains `severity: blocking`, `severity: major`
+or `severity: normal` independently of roadmap commitments. Blocking means a
+core task cannot be completed; Major means it is seriously impaired. These
+describe evidence-backed reported impact, not necessarily a reproduced bug.
+No automatic label means unassessed, not normal. Ordinary feature requests
+are not blockers merely because the requested capability is missing.
+
+The card menu can set `severity override: blocking`, `severity override: major`
+or `severity override: normal` (**No badge**), which always takes precedence.
+**Automatic** removes only the override, restoring the latest triage assessment.
+The automation cannot change override labels. Conflicting labels fail visibly
+instead of choosing an arbitrary priority. Severity saves do not change stages.
+Public feed schema v2 adds `severity` and `severity_override`; the reader also
+accepts v1 during rollout without treating missing severity as an assessment.
+Deploy the compatible reader before publishing v2 snapshots. Existing open
+browser tabs using the old reader need a reload after the feed upgrade.
+Triage fills in older assessments over multiple bounded runs; the board does
+not classify issues from title keywords or invent a completed backfill.
 
 Alternatively, open a card's linked issue in `brandomoore/Plozz`. Edit its title to change the
 card text; `bug` and `enhancement` select the Bug and Feature types. Cards and

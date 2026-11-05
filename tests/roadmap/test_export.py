@@ -73,8 +73,30 @@ class ExportTests(unittest.TestCase):
         index.reports = {"thread": {"number": 1, "meta": {"message": "message"}}}
         items = EXPORT["export_items"](authority, index, [], [])
         self.assertEqual(len(items[0]["discord_urls"]), 1)
-        self.assertEqual(set(items[0]), {"number", "title", "kind", "stage", "github_url", "discord_urls"})
+        self.assertEqual(set(items[0]), {"number", "title", "kind", "stage", "github_url", "discord_urls",
+                                        "severity", "severity_override"})
         authority["BRIDGE"].message_link.assert_called_once_with("thread", "message")
+
+    def test_severity_is_independent_of_stage_and_manual_override_wins(self):
+        for automatic in ("blocking", "major", "normal"):
+            for override in (None, "blocking", "major", "normal"):
+                labels = ["bug", f"severity: {automatic}"]
+                if override:
+                    labels.append(f"severity override: {override}")
+                authority, index = self.setup_authority([issue(1, labels=labels)])
+                item = EXPORT["export_items"](authority, index, [], [])[0]
+                self.assertEqual(item["severity"], override or automatic)
+                self.assertEqual(item["severity_override"], override)
+                self.assertEqual(item["stage"], "backlog")
+        self.assertEqual(EXPORT["severity"](set()), {"severity": "unassessed", "severity_override": None})
+
+    def test_ambiguous_labels_fail_visibly(self):
+        for labels in (
+            {"severity: blocking", "severity: major"},
+            {"severity override: normal", "severity override: major"},
+        ):
+            with self.assertRaisesRegex(ValueError, "Conflicting severity"):
+                EXPORT["severity"](labels)
 
 
 if __name__ == "__main__":
