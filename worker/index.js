@@ -7,6 +7,7 @@ import * as redeem from "../functions/api/redeem.js";
 import * as publicmetadb from "../functions/publicmetadb.js";
 import { handlePairing } from "../functions/_lib/publicmetadb-pairing.js";
 import { handleRoadmap } from "./roadmap.js";
+import { handleRoadmapEditor } from "./roadmap-editor.js";
 
 const ROUTES = {
   "/anilist": anilist,
@@ -29,6 +30,9 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname.replace(/\/+$/, "") || "/";
     if (path === "/api/roadmap") return handleRoadmap(request, ctx);
+    if (path.startsWith("/api/roadmap/editor/") || path.startsWith("/auth/roadmap/")) {
+      return handleRoadmapEditor(request, env, ctx);
+    }
     if (path === "/api/publicmetadb/pairing" || path.startsWith("/api/publicmetadb/pairing/")) {
       return handlePairing(request, env);
     }

@@ -17,6 +17,10 @@ run_worker_first = false
 binding = "AUTH_KV"
 id = "152ec5bca6e1429d82e5b93e0fc549c3"
 
+[[kv_namespaces]]
+binding = "ROADMAP_AUTH"
+id = "074794b5b34f46adb32ef0591e789b7a"
+
 [[durable_objects.bindings]]
 name = "PUBLICMETADB_PAIRING"
 class_name = "PublicMetaDBPairing"

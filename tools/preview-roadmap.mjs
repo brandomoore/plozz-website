@@ -21,6 +21,11 @@ const server = createServer(async (request, response) => {
       return;
     }
     const url = new URL(request.url, "http://localhost");
+    if (url.pathname === "/api/roadmap/editor/session") {
+      response.writeHead(200, { "Content-Type": "application/json", "Cache-Control": "no-store" });
+      response.end(JSON.stringify({ configured: false, authenticated: false }));
+      return;
+    }
     if (url.pathname === "/api/roadmap") {
       response.writeHead(200, { "Content-Type": "application/json", "Cache-Control": "no-store" });
       response.end(JSON.stringify({ feed, status: feedAge(feed).stale ? "delayed" : "current", preview: true }));

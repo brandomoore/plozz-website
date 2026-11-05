@@ -1,4 +1,4 @@
-import { STAGES, PAGE_SIZE, validateFeed, feedAge, displayTitle, selectItems, pageItems } from '../../shared/roadmap.mjs';
+import { STAGES, EDITABLE_STAGES, validateFeed, feedAge, displayTitle, selectItems } from '../../shared/roadmap.mjs';
 
 const root = document.querySelector('.roadmap-shell');
 const form = root.querySelector('[data-roadmap-filters]');
@@ -12,10 +12,11 @@ let activeStage = STAGES.some(stage => stage.id === params.get('stage')) ? param
 let feed;
 let loading = false;
 let delayed = false;
-let pages = Object.fromEntries(STAGES.map(stage => {
-  const value = Number(params.get(`page-${stage.id}`));
-  return [stage.id, Number.isSafeInteger(value) && value > 0 ? value - 1 : 0];
-}));
+let editor;
+let saving = false;
+let draggedNumber;
+const savedMoves = new Map();
+const editorStatus = root.querySelector('[data-editor-status]');
 let preview = false;
 search.value = (params.get('q') || '').slice(0, 200);
 form.querySelector(`input[value="${kind}"]`).checked = true;
@@ -30,6 +31,7 @@ function node(tag, className, text) {
 function card(item) {
   const li = node('li', 'roadmap-card');
   li.dataset.kind = item.kind;
+  li.dataset.issue = String(item.number);
   const meta = node('div', 'roadmap-card-meta');
   const kindLabel = node('span', 'roadmap-card-kind', item.kind === 'bug' ? 'Bug' : 'Feature');
   kindLabel.prepend(form.querySelector(`[data-kind-icon="${item.kind}"]`).cloneNode(true));
@@ -51,7 +53,40 @@ function card(item) {
     });
     li.append(discussions);
   }
+  if (editor && EDITABLE_STAGES.includes(item.stage)) {
+    li.draggable = !saving;
+    li.addEventListener('dragstart', event => {
+      if (saving || event.target.closest('a, button, select')) {
+        event.preventDefault();
+        return;
+      }
+      draggedNumber = item.number;
+      event.dataTransfer.effectAllowed = 'move';
+      event.dataTransfer.setData('text/plain', String(item.number));
+    });
+    li.addEventListener('dragend', clearDrag);
+    const label = node('label', 'roadmap-move', 'Move to');
+    const select = node('select', '');
+    select.setAttribute('aria-label', `Stage for issue ${item.number}`);
+    select.disabled = saving;
+    for (const stage of STAGES.filter(stage => EDITABLE_STAGES.includes(stage.id))) {
+      const option = node('option', '', stage.label);
+      option.value = stage.id;
+      option.selected = stage.id === item.stage;
+      select.append(option);
+    }
+    select.addEventListener('change', () => moveItem(item, select.value));
+    label.append(select);
+    li.append(label);
+  }
   return li;
+}
+
+function currentItems() {
+  return feed.items.map(item => {
+    const saved = savedMoves.get(item.number);
+    return saved && EDITABLE_STAGES.includes(item.stage) ? { ...item, stage: saved.stage } : item;
+  });
 }
 
 function syncURL() {
@@ -60,11 +95,8 @@ function syncURL() {
     if (value) url.searchParams.set(key, value);
     else url.searchParams.delete(key);
   }
-  for (const stage of STAGES) {
-    const key = `page-${stage.id}`;
-    if (pages[stage.id] > 0) url.searchParams.set(key, String(pages[stage.id] + 1));
-    else url.searchParams.delete(key);
-  }
+  for (const stage of STAGES) url.searchParams.delete(`page-${stage.id}`);
+  url.searchParams.delete('editor');
   history.replaceState(null, '', url);
 }
 
@@ -84,7 +116,7 @@ function renderStatus() {
     unavailable();
     return;
   }
-  const matches = selectItems(feed.items, search.value, kind).length;
+  const matches = selectItems(currentItems(), search.value, kind).length;
   const when = new Intl.DateTimeFormat(undefined, {
     month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
   }).format(new Date(feed.generated_at));
@@ -95,30 +127,28 @@ function renderStatus() {
   refresh.textContent = 'Refresh';
 }
 
-function render() {
+function render(resetScroll = false) {
   const focusedCard = document.activeElement?.closest('.roadmap-card');
+  const focusedSelectIssue = document.activeElement instanceof HTMLSelectElement ? focusedCard?.dataset.issue : null;
   const focusedLink = focusedCard && document.activeElement instanceof HTMLAnchorElement
     ? document.activeElement.href : null;
   const focusedStage = focusedCard?.closest('[data-stage]')?.dataset.stage;
-  const matches = selectItems(feed.items, search.value, kind);
+  const matches = selectItems(currentItems(), search.value, kind);
   for (const stage of STAGES) {
     const column = root.querySelector(`[data-stage="${stage.id}"]`);
     const items = matches.filter(item => item.stage === stage.id);
-    const page = pageItems(items, pages[stage.id]);
-    pages[stage.id] = page.page;
+    const scroller = column.querySelector('[data-scroll]');
+    const scrollTop = resetScroll ? 0 : scroller.scrollTop;
     const count = column.querySelector('[data-count]');
     count.textContent = String(items.length);
     count.setAttribute('aria-label', `${items.length} items`);
     root.querySelector(`[data-mobile-count="${stage.id}"]`).textContent = String(items.length);
-    column.querySelector('[data-cards]').replaceChildren(...page.items.map(card));
+    column.querySelector('[data-cards]').replaceChildren(...items.map(card));
+    scroller.scrollTop = scrollTop;
     const empty = column.querySelector('[data-empty]');
     empty.hidden = items.length > 0;
     empty.querySelector('p').textContent = search.value.trim() || kind !== 'all'
       ? 'No matching items in this stage.' : stage.empty;
-    column.querySelector('.roadmap-pagination').hidden = items.length === 0;
-    column.querySelector('[data-range]').textContent = `${page.page * PAGE_SIZE + 1}–${Math.min((page.page + 1) * PAGE_SIZE, items.length)} of ${items.length}`;
-    column.querySelector('[data-previous]').disabled = page.page === 0;
-    column.querySelector('[data-next]').disabled = page.page === page.pages - 1;
   }
   chooseStage();
   syncURL();
@@ -133,9 +163,13 @@ function render() {
       heading.focus({ preventScroll: true });
     }
   }
+  if (focusedSelectIssue) {
+    root.querySelector(`[data-issue="${focusedSelectIssue}"] select`)?.focus({ preventScroll: true });
+  }
 }
 
 function unavailable() {
+  clearDrag();
   feed = undefined;
   status.textContent = 'The roadmap is unavailable. Try again, or browse the issues on GitHub below.';
   status.parentElement.setAttribute('data-delayed', '');
@@ -147,7 +181,6 @@ function unavailable() {
     column.querySelector('[data-cards]').replaceChildren();
     column.querySelector('[data-count]').textContent = '—';
     column.querySelector('[data-count]').setAttribute('aria-label', 'Count unavailable');
-    column.querySelector('.roadmap-pagination').hidden = true;
     column.querySelector('[data-empty]').hidden = false;
     column.querySelector('[data-empty] p').textContent = 'Couldn’t load this stage.';
   }
@@ -169,7 +202,7 @@ async function load() {
     if (feed && Date.parse(next.generated_at) < Date.parse(feed.generated_at)) {
       throw new Error('Roadmap snapshot moved backwards.');
     }
-    const changed = !feed || JSON.stringify(feed.items) !== JSON.stringify(next.items);
+    let changed = !feed || JSON.stringify(feed.items) !== JSON.stringify(next.items);
     feed = next;
     delayed = payload.status === 'delayed';
     // The local preview server alone adds this flag; production never supplies it.
@@ -184,7 +217,14 @@ async function load() {
     evidence.hidden = false;
     form.querySelector('fieldset').disabled = false;
     root.querySelectorAll('[data-stage-select]').forEach(button => { button.disabled = false; });
-    if (changed) render();
+    for (const [number, saved] of savedMoves) {
+      const item = feed.items.find(item => item.number === number);
+      if (!item || item.stage === saved.stage || Date.parse(feed.generated_at) > Date.parse(saved.saved_at)) {
+        savedMoves.delete(number);
+        changed = true;
+      }
+    }
+    if (changed && !saving) render();
     else renderStatus();
   } catch (error) {
     console.error('Roadmap refresh failed.', error);
@@ -204,28 +244,130 @@ async function load() {
 form.addEventListener('submit', event => event.preventDefault());
 form.addEventListener('input', () => {
   kind = form.querySelector('input[name="kind"]:checked').value;
-  pages = {};
   syncURL();
-  if (feed) render();
+  if (feed) render(true);
 });
 root.querySelectorAll('[data-stage-select]').forEach(button => button.addEventListener('click', () => {
   activeStage = button.dataset.stageSelect;
   chooseStage();
   syncURL();
 }));
-root.querySelectorAll('[data-stage]').forEach(column => {
-  for (const [selector, delta] of [['[data-previous]', -1], ['[data-next]', 1]]) {
-    column.querySelector(selector).addEventListener('click', () => {
-      pages[column.dataset.stage] = (pages[column.dataset.stage] || 0) + delta;
-      render();
-      const firstLink = column.querySelector('.roadmap-card-title');
-      firstLink?.focus();
+function editingMessage(text, error = false) {
+  editorStatus.hidden = false;
+  editorStatus.textContent = text;
+  editorStatus.toggleAttribute('data-error', error);
+}
+
+async function loadEditor() {
+  try {
+    const result = await fetch('/api/roadmap/editor/session', { cache: 'no-store', signal: AbortSignal.timeout(10_000) });
+    if (!result.ok) throw new Error('Editing is unavailable. Try signing in again.');
+    const session = await result.json();
+    if (!session.configured) {
+      root.querySelector('[data-roadmap-login]').addEventListener('click', event => {
+        event.preventDefault();
+        editingMessage('Editing needs GitHub setup. You can still browse the board.', true);
+      });
+    }
+    if (session.authenticated) {
+      editor = session;
+      root.querySelector('[data-roadmap-login]').hidden = true;
+      root.querySelector('[data-roadmap-logout]').hidden = false;
+      editingMessage('Drag cards or use Move to. Beta and release stages are automatic.');
+      if (feed) render();
+    } else if (params.has('editor')) {
+      const messages = {
+        'not-configured': 'Editing needs GitHub setup. You can still browse the board.',
+        denied: 'Only the maintainer can edit this board. Sign in with the brandomoore GitHub account.',
+        failed: 'Sign-in failed or expired. Try again.',
+        ready: 'Your editing session expired. Sign in again.',
+      };
+      editingMessage(messages[params.get('editor')] || 'Sign in again to edit the board.', true);
+    }
+  } catch (error) {
+    console.error('Roadmap editor could not be loaded.', error);
+    editingMessage('Editing is unavailable. The public board is still available.', true);
+  }
+}
+
+async function moveItem(item, stage) {
+  if (!editor || saving || stage === item.stage) return;
+  saving = true;
+  clearDrag();
+  render();
+  editingMessage(`Saving issue #${item.number}…`);
+  try {
+    const result = await fetch(`/api/roadmap/editor/issues/${item.number}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json', 'X-Roadmap-CSRF': editor.csrf },
+      body: JSON.stringify({ stage, expectedStage: item.stage }),
+      signal: AbortSignal.timeout(30_000),
     });
+    const body = await result.json();
+    if (!result.ok) throw new Error(body.message || 'Could not save. Check the issue on GitHub before trying again.');
+    if (body.number !== item.number || body.stage !== stage || !Number.isFinite(Date.parse(body.saved_at))) {
+      throw new Error('The save response could not be verified. Check the issue on GitHub.');
+    }
+    savedMoves.set(item.number, body);
+    activeStage = stage;
+    editingMessage(`Saved #${item.number} to ${STAGES.find(s => s.id === stage).label}. The public board updates after the next sync.`);
+  } catch (error) {
+    console.error('Roadmap stage change failed.', error);
+    editingMessage(error.name === 'TimeoutError' ? 'Saving timed out. Check the issue on GitHub before trying again.' : error.message, true);
+  } finally {
+    saving = false;
+    if (feed) {
+      render();
+      root.querySelector(`[data-stage="${activeStage}"] [data-issue="${item.number}"] select`)?.focus();
+    }
+  }
+}
+
+function clearDrag() {
+  draggedNumber = undefined;
+  root.querySelectorAll('[data-drop-target]').forEach(column => column.removeAttribute('data-drop-target'));
+}
+
+root.querySelectorAll('[data-stage]').forEach(column => {
+  column.addEventListener('dragover', event => {
+    if (!editor || saving || !draggedNumber || !EDITABLE_STAGES.includes(column.dataset.stage)) return;
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'move';
+    column.setAttribute('data-drop-target', '');
+  });
+  column.addEventListener('dragleave', event => {
+    if (!column.contains(event.relatedTarget)) column.removeAttribute('data-drop-target');
+  });
+  column.addEventListener('drop', event => {
+    if (!editor || !feed || !draggedNumber || !EDITABLE_STAGES.includes(column.dataset.stage)) return;
+    event.preventDefault();
+    const item = currentItems().find(item => item.number === draggedNumber);
+    clearDrag();
+    if (item) moveItem(item, column.dataset.stage);
+  });
+});
+root.querySelector('[data-roadmap-logout]').addEventListener('click', async () => {
+  if (!editor || saving) return;
+  try {
+    const result = await fetch('/api/roadmap/editor/logout', {
+      method: 'POST', headers: { 'X-Roadmap-CSRF': editor.csrf }, signal: AbortSignal.timeout(15_000),
+    });
+    if (!result.ok) throw new Error('Sign-out could not be completed. Try again.');
+    editor = undefined;
+    savedMoves.clear();
+    root.querySelector('[data-roadmap-login]').hidden = false;
+    root.querySelector('[data-roadmap-logout]').hidden = true;
+    editingMessage('Signed out.');
+    if (feed) render();
+  } catch (error) {
+    console.error('Roadmap sign-out failed.', error);
+    editingMessage(error.message, true);
   }
 });
 refresh.addEventListener('click', load);
 chooseStage();
 load();
+loadEditor();
 setInterval(() => { if (!document.hidden) load(); }, 5 * 60 * 1000);
 setInterval(() => { if (feed) renderStatus(); }, 60 * 1000);
 document.addEventListener('visibilitychange', () => { if (!document.hidden) load(); });

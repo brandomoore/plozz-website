@@ -12,6 +12,10 @@ test("roadmap is discoverable, semantic and never ships a fabricated snapshot", 
   assert.match(page, /role="search"/);
   assert.match(page, /role="status" aria-live="polite"/);
   assert.equal((page.match(/class="roadmap-column"/g) || []).length, 5);
+  assert.equal((page.match(/class="roadmap-scroll"/g) || []).length, 5);
+  assert.doesNotMatch(page, /data-previous|data-next|roadmap-pagination/);
+  assert.match(page, /data-roadmap-login/);
+  assert.match(page, /data-editor-status/);
   for (const stage of ["backlog", "planned", "in-progress", "in-beta", "released"]) {
     assert.match(page, new RegExp(`aria-labelledby="heading-${stage}"`));
     assert.match(page, new RegExp(`data-stage-select="${stage}"`));

@@ -3,7 +3,7 @@ export const REPOSITORY = "brandomoore/Plozz";
 export const MAX_FEED_BYTES = 2_000_000;
 export const STALE_AFTER_MS = 60 * 60 * 1000;
 export const EXPIRES_AFTER_MS = 7 * 24 * STALE_AFTER_MS;
-export const PAGE_SIZE = 4;
+export const EDITABLE_STAGES = ["backlog", "planned", "in-progress"];
 
 export const STAGES = [
   { id: "backlog", label: "Backlog", description: "", empty: "No items in the backlog." },
@@ -75,10 +75,4 @@ export function selectItems(items, query = "", kind = "all") {
     words.every(word => /^#\d+$/.test(word) ? Number(word.slice(1)) === item.number :
       `${item.title} #${item.number}`.toLocaleLowerCase().includes(word)))
     .sort((a, b) => b.number - a.number);
-}
-
-export function pageItems(items, requestedPage = 0) {
-  const pages = Math.max(1, Math.ceil(items.length / PAGE_SIZE));
-  const page = Math.max(0, Math.min(Number.isInteger(requestedPage) ? requestedPage : 0, pages - 1));
-  return { items: items.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE), page, pages };
 }

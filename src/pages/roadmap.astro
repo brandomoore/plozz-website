@@ -17,11 +17,16 @@ const icons = ['ph:stack', 'ph:circle', 'ph:circle-half', 'ph:flask', 'ph:check-
     <div class="roadmap-heading">
       <div>
         <h1>Roadmap<span aria-hidden="true">.</span></h1>
-        <p>What’s on the list. What’s on the way.</p>
       </div>
-      <a class="roadmap-feedback" href="https://github.com/brandomoore/Plozz/issues/new/choose">
-        Suggest or report <Icon name="ph:arrow-up-right" aria-hidden="true" />
-      </a>
+      <div class="roadmap-actions">
+        <a class="roadmap-feedback" href="https://github.com/brandomoore/Plozz/issues/new/choose" aria-label="Suggest a feature or report a bug">
+          Suggest <Icon name="ph:arrow-up-right" aria-hidden="true" />
+        </a>
+        <a class="roadmap-feedback" href="https://plozz.app/auth/roadmap/login" data-roadmap-login aria-label="Sign in with GitHub to edit the roadmap">
+          <Icon name="ph:pencil-simple" aria-hidden="true" /> Edit
+        </a>
+        <button class="roadmap-feedback" type="button" data-roadmap-logout hidden>Sign out</button>
+      </div>
     </div>
 
     <form class="roadmap-toolbar" role="search" aria-label="Filter roadmap" data-roadmap-filters>
@@ -34,8 +39,8 @@ const icons = ['ph:stack', 'ph:circle', 'ph:circle-half', 'ph:flask', 'ph:check-
         <legend class="sr-only">Item type</legend>
         {[['all', 'All', null], ['feature', 'Features', 'ph:lightbulb'], ['bug', 'Bugs', 'ph:bug']].map(([value, label, icon]) => (
           <label>
-            <input type="radio" name="kind" value={value} checked={value === 'all'} />
-            <span>
+            <input type="radio" name="kind" value={value} aria-label={label} checked={value === 'all'} />
+            <span title={label}>
               {icon && <Icon name={icon} is:inline data-kind-icon={value} aria-hidden="true" focusable="false" />}
               {label}
             </span>
@@ -50,8 +55,9 @@ const icons = ['ph:stack', 'ph:circle', 'ph:circle-half', 'ph:flask', 'ph:check-
       <button class="roadmap-refresh" type="button" data-roadmap-refresh hidden>Retry</button>
     </div>
     <p class="roadmap-preview-notice" data-roadmap-preview hidden>
-      Preview using a verified snapshot. The automatic feed isn’t activated yet.
+      Preview using a verified snapshot.
     </p>
+    <p class="roadmap-editor-status" data-editor-status role="status" aria-live="polite" hidden></p>
     <div class="roadmap-mobile-stages" role="group" aria-label="Show a roadmap stage">
       {STAGES.map(stage => (
         <button type="button" data-stage-select={stage.id} aria-pressed={stage.id === 'backlog'} disabled>
@@ -71,25 +77,16 @@ const icons = ['ph:stack', 'ph:circle', 'ph:circle-half', 'ph:flask', 'ph:check-
             </div>
             {stage.description && <p>{stage.description}</p>}
           </header>
-          <ul class="roadmap-cards" data-cards aria-label={`${stage.label} items`}>
-            <li class="roadmap-placeholder" aria-hidden="true"><span></span><span></span><span></span></li>
-            <li class="roadmap-placeholder" aria-hidden="true"><span></span><span></span></li>
-          </ul>
-          <div class="roadmap-empty" data-empty hidden>
-            <Icon name={icons[index]} aria-hidden="true" />
-            <p></p>
-          </div>
-          <nav class="roadmap-pagination" aria-label={`${stage.label} pages`} hidden>
-            <span data-range></span>
-            <div>
-              <button type="button" data-previous aria-label={`Previous ${stage.label.toLowerCase()} items`}>
-                <Icon name="ph:caret-left" aria-hidden="true" />
-              </button>
-              <button type="button" data-next aria-label={`Next ${stage.label.toLowerCase()} items`}>
-                <Icon name="ph:caret-right" aria-hidden="true" />
-              </button>
+          <div class="roadmap-scroll" data-scroll tabindex="0" role="region" aria-label={`${stage.label} items`}>
+            <ul class="roadmap-cards" data-cards>
+              <li class="roadmap-placeholder" aria-hidden="true"><span></span><span></span><span></span></li>
+              <li class="roadmap-placeholder" aria-hidden="true"><span></span><span></span></li>
+            </ul>
+            <div class="roadmap-empty" data-empty hidden>
+              <Icon name={icons[index]} aria-hidden="true" />
+              <p></p>
             </div>
-          </nav>
+          </div>
         </section>
       ))}
     </div>
@@ -98,7 +95,8 @@ const icons = ['ph:stack', 'ph:circle', 'ph:circle-half', 'ph:flask', 'ph:check-
       <details class="roadmap-about">
         <summary>How this board works</summary>
         <div>
-          <p>GitHub is the source of truth. This board includes bugs and feature requests, with updates scheduled about every 15 minutes. Search and filters cover every item, not just the visible cards.</p>
+          <p>GitHub is the source of truth. Updates are scheduled about every 15 minutes. Scroll each column to see every item, newest first. Search and filters cover the whole board.</p>
+          <p>Sign in as the maintainer to drag cards or choose a stage from their menu. Changes are saved to GitHub; the public board catches up after the next successful sync.</p>
           <p>Planned and In progress are maintainer decisions, without promised dates. In beta and Released require verified availability on every affected platform. A merge or closed issue isn’t proof of delivery.</p>
           <p>Duplicates and closed issues without verified delivery aren’t shown. Bug-assessment labels don’t change roadmap commitments.</p>
           <p data-roadmap-evidence hidden></p>

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { AUTHORITY_REVISION, validateFeed, feedAge, selectItems, pageItems, displayTitle, STALE_AFTER_MS, EXPIRES_AFTER_MS, MAX_FEED_BYTES } from "../shared/roadmap.mjs";
+import { AUTHORITY_REVISION, validateFeed, feedAge, selectItems, displayTitle, STALE_AFTER_MS, EXPIRES_AFTER_MS, MAX_FEED_BYTES } from "../shared/roadmap.mjs";
 import { handleRoadmap, FEED_URL } from "../worker/roadmap.js";
 import { publishFeed } from "../tools/publish-roadmap.mjs";
 import worker from "../worker/index.js";
@@ -67,7 +67,7 @@ test("freshness uses evidence time, including exact stale/expiry boundaries", ()
   assert.equal(feedAge(fixture(now - EXPIRES_AFTER_MS - 1000), now).expired, true);
 });
 
-test("search covers all items, filters compose, and every item is reachable in bounded pages", () => {
+test("search covers all items, filters compose, and the full sorted list remains available", () => {
   const items = Array.from({ length: 114 }, (_, i) => ({
     ...fixture().items[0], number: i + 1, title: i === 99 ? "SMB playback issue" : `Issue ${i + 1}`,
     kind: i % 2 ? "feature" : "bug",
@@ -77,15 +77,7 @@ test("search covers all items, filters compose, and every item is reachable in b
   assert.deepEqual(selectItems(items, "#114").map(i => i.number), [114]);
   assert.deepEqual(selectItems(items, "#1").map(i => i.number), [1]);
   assert.equal(selectItems(items)[0].number, 114);
-  const collected = [];
-  for (let page = 0; page < 29; page++) {
-    const selected = pageItems(items, page);
-    assert(selected.items.length <= 4);
-    collected.push(...selected.items.map(i => i.number));
-  }
-  assert.deepEqual(collected, items.map(i => i.number));
-  assert.equal(pageItems(items, 500).page, 28);
-  assert.equal(pageItems([], 500).page, 0);
+  assert.deepEqual(selectItems(items).map(i => i.number), items.map(i => i.number).reverse());
   assert.equal(displayTitle("[Feature]: SMB shares"), "SMB shares");
   assert.equal(displayTitle("[smb] Playback"), "[smb] Playback");
 });

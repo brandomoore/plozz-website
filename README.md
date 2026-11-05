@@ -156,9 +156,9 @@ tools/               Build scripts: screenshot encoders, OG image, font sheet
 ### Roadmap
 
 `/roadmap/` is a five-stage board for bugs and feature requests. Each column
-shows four cards per page; search/type filters cover the entire feed, with
-newest issue numbers first (not an inferred priority). Mobile uses stage
-selectors rather than a horizontally scrolling desktop board.
+scrolls independently within a browser-height layout. Compact, rounded cards
+show the full filtered list, newest first (not an inferred priority). Mobile
+uses stage selectors instead of a horizontally scrolling desktop board.
 
 GitHub remains canonical. `tools/export-roadmap.py` calls the reviewed Plozz
 authority's receipt, commitment and delivery functions, not a second set of
@@ -177,7 +177,14 @@ validated bridge metadata supplies Discord links.
 
 #### Editing the board
 
-Open a card's linked issue in `brandomoore/Plozz`. Edit its title to change the
+Use **Edit** to sign in as `brandomoore`, then drag a card between the first
+three columns or use its **Move to** menu (also available on touch/keyboard).
+Moves save to GitHub before changing the local board. The public feed catches
+up after its next successful sync. Failed or conflicting writes remain visible;
+check the linked issue before retrying an uncertain or partially completed save.
+Unrelated issue labels are never replaced. Delivery stages cannot be edited.
+
+Alternatively, open a card's linked issue in `brandomoore/Plozz`. Edit its title to change the
 card text; `bug` and `enhancement` select the Bug and Feature types. Cards and
 type filters use matching bug and lightbulb icons alongside their text labels.
 
@@ -190,8 +197,37 @@ Closing an issue does not mark it Released.
 
 Changes appear after the next successful scheduled export and cache refresh;
 allow about 15 minutes plus up to five minutes of caching, with possible GitHub
-schedule delays. The website has no direct editor. Do not edit `roadmap.json`
+schedule delays. Do not edit `roadmap.json`
 by hand: the next export replaces it.
+
+#### Maintainer sign-in setup
+
+Register a private **GitHub App**, owned by `brandomoore`, with only repository
+**Issues: read and write** (and GitHub's required Metadata read permission).
+Install it on **brandomoore/Plozz only**, not all repositories. Keep user token
+expiration enabled, disable webhooks, and set the callback URL to
+`https://plozz.app/auth/roadmap/callback`. Do not request OAuth during installation:
+sign-in must start at the website so its state and PKCE checks are established.
+No app private key, installation token, PAT, or broad `repo` scope is needed.
+
+Configure `GITHUB_ROADMAP_CLIENT_ID`, `GITHUB_ROADMAP_CLIENT_SECRET`, and a fresh
+32-byte base64url `ROADMAP_SESSION_KEY` as Worker secrets. Bind a **dedicated**
+KV namespace as `ROADMAP_AUTH`; never reuse the existing pairing/OAuth `AUTH_KV`.
+Do not commit credentials or paste them into chats. Use the reviewed inactive
+Worker versions procedure for configuration and activation, preserving all
+existing bindings. Until configured, the public board works but editing is
+explicitly unavailable.
+
+`worker/roadmap-editor.js` uses PKCE and an encrypted, ten-minute state cookie.
+Anonymous sign-in attempts allocate no KV records. Opaque, host-only, HttpOnly,
+Secure, SameSite=Lax session cookies reference encrypted server-side tokens
+with an eight-hour maximum. Every authenticated request rechecks GitHub's
+immutable maintainer ID and expected login. Writes require same-origin requests
+and a session-bound CSRF token. Tokens are never returned to the browser or
+logged; logout revokes the token before deleting the session. KV replication
+can lag, so live GitHub token validation also protects against stale session
+reads after revocation. No refresh token is retained; sign in again on expiry.
+Preview and `www` hosts direct sign-in to `plozz.app` rather than sharing cookies.
 
 The scheduled `Verified roadmap feed` workflow exports a versioned JSON
 contract, validates it, and publishes **only `roadmap.json`** to an isolated
@@ -201,8 +237,8 @@ or changes issues, labels, Discord messages or permissions. Its publication
 job has no Apple credentials; its export job cannot write repository contents.
 
 `GET /api/roadmap` reads that fixed public feed, using the Worker's edge cache.
-There are **no new Worker bindings or secrets**, and no reads/writes to
-`AUTH_KV`. Successful responses are cached for five minutes internally and
+The public feed uses no credentials or storage bindings; editor sessions are
+separate, and neither uses `AUTH_KV`. Successful feed responses are cached for five minutes internally and
 one minute publicly. The page refreshes every five minutes while visible.
 Failed verification never publishes an empty replacement. A cached last-good
 snapshot is explicitly marked delayed after an upstream failure or one hour
@@ -234,8 +270,8 @@ data ages visibly; this does not change commitments or delivery records.
 Discord's rejected text roadmap stays disabled. Adding a link to this page in
 release announcements belongs to the Plozz repository, after this page is live.
 
-`npm test` covers the feed contract, pagination, Worker freshness/failure paths
-and publisher. `python3 -m unittest discover -s tests/roadmap` covers the
+`npm test` covers the feed contract, complete-list filtering, editor authorization,
+stage writes, Worker freshness/failure paths and publisher. `python3 -m unittest discover -s tests/roadmap` covers the
 structured adapter. `npm run test:site` checks the built page.
 For a local, explicitly labeled snapshot preview:
 
