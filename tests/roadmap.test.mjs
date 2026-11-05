@@ -170,7 +170,9 @@ test("Worker fetches only fixed public feed, caches without AUTH_KV or credentia
   let called = 0;
   const fetcher = async (url, options) => {
     called++;
-    assert.equal(url, FEED_URL);
+    const upstream = new URL(url);
+    assert.equal(upstream.origin + upstream.pathname, FEED_URL);
+    assert.match(upstream.search, /^\?refresh=\d+$/);
     assert.equal(options.redirect, "manual");
     assert.equal(options.headers.Authorization, undefined);
     return Response.json(fixture());
@@ -180,8 +182,23 @@ test("Worker fetches only fixed public feed, caches without AUTH_KV or credentia
   assert.equal(first.status, 200);
   assert.equal((await first.json()).status, "current");
   await h.settle();
-  await handleRoadmap(request, h.ctx, { cache: h.cache, fetcher, now: now + 60_000 });
+  await handleRoadmap(request, h.ctx, { cache: h.cache, fetcher, now: now + 29_999 });
   assert.equal(called, 1);
+  await handleRoadmap(request, h.ctx, { cache: h.cache, fetcher, now: now + 30_000 });
+  assert.equal(called, 2);
+  assert.equal(first.headers.get("cache-control"), "public, max-age=15");
+  assert.equal(h.value().feed.generated_at, fixture().generated_at);
+});
+
+test("a recently cached but stale snapshot does not delay fresh verification", async () => {
+  const h = harness({ feed: fixture(now - STALE_AFTER_MS - 1000), fetched_at: now - 1000 });
+  let called = 0;
+  const result = await handleRoadmap(new Request("https://plozz.app/api/roadmap"), h.ctx, {
+    cache: h.cache, now, fetcher: async () => { called++; return Response.json(fixture()); },
+  });
+  assert.equal(called, 1);
+  assert.equal((await result.json()).status, "current");
+  await h.settle();
   assert.equal(h.value().feed.generated_at, fixture().generated_at);
 });
 
@@ -193,7 +210,7 @@ test("Worker rejects upstream redirects without following or caching them", asyn
       cache: h.cache, now,
       fetcher: async (url, options) => {
         calls++;
-        assert.equal(url, FEED_URL);
+        assert.equal(url, `${FEED_URL}?refresh=${Math.floor(now / 30_000)}`);
         assert.equal(options.redirect, "manual");
         return new Response(null, { status, headers: { Location: "https://example.com/untrusted" } });
       },
@@ -203,6 +220,23 @@ test("Worker rejects upstream redirects without following or caching them", asyn
     assert.deepEqual(await result.json(), { error: "roadmap_unavailable" });
     assert.equal(h.writes.length, 0);
   }
+});
+
+test("upstream cache bucket changes every 30 seconds and ignores caller query parameters", async () => {
+  const urls = [];
+  for (const time of [now, now + 29_999, now + 30_000]) {
+    const result = await handleRoadmap(
+      new Request("https://plozz.app/api/roadmap?refresh=attacker&url=https://example.com"),
+      {}, { cache: undefined, now: time, fetcher: async url => {
+        urls.push(url);
+        return Response.json(fixture());
+      } },
+    );
+    assert.equal(result.status, 200);
+  }
+  assert.equal(urls[0], urls[1]);
+  assert.notEqual(urls[1], urls[2]);
+  assert.equal(urls[2], `${FEED_URL}?refresh=${Math.floor((now + 30_000) / 30_000)}`);
 });
 
 test("refresh failures retain validated data, never change the verification time", async () => {
@@ -303,4 +337,99 @@ test("first publication creates an orphan data branch, never a site/main commit"
   assert.deepEqual(calls.find(c => c.url.endsWith("/git/commits")).body.parents, []);
   assert.deepEqual(calls.find(c => c.url.endsWith("/git/refs")).body, { ref: "refs/heads/roadmap-data", sha: "new" });
   assert(calls.every(c => !c.url.includes("/heads/main")));
+});
+
+function publicationHarness({ missing = false, fault = () => undefined } = {}) {
+  const calls = [];
+  let head = missing ? null : "old";
+  return {
+    calls,
+    fetcher: async (url, options) => {
+      const path = new URL(url).pathname.replace("/repos/brandomoore/plozz-website", "");
+      const body = options.body && JSON.parse(options.body);
+      calls.push({ path, body });
+      const failure = fault(path, body, calls);
+      if (failure) return failure;
+      if (path === "/git/ref/heads/roadmap-data") {
+        return head ? Response.json({ object: { sha: head } }) : new Response(null, { status: 404 });
+      }
+      if (path === "/git/blobs") return Response.json({ sha: "blob" });
+      if (path === "/git/trees") return Response.json({ sha: "tree" });
+      if (path === "/git/commits") return Response.json({ sha: "commit" });
+      if (path === "/git/refs" || path === "/git/refs/heads/roadmap-data") {
+        head = body.sha;
+        return Response.json({});
+      }
+      throw new Error(`Unexpected API path ${path}`);
+    },
+    publishHead(sha) { head = sha; },
+  };
+}
+
+const freshText = () => JSON.stringify(fixture(Math.floor(Date.now() / 1000) * 1000));
+
+test("publisher retries transient HTTP and transport failures without changing write payloads", async () => {
+  for (const status of [408, 429, 500, 502, 503, 504, "network", "timeout"]) {
+    for (const failedPath of ["/git/ref/heads/roadmap-data", "/git/blobs", "/git/trees",
+      "/git/commits", "/git/refs/heads/roadmap-data"]) {
+      let failed = false;
+      const delays = [];
+      const h = publicationHarness({ fault(path) {
+        if (path !== failedPath || failed) return;
+        failed = true;
+        if (status === "network") throw new TypeError("fetch failed");
+        if (status === "timeout") throw new DOMException("timed out", "TimeoutError");
+        return new Response(null, { status });
+      } });
+      assert.equal(await publishFeed(freshText(), "test", h.fetcher, {
+        sleep: async ms => delays.push(ms), warn() {},
+      }), "commit");
+      assert.deepEqual(delays, [1000]);
+      const attempts = h.calls.filter(call => call.path === failedPath);
+      assert.deepEqual(attempts[0].body, attempts[1].body);
+      assert(h.calls.every(call => call.body?.force !== true));
+    }
+  }
+});
+
+test("publisher bounds retries, honors Retry-After and does not retry permanent failures", async () => {
+  for (const [status, retryAfter, expectedDelays] of [
+    [500, null, [1000, 2000, 4000]], [429, "3", [3000, 3000, 4000]],
+    [429, "120", []], [401, null, []], [403, null, []], [422, null, []],
+  ]) {
+    const delays = [];
+    let attempts = 0;
+    await assert.rejects(publishFeed(freshText(), "test", async () => {
+      attempts++;
+      return new Response(null, { status, headers: retryAfter ? { "Retry-After": retryAfter } : {} });
+    }, { sleep: async ms => delays.push(ms), warn() {} }), new RegExp(String(status)));
+    assert.deepEqual(delays, expectedDelays);
+    assert.equal(attempts, expectedDelays.length + 1);
+  }
+});
+
+test("ambiguous ref creation only succeeds after exact commit readback", async () => {
+  for (const observed of ["commit", "someone-elses-commit"]) {
+    let attempts = 0;
+    const h = publicationHarness({ missing: true, fault(path) {
+      if (path !== "/git/refs") return;
+      h.publishHead(observed);
+      return new Response(null, { status: ++attempts === 1 ? 500 : 422 });
+    } });
+    const result = publishFeed(freshText(), "test", h.fetcher, { sleep: async () => {}, warn() {} });
+    if (observed === "commit") assert.equal(await result, "commit");
+    else await assert.rejects(result, /422/);
+    assert.equal(attempts, 2);
+  }
+});
+
+test("a competing ref update is not overwritten or reported as success", async () => {
+  const h = publicationHarness({ fault(path) {
+    if (path !== "/git/refs/heads/roadmap-data") return;
+    h.publishHead("competing");
+    return new Response(null, { status: 422 });
+  } });
+  await assert.rejects(publishFeed(freshText(), "test", h.fetcher, { sleep: async () => {}, warn() {} }), /422/);
+  assert.equal(h.calls.filter(call => call.path === "/git/refs/heads/roadmap-data").length, 1);
+  assert(h.calls.every(call => call.body?.force !== true));
 });

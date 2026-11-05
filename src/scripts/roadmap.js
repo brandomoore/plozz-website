@@ -480,6 +480,6 @@ refresh.addEventListener('click', load);
 chooseStage();
 load();
 loadEditor();
-setInterval(() => { if (!document.hidden) load(); }, 5 * 60 * 1000);
+setInterval(() => { if (!document.hidden) load(); }, 30 * 1000);
 setInterval(() => { if (feed) renderStatus(); }, 60 * 1000);
 document.addEventListener('visibilitychange', () => { if (!document.hidden) load(); });

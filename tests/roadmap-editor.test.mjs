@@ -54,7 +54,7 @@ function harness() {
         assert.equal(challenge, h.challenge);
         return Response.json({ access_token: token, expires_in: 28800, token_type: "bearer" });
       }
-      if (url === FEED_URL) return Response.json(h.feed);
+      if (url === `${FEED_URL}?refresh=${Math.floor(h.time / 30_000)}`) return Response.json(h.feed);
       if (url.includes("/applications/test-client/token")) {
         assert.equal(options.method, "DELETE");
         h.revoked = true;

@@ -233,10 +233,14 @@ Removing a manual delivery label returns to the automatically verified stage,
 or Backlog for an open issue without delivery evidence.
 Closing an issue does not mark it Released.
 
-Changes appear after the next successful scheduled export and cache refresh;
-allow about 15 minutes plus up to five minutes of caching, with possible GitHub
-schedule delays. Do not edit `roadmap.json`
-by hand: the next export replaces it.
+Plozz issue changes request a fresh export through its
+[`Refresh website roadmap` workflow](https://github.com/brandomoore/Plozz/blob/main/.github/workflows/website-roadmap-refresh.yml).
+The scheduled export remains a roughly fifteen-minute fallback for missed events
+and external delivery changes. Updates still depend on GitHub runner availability
+and successful verification; neither trigger is an immediate-delivery guarantee.
+After publication, the Worker rechecks within thirty seconds and visible browser
+tabs poll every thirty seconds. Do not edit `roadmap.json` by hand: the next export
+replaces it.
 
 #### Maintainer sign-in setup
 
@@ -267,17 +271,28 @@ can lag, so live GitHub token validation also protects against stale session
 reads after revocation. No refresh token is retained; sign in again on expiry.
 Preview and `www` hosts direct sign-in to `plozz.app` rather than sharing cookies.
 
-The scheduled `Verified roadmap feed` workflow exports a versioned JSON
+The scheduled or dispatched `Verified roadmap feed` workflow exports a versioned JSON
 contract, validates it, and publishes **only `roadmap.json`** to an isolated
 `roadmap-data` branch. This data branch deliberately has no website source and
 must be excluded from legacy Pages preview builds. It never deploys the site
 or changes issues, labels, Discord messages or permissions. Its publication
 job has no Apple credentials; its export job cannot write repository contents.
+Both trigger paths use the same serialized workflow without cancelling an active
+run. A burst can replace a pending run because every export reads current state.
+The publisher retries transient GitHub HTTP/network failures up to three times
+per request within a two-minute total budget. It respects bounded `Retry-After`
+delays, does not retry permission/validation failures, and never force-pushes.
+An uncertain reference-write response counts as success only after exact commit
+readback. A failed export/publication leaves the last verified feed intact.
 
 `GET /api/roadmap` reads that fixed public feed, using the Worker's edge cache.
 The public feed uses no credentials or storage bindings; editor sessions are
-separate, and neither uses `AUTH_KV`. Successful feed responses are cached for five minutes internally and
-one minute publicly. The page refreshes every five minutes while visible.
+separate, and neither uses `AUTH_KV`. Successful feed responses are cached for
+thirty seconds internally and fifteen seconds publicly. The upstream URL uses
+a server-generated thirty-second bucket so GitHub's raw-content cache does not
+add its normal five-minute delay. Caller input cannot select that URL or bucket.
+Stale snapshots bypass the fresh-cache shortcut. The page refreshes every thirty
+seconds while visible; hidden tabs do not poll.
 Failed verification never publishes an empty replacement. A cached last-good
 snapshot is explicitly marked delayed after an upstream failure or one hour
 without new evidence; its original verification time is preserved. After
@@ -298,7 +313,12 @@ and GitHub links instead of pretending there are zero items.
 2. Set repository variable `ROADMAP_FEED_ENABLED=true` and dispatch
    `roadmap-feed.yml` on `main`. Verify the successful export/publication run,
    the data branch, item counts and the feed's provenance. Schedules are
-   approximately every 15 minutes and can be delayed by GitHub.
+   approximately every 15 minutes and can be delayed by GitHub. Enable Plozz's
+   event-driven dispatcher using its
+   [dedicated-credential setup](https://github.com/brandomoore/Plozz/blob/main/docs/website-roadmap.md).
+   That token is stored only in Plozz Actions, scoped to Actions read/write on
+   this website repository, and is not the editor app credential or a code-write
+   token. GitHub does not offer a single-workflow permission.
 3. Use the existing inactive Worker upload, inspect bindings, then explicitly
    activate the reviewed version. Verify `/roadmap/`, `/api/roadmap`, both
    hostnames and existing OAuth/pairing routes. A Pages preview is not this step.

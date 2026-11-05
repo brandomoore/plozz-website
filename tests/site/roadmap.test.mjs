@@ -21,6 +21,8 @@ test("roadmap is discoverable, semantic and never ships a fabricated snapshot", 
     assert.match(page, new RegExp(`data-stage-select="${stage}"`));
   }
   assert.match(page, /<noscript>/);
+  assert.match(page, /Issue changes trigger a verified refresh, with a scheduled backup/);
+  assert.doesNotMatch(page, /Updates are scheduled about every 15 minutes/);
   assert.doesNotMatch(page, /Tracked, not promised|Backlog isn’t a promise\. Planned work is chosen by Brandon/);
   assert.doesNotMatch(page, /"generated_at"\s*:|github.com\/brandomoore\/Plozz\/issues\/\d+/);
   assert.match(readFileSync(new URL("../../dist/index.html", import.meta.url), "utf8"), /href="\/roadmap"/);
@@ -52,6 +54,7 @@ test("compact card actions use a named dialog and inline Discord artwork, not pe
   assert.doesNotMatch(script, /node\('select'|roadmap-move|roadmap-card-discussions/);
   assert.match(script, /aria-haspopup/);
   assert.match(script, /dialog\.showModal/);
+  assert.match(script, /setInterval\(\(\) => \{ if \(!document\.hidden\) load\(\); \}, 30 \* 1000\)/);
 });
 
 test("issue numbers remain the rightmost card metadata after optional controls", () => {

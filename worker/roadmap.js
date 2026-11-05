@@ -2,6 +2,7 @@ import { validateFeed, feedAge, MAX_FEED_BYTES } from "../shared/roadmap.mjs";
 
 export const FEED_URL = "https://raw.githubusercontent.com/brandomoore/plozz-website/roadmap-data/roadmap.json";
 const CACHE_URL = "https://plozz.app/api/roadmap/verified-snapshot-v1";
+const REFRESH_MS = 30_000;
 
 class RoadmapError extends Error {
   constructor(code) {
@@ -14,7 +15,7 @@ function response(body, status = 200) {
   return Response.json(body, {
     status,
     headers: {
-      "Cache-Control": status === 200 && body.status === "current" ? "public, max-age=60" : "no-store",
+      "Cache-Control": status === 200 && body.status === "current" ? "public, max-age=15" : "no-store",
       "X-Content-Type-Options": "nosniff",
     },
   });
@@ -77,11 +78,14 @@ export async function handleRoadmap(request, ctx, {
     console.error("Roadmap cache could not be read.");
     saved = undefined;
   }
-  if (saved && now - saved.fetched_at < 5 * 60 * 1000) {
+  if (saved && now - saved.fetched_at < REFRESH_MS && !feedAge(saved.feed, now).stale) {
     return response({ feed: saved.feed, status: feedAge(saved.feed, now).stale ? "delayed" : "current" });
   }
   try {
-    const upstream = await fetcher(FEED_URL, {
+    // Bound GitHub's raw-content cache to the same refresh window, not its five-minute default.
+    const url = new URL(FEED_URL);
+    url.searchParams.set("refresh", String(Math.floor(now / REFRESH_MS)));
+    const upstream = await fetcher(url.href, {
       headers: { Accept: "application/json" },
       redirect: "manual",
       signal: AbortSignal.timeout(10_000),
