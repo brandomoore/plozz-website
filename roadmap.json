@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-05T07:56:23Z",
+  "generated_at": "2026-11-05T17:29:59Z",
   "source": {
     "repository": "brandomoore/Plozz",
-    "revision": "2f54d7b7481de4ffd06934392038bba6cb91f5c7",
+    "revision": "c6e498c3ee62bef078cee4bf573b9a68dcffd6fa",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/41990521976"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42074927814"
   },
   "items": [
     {
@@ -143,7 +143,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1560244773200072734/1560244773200072734"
       ],
-      "severity": "unassessed",
+      "severity": "major",
       "severity_override": null
     },
     {
@@ -357,7 +357,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562458395812823090/1562458395812823090"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -371,7 +371,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562458999369113641/1562458999369113641"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -399,7 +399,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562477471406891140/1562477471406891140"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -479,7 +479,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1563057663116316692/1563057663116316692"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -536,7 +536,7 @@
         "https://discord.com/channels/1527028230106906704/1563332770359673023/1563332770359673023",
         "https://discord.com/channels/1527028230106906704/1567343487215738900/1567343487215738900"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -550,14 +550,14 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1563444389735436328/1563444389735436328"
       ],
-      "severity": "unassessed",
+      "severity": "blocking",
       "severity_override": null
     },
     {
       "number": 228,
       "title": "[Bug]: Jellyfin playback fails opening in native player with CoreMedia -12889 on tvOS build 62",
       "kind": "bug",
-      "stage": "backlog",
+      "stage": "released",
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/228",
@@ -602,7 +602,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1563480390130204712/1563480390130204712"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -878,7 +878,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565338632087146546/1565338632087146546"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1192,7 +1192,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565292252606103593/1565292252606103593"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1346,7 +1346,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1566519695660679359/1566519695660679359"
       ],
-      "severity": "unassessed",
+      "severity": "major",
       "severity_override": null
     },
     {
@@ -1465,7 +1465,7 @@
       "number": 341,
       "title": "[Bug]: Adding Libraries to Top Style Navigation Bar breaks navigation bar",
       "kind": "bug",
-      "stage": "backlog",
+      "stage": "released",
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/341",
@@ -1594,7 +1594,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567310454890696905/1567310454890696905"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1608,7 +1608,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567314641695014914/1567314641695014914"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1636,7 +1636,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567334346614906880/1567334346614906880"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1650,7 +1650,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567336269749555270/1567336269749555270"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1678,7 +1678,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567499716453859491/1567499716453859491"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1692,7 +1692,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567519901965353060/1567519901965353060"
       ],
-      "severity": "unassessed",
+      "severity": "major",
       "severity_override": null
     },
     {
@@ -1720,7 +1720,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567556494470156429/1567556494470156429"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1734,7 +1734,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567575796808159292/1567575796808159292"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1748,14 +1748,14 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567625465668304907/1567625465668304907"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
       "number": 372,
       "title": "[Bug]: Silo server home screen takes a very long time to populate on iOS & tvOS.",
       "kind": "bug",
-      "stage": "backlog",
+      "stage": "in-progress",
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/372",
@@ -1827,6 +1827,30 @@
         "https://discord.com/channels/1527028230106906704/1567725400505974917/1567725400505974917"
       ],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 381,
+      "title": "PublicMetaDB tracker support",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/381",
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 382,
+      "title": "Two-way tracker sync support",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/382",
+      "discord_urls": [],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
