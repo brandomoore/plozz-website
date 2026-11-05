@@ -69,7 +69,7 @@ const icons = ['ph:stack', 'ph:circle', 'ph:circle-half', 'ph:flask', 'ph:check-
               <h2 id={`heading-${stage.id}`}>{stage.label}</h2>
               <span class="roadmap-count" data-count aria-label="Count loading">—</span>
             </div>
-            <p>{stage.description}</p>
+            {stage.description && <p>{stage.description}</p>}
           </header>
           <ul class="roadmap-cards" data-cards aria-label={`${stage.label} items`}>
             <li class="roadmap-placeholder" aria-hidden="true"><span></span><span></span><span></span></li>
@@ -95,7 +95,6 @@ const icons = ['ph:stack', 'ph:circle', 'ph:circle-half', 'ph:flask', 'ph:check-
     </div>
 
     <div class="roadmap-bottom">
-      <p>Backlog isn’t a promise. Planned work is chosen by Brandon.</p>
       <details class="roadmap-about">
         <summary>How this board works</summary>
         <div>

@@ -6,7 +6,7 @@ export const EXPIRES_AFTER_MS = 7 * 24 * STALE_AFTER_MS;
 export const PAGE_SIZE = 4;
 
 export const STAGES = [
-  { id: "backlog", label: "Backlog", description: "Tracked, not promised.", empty: "No items in the backlog." },
+  { id: "backlog", label: "Backlog", description: "", empty: "No items in the backlog." },
   { id: "planned", label: "Planned", description: "Chosen by Brandon.", empty: "Nothing committed here yet." },
   { id: "in-progress", label: "In progress", description: "Work has started.", empty: "No work marked in progress." },
   { id: "in-beta", label: "In beta", description: "Available in TestFlight.", empty: "No items waiting in beta." },

@@ -17,6 +17,7 @@ test("roadmap is discoverable, semantic and never ships a fabricated snapshot", 
     assert.match(page, new RegExp(`data-stage-select="${stage}"`));
   }
   assert.match(page, /<noscript>/);
+  assert.doesNotMatch(page, /Tracked, not promised|Backlog isn’t a promise\. Planned work is chosen by Brandon/);
   assert.doesNotMatch(page, /"generated_at"\s*:|github.com\/brandomoore\/Plozz\/issues\/\d+/);
   assert.match(readFileSync(new URL("../../dist/index.html", import.meta.url), "utf8"), /href="\/roadmap"/);
   assert.match(readFileSync(new URL("../../dist/sitemap-0.xml", import.meta.url), "utf8"), /https:\/\/plozz.app\/roadmap\//);
