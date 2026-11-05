@@ -135,7 +135,7 @@
 .roadmap-card-title { display: block; min-height: 44px; }
 .roadmap-card-title:hover { text-decoration: underline; text-underline-offset: 3px; }
 .roadmap-card-title span { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.roadmap-card-controls { display: flex; align-items: center; gap: 2px; margin-right: -4px; }
+.roadmap-card-controls { display: flex; align-items: center; gap: 2px; }
 .roadmap-icon-button { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; padding: 5px; flex: none; border: 0; border-radius: 8px; background: transparent; color: var(--text-muted); }
 .roadmap-icon-button:hover { color: var(--text); background: var(--border); }
 .roadmap-icon-button svg { width: 16px; height: 16px; }

@@ -50,3 +50,10 @@ test("compact card actions use a named dialog and inline Discord artwork, not pe
   assert.match(script, /aria-haspopup/);
   assert.match(script, /dialog\.showModal/);
 });
+
+test("issue numbers remain the rightmost card metadata after optional controls", () => {
+  const script = readFileSync(new URL("../../src/scripts/roadmap.js", import.meta.url), "utf8");
+  assert.match(script, /controls\.append\(node\('span', 'roadmap-card-number', `#\$\{item\.number\}`\)\);\s*return li;/);
+  const css = readFileSync(new URL("../../src/styles/roadmap.css", import.meta.url), "utf8");
+  assert.doesNotMatch(css.match(/\.roadmap-card-controls\s*\{[^}]+\}/)?.[0] ?? "", /margin-right/);
+});

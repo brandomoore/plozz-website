@@ -91,7 +91,6 @@ function card(item) {
   const kindLabel = node('span', 'roadmap-card-kind', item.kind === 'bug' ? 'Bug' : 'Feature');
   kindLabel.prepend(form.querySelector(`[data-kind-icon="${item.kind}"]`).cloneNode(true));
   const controls = node('div', 'roadmap-card-controls');
-  controls.append(node('span', 'roadmap-card-number', `#${item.number}`));
   if (item.discord_urls.length) {
     const discord = iconControl(item.discord_urls.length === 1 ? 'a' : 'button', 'discord',
       `Discord ${item.discord_urls.length === 1 ? 'discussion' : 'discussions'} for issue ${item.number}`);
@@ -134,6 +133,7 @@ function card(item) {
     actions.addEventListener('click', () => openCardMenu(item));
     controls.append(actions);
   }
+  controls.append(node('span', 'roadmap-card-number', `#${item.number}`));
   return li;
 }
 
