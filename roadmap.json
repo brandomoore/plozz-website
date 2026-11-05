@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-05T19:09:08Z",
+  "generated_at": "2026-11-05T19:11:01Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "15231483ed8c51eed2be976004360e26684fda3e",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42090788937"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42091105191"
   },
   "items": [
     {
@@ -1875,6 +1875,34 @@
       "github_url": "https://github.com/brandomoore/Plozz/issues/385",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567891737068699758/1567891737068699758"
+      ],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 386,
+      "title": "[Feature]: Feature Request: Add Plex playlists to custom Home rows",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/386",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1567899917610131596/1567899917610131596"
+      ],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 387,
+      "title": "[Bug]: The logo used in the hero is sometimes not the good one",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/387",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1567970641800601831/1567970641800601831"
       ],
       "severity": "unassessed",
       "severity_override": null
