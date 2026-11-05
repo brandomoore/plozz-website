@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-05T02:29:19Z",
+  "generated_at": "2026-11-05T07:56:23Z",
   "source": {
     "repository": "brandomoore/Plozz",
-    "revision": "67663de8e6e949c45fe6856a59f6316efba498e9",
+    "revision": "2f54d7b7481de4ffd06934392038bba6cb91f5c7",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/41955362386"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/41990521976"
   },
   "items": [
     {
@@ -129,7 +129,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/105",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -157,7 +157,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1560458949193375796/1560458949193375796"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -169,7 +169,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/134",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "major",
       "severity_override": null
     },
     {
@@ -193,7 +193,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/164",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "blocking",
       "severity_override": null
     },
     {
@@ -221,7 +221,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1561891155245928529/1561891155245928529"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -233,7 +233,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/182",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -247,7 +247,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562058676720631888/1562058676720631888"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -289,7 +289,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562105321227292712/1562105321227292712"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -301,7 +301,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/194",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -329,7 +329,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562406089352290354/1562406089352290354"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -343,7 +343,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562425591741943808/1562425591741943808"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -385,7 +385,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562476089937502339/1562476089937502339"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -413,7 +413,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562503347007783024/1562503347007783024"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -427,7 +427,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562576458696757279/1562576458696757279"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -465,7 +465,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562954579769954384/1562954579769954384"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -493,7 +493,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1563324810124333118/1563324810124333118"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -507,7 +507,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1563326488588066928/1563326488588066928"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -562,7 +562,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/228",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "blocking",
       "severity_override": null
     },
     {
@@ -574,7 +574,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/229",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "major",
       "severity_override": null
     },
     {
@@ -588,7 +588,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1563479015770038313/1563479015770038313"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -628,7 +628,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/235",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -640,7 +640,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/236",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -666,7 +666,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/239",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -678,7 +678,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/240",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -690,19 +690,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/241",
       "discord_urls": [],
-      "severity": "unassessed",
-      "severity_override": null
-    },
-    {
-      "number": 242,
-      "title": "[Bug]: Downloaded playback/navigation triggers fatal hangs on iOS 18",
-      "kind": "bug",
-      "stage": "backlog",
-      "automatic_stage": null,
-      "issue_state": "open",
-      "github_url": "https://github.com/brandomoore/Plozz/issues/242",
-      "discord_urls": [],
-      "severity": "blocking",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -714,7 +702,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/243",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -728,7 +716,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564232889653006337/1564232889653006337"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -742,7 +730,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564321224362958948/1564321224362958948"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -756,7 +744,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564322826503192576/1564322826503192576"
       ],
-      "severity": "unassessed",
+      "severity": "major",
       "severity_override": null
     },
     {
@@ -768,7 +756,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/253",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -780,7 +768,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/257",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -792,7 +780,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/258",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -816,7 +804,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/261",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -828,7 +816,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/262",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -852,7 +840,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/264",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "major",
       "severity_override": null
     },
     {
@@ -876,7 +864,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/267",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -902,7 +890,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/270",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1036,7 +1024,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564346950156029993/1564346950156029993"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1050,7 +1038,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564373285595254925/1564373285595254925"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1078,7 +1066,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564634564872249364/1564634564872249364"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1092,7 +1080,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564672451567419422/1564672451567419422"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1106,7 +1094,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564672972491325490/1564672972491325490"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1120,7 +1108,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564696199553093682/1564696199553093682"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1134,7 +1122,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564982896731623586/1564982896731623586"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1148,7 +1136,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565017419913896170/1565017419913896170"
       ],
-      "severity": "unassessed",
+      "severity": "major",
       "severity_override": null
     },
     {
@@ -1162,7 +1150,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565020347231637676/1565020347231637676"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1176,7 +1164,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565278037061144686/1565278037061144686"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1190,7 +1178,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565279801114234961/1565279801114234961"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1218,7 +1206,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565292895286730842/1565292895286730842"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1260,7 +1248,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565514762140524606/1565514762140524606"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1274,7 +1262,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565538499606614087/1565538499606614087"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1288,14 +1276,14 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565541353109327932/1565541353109327932"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
       "number": 321,
       "title": "[Bug]: Unable to play content from Real Debrid WebDAV",
       "kind": "bug",
-      "stage": "backlog",
+      "stage": "in-progress",
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/321",
@@ -1316,7 +1304,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565796123090751568/1565796123090751568"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1330,7 +1318,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1565816971277111498/1565816971277111498"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1386,7 +1374,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567026803866865745/1567026803866865745"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1400,7 +1388,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567082379279859732/1567082379279859732"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1428,7 +1416,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567105123082043422/1567105123082043422"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1442,7 +1430,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567111911877771264/1567111911877771264"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1470,7 +1458,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567136756422287520/1567136756422287520"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1484,7 +1472,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567140644391092254/1567140644391092254"
       ],
-      "severity": "unassessed",
+      "severity": "major",
       "severity_override": null
     },
     {
@@ -1526,7 +1514,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567144672122372136/1567144672122372136"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1568,7 +1556,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567229744259276910/1567229744259276910"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1580,7 +1568,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/349",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1592,7 +1580,7 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/350",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1669,14 +1657,14 @@
       "number": 363,
       "title": "[Bug]: Ask before downloading",
       "kind": "bug",
-      "stage": "in-progress",
+      "stage": "in-beta",
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/363",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567341900510400636/1567341900510400636"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -1750,18 +1738,6 @@
       "severity_override": null
     },
     {
-      "number": 370,
-      "title": "[Feature]: IPA",
-      "kind": "feature",
-      "stage": "backlog",
-      "automatic_stage": null,
-      "issue_state": "open",
-      "github_url": "https://github.com/brandomoore/Plozz/issues/370",
-      "discord_urls": [],
-      "severity": "unassessed",
-      "severity_override": null
-    },
-    {
       "number": 371,
       "title": "[Feature]: be notified when an item on the watchlist becomes available",
       "kind": "feature",
@@ -1786,7 +1762,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567644345853542450/1567644345853542450"
       ],
-      "severity": "unassessed",
+      "severity": "major",
       "severity_override": null
     },
     {
@@ -1823,6 +1799,34 @@
       "github_url": "https://github.com/brandomoore/Plozz/issues/375",
       "discord_urls": [],
       "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 379,
+      "title": "[Bug]: External video player marks item as watched but continue watching row doesn’t update",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/379",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1567695964003635330/1567695964003635330"
+      ],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 380,
+      "title": "[Feature]: Show shelves in collections",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/380",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1567725400505974917/1567725400505974917"
+      ],
+      "severity": "normal",
       "severity_override": null
     }
   ]
