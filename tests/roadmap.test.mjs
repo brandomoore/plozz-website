@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { AUTHORITY_REVISION, validateFeed, feedAge, selectItems, displayTitle, severityFromLabels, STALE_AFTER_MS, EXPIRES_AFTER_MS, MAX_FEED_BYTES } from "../shared/roadmap.mjs";
+import { AUTHORITY_REVISION, validateFeed, feedAge, selectItems, displayTitle, severityFromLabels, allowedStages,
+  STALE_AFTER_MS, EXPIRES_AFTER_MS, MAX_FEED_BYTES } from "../shared/roadmap.mjs";
 import { handleRoadmap, FEED_URL } from "../worker/roadmap.js";
 import { publishFeed } from "../tools/publish-roadmap.mjs";
 import worker from "../worker/index.js";
@@ -96,6 +97,29 @@ test("maintainer severity overrides win without erasing automatic assessment", (
   for (const names of [["severity: major", "severity: blocking"], ["severity override: normal", "severity override: blocking"]]) {
     assert.throws(() => severityFromLabels(labels(names)), /Conflicting severity/);
   }
+});
+
+test("v3 separates manual confirmation from automatic availability and constrains destinations", () => {
+  const feed = fixture();
+  feed.schema_version = 3;
+  const item = feed.items[0];
+  Object.assign(item, { severity: "unassessed", severity_override: null,
+    stage: "released", automatic_stage: null, issue_state: "open" });
+  validateFeed(feed, now);
+  assert.equal(allowedStages(item).length, 5);
+  item.issue_state = "closed";
+  assert.deepEqual(allowedStages(item), ["in-beta", "released"]);
+  item.automatic_stage = "released";
+  assert.deepEqual(allowedStages(item), ["released"]);
+  item.stage = "in-beta";
+  assert.throws(() => validateFeed(feed, now));
+  item.automatic_stage = null;
+  item.stage = "backlog";
+  assert.throws(() => validateFeed(feed, now));
+  item.issue_state = "open";
+  item.automatic_stage = "planned";
+  assert.throws(() => validateFeed(feed, now));
+  assert.deepEqual(allowedStages({ stage: "released" }), ["released"], "Legacy delivery stays protected");
 });
 
 test("active items are severity-first, ties newest-first; delivery columns retain chronology", () => {

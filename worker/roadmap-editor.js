@@ -1,4 +1,5 @@
-import { EDITABLE_STAGES, SEVERITIES, SEVERITY_OVERRIDES, severityFromLabels } from "../shared/roadmap.mjs";
+import { ACTIVE_STAGES, EDITABLE_STAGES, DELIVERY_STAGES, automaticStage, effectiveStage, allowedStages,
+  SEVERITIES, SEVERITY_OVERRIDES, severityFromLabels } from "../shared/roadmap.mjs";
 import { handleRoadmap } from "./roadmap.js";
 
 const ORIGIN = "https://plozz.app";
@@ -7,7 +8,8 @@ const REPO = "/repos/brandomoore/Plozz";
 const OWNER_ID = 16313090;
 const SESSION_COOKIE = "__Host-roadmap-session";
 const STATE_COOKIE = "__Host-roadmap-state";
-const LABELS = { planned: "roadmap: planned", "in-progress": "roadmap: in progress" };
+const LABELS = { planned: "roadmap: planned", "in-progress": "roadmap: in progress",
+  "in-beta": "roadmap: testflight", released: "roadmap: released" };
 const SESSION_SECONDS = 8 * 60 * 60;
 const encoder = new TextEncoder();
 
@@ -136,6 +138,18 @@ function stageOf(issue) {
   return stages[0] || "backlog";
 }
 
+function confirmedStage(issue, events) {
+  const stage = stageOf(issue);
+  if (!DELIVERY_STAGES.includes(stage)) return stage;
+  const changes = events.filter(event => ["labeled", "unlabeled"].includes(event.event) && event.label?.name === LABELS[stage]);
+  const latest = changes.sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at) || b.id - a.id)[0];
+  if (!latest || latest.event !== "labeled" || latest.actor?.id !== OWNER_ID || latest.actor?.login !== "brandomoore") {
+    throw new EditorError(409, "unverified_confirmation", "The delivery confirmation could not be verified. Check its label history on GitHub.");
+  }
+  return events.some(event => event.event === "reopened" && Date.parse(event.created_at) >= Date.parse(latest.created_at))
+    ? "backlog" : stage;
+}
+
 function severityOf(issue) {
   try {
     return severityFromLabels(issue.labels);
@@ -192,6 +206,16 @@ export async function handleRoadmapEditor(request, env, ctx, { fetcher = fetch, 
       throw new EditorError(403, "not_maintainer", "Only the brandomoore maintainer account can edit this board.");
     }
     return user;
+  }
+  async function issueEvents(issuePath, token) {
+    const events = [];
+    for (let page = 1; page <= 20; page++) {
+      const batch = await github(`${issuePath}/events?per_page=100&page=${page}`, token);
+      if (!Array.isArray(batch)) throw new EditorError(502, "invalid_history", "GitHub returned invalid issue history.");
+      events.push(...batch);
+      if (batch.length < 100) return events;
+    }
+    throw new EditorError(409, "history_limit", "This issue's history needs manual verification on GitHub.");
   }
   try {
     if (login) {
@@ -290,24 +314,35 @@ export async function handleRoadmapEditor(request, env, ctx, { fetcher = fetch, 
       }
     } else if (!body || Object.keys(body).sort().join(",") !== "expectedStage,stage" ||
         !EDITABLE_STAGES.includes(body.stage) || !EDITABLE_STAGES.includes(body.expectedStage)) {
-      throw new EditorError(400, "invalid_stage", "Only Backlog, Planned, and In progress can be chosen manually.");
+      throw new EditorError(400, "invalid_stage", "Choose a roadmap column.");
     }
     const number = Number(issueMatch[1]);
     const snapshot = await handleRoadmap(new Request(`${ORIGIN}/api/roadmap`), ctx, {
       fetcher: (url, options) => fetcher(url, { ...options, signal }), now,
     });
     if (!snapshot.ok) throw new EditorError(503, "feed_unavailable", "The verified board is unavailable. Try again after it recovers.");
-    const item = (await snapshot.json()).feed.items.find(item => item.number === number);
-    if (!item || !EDITABLE_STAGES.includes(item.stage)) {
-      throw new EditorError(409, "protected_stage", "This item is not editable. Beta and release stages are verified automatically.");
+    const snapshotFeed = (await snapshot.json()).feed;
+    const item = snapshotFeed.items.find(item => item.number === number);
+    if (!item || (severityEdit && !ACTIVE_STAGES.includes(item.stage))) {
+      throw new EditorError(409, "protected_stage", "This item is not available for that edit.");
     }
     const issuePath = `${REPO}/issues/${number}`;
     const issue = await github(issuePath, session.token);
-    if (issue.pull_request || issue.state !== "open" || issue.labels.some(label => label.name === "duplicate") ||
+    if (issue.pull_request || (severityEdit && issue.state !== "open") || issue.labels.some(label => label.name === "duplicate") ||
         !issue.labels.some(label => ["bug", "enhancement"].includes(label.name))) {
       throw new EditorError(409, "ineligible_issue", "This issue is no longer an open roadmap item.");
     }
-    const current = severityEdit ? severityOf(issue).severity_override : stageOf(issue);
+    const events = severityEdit ? [] : await issueEvents(issuePath, session.token);
+    const automatic = automaticStage(item);
+    if (!severityEdit && automatic && events.some(event => event.event === "reopened" &&
+        Date.parse(event.created_at) >= Date.parse(snapshotFeed.generated_at))) {
+      throw new EditorError(409, "stale_delivery", "This issue was reopened. Wait for the roadmap to sync before confirming delivery.");
+    }
+    if (!severityEdit && !allowedStages({ ...item, issue_state: issue.state }).includes(body.stage)) {
+      throw new EditorError(409, "protected_stage", "Verified availability cannot be moved backward. Reopen the issue on GitHub to report a regression.");
+    }
+    const rawCurrent = severityEdit ? severityOf(issue).severity_override : stageOf(issue);
+    const current = severityEdit ? rawCurrent : effectiveStage(confirmedStage(issue, events), automatic);
     const expected = severityEdit ? body.expectedOverride : body.expectedStage;
     const target = severityEdit ? body.severityOverride : body.stage;
     const labels = severityEdit ? SEVERITY_OVERRIDES : LABELS;
@@ -316,18 +351,22 @@ export async function handleRoadmapEditor(request, env, ctx, { fetcher = fetch, 
     }
     if (current !== target) {
       // Change only this setting's labels; preserve concurrent triage and integration labels.
+      // Reapplying an expired confirmation records the maintainer's new decision after reopening.
+      if (rawCurrent === target && labels[target]) {
+        await github(`${issuePath}/labels/${encodeURIComponent(labels[target])}`, session.token, { method: "DELETE" });
+      }
       if (labels[target]) await github(`${issuePath}/labels`, session.token, {
         method: "POST", body: JSON.stringify({ labels: [labels[target]] }),
       });
-      if (labels[current]) {
+      if (labels[rawCurrent] && rawCurrent !== target) {
         try {
-          await github(`${issuePath}/labels/${encodeURIComponent(labels[current])}`, session.token, { method: "DELETE" });
+          await github(`${issuePath}/labels/${encodeURIComponent(labels[rawCurrent])}`, session.token, { method: "DELETE" });
         } catch (error) {
           if (labels[target]) {
             try {
               const recoverySignal = AbortSignal.timeout(5_000);
               const latest = await github(issuePath, session.token, { signal: recoverySignal });
-              if (latest.labels.some(label => label.name === labels[current])) {
+              if (latest.labels.some(label => label.name === labels[rawCurrent])) {
                 await github(`${issuePath}/labels/${encodeURIComponent(labels[target])}`, session.token, {
                   method: "DELETE", signal: recoverySignal,
                 });
@@ -341,7 +380,14 @@ export async function handleRoadmapEditor(request, env, ctx, { fetcher = fetch, 
       }
     }
     const verified = await github(issuePath, session.token);
-    const verifiedValue = severityEdit ? severityOf(verified).severity_override : stageOf(verified);
+    const verifiedEvents = severityEdit ? [] : await issueEvents(issuePath, session.token);
+    if (!severityEdit && (!allowedStages({ ...item, issue_state: verified.state }).includes(target) ||
+        (automatic && verifiedEvents.some(event => event.event === "reopened" &&
+          Date.parse(event.created_at) >= Date.parse(snapshotFeed.generated_at))))) {
+      throw new EditorError(409, "save_conflict", "This issue changed while saving. Check it on GitHub before trying again.");
+    }
+    const verifiedValue = severityEdit ? severityOf(verified).severity_override
+      : effectiveStage(confirmedStage(verified, verifiedEvents), automatic);
     if (verifiedValue !== target) {
       throw new EditorError(409, "save_conflict", "The saved setting changed. Check the labels on GitHub before trying again.");
     }

@@ -1,4 +1,4 @@
-import { STAGES, EDITABLE_STAGES, validateFeed, feedAge, displayTitle, selectItems } from '../../shared/roadmap.mjs';
+import { STAGES, ACTIVE_STAGES, EDITABLE_STAGES, automaticStage, allowedStages, validateFeed, feedAge, displayTitle, selectItems } from '../../shared/roadmap.mjs';
 
 const root = document.querySelector('.roadmap-shell');
 const form = root.querySelector('[data-roadmap-filters]');
@@ -65,11 +65,14 @@ function openCardMenu(item, discussionsOnly = false) {
     content.append(section);
   }
   if (!discussionsOnly && editor && EDITABLE_STAGES.includes(item.stage)) {
-    group('Stage', STAGES.filter(stage => EDITABLE_STAGES.includes(stage.id)).map(stage => [stage.id, stage.label]),
+    group('Stage', STAGES.filter(stage => allowedStages(item).includes(stage.id)).map(stage => [stage.id, stage.label]),
       item.stage, stage => moveItem(item, stage));
-    group('Severity', [[null, 'Automatic'], ['blocking', 'Blocking'], ['major', 'Major'], ['normal', 'No badge']],
-      item.severity_override ?? null, severity => setSeverity(item, severity));
-    content.append(node('p', 'roadmap-menu-help', 'Your override stays until you choose Automatic.'));
+    content.append(node('p', 'roadmap-menu-help', 'TestFlight and Released confirm availability on every affected platform.'));
+    if (ACTIVE_STAGES.includes(item.stage)) {
+      group('Severity', [[null, 'Automatic'], ['blocking', 'Blocking'], ['major', 'Major'], ['normal', 'No badge']],
+        item.severity_override ?? null, severity => setSeverity(item, severity));
+      content.append(node('p', 'roadmap-menu-help', 'Your override stays until you choose Automatic.'));
+    }
   }
   if (item.discord_urls.length) {
     const links = node('div', 'roadmap-menu-links');
@@ -115,7 +118,7 @@ function card(item) {
     li.append(badge);
   }
   if (editor && EDITABLE_STAGES.includes(item.stage)) {
-    li.draggable = !saving;
+    li.draggable = !saving && allowedStages(item).length > 1;
     li.addEventListener('dragstart', event => {
       if (saving || event.target.closest('a, button, select')) {
         event.preventDefault();
@@ -142,7 +145,7 @@ function currentItems() {
     const saved = savedMoves.get(item.number);
     const severity = savedSeverities.get(item.number);
     return EDITABLE_STAGES.includes(item.stage) ? {
-      ...item, ...(saved ? { stage: saved.stage } : {}),
+      ...item, automatic_stage: automaticStage(item), ...(saved ? { stage: saved.stage } : {}),
       ...(severity ? { severity: severity.severity, severity_override: severity.severity_override } : {}),
     } : item;
   });
@@ -283,13 +286,13 @@ async function load() {
         savedMoves.delete(number);
         changed = true;
       }
-      for (const [number, saved] of savedSeverities) {
-        const item = feed.items.find(item => item.number === number);
-        if (!item || (item.severity === saved.severity && item.severity_override === saved.severity_override) ||
-            Date.parse(feed.generated_at) > Date.parse(saved.saved_at)) {
-          savedSeverities.delete(number);
-          changed = true;
-        }
+    }
+    for (const [number, saved] of savedSeverities) {
+      const item = feed.items.find(item => item.number === number);
+      if (!item || (item.severity === saved.severity && item.severity_override === saved.severity_override) ||
+          Date.parse(feed.generated_at) > Date.parse(saved.saved_at)) {
+        savedSeverities.delete(number);
+        changed = true;
       }
     }
     if (changed && !saving) render();
@@ -341,7 +344,7 @@ async function loadEditor() {
       editor = session;
       root.querySelector('[data-roadmap-login]').hidden = true;
       root.querySelector('[data-roadmap-logout]').hidden = false;
-      editingMessage('Drag cards or use their menu. Beta and release stages are automatic.');
+      editingMessage('Drag cards or use their menu. TestFlight and Released confirm availability.');
       if (feed) render();
     } else if (params.has('editor')) {
       const messages = {
@@ -359,7 +362,7 @@ async function loadEditor() {
 }
 
 async function moveItem(item, stage) {
-  if (!editor || saving || stage === item.stage) return;
+  if (!editor || saving || stage === item.stage || !allowedStages(item).includes(stage)) return;
   saving = true;
   clearDrag();
   render();
@@ -437,6 +440,8 @@ function clearDrag() {
 root.querySelectorAll('[data-stage]').forEach(column => {
   column.addEventListener('dragover', event => {
     if (!editor || saving || !draggedNumber || !EDITABLE_STAGES.includes(column.dataset.stage)) return;
+    const item = currentItems().find(item => item.number === draggedNumber);
+    if (!item || !allowedStages(item).includes(column.dataset.stage)) return;
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
     column.setAttribute('data-drop-target', '');

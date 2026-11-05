@@ -45,6 +45,9 @@ test("compact card actions use a named dialog and inline Discord artwork, not pe
   assert.match(page, /data-card-icon="discord"/);
   assert.match(page, /data-card-icon="actions"/);
   assert.match(page, /Blocking and Major first/);
+  assert.match(page, />TestFlight</);
+  assert.doesNotMatch(page, />In beta</);
+  assert.match(page, /confirmed by Brandon/);
   const script = readFileSync(new URL("../../src/scripts/roadmap.js", import.meta.url), "utf8");
   assert.doesNotMatch(script, /node\('select'|roadmap-move|roadmap-card-discussions/);
   assert.match(script, /aria-haspopup/);

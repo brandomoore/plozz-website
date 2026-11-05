@@ -171,22 +171,31 @@ review upstream changes and update the exporter, workflow and shared schema
 together. `roadmap: planned` and `roadmap: in progress` require the last label
 application to be by `brandomoore`. Backlog is not a commitment.
 
-Beta/store stages require the existing authority's source-inclusion checks for
-every affected platform. Historical builds without a source catalog aren't
-delivery proof. Missing referenced tags or corrupt catalogs fail the run.
-Closed issues without verified delivery and duplicates are excluded. Only
+Automatic TestFlight/store stages require the existing authority's source-inclusion
+checks for every affected platform. The maintainer can also confirm actual
+availability using `roadmap: testflight` or `roadmap: released`. The latest label
+application must be by `brandomoore` (user ID `16313090`), after any reopening.
+Automatic verification can advance a manual TestFlight confirmation to Released;
+a manual choice cannot downgrade verified availability. Historical builds without
+a source catalog aren't automatic delivery proof. Missing referenced tags or
+corrupt catalogs still fail the run. Closed issues without automatic delivery
+evidence or a valid maintainer confirmation and duplicates are excluded. Only
 validated bridge metadata supplies Discord links.
 
 #### Editing the board
 
-Use **Edit** to sign in as `brandomoore`, then drag a card between the first
-three columns or open its **…** card menu (also available on touch/keyboard).
+Use **Edit** to sign in as `brandomoore`, then drag a card between columns or
+open its **…** card menu (also available on touch/keyboard). Moving to
+**TestFlight** or **Released** confirms availability on every affected platform,
+not merely completed code. Available destinations respect automatically verified
+delivery; closed issues can only move between delivery columns.
 Discord discussions use a compact icon in the card header; multiple discussions
 open a named dialog with all links rather than losing secondary threads.
 Moves save to GitHub before changing the local board. The public feed catches
 up after its next successful sync. Failed or conflicting writes remain visible;
 check the linked issue before retrying an uncertain or partially completed save.
-Unrelated issue labels are never replaced. Delivery stages cannot be edited.
+Unrelated issue labels are never replaced. No move closes an issue or sends a
+delivery announcement. Reopening an issue invalidates earlier delivery confirmations.
 
 The Plozz issue-triage workflow maintains `severity: blocking`, `severity: major`
 or `severity: normal` independently of roadmap commitments. Blocking means a
@@ -200,9 +209,11 @@ or `severity override: normal` (**No badge**), which always takes precedence.
 **Automatic** removes only the override, restoring the latest triage assessment.
 The automation cannot change override labels. Conflicting labels fail visibly
 instead of choosing an arbitrary priority. Severity saves do not change stages.
-Public feed schema v2 adds `severity` and `severity_override`; the reader also
-accepts v1 during rollout without treating missing severity as an assessment.
-Deploy the compatible reader before publishing v2 snapshots. Existing open
+Public feed schema v2 adds `severity` and `severity_override`; v3 adds
+`automatic_stage` and `issue_state` so editing respects automatic delivery and
+closed issues. The reader also accepts v1/v2 during rollout without inventing
+missing severity or manual delivery evidence. Deploy the compatible reader
+before publishing v3 snapshots. Existing open
 browser tabs using the old reader need a reload after the feed upgrade.
 Triage fills in older assessments over multiple bounded runs; the board does
 not classify issues from title keywords or invent a completed backfill.
@@ -215,7 +226,11 @@ For an undelivered item, apply one commitment label using the `brandomoore`
 GitHub account: `roadmap: planned` or `roadmap: in progress`. Remove the previous
 commitment label when changing stages; applying both stops verification rather
 than guessing which decision to publish. Remove both to return to Backlog.
-In beta and Released are automatic, verified delivery states, not manual labels.
+For available work missed by automatic tracking, use `roadmap: testflight` or
+`roadmap: released` instead. Keep only one of these four roadmap stage labels;
+conflicting labels fail verification rather than choosing an arbitrary stage.
+Removing a manual delivery label returns to the automatically verified stage,
+or Backlog for an open issue without delivery evidence.
 Closing an issue does not mark it Released.
 
 Changes appear after the next successful scheduled export and cache refresh;

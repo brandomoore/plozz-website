@@ -74,7 +74,7 @@ class ExportTests(unittest.TestCase):
         items = EXPORT["export_items"](authority, index, [], [])
         self.assertEqual(len(items[0]["discord_urls"]), 1)
         self.assertEqual(set(items[0]), {"number", "title", "kind", "stage", "github_url", "discord_urls",
-                                        "severity", "severity_override"})
+                                        "severity", "severity_override", "automatic_stage", "issue_state"})
         authority["BRIDGE"].message_link.assert_called_once_with("thread", "message")
 
     def test_severity_is_independent_of_stage_and_manual_override_wins(self):
@@ -97,6 +97,46 @@ class ExportTests(unittest.TestCase):
         ):
             with self.assertRaisesRegex(ValueError, "Conflicting severity"):
                 EXPORT["severity"](labels)
+
+    def test_confirmed_delivery_survives_sync_for_open_and_closed_issues(self):
+        for state in ("open", "closed"):
+            for label, stage in EXPORT["DELIVERY_LABELS"].items():
+                authority, index = self.setup_authority([issue(1, state=state, labels=("bug", label))])
+                index.api.pages.return_value = [{
+                    "id": 1, "event": "labeled", "label": {"name": label},
+                    "actor": {"login": "brandomoore", "id": 16313090}, "created_at": "2026-11-05T00:00:00Z",
+                }]
+                item = EXPORT["export_items"](authority, index, [], [])[0]
+                self.assertEqual(item["stage"], EXPORT["STAGES"][stage])
+                self.assertIsNone(item["automatic_stage"])
+                self.assertEqual(item["issue_state"], state)
+
+    def test_automatic_delivery_can_advance_but_not_be_downgraded_by_confirmation(self):
+        label = "roadmap: testflight"
+        authority, index = self.setup_authority([issue(1, labels=("bug", label))], {1: {"issue": 1}})
+        index.api.pages.return_value = [{
+            "id": 1, "event": "labeled", "label": {"name": label},
+            "actor": {"login": "brandomoore", "id": 16313090}, "created_at": "2026-11-05T00:00:00Z",
+        }]
+        authority["delivery_stage"].return_value = "Released"
+        item = EXPORT["export_items"](authority, index, [], [])[0]
+        self.assertEqual((item["stage"], item["automatic_stage"]), ("released", "released"))
+
+    def test_delivery_confirmation_provenance_conflicts_and_reopening(self):
+        label = "roadmap: released"
+        event = {"id": 1, "event": "labeled", "label": {"name": label},
+                 "actor": {"login": "brandomoore", "id": 16313090}, "created_at": "2026-11-05T00:00:00Z"}
+        for events in ([], [{**event, "actor": {"login": "brandomoore", "id": 999}}],
+                       [event, {**event, "id": 2, "event": "unlabeled"}]):
+            with self.assertRaisesRegex(ValueError, "not verified"):
+                EXPORT["confirmed_delivery"]({label}, events)
+        self.assertIsNone(EXPORT["confirmed_delivery"]({label}, [event, {
+            "id": 2, "event": "reopened", "created_at": event["created_at"],
+        }]))
+        for other in ("roadmap: testflight", "roadmap: planned", "roadmap: in progress"):
+            authority, index = self.setup_authority([issue(1, labels=("bug", label, other))])
+            with self.assertRaisesRegex(ValueError, "conflicting roadmap"):
+                EXPORT["export_items"](authority, index, [], [])
 
 
 if __name__ == "__main__":

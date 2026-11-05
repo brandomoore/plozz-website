@@ -21,6 +21,28 @@ STAGES = {
     "In beta": "in-beta", "Released": "released",
 }
 SEVERITIES = ("blocking", "major", "normal")
+DELIVERY_LABELS = {"roadmap: testflight": "In beta", "roadmap: released": "Released"}
+
+
+def confirmed_delivery(labels, events):
+    selected = labels & DELIVERY_LABELS.keys()
+    if len(selected) > 1:
+        raise ValueError("Conflicting roadmap delivery confirmations; resolve them on GitHub.")
+    if not selected:
+        return None
+    label = next(iter(selected))
+    changes = [e for e in events if e.get("event") in ("labeled", "unlabeled")
+               and e.get("label", {}).get("name") == label]
+    latest = max(changes, key=lambda e: (e["created_at"], e["id"]), default=None)
+    if (not latest or latest["event"] != "labeled"
+            or latest.get("actor", {}).get("login") != "brandomoore"
+            or latest.get("actor", {}).get("id") != 16313090):
+        raise ValueError("Roadmap delivery confirmation is not verified as the maintainer's choice.")
+    confirmed_at = datetime.fromisoformat(latest["created_at"].replace("Z", "+00:00"))
+    if any(e.get("event") == "reopened" and datetime.fromisoformat(
+            e["created_at"].replace("Z", "+00:00")) >= confirmed_at for e in events):
+        return None
+    return DELIVERY_LABELS[label]
 
 
 def severity(labels):
@@ -56,11 +78,16 @@ def export_items(authority, index, beta, store):
         labels = {label["name"] for label in issue.get("labels", [])}
         if not labels & {"bug", "enhancement"} or "duplicate" in labels:
             continue
+        if len(labels & (authority["COMMITMENT_LABELS"].keys() | DELIVERY_LABELS.keys())) > 1:
+            raise ValueError(f"Issue #{number} has conflicting roadmap stage labels.")
         receipt = bridge.latest_release_resolution(index, number)
         events = index.api.pages(f"/repos/{bridge.REPO}/issues/{number}/events") if (
-            receipt or labels & authority["COMMITMENT_LABELS"].keys()
+            receipt or labels & (authority["COMMITMENT_LABELS"].keys() | DELIVERY_LABELS.keys())
         ) else []
-        stage = authority["delivery_stage"](receipt, events, beta, store) if receipt else None
+        automatic = authority["delivery_stage"](receipt, events, beta, store) if receipt else None
+        confirmed = confirmed_delivery(labels, events)
+        stage = max((value for value in (automatic, confirmed) if value),
+                    key=lambda value: list(STAGES).index(value), default=None)
         if stage is None:
             if issue["state"] != "open":
                 continue
@@ -74,6 +101,8 @@ def export_items(authority, index, beta, store):
             "title": " ".join(issue["title"].split()),
             "kind": "bug" if "bug" in labels else "feature",
             "stage": STAGES[stage],
+            "automatic_stage": STAGES[automatic] if automatic else None,
+            "issue_state": issue["state"],
             "github_url": f"https://github.com/{bridge.REPO}/issues/{number}",
             "discord_urls": links,
             **severity(labels),
@@ -100,7 +129,7 @@ def main():
     items = export_items(authority, index, beta, store)
     # Write only after every item and delivery check succeeded.
     feed = {
-        "schema_version": 2,
+        "schema_version": 3,
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "source": {
             "repository": bridge.REPO, "revision": revision,

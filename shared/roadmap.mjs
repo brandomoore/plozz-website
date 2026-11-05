@@ -3,7 +3,9 @@ export const REPOSITORY = "brandomoore/Plozz";
 export const MAX_FEED_BYTES = 2_000_000;
 export const STALE_AFTER_MS = 60 * 60 * 1000;
 export const EXPIRES_AFTER_MS = 7 * 24 * STALE_AFTER_MS;
-export const EDITABLE_STAGES = ["backlog", "planned", "in-progress"];
+export const ACTIVE_STAGES = ["backlog", "planned", "in-progress"];
+export const EDITABLE_STAGES = [...ACTIVE_STAGES, "in-beta", "released"];
+export const DELIVERY_STAGES = ["in-beta", "released"];
 export const SEVERITIES = ["blocking", "major", "normal"];
 export const SEVERITY_LABELS = Object.fromEntries(SEVERITIES.map(value => [value, `severity: ${value}`]));
 export const SEVERITY_OVERRIDES = Object.fromEntries(SEVERITIES.map(value => [value, `severity override: ${value}`]));
@@ -20,9 +22,23 @@ export const STAGES = [
   { id: "backlog", label: "Backlog", description: "", empty: "No items in the backlog." },
   { id: "planned", label: "Planned", description: "Chosen by Brandon.", empty: "Nothing committed here yet." },
   { id: "in-progress", label: "In progress", description: "Work has started.", empty: "No work marked in progress." },
-  { id: "in-beta", label: "In beta", description: "Available in TestFlight.", empty: "No items waiting in beta." },
+  { id: "in-beta", label: "TestFlight", description: "Available in TestFlight.", empty: "No items in TestFlight." },
   { id: "released", label: "Released", description: "Available in the App Store.", empty: "No verified releases here yet." },
 ];
+
+export function automaticStage(item) {
+  return Object.hasOwn(item, "automatic_stage") ? item.automatic_stage
+    : DELIVERY_STAGES.includes(item.stage) ? item.stage : null;
+}
+
+export function effectiveStage(manual, automatic) {
+  return EDITABLE_STAGES.indexOf(automatic) > EDITABLE_STAGES.indexOf(manual) ? automatic : manual;
+}
+
+export function allowedStages(item) {
+  const floor = Math.max(EDITABLE_STAGES.indexOf(automaticStage(item)), item.issue_state === "closed" ? 3 : 0);
+  return EDITABLE_STAGES.slice(floor);
+}
 
 function requireValue(condition) {
   if (!condition) throw new Error("Invalid roadmap feed.");
@@ -42,7 +58,7 @@ function timestamp(value) {
 /** Both the public endpoint and the browser fail closed on a malformed snapshot. */
 export function validateFeed(feed, now = Date.now()) {
   exactKeys(feed, ["schema_version", "generated_at", "source", "items"]);
-  requireValue([1, 2].includes(feed.schema_version));
+  requireValue([1, 2, 3].includes(feed.schema_version));
   timestamp(feed.generated_at);
   requireValue(Date.parse(feed.generated_at) <= now + 5 * 60 * 1000);
   exactKeys(feed.source, ["repository", "revision", "authority_revision", "run_url"]);
@@ -54,11 +70,17 @@ export function validateFeed(feed, now = Date.now()) {
   const seen = new Set();
   for (const item of feed.items) {
     exactKeys(item, ["number", "title", "kind", "stage", "github_url", "discord_urls",
-      ...(feed.schema_version === 2 ? ["severity", "severity_override"] : [])]);
-    if (feed.schema_version === 2) {
+      ...(feed.schema_version >= 2 ? ["severity", "severity_override"] : []),
+      ...(feed.schema_version >= 3 ? ["automatic_stage", "issue_state"] : [])]);
+    if (feed.schema_version >= 2) {
       requireValue([...SEVERITIES, "unassessed"].includes(item.severity));
       requireValue(item.severity_override === null || SEVERITIES.includes(item.severity_override));
       requireValue(item.severity_override === null || item.severity === item.severity_override);
+    }
+    if (feed.schema_version >= 3) {
+      requireValue(item.automatic_stage === null || DELIVERY_STAGES.includes(item.automatic_stage));
+      requireValue(["open", "closed"].includes(item.issue_state));
+      requireValue(allowedStages(item).includes(item.stage));
     }
     requireValue(Number.isSafeInteger(item.number) && item.number > 0 && !seen.has(item.number));
     seen.add(item.number);
@@ -92,7 +114,7 @@ export function selectItems(items, query = "", kind = "all") {
     words.every(word => /^#\d+$/.test(word) ? Number(word.slice(1)) === item.number :
       `${item.title} #${item.number}`.toLocaleLowerCase().includes(word)))
     .sort((a, b) => {
-      const rank = item => EDITABLE_STAGES.includes(item.stage)
+      const rank = item => ACTIVE_STAGES.includes(item.stage)
         ? ({ blocking: 0, major: 1 }[item.severity] ?? 2) : 2;
       return rank(a) - rank(b) || b.number - a.number;
     });

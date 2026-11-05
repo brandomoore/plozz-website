@@ -27,7 +27,7 @@ function harness() {
   const values = new Map();
   const calls = [];
   const h = {
-    values, calls, issue: structuredClone(issue), feed: structuredClone(feed),
+    values, calls, issue: structuredClone(issue), feed: structuredClone(feed), events: [],
     user: { id: 16313090, login: "brandomoore" }, time: now,
     failDelete: false, revoked: false,
     env: {
@@ -63,10 +63,18 @@ function harness() {
       assert.equal(options.headers.Authorization, `Bearer ${token}`);
       if (url === "https://api.github.com/user") return h.revoked ? new Response("", { status: 401 }) : Response.json(h.user);
       if (url.endsWith("/issues/219")) return Response.json(h.issue);
+      if (url.includes("/issues/219/events?")) {
+        const page = Number(new URL(url).searchParams.get("page"));
+        return Response.json(h.events.slice((page - 1) * 100, page * 100));
+      }
       if (url.endsWith("/issues/219/labels")) {
         assert.equal(options.method, "POST");
         for (const name of JSON.parse(options.body).labels) {
-          if (!h.issue.labels.some(label => label.name === name)) h.issue.labels.push({ name });
+          if (!h.issue.labels.some(label => label.name === name)) {
+            h.issue.labels.push({ name });
+            h.events.push({ id: h.events.length + 1, event: "labeled", label: { name },
+              actor: h.user, created_at: new Date(h.time).toISOString() });
+          }
         }
         return Response.json(h.issue.labels);
       }
@@ -75,6 +83,8 @@ function harness() {
         const name = decodeURIComponent(url.split("/labels/")[1]);
         if (h.failDelete === true || h.failDelete === name) return new Response("", { status: 503 });
         h.issue.labels = h.issue.labels.filter(label => label.name !== name);
+        h.events.push({ id: h.events.length + 1, event: "unlabeled", label: { name },
+          actor: h.user, created_at: new Date(h.time).toISOString() });
         return Response.json(h.issue.labels);
       }
       throw new Error(`Unexpected mock request: ${url}`);
@@ -185,18 +195,19 @@ test("writes require same-origin requests, valid CSRF, a live session, and a bou
     assert([401, 403].includes((await h.move("planned", "backlog", { headers })).status));
     assert.equal(h.calls.length, count);
   }
-  assert.equal((await h.move("released")).status, 400);
-  assert.equal((await h.move("in-beta")).status, 400);
+  assert.equal((await h.move("done")).status, 400);
+  assert.equal((await h.move("testflight")).status, 400);
   assert.equal((await h.move("planned", "backlog", { options: { body: JSON.stringify({ stage: "planned", expectedStage: "backlog", repository: "another/repo" }) } })).status, 400);
   assert.equal((await h.move("planned", "backlog", { options: { body: "x".repeat(1025) } })).status, 413);
   h.time += 28801_000;
   assert.equal((await h.move("planned")).status, 401);
 });
 
-test("stage moves change only commitment labels, preserve other labels, and verify readback", async () => {
+test("stage moves including delivery change only stage labels, preserve other labels, and verify readback", async () => {
   const h = harness();
   await h.signIn();
-  for (const [stage, previous] of [["planned", "backlog"], ["in-progress", "planned"], ["backlog", "in-progress"]]) {
+  for (const [stage, previous] of [["planned", "backlog"], ["in-progress", "planned"], ["in-beta", "in-progress"],
+    ["released", "in-beta"], ["backlog", "released"]]) {
     const result = await h.move(stage, previous);
     assert.equal(result.status, 200);
     assert.deepEqual(await result.json(), { number: 219, stage, saved_at: new Date(now).toISOString() });
@@ -205,6 +216,57 @@ test("stage moves change only commitment labels, preserve other labels, and veri
     assert.equal(h.issue.labels.filter(label => label.name.startsWith("roadmap:")).length, stage === "backlog" ? 0 : 1);
   }
   assert(h.calls.every(call => call.options.method !== "PUT"));
+});
+
+test("automatically verified TestFlight can be confirmed Released, including a closed issue", async () => {
+  for (const state of ["open", "closed"]) {
+    const h = harness();
+    await h.signIn();
+    h.feed.items[0].stage = "in-beta";
+    h.issue.state = state;
+    h.issue.labels.push({ name: "roadmap: planned" });
+    const result = await h.move("released", "in-beta");
+    assert.equal(result.status, 200);
+    assert.equal((await result.json()).stage, "released");
+    assert(h.issue.labels.some(label => label.name === "roadmap: released"));
+    assert(!h.issue.labels.some(label => label.name === "roadmap: planned"));
+    assert.equal(h.issue.state, state);
+  }
+});
+
+test("v3 manual delivery can be corrected without downgrading an automatic delivery floor", async () => {
+  const h = harness();
+  await h.signIn();
+  assert.equal((await h.move("released")).status, 200);
+  h.feed.schema_version = 3;
+  Object.assign(h.feed.items[0], { stage: "released", automatic_stage: null, issue_state: "open",
+    severity: "unassessed", severity_override: null });
+  assert.equal((await h.move("planned", "released")).status, 200);
+  h.feed.items[0].automatic_stage = "in-beta";
+  assert.equal((await h.move("backlog", "in-beta")).status, 409);
+  assert.equal((await h.move("released", "in-beta")).status, 200);
+});
+
+test("reopening expires manual delivery and a new confirmation renews its provenance", async () => {
+  const h = harness();
+  await h.signIn();
+  assert.equal((await h.move("released")).status, 200);
+  h.events.push({ id: h.events.length + 1, event: "reopened", created_at: new Date(now + 1000).toISOString() });
+  h.time = now + 2000;
+  assert.equal((await h.move("released", "backlog")).status, 200);
+  assert.equal(h.events.at(-1).event, "labeled");
+  assert.equal(h.events.at(-1).created_at, new Date(now + 2000).toISOString());
+  h.feed.items[0].stage = "released";
+  assert.equal((await h.move("in-beta", "released")).status, 409);
+});
+
+test("manual delivery requires the latest label event to belong to the maintainer", async () => {
+  const h = harness();
+  await h.signIn();
+  assert.equal((await h.move("in-beta")).status, 200);
+  h.events[0].actor = { login: "brandomoore", id: 999 };
+  assert.equal((await h.move("released", "in-beta")).status, 409);
+  assert(!h.issue.labels.some(label => label.name === "roadmap: released"));
 });
 
 test("closed items, pull requests, conflicts and verified delivery stages cannot be manually moved", async () => {
