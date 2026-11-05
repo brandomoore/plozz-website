@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-05T17:29:59Z",
+  "generated_at": "2026-11-05T18:03:22Z",
   "source": {
     "repository": "brandomoore/Plozz",
-    "revision": "c6e498c3ee62bef078cee4bf573b9a68dcffd6fa",
+    "revision": "c74e25353145e1dfbd8cc499fb82a87325ae4377",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42074927814"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42080238728"
   },
   "items": [
     {
@@ -86,7 +86,7 @@
       "number": 87,
       "title": "[Bug]: HEVC/H.265 transcoding preference is not respected",
       "kind": "bug",
-      "stage": "backlog",
+      "stage": "in-progress",
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/87",
@@ -261,7 +261,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1562100415770660874/1562100415770660874"
       ],
-      "severity": "unassessed",
+      "severity": "major",
       "severity_override": null
     },
     {
@@ -392,8 +392,8 @@
       "number": 206,
       "title": "[Bug]: Movie marked as \"continue watching\" after a missclick",
       "kind": "bug",
-      "stage": "backlog",
-      "automatic_stage": null,
+      "stage": "released",
+      "automatic_stage": "in-beta",
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/206",
       "discord_urls": [
@@ -871,8 +871,8 @@
       "number": 269,
       "title": "[Feature]: Support inline Plex collections in the movie library Browse view",
       "kind": "feature",
-      "stage": "backlog",
-      "automatic_stage": null,
+      "stage": "in-beta",
+      "automatic_stage": "in-beta",
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/269",
       "discord_urls": [
@@ -1185,8 +1185,8 @@
       "number": 313,
       "title": "[Bug]: The trailer marks a film as \"continue watching”",
       "kind": "bug",
-      "stage": "backlog",
-      "automatic_stage": null,
+      "stage": "in-beta",
+      "automatic_stage": "in-beta",
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/313",
       "discord_urls": [
@@ -1500,7 +1500,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567143479728148540/1567143479728148540"
       ],
-      "severity": "unassessed",
+      "severity": "major",
       "severity_override": null
     },
     {
@@ -1833,24 +1833,24 @@
       "number": 381,
       "title": "PublicMetaDB tracker support",
       "kind": "feature",
-      "stage": "backlog",
+      "stage": "in-progress",
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/381",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
       "number": 382,
       "title": "Two-way tracker sync support",
       "kind": "feature",
-      "stage": "backlog",
+      "stage": "in-progress",
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/382",
       "discord_urls": [],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     }
   ]
