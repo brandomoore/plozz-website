@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-06T00:08:03Z",
+  "generated_at": "2026-11-06T00:14:16Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "76a079e74d9d71759e4d8db9e8807b4647bff4a4",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42134334535"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42135129528"
   },
   "items": [
     {
@@ -1905,6 +1905,20 @@
         "https://discord.com/channels/1527028230106906704/1567970641800601831/1567970641800601831"
       ],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 391,
+      "title": "[Feature]: New episode notifications on iPhone and iPad",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/391",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1568039792036290590/1568039792036290590"
+      ],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
