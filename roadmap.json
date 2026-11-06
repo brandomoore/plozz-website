@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-06T12:44:30Z",
+  "generated_at": "2026-11-06T15:04:52Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "6f89805360b108f81fae678474b3f940eeb166c6",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42219714455"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42239320104"
   },
   "items": [
     {
@@ -767,7 +767,9 @@
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/257",
-      "discord_urls": [],
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1568239923625074769/1568239923625074769"
+      ],
       "severity": "normal",
       "severity_override": null
     },
@@ -1931,6 +1933,34 @@
       "github_url": "https://github.com/brandomoore/Plozz/issues/395",
       "discord_urls": [],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 396,
+      "title": "[Feature]: iCloud: iCloud Sync should be asked for during onboarding, and not assumed \"On\"",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/396",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1568241090232979466/1568241090232979466"
+      ],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 397,
+      "title": "[Feature]: Nice-to-Have: A single page with all of the privacy options regarding outgoing connections",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/397",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1568241812487806976/1568241812487806976"
+      ],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
