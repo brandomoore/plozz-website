@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-07T19:25:51Z",
+  "generated_at": "2026-11-07T20:32:55Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "06d5fd2f1d60a4fce61e5dd1794eb0b8d80aeb6f",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42406044476"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42411413114"
   },
   "items": [
     {
@@ -393,7 +393,7 @@
       "title": "[Bug]: Movie marked as \"continue watching\" after a missclick",
       "kind": "bug",
       "stage": "released",
-      "automatic_stage": "in-beta",
+      "automatic_stage": "released",
       "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/206",
       "discord_urls": [
@@ -873,8 +873,8 @@
       "number": 269,
       "title": "[Feature]: Support inline Plex collections in the movie library Browse view",
       "kind": "feature",
-      "stage": "in-beta",
-      "automatic_stage": "in-beta",
+      "stage": "released",
+      "automatic_stage": "released",
       "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/269",
       "discord_urls": [
@@ -1187,8 +1187,8 @@
       "number": 313,
       "title": "[Bug]: The trailer marks a film as \"continue watching”",
       "kind": "bug",
-      "stage": "in-beta",
-      "automatic_stage": "in-beta",
+      "stage": "released",
+      "automatic_stage": "released",
       "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/313",
       "discord_urls": [
