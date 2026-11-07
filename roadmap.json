@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-07T16:40:19Z",
+  "generated_at": "2026-11-07T18:00:44Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "fc63c2995b5b98e14bf4dc41c3d072eef015836f",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42392344986"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42398937936"
   },
   "items": [
     {
@@ -1973,6 +1973,18 @@
         "https://discord.com/channels/1527028230106906704/1568241812487806976/1568241812487806976"
       ],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 399,
+      "title": "[Feature]: Download subtitles",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/399",
+      "discord_urls": [],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
