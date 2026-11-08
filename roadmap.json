@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-08T14:34:18Z",
+  "generated_at": "2026-11-08T14:36:12Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "531ac1885795cd9e6273588be9e72ae474c1f8d6",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42490319999"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42490463654"
   },
   "items": [
     {
@@ -2061,6 +2061,34 @@
       "github_url": "https://github.com/brandomoore/Plozz/issues/414",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1568962096006299848/1568962096006299848"
+      ],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 415,
+      "title": "[Bug]: Plozz crashes on mac",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/415",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1568988523552575728/1568988523552575728"
+      ],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 416,
+      "title": "[Feature]: MDBList: Add Lists to \"Home\" as separate rows",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/416",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1568989948982591568/1568989948982591568"
       ],
       "severity": "unassessed",
       "severity_override": null
