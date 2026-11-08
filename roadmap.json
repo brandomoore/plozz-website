@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-08T05:59:13Z",
+  "generated_at": "2026-11-08T06:03:06Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "e617a2a6bbb7c7a752ca18590a2c878a2bedd4d2",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42452738421"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42453035985"
   },
   "items": [
     {
@@ -472,7 +472,7 @@
       "number": 219,
       "title": "[Feature]: Offline Mode for Downloaded Content",
       "kind": "feature",
-      "stage": "planned",
+      "stage": "in-beta",
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/219",
@@ -1729,7 +1729,7 @@
       "number": 368,
       "title": "[Feature]: Select an external player by long pressing on play button",
       "kind": "feature",
-      "stage": "planned",
+      "stage": "in-beta",
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/368",
