@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-08T08:16:15Z",
+  "generated_at": "2026-11-08T08:18:11Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "531ac1885795cd9e6273588be9e72ae474c1f8d6",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42462096874"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42462179192"
   },
   "items": [
     {
@@ -2029,7 +2029,7 @@
       "number": 410,
       "title": "[Bug]: Related movie cards appear one by one on iPhone, iPad and Apple TV",
       "kind": "bug",
-      "stage": "backlog",
+      "stage": "in-progress",
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/410",
