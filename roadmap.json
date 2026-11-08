@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-08T22:43:23Z",
+  "generated_at": "2026-11-08T22:55:55Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "c591f66395cd48acca755c752dcc478f514f7a7b",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42531412645"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42532521059"
   },
   "items": [
     {
@@ -2103,6 +2103,34 @@
       "github_url": "https://github.com/brandomoore/Plozz/issues/420",
       "discord_urls": [],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 421,
+      "title": "[Bug]: problem with gradient backgrounds",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/421",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1569065444130816100/1569065444130816100"
+      ],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 422,
+      "title": "[Feature]: Add Trakt watchlist/continue Watch to home",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/422",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1569091410886529146/1569091410886529146"
+      ],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
