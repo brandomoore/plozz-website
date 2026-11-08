@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-08T12:49:43Z",
+  "generated_at": "2026-11-08T13:58:56Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "531ac1885795cd9e6273588be9e72ae474c1f8d6",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42481918335"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42487383586"
   },
   "items": [
     {
@@ -2037,6 +2037,18 @@
         "https://discord.com/channels/1527028230106906704/1568812722832015491/1568812722832015491"
       ],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 412,
+      "title": "[Feature]: Can you please add Google drive implementation on plozz player ?",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/412",
+      "discord_urls": [],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
