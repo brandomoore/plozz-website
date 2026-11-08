@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-08T09:27:29Z",
+  "generated_at": "2026-11-08T11:25:05Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "531ac1885795cd9e6273588be9e72ae474c1f8d6",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42467142838"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42475524987"
   },
   "items": [
     {
@@ -1063,9 +1063,9 @@
       "number": 302,
       "title": "[Feature]: TV Shows: Display Series Synopsis and Ratings on Details Page",
       "kind": "feature",
-      "stage": "backlog",
-      "automatic_stage": null,
-      "issue_state": "open",
+      "stage": "in-beta",
+      "automatic_stage": "in-beta",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/302",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1564672451567419422/1564672451567419422"
