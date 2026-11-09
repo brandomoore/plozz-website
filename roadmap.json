@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-09T02:00:55Z",
+  "generated_at": "2026-11-09T02:12:53Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "5457589be4f71242ee0d3120ac19a9086fb77680",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42548363148"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42549519512"
   },
   "items": [
     {
@@ -2131,6 +2131,20 @@
         "https://discord.com/channels/1527028230106906704/1569091410886529146/1569091410886529146"
       ],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 423,
+      "title": "[Bug]: External player with WebDAV",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/423",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1569140861944598619/1569140861944598619"
+      ],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
