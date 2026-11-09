@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-09T03:35:21Z",
+  "generated_at": "2026-11-09T05:54:30Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "b0b5f6e23644510fa53ee6f8e9287631765e2154",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42557077636"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42569790444"
   },
   "items": [
     {
@@ -2145,6 +2145,18 @@
         "https://discord.com/channels/1527028230106906704/1569140861944598619/1569140861944598619"
       ],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 424,
+      "title": "[Bug]: Opening a Movies row from Home can hang on iOS 18",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/424",
+      "discord_urls": [],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
