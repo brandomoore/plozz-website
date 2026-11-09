@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-09T20:43:20Z",
+  "generated_at": "2026-11-09T20:50:05Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "0ac23664da1d98ca04b0dd25257611f4d650ae49",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42695364147"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42696441296"
   },
   "items": [
     {
@@ -1722,7 +1722,8 @@
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/368",
       "discord_urls": [
-        "https://discord.com/channels/1527028230106906704/1567575796808159292/1567575796808159292"
+        "https://discord.com/channels/1527028230106906704/1567575796808159292/1567575796808159292",
+        "https://discord.com/channels/1527028230106906704/1569450635965763594/1569450635965763594"
       ],
       "severity": "normal",
       "severity_override": null
@@ -2181,6 +2182,76 @@
       "github_url": "https://github.com/brandomoore/Plozz/issues/430",
       "discord_urls": [],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 433,
+      "title": "[Bug]: Continue to Watch WebDAV dont working when finished an épisode",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/433",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1569356682595926170/1569356682595926170"
+      ],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 434,
+      "title": "[Bug]: Hero no longer stretching to the top of the screen",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/434",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1569383555836944545/1569383555836944545"
+      ],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 435,
+      "title": "[Feature]: Smarter Community Markers",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/435",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1569403059698929684/1569403059698929684"
+      ],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 436,
+      "title": "[Feature]: Watchlist filter by \"Available Now\"",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/436",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1569403291383759041/1569403291383759041"
+      ],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 437,
+      "title": "[Feature]: Watch without tracking",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/437",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1569443545314623619/1569443545314623619"
+      ],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
