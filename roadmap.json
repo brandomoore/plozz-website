@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-10T02:27:17Z",
+  "generated_at": "2026-11-10T03:06:03Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "0ac23664da1d98ca04b0dd25257611f4d650ae49",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42742682799"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/42746966199"
   },
   "items": [
     {
@@ -2252,6 +2252,20 @@
         "https://discord.com/channels/1527028230106906704/1569443545314623619/1569443545314623619"
       ],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 445,
+      "title": "[Bug]: Watchlist with WebDAV item disapear after some time",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/445",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1569491382119309392/1569491382119309392"
+      ],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
