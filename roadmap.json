@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-11T18:14:56Z",
+  "generated_at": "2026-11-11T18:52:23Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "ef575724ea1c44f5f8be8b699bd540d39143450f",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/43075624181"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/43081546012"
   },
   "items": [
     {
@@ -2264,6 +2264,20 @@
       "github_url": "https://github.com/brandomoore/Plozz/issues/447",
       "discord_urls": [],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 448,
+      "title": "[Bug]: Sidebar can't be accessed when pressing \"Back\" on remote",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/448",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1570142161750724780/1570142161750724780"
+      ],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
