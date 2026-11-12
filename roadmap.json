@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-12T21:40:13Z",
+  "generated_at": "2026-11-12T22:29:35Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "e504196c5c1111c3e813379e01447635f46ef5c5",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/43312245366"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/43320128422"
   },
   "items": [
     {
@@ -2278,6 +2278,18 @@
         "https://discord.com/channels/1527028230106906704/1570142161750724780/1570142161750724780"
       ],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 449,
+      "title": "[Bug]: Home Screen image cache not working as expected",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/449",
+      "discord_urls": [],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
