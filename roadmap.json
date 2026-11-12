@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-12T06:53:04Z",
+  "generated_at": "2026-11-12T06:59:22Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "0faaed7173665b20d75636ed1885091ca87ce01a",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/43171019920"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/43171772513"
   },
   "items": [
     {
@@ -2239,7 +2239,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1569491382119309392/1569491382119309392"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     },
     {
@@ -2277,7 +2277,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1570142161750724780/1570142161750724780"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     }
   ]
