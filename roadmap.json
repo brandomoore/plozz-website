@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-14T04:43:52Z",
+  "generated_at": "2026-11-14T06:31:53Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "46fc2962b29cebeeefbba32e356740a74edbf43d",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/43557956154"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/43566638788"
   },
   "items": [
     {
@@ -2241,6 +2241,18 @@
       "severity_override": null
     },
     {
+      "number": 447,
+      "title": "[Bug]: Inconsistent Play button localization on tvOS home screen (German)",
+      "kind": "bug",
+      "stage": "in-beta",
+      "automatic_stage": "in-beta",
+      "issue_state": "closed",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/447",
+      "discord_urls": [],
+      "severity": "normal",
+      "severity_override": null
+    },
+    {
       "number": 448,
       "title": "[Bug]: Sidebar can't be accessed when pressing \"Back\" on remote",
       "kind": "bug",
@@ -2264,6 +2276,18 @@
       "github_url": "https://github.com/brandomoore/Plozz/issues/449",
       "discord_urls": [],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 451,
+      "title": "[Bug]: Discovery hero can miss Play and ratings for titles already in Jellyfin",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/451",
+      "discord_urls": [],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
