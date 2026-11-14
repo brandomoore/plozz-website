@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-14T15:59:16Z",
+  "generated_at": "2026-11-14T17:05:49Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "369b8ce980714f8e5e24d5ae6c07e47a241ea3a9",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/43612950538"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/43619044141"
   },
   "items": [
     {
@@ -2318,6 +2318,34 @@
         "https://discord.com/channels/1527028230106906704/1571114251119239178/1571114251119239178"
       ],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 454,
+      "title": "[Bug]: Collection posters not fitting correctly",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/454",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1571123855244922982/1571123855244922982"
+      ],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 455,
+      "title": "[Bug]: Header button on selected incoming serie show always ep 1",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/455",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1571153223853801562/1571153223853801562"
+      ],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
