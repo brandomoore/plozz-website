@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-15T23:02:17Z",
+  "generated_at": "2026-11-15T23:07:25Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "e4ba4d28af12d58208881eb1c42e87ff7fc2b6c1",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/43772221851"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/43772894650"
   },
   "items": [
     {
@@ -319,20 +319,6 @@
       "severity_override": null
     },
     {
-      "number": 202,
-      "title": "[Feature]: directors in cast",
-      "kind": "feature",
-      "stage": "backlog",
-      "automatic_stage": null,
-      "issue_state": "open",
-      "github_url": "https://github.com/brandomoore/Plozz/issues/202",
-      "discord_urls": [
-        "https://discord.com/channels/1527028230106906704/1562425591741943808/1562425591741943808"
-      ],
-      "severity": "normal",
-      "severity_override": null
-    },
-    {
       "number": 203,
       "title": "[Feature]: Live TV source category segregation.",
       "kind": "feature",
@@ -426,20 +412,6 @@
       "github_url": "https://github.com/brandomoore/Plozz/issues/213",
       "discord_urls": [],
       "severity": "unassessed",
-      "severity_override": null
-    },
-    {
-      "number": 217,
-      "title": "[Feature]: Home Screen: Custom Rows from Jellyfin Collections",
-      "kind": "feature",
-      "stage": "backlog",
-      "automatic_stage": null,
-      "issue_state": "open",
-      "github_url": "https://github.com/brandomoore/Plozz/issues/217",
-      "discord_urls": [
-        "https://discord.com/channels/1527028230106906704/1562954579769954384/1562954579769954384"
-      ],
-      "severity": "normal",
       "severity_override": null
     },
     {
@@ -589,18 +561,6 @@
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/235",
-      "discord_urls": [],
-      "severity": "normal",
-      "severity_override": null
-    },
-    {
-      "number": 236,
-      "title": "[Feature]: Card badges for resolution, codecs, dynamic range",
-      "kind": "feature",
-      "stage": "backlog",
-      "automatic_stage": null,
-      "issue_state": "open",
-      "github_url": "https://github.com/brandomoore/Plozz/issues/236",
       "discord_urls": [],
       "severity": "normal",
       "severity_override": null
@@ -1372,20 +1332,6 @@
       "severity_override": null
     },
     {
-      "number": 338,
-      "title": "[Feature]: Seerr: add a Discovery tab with Trending/Popular/Upcoming rows and requesting",
-      "kind": "feature",
-      "stage": "backlog",
-      "automatic_stage": null,
-      "issue_state": "open",
-      "github_url": "https://github.com/brandomoore/Plozz/issues/338",
-      "discord_urls": [
-        "https://discord.com/channels/1527028230106906704/1567111911877771264/1567111911877771264"
-      ],
-      "severity": "normal",
-      "severity_override": null
-    },
-    {
       "number": 339,
       "title": "[Bug]: Scrolling down to return to the homepage does not work",
       "kind": "bug",
@@ -1419,7 +1365,7 @@
       "kind": "bug",
       "stage": "released",
       "automatic_stage": null,
-      "issue_state": "open",
+      "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/341",
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567140644391092254/1567140644391092254"
@@ -1845,20 +1791,6 @@
       "severity_override": null
     },
     {
-      "number": 386,
-      "title": "[Feature]: Feature Request: Add Plex playlists to custom Home rows",
-      "kind": "feature",
-      "stage": "backlog",
-      "automatic_stage": null,
-      "issue_state": "open",
-      "github_url": "https://github.com/brandomoore/Plozz/issues/386",
-      "discord_urls": [
-        "https://discord.com/channels/1527028230106906704/1567899917610131596/1567899917610131596"
-      ],
-      "severity": "normal",
-      "severity_override": null
-    },
-    {
       "number": 387,
       "title": "[Bug]: The logo used in the hero is sometimes not the good one",
       "kind": "bug",
@@ -1923,18 +1855,6 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1568241812487806976/1568241812487806976"
       ],
-      "severity": "normal",
-      "severity_override": null
-    },
-    {
-      "number": 399,
-      "title": "[Feature]: Download subtitles",
-      "kind": "feature",
-      "stage": "backlog",
-      "automatic_stage": null,
-      "issue_state": "open",
-      "github_url": "https://github.com/brandomoore/Plozz/issues/399",
-      "discord_urls": [],
       "severity": "normal",
       "severity_override": null
     },
