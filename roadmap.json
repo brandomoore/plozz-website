@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-17T08:33:11Z",
+  "generated_at": "2026-11-17T08:59:13Z",
   "source": {
     "repository": "brandomoore/Plozz",
-    "revision": "086c8d5365cb6e208638832f17dd919bf5d82aab",
+    "revision": "49526410aad2db2d725f763972d532080782f0fc",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44047391185"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44051111643"
   },
   "items": [
     {
