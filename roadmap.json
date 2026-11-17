@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-17T14:08:20Z",
+  "generated_at": "2026-11-17T17:06:15Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "49526410aad2db2d725f763972d532080782f0fc",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44099423086"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44131989898"
   },
   "items": [
     {
@@ -2256,6 +2256,30 @@
         "https://discord.com/channels/1527028230106906704/1572046031867220128/1572046031867220128"
       ],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 461,
+      "title": "[Bug]: Subtitles with video sync issue / delay",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/461",
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 462,
+      "title": "[Feature]: Show MKV track names in audio and subtitle pickers",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/462",
+      "discord_urls": [],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
