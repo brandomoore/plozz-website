@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-17T00:37:36Z",
+  "generated_at": "2026-11-17T03:12:36Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "028557653bed90b6fd3193c3242029573bb156ba",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/43988890690"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44008311140"
   },
   "items": [
     {
@@ -2164,8 +2164,8 @@
       "number": 451,
       "title": "[Bug]: Discovery hero can miss Play and ratings for titles already in Jellyfin",
       "kind": "bug",
-      "stage": "backlog",
-      "automatic_stage": null,
+      "stage": "in-beta",
+      "automatic_stage": "in-beta",
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/451",
       "discord_urls": [
