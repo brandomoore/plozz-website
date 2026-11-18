@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-18T00:10:59Z",
+  "generated_at": "2026-11-18T00:19:55Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "30c1f29c0f2af229ec2e9684901670aeb0321371",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44205383493"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44206627511"
   },
   "items": [
     {
@@ -2294,6 +2294,20 @@
         "https://discord.com/channels/1527028230106906704/1572263393899978952/1572263393899978952"
       ],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 465,
+      "title": "[Feature]: Optional streaming services tile on the home screen",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/465",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1572376356350595123/1572376356350595123"
+      ],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
