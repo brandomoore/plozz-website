@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-19T01:49:29Z",
+  "generated_at": "2026-11-19T02:39:34Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "25dcee53ad6b7590d829b23e4cc049706afcef0e",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44439534537"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44445703591"
   },
   "items": [
     {
@@ -1041,7 +1041,7 @@
       "number": 307,
       "title": "[Bug]: Search doesn’t return tv shows",
       "kind": "bug",
-      "stage": "backlog",
+      "stage": "planned",
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/307",
@@ -1583,7 +1583,7 @@
       "number": 365,
       "title": "[Feature]: Speed up the app UI/UX by leveraging caches",
       "kind": "feature",
-      "stage": "backlog",
+      "stage": "planned",
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/365",
@@ -2250,7 +2250,7 @@
       "number": 461,
       "title": "[Bug]: Subtitles with video sync issue / delay",
       "kind": "bug",
-      "stage": "backlog",
+      "stage": "in-progress",
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/461",
