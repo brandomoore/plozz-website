@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-19T08:02:25Z",
+  "generated_at": "2026-11-19T08:16:37Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "669783d954ae4474b22799e47052747d2ee763a7",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44483884986"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44485937003"
   },
   "items": [
     {
@@ -2309,6 +2309,18 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1572673920329449592/1572673920329449592"
       ],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 470,
+      "title": "[Bug]: Connecting to a Windows SMB share can close Plozz on iPhone",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/470",
+      "discord_urls": [],
       "severity": "unassessed",
       "severity_override": null
     }
