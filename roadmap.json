@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-21T16:49:09Z",
+  "generated_at": "2026-11-21T21:13:22Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "cd5468e5dd37591cd818147224b1d3eb55c65407",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44926457845"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44950247316"
   },
   "items": [
     {
@@ -973,8 +973,8 @@
       "number": 302,
       "title": "[Feature]: TV Shows: Display Series Synopsis and Ratings on Details Page",
       "kind": "feature",
-      "stage": "in-beta",
-      "automatic_stage": "in-beta",
+      "stage": "released",
+      "automatic_stage": "released",
       "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/302",
       "discord_urls": [
@@ -1557,8 +1557,8 @@
       "number": 364,
       "title": "[Bug]: Names conventions",
       "kind": "bug",
-      "stage": "in-beta",
-      "automatic_stage": "in-beta",
+      "stage": "released",
+      "automatic_stage": "released",
       "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/364",
       "discord_urls": [
@@ -1966,8 +1966,8 @@
       "number": 421,
       "title": "[Bug]: problem with gradient backgrounds",
       "kind": "bug",
-      "stage": "in-beta",
-      "automatic_stage": "in-beta",
+      "stage": "released",
+      "automatic_stage": "released",
       "issue_state": "closed",
       "github_url": "https://github.com/brandomoore/Plozz/issues/421",
       "discord_urls": [
@@ -2238,8 +2238,8 @@
       "number": 461,
       "title": "[Bug]: Subtitles with video sync issue / delay",
       "kind": "bug",
-      "stage": "in-progress",
-      "automatic_stage": null,
+      "stage": "in-beta",
+      "automatic_stage": "in-beta",
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/461",
       "discord_urls": [],
@@ -2250,8 +2250,8 @@
       "number": 462,
       "title": "[Feature]: Show MKV track names in audio and subtitle pickers",
       "kind": "feature",
-      "stage": "backlog",
-      "automatic_stage": null,
+      "stage": "in-beta",
+      "automatic_stage": "in-beta",
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/462",
       "discord_urls": [],
@@ -2304,8 +2304,8 @@
       "number": 470,
       "title": "[Bug]: Connecting to a Windows SMB share can close Plozz on iPhone",
       "kind": "bug",
-      "stage": "backlog",
-      "automatic_stage": null,
+      "stage": "in-beta",
+      "automatic_stage": "in-beta",
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/470",
       "discord_urls": [],
