@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-22T01:18:23Z",
+  "generated_at": "2026-11-22T01:22:07Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "cd5468e5dd37591cd818147224b1d3eb55c65407",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44970615464"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44970963658"
   },
   "items": [
     {
@@ -1265,15 +1265,13 @@
     },
     {
       "number": 334,
-      "title": "[Feature]: MDBList as tracker",
+      "title": "[Feature]: Full MDBList support",
       "kind": "feature",
       "stage": "planned",
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/334",
-      "discord_urls": [
-        "https://discord.com/channels/1527028230106906704/1567026803866865745/1567026803866865745"
-      ],
+      "discord_urls": [],
       "severity": "normal",
       "severity_override": null
     },
@@ -1937,20 +1935,6 @@
       "severity_override": null
     },
     {
-      "number": 416,
-      "title": "[Feature]: MDBList: Add Lists to \"Home\" as separate rows",
-      "kind": "feature",
-      "stage": "planned",
-      "automatic_stage": null,
-      "issue_state": "open",
-      "github_url": "https://github.com/brandomoore/Plozz/issues/416",
-      "discord_urls": [
-        "https://discord.com/channels/1527028230106906704/1568989948982591568/1568989948982591568"
-      ],
-      "severity": "normal",
-      "severity_override": null
-    },
-    {
       "number": 420,
       "title": "[Feature]: Configure once, sync across devices — including layout and Seerr",
       "kind": "feature",
@@ -2324,6 +2308,20 @@
         "https://discord.com/channels/1527028230106906704/1573514553323425922/1573514553323425922"
       ],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 477,
+      "title": "[Feature]: Suggestions for a cleaner detail page",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/477",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1573836857421070476/1573836857421070476"
+      ],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
