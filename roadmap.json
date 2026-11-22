@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-22T00:54:23Z",
+  "generated_at": "2026-11-22T01:15:55Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "cd5468e5dd37591cd818147224b1d3eb55c65407",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44968738950"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44970462618"
   },
   "items": [
     {
@@ -1267,7 +1267,7 @@
       "number": 334,
       "title": "[Feature]: MDBList as tracker",
       "kind": "feature",
-      "stage": "backlog",
+      "stage": "planned",
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/334",
@@ -1940,7 +1940,7 @@
       "number": 416,
       "title": "[Feature]: MDBList: Add Lists to \"Home\" as separate rows",
       "kind": "feature",
-      "stage": "backlog",
+      "stage": "planned",
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/416",
