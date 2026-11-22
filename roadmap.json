@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-22T01:26:45Z",
+  "generated_at": "2026-11-22T01:36:22Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "cd5468e5dd37591cd818147224b1d3eb55c65407",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44971229626"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44972082201"
   },
   "items": [
     {
@@ -2321,7 +2321,7 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1573836857421070476/1573836857421070476"
       ],
-      "severity": "unassessed",
+      "severity": "normal",
       "severity_override": null
     }
   ]
