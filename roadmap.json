@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-22T01:55:56Z",
+  "generated_at": "2026-11-22T08:18:35Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "cd5468e5dd37591cd818147224b1d3eb55c65407",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/44973587108"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/45002053026"
   },
   "items": [
     {
@@ -1271,7 +1271,9 @@
       "automatic_stage": null,
       "issue_state": "open",
       "github_url": "https://github.com/brandomoore/Plozz/issues/334",
-      "discord_urls": [],
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1567026803866865745/1567026803866865745"
+      ],
       "severity": "normal",
       "severity_override": null
     },
@@ -2322,6 +2324,20 @@
         "https://discord.com/channels/1527028230106906704/1573836857421070476/1573836857421070476"
       ],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 478,
+      "title": "[Feature]: Spanish (from Spain) poster and better details",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/478",
+      "discord_urls": [
+        "https://discord.com/channels/1527028230106906704/1573886046280876122/1573886046280876122"
+      ],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
