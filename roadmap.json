@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-22T13:22:20Z",
+  "generated_at": "2026-11-22T15:09:40Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "cd5468e5dd37591cd818147224b1d3eb55c65407",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/45026939757"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/45036560097"
   },
   "items": [
     {
@@ -1442,18 +1442,6 @@
       "discord_urls": [
         "https://discord.com/channels/1527028230106906704/1567229744259276910/1567229744259276910"
       ],
-      "severity": "normal",
-      "severity_override": null
-    },
-    {
-      "number": 349,
-      "title": "[Feature]: top subtitles relative to the top of video",
-      "kind": "feature",
-      "stage": "backlog",
-      "automatic_stage": null,
-      "issue_state": "open",
-      "github_url": "https://github.com/brandomoore/Plozz/issues/349",
-      "discord_urls": [],
       "severity": "normal",
       "severity_override": null
     },
