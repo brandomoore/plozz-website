@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-23T01:12:54Z",
+  "generated_at": "2026-11-23T01:49:21Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "2185dcb318a5088712cf5b432d5257f607a7c133",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/45093088683"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/45096526767"
   },
   "items": [
     {
@@ -1624,20 +1624,6 @@
         "https://discord.com/channels/1527028230106906704/1567625465668304907/1567625465668304907"
       ],
       "severity": "normal",
-      "severity_override": null
-    },
-    {
-      "number": 372,
-      "title": "[Bug]: Silo server home screen takes a very long time to populate on iOS & tvOS.",
-      "kind": "bug",
-      "stage": "in-progress",
-      "automatic_stage": null,
-      "issue_state": "open",
-      "github_url": "https://github.com/brandomoore/Plozz/issues/372",
-      "discord_urls": [
-        "https://discord.com/channels/1527028230106906704/1567644345853542450/1567644345853542450"
-      ],
-      "severity": "major",
       "severity_override": null
     },
     {
