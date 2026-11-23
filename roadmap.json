@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-23T05:11:14Z",
+  "generated_at": "2026-11-23T05:26:06Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "29337c2c38f5982724116a8278a47fa466a30e03",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/45115982578"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/45117549313"
   },
   "items": [
     {
@@ -2338,6 +2338,30 @@
         "https://discord.com/channels/1527028230106906704/1574179863181402112/1574179863181402112"
       ],
       "severity": "normal",
+      "severity_override": null
+    },
+    {
+      "number": 482,
+      "title": "[Bug]: iPhone terminates during share catalog open-failure cleanup",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/482",
+      "discord_urls": [],
+      "severity": "unassessed",
+      "severity_override": null
+    },
+    {
+      "number": 483,
+      "title": "[Bug]: iPad app cannot launch on macOS 15 when UIKit lacks UIUpdateLink",
+      "kind": "bug",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/483",
+      "discord_urls": [],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
