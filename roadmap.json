@@ -1,11 +1,11 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-11-23T07:57:18Z",
+  "generated_at": "2026-11-23T09:54:32Z",
   "source": {
     "repository": "brandomoore/Plozz",
     "revision": "c3b53873d5fbc1b9eba1fe11cc2f73b12d280276",
     "authority_revision": "54858354cb10314f843c1236d3cbab7a9f8f0f13",
-    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/45134597199"
+    "run_url": "https://github.com/brandomoore/plozz-website/actions/runs/45150895835"
   },
   "items": [
     {
@@ -2362,6 +2362,18 @@
       "github_url": "https://github.com/brandomoore/Plozz/issues/483",
       "discord_urls": [],
       "severity": "blocking",
+      "severity_override": null
+    },
+    {
+      "number": 484,
+      "title": "[Feature]: Add the ability to manually correct incorrectly assigned TV series or movies",
+      "kind": "feature",
+      "stage": "backlog",
+      "automatic_stage": null,
+      "issue_state": "open",
+      "github_url": "https://github.com/brandomoore/Plozz/issues/484",
+      "discord_urls": [],
+      "severity": "unassessed",
       "severity_override": null
     }
   ]
